@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>添加老人</title>
+    <!--<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="css/gly_site_report.css"/>
+    <link rel="stylesheet" href="css/all.css"/>
+    <link rel="stylesheet" href="css/xuxkpopWindow.css"/>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/xuxkBrief.js"></script>
+    <script src="js/addTmpImg.js"></script>
+    <link rel="stylesheet" href="css/xuxk.css"/>
+    <link rel="stylesheet" href="css/addPlace.css"/>
+    <link rel="stylesheet" href="css/addOldMan.css"/>
+    <script src="js/public.js"></script>
+    <style>
+        body {
+            font-size: 12px;
+            font-family: Arial, Helvetica, sans-serif, 宋体;
+            color: rgb(51, 51, 51);
+            background: #fff;
+        }
+
+        /*body {font: normal 100% Helvetica, Arial,sans-serif;}*/
+    </style>
+    <script>
+        var token=localStorage.getItem('token');
+        loginrefresh(token)
+        var chfaId, plan,ssid='',
+                title,
+                time,
+                place_id;
+        //    监听滚动
+        scroll()
+    </script>
+</head>
+<body>
+<div class="topTitleNjcs">
+    <div class="topTitleNjcsline">
+        <div class="logo lf">
+            <a href="xs_index.html">
+                <img src="../images/toplogo.png" alt="">
+            </a>
+        </div>
+        <div class="exit rt">
+            <span></span>
+            <a href="javascript:;" onclick="getout()">退出</a>
+        </div>
+    </div>
+</div>
+<!--选择-->
+<div class="selectPagess">
+    <div  class="yourselect">
+        <p>你的选择</p>
+    </div>
+    <div  sid="1" class="selectchange age">
+        <p>年龄</p><span>60岁-69岁</span><span>70岁-79岁</span><span>80岁以上</span>
+    </div>
+    <div sid="2"  class="selectchange sex">
+        <p>性别</p><span>男</span><span>女</span>
+    </div>
+    <div sid="3" class="selectchange movability">
+        <p>活动能力</p><span>独立行走</span><span>助行</span><span>卧床</span>
+    </div>
+    <div sid="4" class="selectchange cognitive">
+        <p>认知能力</p><span>正常</span><span>轻度脑萎缩</span><span>中重度脑萎缩</span>
+    </div>
+    <div sid="5" class="selectchange disease">
+        <p>慢性病</p><span>高血压</span><span>心脏病</span><span>糖尿病</span><span>其他</span><span>无</span>
+    </div>
+    <div sid="6" class="selectchange interest">
+        <p>兴趣爱好</p><span>学习类</span><span>竞赛类</span><span>观赏类</span><span>展示类</span><span>茶话会类</span><span>外出类</span><span>无</span>
+    </div>
+</div>
+<!--选择列表-->
+<div class="pageBox">
+    <table>
+        <thead>
+        <tr  class="">
+            <td></td>
+            <td>姓名</td>
+            <td>性别</td>
+            <td>年龄</td>
+            <td>活动能力</td>
+            <td>认知能力</td>
+            <td>慢性病</td>
+            <td>兴趣爱好</td>
+            <td>操作</td>
+            <td></td>
+        </tr>
+        </thead>
+        <tbody class="leadtwo">
+        <!--<tr class="">-->
+            <!--<td><input type="checkbox" value="3" name="myrad">01</td>-->
+            <!--<td>啊阿斯蒂芬</td>-->
+            <!--<td>阿三大蘇打阿三大蘇打阿三大蘇打阿三大蘇打阿三大蘇打阿三大蘇打阿三大蘇打阿三大蘇打阿三大蘇打阿三大蘇打阿三大蘇打阿三大蘇打阿三大蘇打阿三大蘇打阿三大蘇打阿三大蘇打</td>-->
+            <!--<td>1312312</td>-->
+            <!--<td>啊阿斯蒂芬</td>-->
+            <!--<td>阿三大蘇打</td>-->
+            <!--<td>1312312</td>-->
+            <!--<td>1312312</td>-->
+            <!--<td><span class="look" >查看</span></td>-->
+            <!--<td></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+        <!--<td colspan="5 ">-->
+        <!--<p class="">未添加成员</p>-->
+        <!--</td>-->
+        <!--<td colspan="5" style="display: none">-->
+        <!--<p class="addMan">+&nbsp;添加成员</p>-->
+        <!--</td>-->
+        <!--</tr>-->
+        </tbody>
+
+    </table>
+    <div class="paging">
+        <div class="rt">
+            <span class="lastpage"><span></span>&nbsp;上一页</span>&nbsp;&nbsp;
+            <span class="nextpage">下一页&nbsp;<span></span></span>&nbsp;&nbsp;&nbsp;
+            到第 &nbsp; &nbsp;<input type="text" value=""/>&nbsp;&nbsp; 页&nbsp;&nbsp; <button class="makeSure">确定</button>&nbsp;&nbsp;</div>
+
+    </div>
+</div>
+
+<div class="save"><button class="saveList">保存</button></div>
+
+
+<script>
+    var pageNo= 0,pageSize=15,movability='',cognitive='',disease='',interest='',age_min='',age_max='',sex='';
+    //    if(!$('.yourselect span').attr('type')){
+    //        type=''
+    //    }else{
+    //        type=$('.yourselect span').attr('type')
+    //    }
+    var hdcy_id= GetQueryString("id");
+    function lastpage(){
+        $.ajax({
+            url:'/cszyylfw/comm/oldmanlist',
+            type:'post',
+            data:"page_no="+pageNo+"&page_size="+pageSize+'&token='+token+"&movability="+movability+"&cognitive="+cognitive
+            +"&disease="+disease+"&interest="+interest+"&age_min="+age_min+"&age_max="+age_max+"&sex="+sex,
+            async:false,
+            success:function(res){
+                if(res.code==0){
+//                    1剧院礼堂 2教室 3宴会 4体育馆 5T型台 6圆桌 7其他
+                    if(res.data.items.length==0){
+                        if(pageNo==1){return}
+                        error('没有更多数据！');
+                        pageNo--;
+                        return
+                    }
+                    $('tbody').html('');
+                    var typeName,typeSex;
+                    for(var i=0;i<res.data.items.length;i++){
+                        if(res.data.items[i].sex==1){
+                            typeSex='男'
+                        }else{
+                            typeSex='女'
+                        }
+                        $('tbody').append('<tr class=""> <td><input id="'+res.data.items[i].id+'" type="checkbox" value="" name="myrad">'+(i+1)+'</td> <td>'+res.data.items[i].name+'</td> <td>'+typeSex+'</td> <td>'+res.data.items[i].age+'</td> <td>'+res.data.items[i].movability+'</td> <td>'+res.data.items[i].cognitive+'</td> <td>'+res.data.items[i].disease+'</td> <td>'+res.data.items[i].interest+'</td> <td><span class="look"  id="'+res.data.items[i].id+'">查看</span></td> <td></td> </tr>')
+                    }
+                }
+            }
+        })
+    }
+    pageNo++;
+    lastpage();
+
+
+    $('.lastpage').click(function(){
+
+        if(!$('.yourselect span').attr('type')){
+            type=''
+        }else{
+            type=$('.yourselect span').attr('type')
+        }
+        pageNo--;
+        if(pageNo>0){
+            lastpage()
+        }else{
+            error('已到达第一页！');
+            pageNo++
+        }
+
+    })
+    $('.nextpage').click(function(){
+        if(!$('.yourselect span').attr('type')){
+            type=''
+        }else{
+            type=$('.yourselect span').attr('type')
+        }
+        pageNo++;
+        lastpage()
+    })
+
+
+    //    选择场地类型
+    $('.selectchange span').click(function(){
+        $('tbody').html('');
+        var sid= $(this).parent().attr('sid')
+        $('.yourselect span').each(function(){
+            //当前radio是否为选中状态
+            if($(this).attr('sid')==sid){
+                $(this).remove()
+                if($(this).attr('sid')==1){
+                    if($(this).children().html()=='80岁以上'){
+                        age_min=$(this).children().html().split('岁')[0];
+                        age_max=''
+                    }else{
+                        age_min=$(this).children().html().split('岁')[0]
+                        age_max=$(this).children().html().split('岁')[1].slice(1,3)
+                    }
+
+                }
+                if($(this).attr('sid')==2){
+                    if($(this).children().html()=='男'){
+                        sex=1
+                    }else{
+                        sex=2
+                    }
+                }
+                if($(this).attr('sid')==3){
+                    movability=$(this).children().html()
+                }
+                if($(this).attr('sid')==4){
+                    cognitive=$(this).children().html()
+                }
+                if($(this).attr('sid')==5){
+                    disease=$(this).children().html()
+                }
+                if($(this).attr('sid')==6){
+                    interest=$(this).children().html()
+                }
+            }else{
+                if($(this).attr('sid')==1){
+                    if($(this).children().html()=='80岁以上'){
+                        age_min=$(this).children().html().split('岁')[0];
+                        age_max=''
+                    }else{
+                        age_min=$(this).children().html().split('岁')[0]
+                        age_max=$(this).children().html().split('岁')[1].slice(1,3)
+                    }
+                }
+                if($(this).attr('sid')==2){
+                    if($(this).children().html()=='男'){
+                        sex=1
+                    }else{
+                        sex=2
+                    }
+                }
+                if($(this).attr('sid')==3){
+                    movability=$(this).children().html()
+                }
+                if($(this).attr('sid')==4){
+                    cognitive=$(this).children().html()
+                }
+                if($(this).attr('sid')==5){
+                    disease=$(this).children().html()
+                }
+                if($(this).attr('sid')==6){
+                    interest=$(this).children().html()
+                }
+            }
+
+        });
+        if(sid==1){
+            if($(this).html()=='80岁以上'){
+                age_min=$(this).html().split('岁')[0]
+                age_max=''
+            }else{
+                age_min=$(this).html().split('岁')[0]
+                age_max=$(this).html().split('岁')[1].slice(1,3)
+            }
+            console.log(age_min,age_max)
+        }else if(sid==2){
+            if($(this).html()=='男'){
+                sex=1
+            }else{
+                sex=2
+            }
+
+        }else if(sid==3){
+            movability=$(this).html()
+        }else if(sid==4){
+            cognitive=$(this).html()
+        }else if(sid==5){
+            disease=$(this).html()
+        }else if(sid==6){
+            interest=$(this).html()
+        }
+
+        $(this).css('border','1px solid #37b5f9');
+        $(this).siblings('span').css('border','1px solid #fff');
+        $('.yourselect').append('<span sid="'+sid+'"><span>'+$(this).html()+'</span><span class="delIcon"></span></span>');
+        pageNo=1;
+        lastpage()
+    })
+
+    //删除
+    $('.selectPagess').on('click','.yourselect .delIcon',function(){
+        if($(this).parent().attr('sid')==1){
+            age_min='';
+            age_max=''
+            $('.age span').css('border','1px solid #fff')
+        }else if($(this).parent().attr('sid')==2){
+            sex=''
+            $('.sex  span').css('border','1px solid #fff')
+        }else if($(this).parent().attr('sid')==3){
+            movability=''
+            $('.movability span').css('border','1px solid #fff')
+        }else if($(this).parent().attr('sid')==4){
+            cognitive=''
+            $('.cognitive span').css('border','1px solid #fff')
+        }else if($(this).parent().attr('sid')==5){
+            disease=''
+            $('.disease span').css('border','1px solid #fff')
+        }else if($(this).parent().attr('sid')==6){
+            interest='';
+            $('.interest span').css('border','1px solid #fff')
+        }
+        $(this).parent().remove();
+
+        pageNo=1;
+        lastpage()
+    })
+
+    $('.makeSure').click(function(){
+        $('tbody').html('');
+
+        if(!$('.paging input').val()){
+            pageNo=1;
+        }else{
+            pageNo=$('.paging input').val()
+        }
+        lastpage()
+    })
+
+    //    保存
+  var idold=''
+    $('.saveList').click(function(){
+        $("input:checkbox[name='myrad']").each(function(){
+            //当前radio是否为选中状态
+            if($(this).is(':checked')==true){
+                idold=idold+$(this).attr('id')+","
+            }
+//            idold=idold.slice(0,idold.length-1)
+        });
+        idold=idold.slice(0,idold.length-1)
+        $.ajax({
+            url:'/cszyylfw/xs/xm/hdcy/addoldman',
+            type:'post',
+            data:"hdcy_id="+hdcy_id+"&o_id="+idold+'&token='+token,
+            async:false,
+            success:function(res){
+                if(res.code==0) {
+                    self.close();
+                }else if(res.code==20){
+                    alert('登陆超时，请重新登录！')
+                    setTimeout(function(){
+                        location.href='xs_index.html'
+                    },1000)
+
+                } else{
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    })
+
+    $('tbody').on('click','td .look',function(){
+        var id=$(this).attr('id')
+         window.open("lookOldMan.html?id="+id)
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+.addteacher{
+    width: 822px;
+    height: 70px;
+    background: #f8f8f8;
+    margin: 25px auto;
+}
+.addteacher button{
+    width: 96px;
+    height: 36px;
+    background: #37b5f9;
+    color: #ffffff;
+    border-radius: 6px;
+    border: 0;
+    margin-right: 30px;
+    margin-left: 20px;margin-top: 17px;
+    vertical-align: middle;
+}
+.lookThis>span{
+    display: inline-block;
+    width: 80px;
+    height: 16px;
+    line-height: 16px;
+    vertical-align: middle;
+}
+.lookThis span:first-child{
+    border-right: 1px solid #37b5f9;
+}

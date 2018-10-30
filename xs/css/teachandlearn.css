@@ -1,0 +1,84 @@
+.classedit{
+    height: 78px;
+    line-height: 78px;
+}
+.donow{
+    display: inline-block;
+    width: 96px;
+    height: 36px;
+    background: #0096ff;
+    color: #ffffff;
+    margin-left: 28.5px;
+    border-radius: 6px;
+    line-height: 36px;
+    vertical-align: middle;
+    text-align: center;
+    /*margin-top: 20px;*/
+}
+.colortd span{
+    display: inline-block;
+    padding: 0 20px;
+    height: 14px;
+    vertical-align: middle;
+    line-height: 14px;
+}
+.colortd span:first-child{
+    border-right: 1px solid #359bb5 ;
+}
+
+.boxRtBottomNext{
+    width: 822px;
+    height: auto;
+    background: #f8f8f8;
+    margin: 50px auto 11px;
+    padding-bottom: 70px;
+}
+.boxRtBottomNext>div>div:first-child{
+    padding:24px 45px;
+    line-height: 24px;
+    color: #77727a;
+    font-size: 14px;
+    font-weight:600 ;
+}
+.boxRtBottomNext>div>div:nth-child(2){
+    padding:10px 45px 6px;
+    line-height: 24px;
+    color: #77727a;
+    font-size: 14px;
+}
+
+.boxRtBottomNext>div>div:nth-child(2)>div{
+    margin-bottom: 20px;
+}
+.boxRtBottomNextvalue input{
+    line-height: 24px;
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin-right: 15px;
+    vertical-align: top;
+    margin-top: 5px;
+}
+.boxRtBottomNextvalue span{
+    display: inline-block;
+    line-height: 24px;
+    width: 695px;
+}
+
+/*.boxRtBottomNext>div:last-child{*/
+    /*padding-bottom: 70px;*/
+/*}*/
+
+.submittimu{
+    margin-top: 60px;
+    display: inline-block;
+    width: 96px;
+    height: 36px;
+    background: #0096ff;
+    color: #ffffff;
+    margin-left: 363px;
+    border-radius: 6px;
+    line-height: 36px;
+    vertical-align: middle;
+    text-align: center;
+}

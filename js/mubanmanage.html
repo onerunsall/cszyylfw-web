@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>模板编辑</title>
+    <!--<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="../xs/css/all.css"/>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <link rel="stylesheet" href="css/xuxk.css"/>
+    <link rel="stylesheet" href="css/best_hmwork.css"/>
+    <script src="../xs/js/addTmpImg.js"></script>
+    <link rel="stylesheet" href="../xs/css/gly_site_report.css"/>
+    <link rel="stylesheet" href="css/gobal.css"/>
+    <script src="js/xuxkBrief.js"></script>
+    <script src="js/public.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font-size: 12px;
+            font-family: Arial, Helvetica, sans-serif, 宋体;
+            color: rgb(51, 51, 51);
+            background: #d0e89b;
+        }
+        .level2{
+            height: auto !important;
+        }
+        .level2>span:nth-child(1){
+            vertical-align: top;
+            margin-top: 14px;
+        }
+        .level2>span:nth-child(2){
+            width: 70px;
+            display: inline-block;
+            line-height: 20px;
+            margin-top: 8px;
+        }
+        .boxmenuLevel2>ul>li {
+            height: auto;
+            /*border-bottom: 1px solid #e5e5e5;*/
+        }
+        .wendang{
+            width: 822px !important;
+            background: #fff;
+        }
+        .boxmenuLevel2 ul>li:nth-child(odd)>div{
+            background: #fff !important;
+        }
+        .boxmenuLevel2 ul>li:nth-child(even)>div{
+            background: #f7f9ff !important;
+        }
+        .exit,.exit a{
+            font-size: 12px !important;
+            color: #fff !important;
+        }
+        /*body {font: normal 100% Helvetica, Arial,sans-serif;}*/
+    </style>
+    <script>
+        var token = localStorage.getItem('token');
+
+
+    </script>
+
+
+</head>
+<body>
+<div class="mantain">
+    <!--顶部导航-->
+    <div class="zoneBg">
+        <div class="topLine">
+            <div class="topLineBelore">
+                <div class="logo lf">
+                    <a href="js_index.html">
+                        <img src="images/logoTop.png" alt=""/>
+                    </a>
+                </div>
+                <div class="exit rt">
+                    <span></span>
+                    <a href="javascript:;" onclick="getoutjs(token)">退出</a>
+
+                </div>
+            </div>
+        </div>
+        <div class="bg1">
+            <img src="images/touming.png" alt=""/>
+        </div>
+        <!--正文内容-->
+        <div class="box">
+            <div class="box_in" style="    width: 929px;">
+                <div class="boxRt lf">
+                    <div class="boxRtBox">
+                        <div class="classedit">
+                            <span class="addClass" zid="1" onclick="editDoc(1)">新增咨询模板</span>
+                            <span class="addClass" zid="2" onclick="editDoc(2)">新增活动模板</span>
+                            <span class="addClass" zid="3" onclick="editDoc(3)">新增能力评估模板</span>
+                        </div>
+                        <div class="boxRtBoxBottom">
+                            <!--<iframe ID="Frame4" SRC="login.html" STYLE="background-color: green"> </iframe>-->
+                            <!--学习项目-->
+                            <div class="boxTitle">
+                                <span>编号</span><span>任务</span><span>操作</span>
+                            </div>
+                            <div class="boxone">
+                                <div class="boxlevel1Style">
+                                    <div class="boxlevel1Styleline first">
+                                        <span>任务一</span><span>咨询接待需求评估模板</span><span><span
+                                            class="icons iconInsdown"></span></span>
+                                    </div>
+                                </div>
+                                <div class="boxmenuLevel2" style="display: none">
+                                    <ul>
+
+                                    </ul>
+                                </div>
+
+                            </div>
+                            <div class="boxtwo">
+                                <div class="boxlevel1Style">
+                                    <div class="boxlevel1Styleline first">
+                                        <span>任务二</span><span>活动动员模板</span><span><span
+                                            class="icons iconInsdown"></span></span>
+                                    </div>
+                                </div>
+                                <div class="boxmenuLevel2" style="display: none">
+                                    <ul>
+
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="boxthree">
+                                <div class="boxlevel1Style">
+                                    <div class="boxlevel1Styleline first">
+                                        <span>任务三</span><span>能力评估模板</span><span><span
+                                            class="icons iconInsdown"></span></span>
+                                    </div>
+                                </div>
+                                <div class="boxmenuLevel2" style="display: none">
+                                    <ul>
+
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <!--书页线-->
+                <div class="boxRtBottom rt"></div>
+                <div class="clear"></div>
+            </div>
+
+            <div class="footer" style="margin-bottom: 80px">
+                <div class="information" style="padding: 0;margin: 0">             <ul  style="padding: 0;margin: 0">                 <li><img src="../images/bottomText.png" alt="" style="width: 460px"/></li>             </ul>         </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<form action="" id="up1">
+    <input type="file" id="choosefile" onchange="fileChangeDoc(this);" accept=".doc,.pdf,.docx,.pptx,.rtf"
+           name="choosefile" style="display: none"/>
+</form>
+<form action="" id="up12">
+    <input type="file" id="choosefile2" onchange="fileChangeDoc2(this);" accept=".doc,.pdf,.docx,.pptx,.rtf"
+           name="choosefile" style="display: none"/>
+</form>
+<script type="text/javascript">
+    var student_id = GetQueryString('student_id')
+    var xm_type = 1
+
+
+    $('.boxRtBoxBottom .boxlevel1Style').click(function () {
+//        $(this).children('.menuLevel2').slideToggle();
+        $(this).siblings().slideToggle();
+        $(this).parent().siblings().children('.boxmenuLevel2').slideUp();
+        var sss = new RegExp('up');
+        var bgcolor = $(this).children().find('.icons').css('background')
+        if (!sss.test(bgcolor)) {
+            $(this).children().find('.icons').css('background', 'url(images/up.png)');
+        } else {
+            $(this).children().find('.icons').css('background', 'url(images/down.png)');
+        }
+        $(this).parent().siblings().children().find('.icons').css('background', 'url(images/down.png)')
+    })
+
+    $('.level1 .level1Style').click(function () {
+//        $(this).children('.menuLevel2').slideToggle();
+        $(this).siblings().slideToggle();
+        console.log($(this).parent().siblings())
+        $(this).parent().siblings().children('.menuLevel2').slideUp();
+        $(this).parent().siblings().find('.level2 span:nth-child(1)').css('background', 'url(images/icon4.png)')
+        $(this).parent().siblings().find('.level2').css('background', '#fff ').css('color', '#585631')
+    })
+    $('.level1 .level2').click(function () {
+        xm_type = $(this).attr('xm_type');
+        reloadAll()
+        $(this).children('span:nth-child(1)').css('background', 'url(images/icon44.png)');
+        $(this).css('background', '#b1c54c').css('color', '#fff');
+        $(this).siblings().children('span:nth-child(1)').css('background', 'url(images/icon4.png)');
+        $(this).siblings().css('background', '#fff ').css('color', '#585631')
+    })
+
+    loginrefresh(token)
+
+
+    $('a').click(function () {
+        if (!$(this).attr('href'))
+            error('学生未提交该项作业')
+    })
+
+    function reloadGoodHm(url,_this){
+        $.ajax({
+            url: "/cszyylfw"+url,
+            type: 'post',
+            async: false,
+            data: 'token=' + token + "&xm_type=" + xm_type+"&page_no=1&page_size=100",
+            success: function (res) {
+                if (res.code == 0) {
+
+                    for(var i=0;i<res.data.items.length;i++){
+                        _this.append(' <li xm_type="1" class="boxlevel2 btnone"> <div class="wendang" urlId="' +  res.data.items[i].id + '" url="' +  res.data.items[i].url + '">' +
+                        '<span class="editDocument"></span><span class="editDoc">' + res.data.items[i].name + '</span> <span class="rt del"></span> </div> </li>')
+                    }
+
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！');
+                    setTimeout(function () {
+                        location.href = 'js_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+    function reloadAll(){
+        $('.boxRtBoxBottom li').remove()
+        var _this=$('.boxone .boxmenuLevel2 ul');
+        reloadGoodHm('/js/tmplgl/zxxq/tmpls',_this)
+       var _this=$('.boxtwo .boxmenuLevel2 ul');
+       reloadGoodHm('/js/tmplgl/hdcy/tmpls',_this)
+        var _this=$('.boxthree .boxmenuLevel2 ul');
+        reloadGoodHm('/js/tmplgl/zxnl/tmpls',_this)
+    }
+    reloadAll()
+
+
+
+    //    删除
+    $('.boxone').on('click','li .del',function(){
+        var id=$(this).parent().attr('urlId')
+        layboxs("action/delete_good_hm.html?id=" + id + "&url=/js/tmplgl/zxxq/deltmpl" + "&fun=delok", "notitle");
+    })
+        $('.boxtwo').on('click','li .del',function(){
+            var id=$(this).attr('id')
+            layboxs("action/delete_good_hm.html?id=" + id + "&url=/js/tmplgl/hdcy/deltmpl" + "&fun=delok", "notitle");
+        })
+    $('.boxthree').on('click','li .del',function(){
+        var id=$(this).attr('id')
+        layboxs("action/delete_good_hm.html?id=" + id + "&url=/js/tmplgl/zxnl/deltmpl" + "&fun=delok", "notitle");
+    })
+    function delok(){
+        popation("220", "y", "删除成功！");
+        closemask();
+        $('.popopowindow').remove()
+        reloadAll()
+    }
+    //    下載模板
+    $(".boxmenuLevel2").on('click','.wendang .editDoc',function(){
+        window.open($(this).parent().attr('url')+"?n="+$(this).html().split('.')[0])
+    })
+
+
+//新增模板
+    var urls;
+    var isIE = /msie/i.test(navigator.userAgent) && !window.opera;
+    function editDoc(objNunber) {
+//        var zid=num.attr('zid')
+        if(objNunber==1){
+            urls='/js/tmplgl/zxxq/addtmpl'
+        }else   if(objNunber==2){
+            urls='/js/tmplgl/hdcy/addtmpl'
+        }else   if(objNunber==3){
+            urls='/js/tmplgl/zxnl/addtmpl'
+        }
+        $("#choosefile").click();
+        var file = $("#choosefile").val();
+        var fileName = getFileName(file);
+
+        function getFileName(o) {
+            var pos = o.lastIndexOf("\\");
+            return o.substring(pos + 1);
+        }
+
+        $('#filename').html(fileName)
+    }
+    function fileChangeDoc(target) {
+        var fileSize = 0;
+        if (isIE && !target.files) {
+            var filePath = target.value;
+            var fileSystem = new ActiveXObject("Scripting.FileSystemObject");
+            var file = fileSystem.GetFile(filePath);
+            fileSize = file.Size;
+        } else {
+            fileSize = target.files[0].size;
+        }
+        var size = fileSize / 1024;
+        if (size > 10000) {
+            alert("附件不能大于10M");
+            target.value = "";
+            return
+        } else {
+            var up1 = uploadImgBatchUrl('up1', '/oss/file/upload?path=cszyylfw/');
+
+            var file = $("#choosefile").val();
+            var fileName = getFileName(file);
+
+            function getFileName(o) {
+                var pos = o.lastIndexOf("\\");
+                return o.substring(pos + 1);
+            }
+
+            var urlId = uploadfiles(urls, '', up1, fileName, 1, token);
+
+            reloadAll()
+        }
+    }
+
+
+
+//    $.ajax({
+//        url: "/cszyylfw/js/tmplgl/sspg/addtmpl",
+//        type: 'post',
+//        async: false,
+//        data: 'token=' + token + "&xm_type=" + xm_type+"&page_no=1&page_size=100",
+//        success: function (res) {
+//            if (res.code == 0) {
+//
+//            } else if (res.code == 20) {
+//                alert('登陆超时，请重新登录！');
+//                setTimeout(function () {
+//                    location.href = 'js_index.html'
+//                }, 1000)
+//
+//            } else {
+//                alert(res.codeMsg)
+//            }
+//        }
+//    })
+</script>
+</body>
+</html>

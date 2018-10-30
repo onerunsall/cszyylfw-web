@@ -1,0 +1,250 @@
+@charset "utf-8";
+body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0}
+body{font:12px"w微软雅黑","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;}
+a{color:#2d374b;text-decoration:none}
+a:hover{color:#cd0200;text-decoration:underline}
+em{font-style:normal}
+li{list-style:none}
+img{border:0;vertical-align:middle}
+table{border-collapse:collapse;border-spacing:0}
+p{word-wrap:break-word}
+.lf{
+    float: left;
+}
+.rt{
+    float: right;
+}
+.clear{
+    clear: both;
+}
+
+body, div, ul, li, span, a, textarea, p, h3, h2, h1, h4, dl, dt, dd, em, input, b, select, input {
+    padding: 0px;
+    margin: 0px;
+}
+a{
+    list-style: none;
+}
+.minWidth{
+    margin: 0 auto;
+    width: 1100px;
+    min-width: 1100px;
+}
+table{
+    table-layout: fixed;
+}
+td{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+}
+.twoPX{
+       font-size: 20px !important;
+   }
+textarea::-webkit-input-placeholder {
+    color: #cccccc !important;
+    font-size: 16px  !important;
+    }
+textarea:-moz-placeholder {
+    color: #cccccc !important;
+    font-size: 16px  !important;
+    }
+    textarea::-moz-placeholder {
+    color: #cccccc !important;
+        font-size: 16px  !important;
+    }
+    textarea:-ms-input-placeholder {
+    color: #cccccc !important;
+        font-size: 16px  !important;
+}
+input::-webkit-input-placeholder {
+    color: #cccccc !important;
+    font-size: 16px  !important;
+}
+input:-moz-placeholder {
+    color: #cccccc !important;
+    font-size: 16px  !important;
+}
+input::-moz-placeholder {
+    color: #cccccc !important;
+    font-size: 16px  !important;
+}
+input:-ms-input-placeholder {
+    color: #cccccc !important;
+    font-size: 16px  !important;
+}
+.border_right{
+    border-right: 1px solid #0096ff !important;
+}
+.font600{
+    font-weight: 600;
+}
+.textareaBig{
+    color: #000;
+    height: 240px;
+    /* overflow-y: scroll; */
+    /* display: inline-block; */
+    width: 1100px;
+    max-width: 1100px;
+    min-width: 1100px;
+    font-size: 16px;
+    padding: 29px 20px;
+    line-height: 24px;
+    border: 1px solid #e5e5e5;
+}
+.icon1{
+    width:36px ;
+    height: 40px;
+    background: url(../../images/icon1.png);
+    background-size: 100% 100%;
+    display: inline-block;
+    position: static;
+    vertical-align: middle;
+}
+.icon3{
+    width:36px ;
+    height: 40px;
+    background: url(../../images/bigtou.png);
+    background-size: 100% 100%;
+    display: inline-block;
+    position: static;
+    vertical-align: middle;
+}
+.icon6{
+    width:36px ;
+    height: 40px;
+    background: url(../../images/editbig.png);
+    background-size: 100% 100%;
+    display: inline-block;
+    position: static;
+    vertical-align: middle;
+}
+
+.icona1{
+    width:30px ;
+    height: 32px;
+    background: url(../../images/icona1.png);
+    background-size: 100% 100%;
+    display: inline-block;
+    position: static;
+    vertical-align: middle;
+}
+.icona2{
+    width:30px ;
+    height: 32px;
+    background: url(../../images/icona2.png);
+    background-size: 100% 100%;
+    display: inline-block;
+    position: static;
+    vertical-align: middle;
+}
+.icona3{
+    width:30px ;
+    height: 32px;
+    background: url(../../images/icona3.png);
+    background-size: 100% 100%;
+    display: inline-block;
+    position: static;
+    vertical-align: middle;
+}
+.icona4{
+    width:30px ;
+    height: 32px;
+    background: url(../../images/icona4.png);
+    background-size: 100% 100%;
+    display: inline-block;
+    position: static;
+    vertical-align: middle;
+}
+.icona5{
+    width:30px ;
+    height: 32px;
+    background: url(../../images/icona5.png);
+    background-size: 100% 100%;
+    display: inline-block;
+    position: static;
+    vertical-align: middle;
+}
+.icona6{
+    width:30px ;
+    height: 32px;
+    background: url(../../images/icona6.png);
+    background-size: 100% 100%;
+    display: inline-block;
+    position: static;
+    vertical-align: middle;
+}
+.iconInsup{
+    width:17px ;
+    height: 10px;
+    background: url(../../images/up.png);
+    background-size: 100% 100%;
+    display: inline-block;
+    position: static;
+    vertical-align: middle;
+}
+.iconInsdown{
+    width:17px ;
+    height: 10px;
+    background: url(../../images/down.png);
+    background-size: 100% 100%;
+    display: inline-block;
+    position: static;
+    vertical-align: middle;
+}
+
+.iconalj{
+    width: 28px;
+    height: 17px;
+    background: url(../../images/iconalj.png) no-repeat !important ;
+    background-size: 100% 100%;
+    display: inline-block;
+    position: static;
+    vertical-align: middle;
+    margin: 8px 10px 8px 0;
+}
+.iconrun{
+    width: 36px;
+    height: 40px;
+    background: url(../../images/iconrun.png);
+    background-size: 100% 100%;
+    display: inline-block;
+    position: static;
+    vertical-align: middle;
+}
+
+.download{
+    margin-right: 110px;
+    display: inline-block;
+    width:18px ;
+    height: 18px;
+    background: url(../../images/download.png);
+    background-size: 100% 100%;
+    position: static;
+    vertical-align: middle;
+    margin-top: 18.5px;
+}
+.footer{
+    background: none !important;
+}
+
+table span{
+    cursor: pointer;
+}
+button,ul span span{
+    cursor: pointer;
+}
+.selectPagess,.classedit span{
+    cursor: pointer;
+}
+a,.addplace,.wendang span,.pinggufangfa,.tab4,.addStudent,.addTeacher,.shipin span,.picture span{
+    cursor: pointer;
+}
+.lookThis span,.edit2,.addIcon{
+    cursor: pointer;
+}
+
+li>span>span{
+    cursor: pointer;
+}

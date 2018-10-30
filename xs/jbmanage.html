@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="x-ua-compatible" content="IE=Edge, chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+
+    <title>疾病信息数据库</title>
+    <!--<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="../xs/css/gly_site_report.css"/>
+    <link rel="stylesheet" href="../xs/css/all.css"/>
+    <link rel="stylesheet" href="../xs/css/gobal.css"/>
+    <link rel="stylesheet" href="../xs/css/xuxkpopWindow.css"/>
+    <script src="../xs/js/jquery-1.8.3.min.js"></script>
+    <link rel="stylesheet" href="../gly/css/oldman.css"/>
+    <script src="../xs/js/xuxkBrief.js"></script>
+    <script src="../xs/js/addTmpImg.js"></script>
+    <link rel="stylesheet" href="../xs/css/xuxk.css"/>
+    <link rel="stylesheet" href="../xs/css/addPlace.css"/>
+    <link rel="stylesheet" href="../xs/css/addOldMan.css"/>
+    <script src="../xs/js/public.js"></script>
+    <style>
+        body {
+            font-size: 12px;
+            font-family: Arial, Helvetica, sans-serif, 宋体;
+            color: rgb(51, 51, 51);
+            background: #fff;
+        }
+
+        /*body {font: normal 100% Helvetica, Arial,sans-serif;}*/
+    </style>
+    <script>
+        var token=localStorage.getItem('token');
+        loginrefresh(token)
+        var chfaId, plan,ssid='',
+                title,
+                time,
+                place_id;
+        //    监听滚动
+        scroll()
+    </script>
+</head>
+<body>
+<div class="topTitleNjcs">
+    <div class="topTitleNjcsline">
+        <div class="logo lf">
+            <a href="xs_index.html">
+                <img src="../images/toplogo.png" alt="">
+            </a>
+        </div>
+        <div class="exit rt">
+            <span></span>
+            <a href="javascript:;" onclick="getout()">退出</a>
+        </div>
+    </div>
+</div>
+
+
+<!--选择列表-->
+<div class="pageBox" style="margin-top: 40px">
+    <table>
+        <thead>
+        <tr  class="">
+            <td>编号</td>
+            <td>疾病名称</td>
+            <td>疾病危害</td>
+            <td>饮食指导规则</td>
+            <td>操作</td>
+        </tr>
+        </thead>
+        <tbody class="leadtwo">
+
+
+        </tbody>
+
+    </table>
+    <!--<div class="paging">-->
+        <!--<div class="rt">-->
+            <!--<span class="lastpage"><span></span>&nbsp;上一页</span>&nbsp;&nbsp;-->
+            <!--<span class="nextpage">下一页&nbsp;<span></span></span>&nbsp;&nbsp;&nbsp;-->
+            <!--到第 &nbsp; &nbsp;<input type="text" value=""/>&nbsp;&nbsp; 页&nbsp;&nbsp; <button class="makeSure">确定</button>&nbsp;&nbsp;</div>-->
+
+    <!--</div>-->
+</div>
+
+
+<!--<div class="popopowindow">-->
+    <!--<div class="popBackground"></div>-->
+    <!--<div class="popAddMoneyBoxfxzjbg">-->
+        <!--<div class="popAddMoneyTop">-->
+            <!--<span class="lf">添加疾病信息</span>-->
+            <!--<span class="deleteIcon rt" onclick="delThis()"></span>-->
+        <!--</div>-->
+        <!--<div class="popAddMoneyBoxboxzjbgs">-->
+            <!--<div style="margin-top: 60px">-->
+                <!--<span class="lf"  style="line-height: 20px;">疾病名称</span>-->
+                <!--<div  class="inputbox1 lf" style="margin-bottom: 40px" >啊实打实大撒大所多撒多</div>-->
+            <!--</div>-->
+            <!--<div style="margin-top: 40px">-->
+                <!--<span class="lf" style="line-height: 20px;">疾病危害</span>-->
+                <!--<div class="fxbox3 inputbox4 lf" name="" id="popAddMoneyBoxboxfx2" ></div>-->
+            <!--</div>-->
+            <!--<div >-->
+                <!--<span class="lf" style="    vertical-align: top;">饮食指导原则</span>-->
+                <!--<div class="fxbox3 inputbox4 lf" name="" id="popAddMoneyBoxboxfx3"></div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+
+<script>
+    var _This;
+    var popscrollwidth = $(window).width();
+    var popscrollheight = $(window).height();
+    console.log(popscrollwidth, popscrollheight);
+    $(".popAddMoneyBoxfxzjbg").css('left', (popscrollwidth / 2 - 425) + "px").css('top', (popscrollheight / 2 - 295) + "px");
+
+    var pageNo= 0,pageSize=15,movability='',cognitive='',disease='',interest='',age_min='',age_max='',sex='';
+    //    if(!$('.yourselect span').attr('type')){
+    //        type=''
+    //    }else{
+    //        type=$('.yourselect span').attr('type')
+    //    }
+var sspgId=GetQueryString('id')
+    function lastpage(){
+        $.ajax({
+            url:'/cszyylfw/xs/xm/sspg/diseaseinfos',
+            type:'post',
+            data:'token='+token+"&sspg_id="+sspgId,
+            async:false,
+            success:function(res){
+                if(res.code==0){
+//                    1剧院礼堂 2教室 3宴会 4体育馆 5T型台 6圆桌 7其他
+                    if(res.data.diseases.length==0){
+                        error('没有疾病！');
+                        pageNo--;
+                        return
+                    }
+                    $('tbody').html('');
+                    for(var i=0;i<res.data.diseases.length;i++){
+                        $('tbody').append('<tr class="" id="'+res.data.diseases[i].id+'"> <td>'+(i+1)+'</td> <td>'+(res.data.diseases[i].name||'')+'</td> <td>'+(res.data.diseases[i].harm||'')+'</td> <td>'+(res.data.diseases[i].dietGuide||'')+'</td>  <td><span class="lookold" id="'+res.data.diseases[i].id+'">查看</span></td> </tr>')
+                    }
+                }
+            }
+        })
+    }
+    pageNo++;
+    lastpage();
+
+
+    $('.lastpage').click(function(){
+
+        if(!$('.yourselect span').attr('type')){
+            type=''
+        }else{
+            type=$('.yourselect span').attr('type')
+        }
+        pageNo--;
+        if(pageNo>0){
+            lastpage()
+        }else{
+            error('已到达第一页！');
+            pageNo++
+        }
+
+    })
+    $('.nextpage').click(function(){
+        if(!$('.yourselect span').attr('type')){
+            type=''
+        }else{
+            type=$('.yourselect span').attr('type')
+        }
+        pageNo++;
+        lastpage()
+    })
+
+
+    //    选择场地类型
+    $('.selectchange span').click(function(){
+        $('tbody').html('');
+        var sid= $(this).parent().attr('sid')
+        $('.yourselect span').each(function(){
+            //当前radio是否为选中状态
+            if($(this).attr('sid')==sid){
+                $(this).remove()
+                if($(this).attr('sid')==1){
+                    if($(this).children().html()=='80岁以上'){
+                        age_min=$(this).children().html().split('岁')[0];
+                        age_max=''
+                    }else{
+                        age_min=$(this).children().html().split('岁')[0]
+                        age_max=$(this).children().html().split('岁')[1].slice(1,3)
+                    }
+
+                }
+                if($(this).attr('sid')==2){
+                    if($(this).children().html()=='男'){
+                        sex=1
+                    }else{
+                        sex=2
+                    }
+                }
+                if($(this).attr('sid')==3){
+                    movability=$(this).children().html()
+                }
+                if($(this).attr('sid')==4){
+                    cognitive=$(this).children().html()
+                }
+                if($(this).attr('sid')==5){
+                    disease=$(this).children().html()
+                }
+                if($(this).attr('sid')==6){
+                    interest=$(this).children().html()
+                }
+            }else{
+                if($(this).attr('sid')==1){
+                    if($(this).children().html()=='80岁以上'){
+                        age_min=$(this).children().html().split('岁')[0];
+                        age_max=''
+                    }else{
+                        age_min=$(this).children().html().split('岁')[0]
+                        age_max=$(this).children().html().split('岁')[1].slice(1,3)
+                    }
+                }
+                if($(this).attr('sid')==2){
+                    if($(this).children().html()=='男'){
+                        sex=1
+                    }else{
+                        sex=2
+                    }
+                }
+                if($(this).attr('sid')==3){
+                    movability=$(this).children().html()
+                }
+                if($(this).attr('sid')==4){
+                    cognitive=$(this).children().html()
+                }
+                if($(this).attr('sid')==5){
+                    disease=$(this).children().html()
+                }
+                if($(this).attr('sid')==6){
+                    interest=$(this).children().html()
+                }
+            }
+
+        });
+        if(sid==1){
+            if($(this).html()=='80岁以上'){
+                age_min=$(this).html().split('岁')[0]
+                age_max=''
+            }else{
+                age_min=$(this).html().split('岁')[0]
+                age_max=$(this).html().split('岁')[1].slice(1,3)
+            }
+            console.log(age_min,age_max)
+        }else if(sid==2){
+            if($(this).html()=='男'){
+                sex=1
+            }else{
+                sex=2
+            }
+
+        }else if(sid==3){
+            movability=$(this).html()
+        }else if(sid==4){
+            cognitive=$(this).html()
+        }else if(sid==5){
+            disease=$(this).html()
+        }else if(sid==6){
+            interest=$(this).html()
+        }
+
+        $(this).css('border','1px solid #37b5f9');
+        $(this).siblings('span').css('border','1px solid #fff');
+        $('.yourselect').append('<span sid="'+sid+'"><span>'+$(this).html()+'</span><span class="delIcon"></span></span>');
+        pageNo=1;
+        lastpage()
+    })
+
+
+    $('.makeSure').click(function(){
+//        $('tbody').html('');
+
+        if(!$('.paging input').val()){
+            pageNo=1;
+        }else{
+            pageNo=$('.paging input').val()
+        }
+        lastpage()
+    });
+
+    //    保存
+    var arr=new Array();arr1=new Array();
+    $('.saveList').click(function(){
+        $("input:checkbox[name='myrad']").each(function(){
+            //当前radio是否为选中状态
+            if($(this).is(':checked')==true){
+                var idold=$(this).attr('id');
+                var names=$(this).parent().parent().children().eq(1).html();
+                var sexs=$(this).parent().parent().children().eq(2).html();
+                var ages=$(this).parent().parent().children().eq(3).html();
+                var movabilitys=$(this).parent().parent().children().eq(4).html();
+                var cognitives=$(this).parent().parent().children().eq(5).html();
+                var diseases=$(this).parent().parent().children().eq(6).html();
+                var interests=$(this).parent().parent().children().eq(7).html();
+                console.log(movabilitys);
+                var peoples={'id':idold,'name':names,'sex':sexs,'age':ages,'movability':movabilitys,'cognitive':cognitives,'disease':diseases,'interest':interests};
+                var ids={'id':idold};
+                arr.push(peoples);
+                arr1.push(ids);
+//                localStorage.setItem('placeId',$(this).attr('id'));
+                self.close();
+            }
+
+        });
+
+//console.log(arr)
+        localStorage.setItem('oldpeoplearr',JSON.stringify(arr));
+        localStorage.setItem('ids',JSON.stringify(arr1));
+    });
+
+
+
+    $('.addoldman').click(function(){
+        $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyBoxfxzjbg" style="left: 249.5px; top: 23.5px;"> <div class="popAddMoneyTop"> <span class="lf">添加疾病信息</span> <span class="deleteIcon rt" onclick="delThis()"></span> </div> <div class="popAddMoneyBoxboxzjbgs"> <div style="margin-top: 25px"> <span>疾病名称</span> <input class="inputbox1" style="margin-bottom: 0" type="text" maxlength="30"> </div> <div style="margin-top: 40px"> <span>疾病危害</span> <textarea maxlength="250" class="fxbox2 inputbox3" name="" id="popAddMoneyBoxboxfx2" cols="30" rows="10"></textarea> <span class="rt">0/250</span> </div> <div style="margin-top: 40px"> <span>饮食指导原则</span> <textarea maxlength="250" class="fxbox3 inputbox4" name="" id="popAddMoneyBoxboxfx3" cols="30" rows="10"></textarea> <span class="rt">0/250</span> </div> <button onclick="savegzl2()" class="popAddMoneyBoxboxfxBtnzjbgs">保存</button> </div> </div> </div>')
+        var _This;
+        var popscrollwidth = $(window).width();
+        var popscrollheight = $(window).height();
+        console.log(popscrollwidth, popscrollheight);
+        $(".popAddMoneyBoxfxzjbg").css('left', (popscrollwidth / 2 - 425) + "px").css('top', (popscrollheight / 2 - 295) + "px");
+    })
+
+    function savegzl2(){
+        var popAddMoneyBoxboxfx1=$('.inputbox1').val();
+        var popAddMoneyBoxboxfx3=$('.inputbox3').val();
+        var popAddMoneyBoxboxfx4=$('.inputbox4').val();
+        $.ajax({
+            url: "/cszyylfw/gly/disease/adddisease",
+            type: 'post',
+            data: 'token=' + token+ '&name=' + popAddMoneyBoxboxfx1 + "&harm=" + popAddMoneyBoxboxfx3+ "&diet_guide=" + popAddMoneyBoxboxfx4,
+            success: function (res) {
+                if (res.code == 0) {
+                    $('.popopowindow').remove()
+                    lastpage();
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！');
+                    setTimeout(function () {
+                        location.href = 'xs_site_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+
+
+    //    删除老人
+    $('tbody').on('click','td .deleteold',function(){
+        var id=$(this).attr('id')
+        layboxs("action/delete_zsy.html?id=" + id + "&url=/gly/disease/deldisease" + "&fun=delok&idName=disease_id", "notitle");
+    })
+
+    function delok(){
+        popation("220", "y", "删除成功！");
+        closemask();
+        $('tbody').html('');
+        $('.popopowindow').remove()
+        lastpage()
+    }
+
+    $('tbody').on('click','td .editold',function(){
+        var id=$(this).attr('id')
+        var popAddMoneyBoxboxfx1=$(this).parent().parent().children().eq(1).html()
+        var popAddMoneyBoxboxfx3=$(this).parent().parent().children().eq(2).html()
+        var popAddMoneyBoxboxfx4=$(this).parent().parent().children().eq(3).html()
+        $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyBoxfxzjbg" style="left: 249.5px; top: 23.5px;"> <div class="popAddMoneyTop"> <span class="lf">添加疾病信息</span> <span class="deleteIcon rt" onclick="delThis()"></span> </div> <div class="popAddMoneyBoxboxzjbgs"> <div style="margin-top: 25px"> <span>疾病名称</span> <input class="inputbox1" value="'+popAddMoneyBoxboxfx1+'" style="margin-bottom: 0" type="text" maxlength="30"> </div> <div style="margin-top: 40px"> <span>疾病危害</span> <textarea maxlength="250" class="fxbox2 inputbox3" name="" id="popAddMoneyBoxboxfx2" cols="30" rows="10">'+popAddMoneyBoxboxfx3+'</textarea> <span class="rt">0/250</span> </div> <div style="margin-top: 40px"> <span>饮食指导原则</span> <textarea maxlength="250" class="fxbox3 inputbox4" name="" id="popAddMoneyBoxboxfx3" cols="30" rows="10">'+popAddMoneyBoxboxfx4+'</textarea> <span class="rt">0/250</span> </div> <button onclick="savegzl3()" disease_id="'+id+'" class="popAddMoneyBoxboxfxBtnzjbgs">保存</button> </div> </div> </div>')
+        var _This;
+        var popscrollwidth = $(window).width();
+        var popscrollheight = $(window).height();
+        console.log(popscrollwidth, popscrollheight);
+        $(".popAddMoneyBoxfxzjbg").css('left', (popscrollwidth / 2 - 425) + "px").css('top', (popscrollheight / 2 - 295) + "px");
+    })
+    function savegzl3(){
+        var disease_id=$('.popAddMoneyBoxboxfxBtnzjbgs').attr('disease_id')
+        var popAddMoneyBoxboxfx1=$('.inputbox1').val();
+        var popAddMoneyBoxboxfx3=$('.inputbox3').val();
+        var popAddMoneyBoxboxfx4=$('.inputbox4').val();
+        $.ajax({
+            url: " /cszyylfw/gly/disease/alterdisease",
+            type: 'post',
+            data: 'token=' + token+ '&name=' + popAddMoneyBoxboxfx1 +
+            "&harm=" + popAddMoneyBoxboxfx3+ "&diet_guide=" + popAddMoneyBoxboxfx4+'&disease_id='+disease_id,
+            success: function (res) {
+                if (res.code == 0) {
+                    $('.popopowindow').remove()
+                    lastpage();
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！');
+                    setTimeout(function () {
+                        location.href = 'xs_site_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+
+
+    $('tbody').on('click','td .lookold',function(){
+        var popAddMoneyBoxboxfx1=$(this).parent().parent().children().eq(1).html()
+        var popAddMoneyBoxboxfx3=$(this).parent().parent().children().eq(2).html()
+        var popAddMoneyBoxboxfx4=$(this).parent().parent().children().eq(3).html()
+        $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyBoxfxzjbg"> <div class="popAddMoneyTop"> <span class="lf">添加疾病信息</span> <span class="deleteIcon rt" onclick="delThis()"></span> </div> <div class="popAddMoneyBoxboxzjbgs"> <div style="margin-top: 60px"> <span class="lf"  style="line-height: 20px;">疾病名称</span> <div  class="inputbox1 lf" style="margin-bottom: 40px" >'+popAddMoneyBoxboxfx1+'</div> </div> <div style="margin-top: 40px"> <span class="lf" style="line-height: 20px;">疾病危害</span> <div class="fxbox3 inputbox4 lf" name="" id="popAddMoneyBoxboxfx2" >'+popAddMoneyBoxboxfx3+'</div> </div> <div > <span class="lf" style="    vertical-align: top;">饮食指导原则</span> <div class="fxbox3 inputbox4 lf" name="" id="popAddMoneyBoxboxfx3">'+popAddMoneyBoxboxfx4+'</div> </div> </div> </div> </div>')
+        var _This;
+        var popscrollwidth = $(window).width();
+        var popscrollheight = $(window).height();
+        console.log(popscrollwidth, popscrollheight);
+        $(".popAddMoneyBoxfxzjbg").css('left', (popscrollwidth / 2 - 425) + "px").css('top', (popscrollheight / 2 - 295) + "px");
+    })
+</script>
+</body>
+</html>

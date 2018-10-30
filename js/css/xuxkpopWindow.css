@@ -1,0 +1,132 @@
+.popBackground{
+    position: fixed;
+    background-color: rgba(0,0,0,0.2);
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%
+}
+.popAddMoneyBox{
+    border-radius: 12px;
+    position: fixed;
+    width: 670px;
+    height: 440px;
+    z-index: 1110;
+    background: #fff;
+}
+.popAddMoneyTop{
+    height: 40px;
+    line-height: 40px;
+    background: #32afff;
+    border-top-left-radius: 12px ;
+    border-top-right-radius: 12px;
+    color: #ffffff;
+    font-size: 14px;
+}
+.popAddMoneyTop span:first-child{
+    margin-left: 30px;
+}
+.deleteIcon{
+    margin-top: 13px;
+    margin-right: 30px;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background: url(../../images/delete.png);
+    background-size: 100% 100%;
+    position: static;
+    vertical-align: middle;
+}
+.popAddMoneyBottom{
+    margin:0 auto;
+    width: 378px;
+}
+
+.popAddMoneyBottom>div{
+    margin-bottom: 10px;
+}
+.popAddMoneyBottom input{
+    padding: 0 15px;
+    height: 34px;
+    border: 1px solid #dedede;
+    width: 270px;
+}
+.popAddMoneyBottom select{
+    padding: 0 15px;
+    height: 34px;
+    border: 1px solid #dedede;
+    width: 270px;
+}
+.popAddMoneyBottom span{
+    width: 60px;
+    display: inline-block;
+    text-align: right;
+    margin-right: 20px;
+    line-height: 36px;
+}
+.popAddMoneyBoxBtn{
+    border: 0;
+    width: 180px;
+    height: 36px;
+    line-height: 36px;
+    background: #32afff;
+    color: #ffffff;
+    font-size: 16px;
+    margin: 0 101px auto;
+}
+
+/*小的删除框*/
+.popAddMoneyMinBox{
+    width: 360px;
+    border-radius: 12px;
+    position: fixed;
+    height: 193px;
+    z-index: 1110;
+    background: #fff;
+}
+.popAddMoneyMinBottom>div{
+    margin: 0 !important;
+}
+.popAddMoneyMinBottom>div>input{
+    width: 240px;
+    height: 30px;
+    margin: 39px 50px;
+    background: #EFEFEF;
+    border: 0;
+    padding: 0 10px;
+}
+.popAddMoneyMinBottom>div>span{
+    display: inline-block;
+    width: 260px;
+    height: 30px;
+    margin: 39px 50px;
+    border: 0;
+    padding: 0 10px;
+    font-size: 14px;
+    color: #000000;
+}
+.minBtn{
+    height: 48px;
+    background: #EFEFEF;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+.minBtn  .makeSuremin{
+    width: 80px;
+    height: 22px;
+    color: #ffffff;
+    background: #38b5f8;
+    line-height: 22px;
+    border: 0;
+    margin: 13px 10px 13px 0;
+}
+.minBtn  .refusemin{
+    width: 80px;
+    height: 22px;
+    color: #000;
+    background: #fff;
+    border: 1px solid #000;
+    line-height: 22px;
+    margin: 13px 10px 13px 0;
+}

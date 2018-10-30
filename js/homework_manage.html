@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>作业统计</title>
+    <!--<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="../xs/css/all.css"/>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <link rel="stylesheet" href="css/xuxk.css"/>
+    <link rel="stylesheet" href="css/best_hmwork.css"/>
+    <link rel="stylesheet" href="css/gobal.css"/>
+    <link rel="stylesheet" href="css/hmwkmanage.css"/>
+    <link rel="stylesheet" href="css/page.css"/>
+    <script src="js/xuxkBrief.js"></script>
+    <script src="js/public.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font-size: 12px;
+            font-family: Arial, Helvetica, sans-serif, 宋体;
+            color: rgb(51, 51, 51);
+            background: #d0e89b;
+        }
+
+        /*body {font: normal 100% Helvetica, Arial,sans-serif;}*/
+    </style>
+    <script>
+        var token = localStorage.getItem('token');
+loginrefresh(token)
+
+    </script>
+
+
+</head>
+<body>
+<div class="mantain">
+    <!--顶部导航-->
+    <div class="zoneBg">
+        <div class="topLine">
+            <div class="topLineBelore">
+                <div class="logo lf">
+                    <a href="js_index.html">
+                        <img src="images/logoTop.png" alt=""/>
+                    </a>
+                </div>
+                <div class="exit rt">
+                    <span></span>
+                    <a href="javascript:;" onclick="getoutjs(token)">退出</a>
+
+                </div>
+            </div>
+        </div>
+        <div class="bg1">
+            <img src="images/touming.png" alt=""/>
+        </div>
+        <!--正文内容-->
+        <div class="box">
+            <div class="box_in" style="width: 929px;">
+
+                <div class="boxRt lf" >
+                    <div class="boxRtBox">
+                        <div class="boxRtBoxTopOne">
+                            <!--选择-->
+                            <div class="selectPagess">
+                                <div  class="yourselect">
+                                    <p>你的选择</p><span sid="5"><span>咨询接待情景设计</span><span class="delIcon"></span></span>
+                                </div>
+                                <div class="clear"></div>
+                                <div sid="4" class="selectchange cognitive">
+                                    <p>班级</p>
+                                    <div>
+
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                                <div sid="5" class="selectchange disease">
+                                    <p>作业</p>
+                                    <div>
+                                        <span aid="1" style="border:1px solid #37b5f9">咨询接待情景设计</span><span aid="2">能力评估</span>
+                                        <span aid="3">需求评估,信息反馈</span><span aid="4">活动参与</span>
+                                        <span aid="5">风险管理情景设计</span><span aid="6">沟通方案</span>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                                <div sid="6" class="selectchange interest">
+                                    <p>状态</p>
+                                    <div>
+                                        <span aid="0">未提交</span><span aid="1">已提交</span><span aid="2">已评分</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="boxRtBoxBottom">
+                            <!--<iframe ID="Frame4" SRC="login.html" STYLE="background-color: green"> </iframe>-->
+                            <!--学习项目-->
+                            <div class="boxTitle">
+                                <span>学号</span><span>姓名</span><span>提交时间</span><span>操作</span>
+                            </div>
+                            <div class="boxone">
+
+
+                            </div>
+
+
+                            <div class="paging">
+                                <div class="rt">
+                                    <span class="lastpage"><span></span>&nbsp;上一页</span>&nbsp;&nbsp;
+                                    <span class="nextpage">下一页&nbsp;<span></span></span>&nbsp;&nbsp;&nbsp;
+                                    到第 &nbsp; &nbsp;<input type="text" value=""/>&nbsp;&nbsp; 页&nbsp;&nbsp; <button class="makeSure">确定</button>&nbsp;&nbsp;</div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <!--书页线-->
+                <div class="boxRtBottom rt"></div>
+                <div class="clear"></div>
+            </div>
+
+            <div class="footer" style="margin-bottom: 80px">
+                <div class="information" style="padding: 0;margin: 0">             <ul  style="padding: 0;margin: 0">                 <li><img src="../images/bottomText.png" alt="" style="width: 460px"/></li>             </ul>         </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+
+    $.ajax({
+        url:'/cszyylfw/js/xsgl/clazzlist',
+        type:'post',
+        data:"page_no="+1+"&page_size="+100+'&token='+token,
+        async:false,
+        success:function(res){
+            if(res.code==0){
+//                    1剧院礼堂 2教室 3宴会 4体育馆 5T型台 6圆桌 7其他
+                for(var i=0;i<res.data.items.length;i++){
+                    $('.cognitive div').append('<span aid="'+res.data.items[i].id+'">'+res.data.items[i].name+'</span>')
+                }
+            }
+        }
+    })
+
+    //    选择场地类型
+    $('.selectchange').on('click','div span',function(){
+//    $('.selectchange span').click(function(){
+        $('.boxone').html('');
+        var sid= $(this).parent().parent().attr('sid')
+        $('.yourselect span').each(function(){
+            //当前radio是否为选中状态
+            if($(this).attr('sid')==sid){
+                $(this).remove()
+                if($(this).attr('sid')==1){
+                    if($(this).children().html()=='80岁以上'){
+                        age_min=$(this).children().html().split('岁')[0];
+                        age_max=''
+                    }else{
+                        age_min=$(this).children().html().split('岁')[0]
+                        age_max=$(this).children().html().split('岁')[1].slice(1,3)
+                    }
+
+                }
+                if($(this).attr('sid')==2){
+                    if($(this).children().html()=='男'){
+                        sex=1
+                    }else{
+                        sex=2
+                    }
+                }
+                if($(this).attr('sid')==3){
+                    movability=$(this).children().html()
+                }
+                if($(this).attr('sid')==4){
+                    clazzId=$(this).children().attr('aid')
+                }
+                if($(this).attr('sid')==5){
+                    zuoyeType=$(this).children().attr('aid')
+                }
+                if($(this).attr('sid')==6){
+                    zuoyeStatus=$(this).children().attr('aid')
+                }
+            }else{
+                if($(this).attr('sid')==1){
+                    if($(this).children().html()=='80岁以上'){
+                        age_min=$(this).children().html().split('岁')[0];
+                        age_max=''
+                    }else{
+                        age_min=$(this).children().html().split('岁')[0]
+                        age_max=$(this).children().html().split('岁')[1].slice(1,3)
+                    }
+                }
+                if($(this).attr('sid')==2){
+                    if($(this).children().html()=='男'){
+
+                    }      sex=1
+                    }else{
+                        sex=2
+                    }
+                if($(this).attr('sid')==3){
+                    movability=$(this).children().html()
+                }
+                if($(this).attr('sid')==4){
+                    cognitive=$(this).children().html()
+                }
+                if($(this).attr('sid')==5){
+                    disease=$(this).children().html()
+                }
+                if($(this).attr('sid')==6){
+                    interest=$(this).children().html()
+                }
+            }
+
+        });
+        if(sid==1){
+            if($(this).html()=='80岁以上'){
+                age_min=$(this).html().split('岁')[0]
+                age_max=''
+            }else{
+                age_min=$(this).html().split('岁')[0]
+                age_max=$(this).html().split('岁')[1].slice(1,3)
+            }
+            console.log(age_min,age_max)
+        }else if(sid==2){
+            if($(this).html()=='男'){
+                sex=1
+            }else{
+                sex=2
+            }
+
+        }else if(sid==3){
+            movability=$(this).html()
+        }else if(sid==4){
+            clazzId=$(this).attr('aid')
+        }else if(sid==5){
+            zuoyeType=$(this).attr('aid')
+        }else if(sid==6){
+            zuoyeStatus=$(this).attr('aid')
+        }
+
+        $(this).css('border','1px solid #37b5f9');
+        $(this).siblings('span').css('border','1px solid #fff');
+        $('.yourselect').append('<span sid="'+sid+'"><span>'+$(this).html()+'</span><span class="delIcon"></span></span>');
+        pageNo=1;
+        lastpage()
+    })
+
+
+
+
+
+    //删除
+    $('.selectPagess').on('click','.yourselect .delIcon',function(){
+      if($(this).parent().attr('sid')==4){
+            $(this).parent().remove();
+          clazzId=''
+            $('.cognitive span').css('border','1px solid #fff')
+        }else if($(this).parent().attr('sid')==6){
+            $(this).parent().remove();
+          zuoyeStatus='';
+            $('.interest span').css('border','1px solid #fff')
+        }
+
+
+        pageNo=1;
+        lastpage()
+    })
+
+var clazzId='',zuoyeType=1,zuoyeStatus=''
+var pageNo=0;pageSize=15
+    function lastpage(){
+        $.ajax({
+            url:'/cszyylfw/js/zuoyeguanli/zuoyelist',
+            type:'post',
+            data:"page_no="+pageNo+"&page_size="+pageSize+'&token='+token+"&clazz_id="+clazzId+"&zuoye_type="+zuoyeType
+            +"&zuoye_status="+zuoyeStatus,
+            async:false,
+            success:function(res){
+                if(res.code==0){
+
+//                    1剧院礼堂 2教室 3宴会 4体育馆 5T型台 6圆桌 7其他
+                    if(res.data.items.length==0){
+                        if(pageNo==1){return}
+                        error('没有更多数据！');
+                        pageNo--;
+                        return
+                    }
+                    $('.boxone').html('');
+
+                    for(var i=0;i<res.data.items.length;i++){
+                        $('.boxone').append(' <div class="boxlevel1Style"> <div class="boxlevel1Styleline first" > <span>'+res.data.items[i].studentNo+'</span><span>'+res.data.items[i].realname+'</span> <span>'+_formatDatesNoS(res.data.items[i].submitTime/1000)+'</span><span class="lookThis" id="'+res.data.items[i].xmId+'">查看</span> </div> </div>')
+                    }
+                }
+            }
+        })
+    }
+    pageNo++;
+    lastpage();
+
+    $('.lastpage').click(function(){
+
+        if(!$('.yourselect span').attr('type')){
+            type=''
+        }else{
+            type=$('.yourselect span').attr('type')
+        }
+        pageNo--;
+        if(pageNo>0){
+            lastpage()
+        }else{
+            error('已到达第一页！');
+            pageNo++
+        }
+
+    })
+    $('.nextpage').click(function(){
+        if(!$('.yourselect span').attr('type')){
+            type=''
+        }else{
+            type=$('.yourselect span').attr('type')
+        }
+        pageNo++;
+        lastpage()
+    })
+
+
+    $('.makeSure').click(function(){
+
+
+        if(!$('.paging input').val()){
+            pageNo=1;
+        }else{
+            pageNo=$('.paging input').val()
+        }
+        lastpage()
+    })
+
+    $('.boxone').on('click','.boxlevel1Styleline  .lookThis',function(){
+        var xmId=$(this).attr('id');
+        console.log(xmId,zuoyeType)
+        if(zuoyeType==1){
+            window.open('consult_qjsj_look.html?xm_id='+xmId)
+        }else if(zuoyeType==2){
+            window.open('consult_nlpg_look.html?xm_id='+xmId)
+        }else if(zuoyeType==3){
+            window.open('consult_xqpg_look.html?xm_id='+xmId)
+        }else if(zuoyeType==4){
+            window.open('activity_look?xm_id='+xmId)
+        }else if(zuoyeType==5){
+            window.open('manage_qjsj_look.html?xm_id='+xmId)
+        }else if(zuoyeType==6){
+            window.open('manage_gtfa_look.html?xm_id='+xmId)
+        }
+
+    })
+
+</script>
+</body>
+</html>

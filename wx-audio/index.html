@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>仿微信音乐组件</title>
+	<meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <link rel="stylesheet" href="css/wx-audio.css">
+    <script src="../xs/js/jquery-1.8.3.min.js"></script>
+</head>
+<body>
+
+	<div id="textaudio1" style="margin-top: 60px"></div>
+	 <span id="cutMusic" onclick="cutM()">切歌</span>
+</body>
+<script src="js/wx-audio.js"></script>
+<script>
+    var vediourl=GetQueryString("vediourl");
+    var name=GetQueryString("name");
+	var wxAudio = new Wxaudio({
+		ele: '#textaudio1',
+		title:name,
+		disc: 'Break Me Up',
+		src:vediourl,
+		width: '320px'
+	});
+	function play() {
+		wxAudio.audioPlay()
+	}
+
+	function cutM () {
+		var src = 'http://jq22com.qiniudn.com/jq22m1.mp3'
+		var title = 'ocean'
+		var disc = 'ocean111'
+		wxAudio.audioCut(src, title, disc)
+	}
+</script>
+</html>

@@ -1,0 +1,37 @@
+.addplacebtn{
+    width: 1100px;
+    margin:0 auto 30px auto;
+}
+.addplace{
+    width: 96px;
+    height: 36px;
+    background: #37b5f9 ;
+    color: #ffffff;
+    border-radius: 6px;
+    border: 0;
+    margin-right: 15px;
+}
+.pageBox tbody td{
+    text-align: center !important;
+}
+table thead td {
+    width: 190px !important;
+}
+table thead td:last-child {
+    width: 340px !important;
+}
+
+table tbody td:last-child span{
+    width: 70px !important;
+    display: inline-block;
+    color: #37b5f9;
+    height: 16px;
+    background: #f8f8f8;
+    vertical-align: middle;
+    line-height: 16px;
+}
+table tbody td:last-child span:nth-child(2){
+    border-radius: 0 !important;
+    border-right: 1px solid #37b5f9;
+    border-left:  1px solid #37b5f9;
+}

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>添加场地</title>
+    <!--<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="../xs/css/gly_site_report.css"/>
+    <link rel="stylesheet" href="../xs/css/all.css"/>
+    <link rel="stylesheet" href="../xs/css/xuxkpopWindow.css"/>
+    <script src="../xs/js/jquery-1.8.3.min.js"></script>
+    <script src="../xs/js/xuxkBrief.js"></script>
+    <script src="../xs/js/addTmpImg.js"></script>
+    <link rel="stylesheet" href="../xs/css/xuxk.css"/>
+    <link rel="stylesheet" href="../xs/css/addPlace.css"/>
+    <link rel="stylesheet" href="../xs/css/gobal.css"/>
+    <link rel="stylesheet" href="../xs/css/xuxk.css"/>
+    <script src="../xs/js/public.js"></script>
+    <style>
+        body {
+            font-size: 12px;
+            font-family: Arial, Helvetica, sans-serif, 宋体;
+            color: rgb(51, 51, 51);
+            background: #fff;
+        }
+
+        /*body {font: normal 100% Helvetica, Arial,sans-serif;}*/
+    </style>
+    <script>
+        var token=localStorage.getItem('token');
+        loginrefresh(token)
+        var chfaId, plan,ssid='',
+                title,
+                time,
+                place_id;
+        //    监听滚动
+        scroll()
+    </script>
+</head>
+<body>
+<div class="topTitleNjcs">
+    <div class="topTitleNjcsline">
+        <div class="logo lf">
+            <a href="gly_index.html">
+                <img src="images/toplogo.png" alt="">
+            </a>
+        </div>
+        <div class="exit rt">
+            <span></span>
+            <a href="javascript:;" onclick="getoutgly()">退出</a>
+        </div>
+    </div>
+</div>
+<!--选择-->
+<div class="selectPagess">
+    <div  class="yourselect">
+        <p>你的选择</p>
+    </div>
+    <div  class="placetype">
+        <p>场地类型</p><span type="1">剧院礼堂式</span><span type="2">教室式</span><span type="3">宴会式</span>
+        <span type="4">体育馆式</span><span type="5">T型台式</span><span type="6">圆桌式</span><span type="7">其他</span>
+    </div>
+</div>
+<!--选择列表-->
+<div class="pageBox">
+    <table>
+        <thead>
+        <tr  class="">
+            <td>编号</td>
+            <td>名称</td>
+            <td>地址</td>
+            <td>场地类型</td>
+            <td>操作</td>
+        </tr>
+        </thead>
+        <tbody class="leadtwo">
+
+        </tbody>
+
+    </table>
+    <div class="paging">
+        <div class="rt">
+            <span class="lastpage"><span></span>&nbsp;上一页</span>&nbsp;&nbsp;
+            <span class="nextpage">下一页&nbsp;<span></span></span>&nbsp;&nbsp;&nbsp;
+             到第 &nbsp; &nbsp;<input type="text" value=""/>&nbsp;&nbsp; 页&nbsp;&nbsp; <button class="makeSure">确定</button>&nbsp;&nbsp;</div>
+
+    </div>
+</div>
+
+<div class="save"><button class="saveList">保存</button></div>
+<script>
+    var type,pageNo= 0,pageSize=15;
+    if(!$('.yourselect span').attr('type')){
+        type=''
+    }else{
+        type=$('.yourselect span').attr('type')
+    }
+
+    function lastpage(type){
+        $.ajax({
+            url:'/cszyylfw/comm/placelist',
+            type:'post',
+            data:"type="+type+"&page_no="+pageNo+"&page_size="+pageSize+'&token='+token,
+            async:false,
+            success:function(res){
+                if(res.code==0){
+//                    1剧院礼堂 2教室 3宴会 4体育馆 5T型台 6圆桌 7其他
+                    if(res.data.items.length==0){
+                        if(pageNo==1){return}
+                        error('没有更多数据！');
+                        pageNo--;
+                        return
+                    }
+                    $('tbody').html('');
+                    var typeName;
+                    for(var i=0;i<res.data.items.length;i++){
+                        var type=res.data.items[i].type;
+                        if(type==1){
+                            typeName='剧院礼堂'
+                        }else if(type==2){
+                            typeName='教室'
+                        }else if(type==3){
+                            typeName='宴会'
+                        }else if(type==4){
+                            typeName='体育馆'
+                        }else if(type==5){
+                            typeName='T型台'
+                        }else if(type==6){
+                            typeName='圆桌'
+                        }else if(type==7){
+                            typeName='其他'
+                        }
+                        $('tbody').append('  <tr class="">'+
+                        '<td><input type="radio"intro="'+res.data.items[i].intro+'" id="'+res.data.items[i].id+'" value="'+res.data.items[i].name+'" name="myrad">'+(i+1)+'</td>'+
+                        '<td>'+res.data.items[i].name+'</td>'+
+                        '<td>'+res.data.items[i].location+'</td>'+
+                        '<td>'+typeName+'</td>'+
+                        '<td><span class="look" >查看</span></td>'+
+                        '</tr>')
+                    }
+                }
+            }
+        })
+    }
+    pageNo++;
+    lastpage(type);
+    $('.lastpage').click(function(){
+
+        if(!$('.yourselect span').attr('type')){
+            type=''
+        }else{
+            type=$('.yourselect span').attr('type')
+        }
+        pageNo--;
+        if(pageNo>0){
+            lastpage(type)
+        }else{
+            error('已到达第一页！');
+            pageNo++
+        }
+
+    })
+    $('.nextpage').click(function(){
+        if(!$('.yourselect span').attr('type')){
+            type=''
+        }else{
+            type=$('.yourselect span').attr('type')
+        }
+        pageNo++;
+        lastpage(type)
+    })
+
+//    选择场地类型
+    $('.placetype span').click(function(){
+        $('tbody').html('');
+        $('.yourselect span').remove();
+        $(this).css('border','1px solid #37b5f9');
+        $(this).siblings('span').css('border','1px solid #fff');
+        $('.yourselect').append('<span type="'+$(this).attr('type')+'">'+$(this).html()+'<span class="delIcon"></span></span>');
+        type=$(this).attr('type');
+        pageNo=1;
+        lastpage(type)
+
+    })
+//删除
+    $('.selectPagess').on('click','.yourselect .delIcon',function(){
+        $('.placetype span').css('border','1px solid #fff');
+        $(this).parent().remove();
+        type='';
+        pageNo=1;
+        lastpage(type)
+    })
+
+$('.makeSure').click(function(){
+    $('tbody').html('');
+    if(!$('.yourselect span').attr('type')){
+        type='';
+    }else{
+        type=$('.yourselect span').attr('type')
+    }
+    if(!$('.paging input').val()){
+        pageNo=1;
+    }else{
+        pageNo=$('.paging input').val()
+    }
+    lastpage(type)
+})
+
+//    保存
+
+    $('.saveList').click(function(){
+        $("input:radio[name='myrad']").each(function(){
+            //当前radio是否为选中状态
+            if($(this).is(':checked')==true){
+                localStorage.setItem('placeName',$(this).val());
+                localStorage.setItem('placeIntro',$(this).attr('intro'));
+                localStorage.setItem('placeId',$(this).attr('id'));
+                self.close();
+            }
+        });
+    })
+</script>
+</body>
+</html>

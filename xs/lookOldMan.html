@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>查看老年人</title>
+    <!--<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="../xs/css/gly_site_report.css"/>
+    <link rel="stylesheet" href="../xs/css/all.css"/>
+    <link rel="stylesheet" href="../gly/css/addoldman.css"/>
+    <link rel="stylesheet" href="../xs/css/xuxk.css"/>
+    <script src="../xs/js/jquery-1.8.3.min.js"></script>
+    <script src="../xs/js/xuxkBrief.js"></script>
+    <script src="../xs/js/addTmpImg.js"></script>
+    <script src="../xs/js/public.js"></script>
+    <style>
+        body {
+            font-size: 12px;
+            font-family: Arial, Helvetica, sans-serif, 宋体;
+            color: rgb(51, 51, 51);
+            background: #fff;
+        }
+
+        /*body {font: normal 100% Helvetica, Arial,sans-serif;}*/
+    </style>
+    <script>
+        var token = localStorage.getItem('token');
+        loginrefresh(token)
+        var chfaId, plan, ssid = '',
+                title,
+                time,
+                place_id;
+        //    监听滚动
+        scroll()
+    </script>
+</head>
+<body>
+<div class="topTitleNjcs">
+    <div class="topTitleNjcsline">
+        <div class="logo lf">
+            <a href="gly_index.html">
+                <img src="images/toplogo.png" alt="">
+            </a>
+        </div>
+        <div class="exit rt">
+            <span></span>
+            <a href="javascript:;" onclick="getoutgly()">退出</a>
+        </div>
+    </div>
+</div>
+<div class="smallBox" style="margin-top: 90px">
+    <div class="smallBoxFirst">
+        <p class="firstOne lf fontweight">姓名</p><div class="firstThree name lf" ></div>
+    </div>
+    <div class="smallBoxFirst">
+        <p class="firstOne lf fontweight">年龄</p><div class="firstThree age lf" ></div>
+    </div>
+    <div class="smallBoxFirst">
+        <p class="firstOne lf fontweight">性别</p><div class="firstThree sex lf" ></div>
+        <!--<input class="firstTwo sex lf" type="text"/>-->
+    </div>
+    <div class="top60">
+        <p class="secondOne fontweight">活动能力</p>
+
+        <div class="secondTwo hdnl">
+            <div class="lf"></div>
+        </div>
+        <div class="movabilitytext"></div>
+    </div>
+    <div class="top60 ">
+        <p class="secondOne fontweight">认知能力</p>
+
+        <div class="secondTwo rznl">
+            <div class="lf"></div>
+        </div>
+        <div class="cognitivetext"></div>
+        <!--<textarea name="cognitivetext" id="cognitivetext" cols="30" rows="10" maxlength="1000"></textarea>-->
+    </div>
+
+    <div class="top60 ">
+        <p class="secondOne fontweight">慢性病</p>
+
+        <div class="secondTwo mxb">
+            <div class="lf"></div>
+        </div>
+        <div class="diseasetext"></div>
+        <!--<textarea name="diseasetext" id="diseasetext" cols="30" rows="10" maxlength="1000"></textarea>-->
+    </div>
+
+    <div class="top60 ">
+        <p class="secondOne fontweight">兴趣爱好</p>
+
+        <div class="secondTwo xqah">
+            <div class="lf"></div>
+
+        </div>
+        <div class="interesttext"></div>
+    </div>
+
+
+</div>
+
+
+<script>
+    var cognitive = '';
+    var movability = '';
+    var disease = '';
+    var interest = '';
+
+    var id=GetQueryString('id')
+    $.ajax({
+        url: '/cszyylfw/comm/oldmaninfo',
+        data:'token='+token+ '&id=' + id,
+        async: false,
+        success: function (res) {
+            if(res.code==0){
+                $('.name').html(res.data.name);
+                $('.age').html(res.data.age);
+                if(res.data.sex==1){
+                    $('.sex').html('男');
+                }else{
+                    $('.sex').html('女');
+                }
+
+                var sear=new RegExp('-');
+                if(sear.test(res.data.movability)){
+                    var movability1=res.data.movability.split('-')[0];
+                    var movability2=res.data.movability.split('-')[1];
+
+                    $('.hdnl div').html('<span class="lf lookSpan">'+movability1+'</span>')
+                    $('.movabilitytext').html(movability2)
+                }else{
+                    movability1=res.data.movability
+                    movability2=''
+                    $('.hdnl div').html('<span class="lf lookSpan">'+movability1+'</span>')
+                    $('.movabilitytext').html(movability2)
+                }
+                if(sear.test(res.data.cognitive)) {
+                    var cognitive1 = res.data.cognitive.split('-')[0];
+                    var cognitive2 = res.data.cognitive.split('-')[1];
+                    $('.rznl div').html('<span class="lf lookSpan">'+cognitive1+'</span>')
+                    $('.cognitivetext').html(cognitive2)
+                }else{
+                    cognitive1=res.data.cognitive
+                    cognitive2=''
+                    $('.rznl div').html('<span class="lf lookSpan">'+cognitive1+'</span>')
+                    $('.cognitivetext').html(cognitive2)
+                }
+
+                var ttts=new RegExp(',');
+                if(sear.test(res.data.disease)) {
+                    var disease1 = res.data.disease.split('-')[0];
+                    if(ttts.test(disease1)){
+                        for(var  i=0;i<disease1.split(',').length;i++){
+                            $('.mxb div').append('<span class="lf lookSpan">'+disease1.split(',')[i]+'</span>')
+                        }
+                    }
+                    var disease2 = res.data.disease.split('-')[1];
+                    $('.diseasetext').html(disease2)
+                }else{
+                    disease1=res.data.disease;
+                    if(ttts.test(disease1)){
+                        for(var  i=0;i<disease1.split(',').length;i++){
+                            $('.mxb div').append('<span class="lf lookSpan">'+disease1.split(',')[i]+'</span>')
+                        }
+                    }
+                    disease2=''
+                    $('.diseasetext').html(disease2)
+                }
+                if(sear.test(res.data.interest)) {
+                    var interest1 = res.data.interest.split('-')[0];
+                    if(ttts.test(interest1)){
+                        for(var  i=0;i<interest1.split(',').length;i++){
+                            $('.xqah div').append('<span class="lf lookSpan">'+interest1.split(',')[i]+'</span>')
+                        }
+                    }
+                    var interest2 = res.data.interest.split('-')[1];
+                    $('.interesttext').html(interest2)
+                }else{
+                    interest1=res.data.interest;
+                    if(ttts.test(interest1)){
+                        for(var  i=0;i<interest1.split(',').length;i++){
+                            $('.xqah div').append('<span class="lf lookSpan">'+interest1.split(',')[i]+'</span>')
+                        }
+                    }
+                    interest2=''
+                    $('.interesttext').html(interest2)
+                }
+
+                $('#diseasetext').html(disease2)
+                $('#interesttext').html(interest2)
+
+            }
+        }
+    })
+
+
+    $('.btnsave').click(function () {
+        var name = $('.name').val();
+        var sex = $('#select option:selected').val();
+        var age = $('.age').val();
+        $("input:radio[name='movability']").each(function () {
+            //当前radio是否为选中状态
+            if ($(this).is(':checked') == true) {
+                movability = $(this).next().html()
+            }
+        });
+        $("input:radio[name='cognitive']").each(function () {
+            //当前radio是否为选中状态
+            if ($(this).is(':checked') == true) {
+                cognitive = $(this).next().html()
+            }
+        });
+        $("input:checkbox[name='disease']").each(function () {
+            //当前radio是否为选中状态
+            if ($(this).is(':checked') == true) {
+                disease = disease + $(this).next().html() + ',';
+            }
+        });
+        $("input:checkbox[name='interest']").each(function () {
+            //当前radio是否为选中状态
+            if ($(this).is(':checked') == true) {
+                interest = interest + $(this).next().html() + ',';
+            }
+        });
+        disease=disease.slice(0,disease.length-1)
+        interest=interest.slice(0,interest.length-1)
+        if (!$('#movabilitytext').val()) {
+        } else {
+            var text1 = $('#movabilitytext').val();
+            movability = movability + '!' + text1
+        }
+        if (!$('#cognitivetext').val()) {
+        } else {
+            var text2 = $('#cognitivetext').val();
+            cognitive = cognitive + '!' + text2
+        }
+        if (!$('#diseasetext').val()) {
+        } else {
+            var text3 = $('#diseasetext').val();
+            disease = disease + '!' + text3
+        }
+        if (!$('#interesttext').val()) {
+        } else {
+            var text4 = $('#interesttext').val();
+            interest = interest + '!' + text4
+        }
+        if (name == '' || age == '' || sex == '' || movability == '' || cognitive == '') {
+            error('请先填写完整信息')
+        } else {
+            $.ajax({
+                url: '/cszyylfw/comm/addoldman',
+                data:'token='+token+ '&name=' + name + "&sex=" + sex + "&age=" + age + "&movability=" + movability + "&cognitive=" + cognitive + "&disease=" + disease + "&interest=" + interest,
+                async: false,
+                success: function (res) {
+                    if(res.code==0){
+                        error('添加成功');
+                        self.close()
+                    }
+                }
+            })
+        }
+
+    })
+
+</script>
+</body>
+</html>

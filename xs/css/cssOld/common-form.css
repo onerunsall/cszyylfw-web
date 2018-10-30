@@ -1,0 +1,83 @@
+/************input css start******************/
+.input_62{background:url(images/form/input_62.png) no-repeat; height:28px; width:52px; border:none; padding:0 5px; line-height:28px; margin:0 4px;}
+.input_81{background:url(images/form/input_81.png) no-repeat; height:28px; width:71px; border:none; padding:0 5px; line-height:28px; margin:0 4px;}
+.input_122{background:url(images/form/input_122.png) no-repeat; height:28px; width:112px; border:none; padding:0 5px; line-height:28px; margin:0 4px;}
+.input_242{background:url(images/form/input_242.png) no-repeat; height:28px; width:232px; border:none; padding:0 5px; line-height:28px; margin:0 4px;}
+.input_362{background:url(images/form/input_362.png) no-repeat; height:28px; width:362px; border:none; padding:0 5px; line-height:28px; margin:0 4px;}
+/************input css end******************/
+
+/************input css start******************/
+.textarea_400{ min-height:100px; width:400px; padding:0 5px; margin:0 11px;}
+.textarea_400 .top_{ background:url(images/form/top.png) repeat-x; height:7px; clear:both; overflow:hidden;}
+.textarea_400 .top_ .top_l_{ background:url(images/form/top_l.png) no-repeat; height:7px; width:7px; float:left;}
+.textarea_400 .top_ .top_r_{ background:url(images/form/top_r.png) no-repeat right 0; height:7px; width:7px; float:right;}
+.textarea_400 .bottom_{ background:url(images/form/bottom.png) repeat-x; height:7px; overflow:hidden; clear:both;}
+.textarea_400 .bottom_ .bottom_l_{ background:url(images/form/bottom_l.png) no-repeat; height:7px; width:7px; float:left;}
+.textarea_400 .bottom_ .bottom_r_{ background:url(images/form/bottom_r.png) no-repeat right 0; height:7px; width:7px; float:right;}
+.textarea_400 .middle_{background-color:white; border-left:1px solid #C9C8CD; border-right:1px solid #C9C8CD; overflow:hidden; clear:both;}
+.textarea_400 .middle_ textarea { width:384px;height:120px;border:none;padding:5px;resize: none;overflow:auto;}
+/************input css end******************/
+
+/************select css start******************/
+.dropdown {outline:none;display:inline-block;*display:inline;margin:0 4px;}
+.dropdown h4{cursor:default; text-indent:5px; margin:0; padding:0;}
+.dropdown * {-moz-user-select:none;}
+.dropdown h4.over {}
+.dropdown div {display:block; /*fix bug*/}
+.dropdown ul{position:absolute;display:none;margin:0;padding:0;float:left;clear:both; height:200px; overflow:auto;}
+.dropdown ul li{text-indent:5px;margin:0;padding:0;list-style:none;display:block;cursor:default;}
+.dropdown ul li.over{}
+.dropselectbox {display:inline;}
+/* write you style here */
+.dropselectbox62 {background:url(images/form/input_62.png) no-repeat left top;}
+.dropselectbox81 {background:url(images/form/input_81.png) no-repeat left top;}
+.dropselectbox122{background:url(images/form/input_122.png) no-repeat left top;}
+.dropselectbox242{background:url(images/form/input_242.png) no-repeat left top;}
+.dropselectbox362{background:url(images/form/input_362.png) no-repeat left top;}
+.dropdown h4{height:28px; font:12px/28px Arial, Helvetica, sans-serif; background:url(images/form/droparrow.gif) no-repeat right center;}
+.dropdown h4.over{border-color:#369; background-image:url(images/form/droparrowover.gif);}
+.dropdown h4.current{border-color:#003;}
+.dropdown ul{border:1px solid #AAA; background:#FFF;}
+.dropdown ul li{background:#FFF;height:24px;font:400 12px/24px Arial, Helvetica, sans-serif;cursor:pointer;}
+.dropdown ul li.over{background:#369; color:#FFF;}
+/************select css end******************/
+
+/************radio checkbox css start******************/
+.zogo-form-checkbox{
+	height:16px;
+	line-height:18px;
+	padding-left:20px;
+	margin-right:5px;
+	background:url(images/form/checkbox.png) no-repeat left 0px;
+	cursor:pointer;
+
+	display: -moz-inline-stack;  /*Firefox only code*/
+	display: inline-block;       /*some standard browsers*/
+	zoom: 1;                     /*IE only*/
+	*display: inline;            /*Only IE know this code (CSS Hack)*/
+	
+	margin:0 4px;
+}
+
+.zogo-form-checkbox-hover{background-position:left -16px;}
+.zogo-form-checkbox-checked{background-position:left -32px !important;}
+
+.zogo-form-radio{
+	height:16px;
+	line-height:18px;
+	padding-left:20px;
+	margin-right:5px;
+	background:url(images/form/radio.png) no-repeat left 0px;
+	cursor:pointer;
+
+	display: -moz-inline-stack;  /*Firefox only code*/
+	display: inline-block;       /*some standard browsers*/
+	zoom: 1;                     /*IE only*/
+	*display: inline;            /*Only IE know this code (CSS Hack)*/
+	margin:0 4px;
+}
+
+.zogo-form-radio-hover{background-position:left -16px;}
+.zogo-form-radio-checked{background-position:left -32px !important;}
+tyle.png) no-repeat; vertical-align:middle; height:13px; width:13px; margin-right:3px; display:inline-block;cursor:pointer;}
+/************radio checkbox css end******************/

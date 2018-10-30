@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>归档信息</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/indexM.css"/>
+    <link rel="stylesheet" href="css/all.css"/>
+    <link rel="stylesheet" href="css/xuxkpopWindow.css"/>
+    <link rel="stylesheet" href="css/page.css"/>
+    <link rel="stylesheet" href="css/xuxk.css"/>
+    <link rel="stylesheet" href="css/gobal.css"/>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <!--<link rel="stylesheet" href="css/default.css"/>-->
+    <!--<link rel="stylesheet" href="css/css/default.css"/>-->
+    <script src="js/xuxkBrief.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font-size: 12px;
+            font-family: Arial, Helvetica, sans-serif, 宋体;
+            color: rgb(51, 51, 51);
+            background: #d0e89b;
+        }
+
+        /*body {font: normal 100% Helvetica, Arial,sans-serif;}*/
+    </style>
+    <script>
+        var token = localStorage.getItem('token');
+        var classId;
+        //        var windowSize=function () {
+        //            var winWidth,winHeight;
+        //            //获取窗口宽度
+        //            if (window.innerWidth)
+        //                winWidth = window.innerWidth;
+        //            else if ((document.body) && (document.body.clientWidth))
+        //                winWidth = document.body.clientWidth;
+        //            //获取窗口高度
+        //            if (window.innerHeight)
+        //                winHeight = window.innerHeight;
+        //            else if ((document.body) && (document.body.clientHeight))
+        //                winHeight = document.body.clientHeight;
+        //            //通过深入Document内部对body进行检测，获取窗口大小
+        //            if (document.documentElement && document.documentElement.clientHeight &&document.documentElement.clientWidth)
+        //            {
+        //                winHeight = document.documentElement.clientHeight;
+        //                winWidth = document.documentElement.clientWidth;
+        //            }
+        //            //返回对象结果
+        //            return {'width':winWidth,'w':winWidth,'height':winHeight,'h':winHeight};
+        //        }
+        //
+        //        //上述代码通过windowSize方法返回当前浏览器一屏窗口的宽度与高度【注意此处一屏的概念】
+        //
+        //        $(document).ready(function ()  {
+        //            var PageStyle= function () {
+        //                var SysWidht = windowSize().width,wrap=$('.wrap');//此处也可以使用jquery的$(window).width()获取页面宽度
+        //                if(SysWidht<1200) {
+        //                    wrap.removeClass('wrapBig').addClass('wrapSmall');
+        //                }else {
+        //                    wrap.removeClass('wrapSmall').addClass('wrapBig');
+        //                }
+        //            };
+        //            /*init*/
+        //            PageStyle();
+        //            /*event*/
+        //            $(window).resize(function () {
+        //                PageStyle();
+        //            });
+        //        });
+    </script>
+
+
+</head>
+<body>
+<div class="mantain">
+    <!--顶部导航-->
+    <div class="zoneBg">
+        <div class="topLine">
+            <div class="topLineBelore">
+                <div class="logo lf">
+                    <a href="js_index.html">
+                        <img style="vertical-align: middle" src="images/logoTop.png" alt=""/>
+                    </a>
+                </div>
+                <div class="exit rt">
+                    <span></span>
+                    <a href="javascript:;" onclick="getoutjs(token)">退出</a>
+
+                </div>
+            </div>
+        </div>
+        <div class="bg1">
+            <img src="images/touming.png" alt=""/>
+        </div>
+        <!--正文内容-->
+        <div class="box">
+            <div class="box_in">
+                <div class="boxLf lf course">
+                    <ul>
+                        <li class="level1">
+                            <div class="level1Style">
+                                <div class="level1Styleline first">
+                                    <span class="icon1"></span>
+                                    <span>我的班级</span>
+                                </div>
+                            </div>
+                            <div class="menuLevel2">
+                                <ul>
+                                    <!--<li class="level2 btnone" style="background: #b1c54c;color: #fff"><span-->
+                                    <!--style="background:url(images/icon44.png) "></span><span>-->
+                                    <!--养老001</span></li>-->
+                                    <!--<li class="level2"><span></span><span>-->
+                                    <!--养老002</span></li>-->
+
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+
+
+                </div>
+                <div class="boxRt lf">
+                    <div class="boxRtBox">
+                        <div class="boxRtBoxTop">
+                            <div class="classroom">
+                                <span></span>
+                                <span>三年二班</span>
+                            </div>
+                            <div class="classroomRt"></div>
+                        </div>
+
+                        <div class="boxRtBoxBottom" style="margin-top: 35px">
+                            <!--<iframe ID="Frame4" SRC="login.html" STYLE="background-color: green"> </iframe>-->
+                            <!--学习项目-->
+                            <table class="table indextable" cellpadding="0" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th>学号</th>
+                                    <th>姓名</th>
+                                    <th>密码</th>
+                                    <th>任务</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                            <div class="paging">
+                                <div class="rt">
+                                    <span class="lastpage"><span></span>&nbsp;上一页</span>&nbsp;&nbsp;
+                                    <span class="nextpage">下一页&nbsp;<span></span></span>&nbsp;&nbsp;&nbsp;
+                                     到第 &nbsp; &nbsp;<input type="text" value=""/>&nbsp;&nbsp;
+                                    页&nbsp;&nbsp;
+                                    <button class="makeSure">确定</button>
+                                    &nbsp;&nbsp;</div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <!--书页线-->
+                <div class="boxRtBottom rt"></div>
+            </div>
+
+            <div class="footer" style="background: #d0e89b">
+                <div class="information" style="padding: 0;margin: 0">             <ul  style="padding: 0;margin: 0">                 <li><img src="../images/bottomText.png" alt="" style="width: 460px"/></li>             </ul>         </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var xm_type = GetQueryString('xm_type');
+    $('.boxLf').on('click', '.level1 .level1Style', function () {
+//    $('.level1 .level1Style').click(function () {
+//        $(this).children('.menuLevel2').slideToggle();
+        $(this).siblings().slideToggle();
+        console.log($(this).parent().siblings());
+        $(this).parent().siblings().children('.menuLevel2').slideUp();
+        $(this).parent().siblings().find('.level2 span:nth-child(1)').css('background', 'url(images/icon4.png)');
+        $(this).parent().siblings().find('.level2').css('background', '#fff ').css('color', '#585631')
+    });
+    $('.level1').on('click', '.menuLevel2 .level2', function () {
+//    $('.level1 .level2').click(function () {
+        classId = $(this).attr('id');
+        var classname=$(this).children().eq(1).html()
+        $('.classroom span:nth-child(2)').html(classname)
+        $(this).children('span:nth-child(1)').css('background', 'url(images/icon44.png)');
+        $(this).css('background', '#b1c54c').css('color', '#fff');
+        $(this).siblings().children('span:nth-child(1)').css('background', 'url(images/icon4.png)');
+        $(this).siblings().css('background', '#fff ').css('color', '#585631');
+
+        $.ajax({
+            url: "/cszyylfw/js/xsgl/studentlist",
+            type: 'post',
+            async: false,
+            data: 'token=' + token + "&clazz_id=" + classId + '&page_no=1&page_size=5',
+            success: function (res) {
+                if (res.code == 0) {
+                    $.ajax({
+                        url: "/cszyylfw/js/xsgl/studentlist",
+                        type: 'post',
+                        async: false,
+                        data: 'token=' + token + "&clazz_id=" + classId + '&page_no=1&page_size=5',
+                        success: function (res) {
+                            if (res.code == 0) {
+                                $('.indextable tbody').html('');
+                                for (var i = 0; i < res.data.items.length; i++) {
+                                    $('tbody').append('<tr> <td>' + res.data.items[i].studentNo + '</td> <td>' + res.data.items[i].realname + '</td> <td>' + res.data.items[i].pwd + '</td> <td><span class="lookat" id="' + res.data.items[i].id + '">查看</span></td>  </tr>')
+                                }
+                            } else if (res.code == 20) {
+                                alert('登陆超时，请重新登录！')
+                                setTimeout(function () {
+                                    location.href = 'js_index.html'
+                                }, 1000)
+
+                            } else {
+                                alert(res.codeMsg)
+                            }
+                        }
+                    })
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！')
+                    setTimeout(function () {
+                        location.href = 'js_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+
+    })
+    $('.btnone').click(function () {
+        console.log(1)
+        $('.boxRtBoxBottom table:nth-child(1)').css('display', '');
+        $('.boxRtBoxBottom table:nth-child(1)').siblings().css('display', 'none')
+    })
+    $('.btntwo').click(function () {
+        console.log(2)
+        $('.boxRtBoxBottom table:nth-child(2)').css('display', '');
+        $('.boxRtBoxBottom table:nth-child(2)').siblings().css('display', 'none')
+    })
+    $('.btnthree').click(function () {
+        console.log(3)
+        $('.boxRtBoxBottom table:nth-child(3)').css('display', '');
+        $('.boxRtBoxBottom table:nth-child(3)').siblings().css('display', 'none')
+    })
+    $('.btnfour').click(function () {
+        $('.boxRtBoxBottom table:nth-child(4)').css('display', '');
+        $('.boxRtBoxBottom table:nth-child(4)').siblings().css('display', 'none')
+    })
+    loginrefresh(token)
+    $.ajax({
+        url: "/cszyylfw/js/guidang/clazzlist",
+        type: 'post',
+        async: false,
+        data: 'token=' + token + '&page_no=1&page_size=100',
+        success: function (res) {
+            if (res.code == 0) {
+                $('.menuLevel2 ul').html('');
+                classId = res.data.items[0].id;
+
+                for (var i = 0; i < res.data.items.length; i++) {
+                    if (i == 0) {
+                        $('.classroom span:nth-child(2)').html(res.data.items[i].name)
+                        $('.menuLevel2 ul').append('<li class="level2 btnone" style="background: #b1c54c;color: #fff" id="' + res.data.items[i].id + '"><span  style="background:url(images/icon44.png)"></span><span>' + res.data.items[i].name + '</span></li>')
+                    } else {
+                        $('.menuLevel2 ul').append('<li class="level2" id="' + res.data.items[i].id + '"><span></span><span>' + res.data.items[i].name + '</span></li>')
+                    }
+                }
+            } else if (res.code == 20) {
+                alert('登陆超时，请重新登录！');
+                setTimeout(function () {
+                    location.href = 'js_index.html'
+                }, 1000)
+
+            } else {
+                alert(res.codeMsg)
+            }
+        }
+    })
+    if(!classId){}else{
+        $.ajax({
+            url: "/cszyylfw/js/xsgl/studentlist",
+            type: 'post',
+            async: false,
+            data: 'token=' + token + "&clazz_id=" + classId + '&page_no=1&page_size=5',
+            success: function (res) {
+                if (res.code == 0) {
+                    $.ajax({
+                        url: "/cszyylfw/js/xsgl/studentlist",
+                        type: 'post',
+                        async: false,
+                        data: 'token=' + token + "&clazz_id=" + classId + '&page_no=1&page_size=5',
+                        success: function (res) {
+                            if (res.code == 0) {
+                                $('.indextable tbody').html('');
+                                for (var i = 0; i < res.data.items.length; i++) {
+                                    $('tbody').append('<tr> <td>' + res.data.items[i].studentNo + '</td> <td>' + res.data.items[i].realname + '</td> <td>' + res.data.items[i].pwd + '</td> <td><span class="lookat" id="' + res.data.items[i].id + '">查看</span></td>  </tr>')
+                                }
+                            } else if (res.code == 20) {
+                                alert('登陆超时，请重新登录！')
+                                setTimeout(function () {
+                                    location.href = 'js_index.html'
+                                }, 1000)
+
+                            } else {
+                                alert(res.codeMsg)
+                            }
+                        }
+                    })
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！')
+                    setTimeout(function () {
+                        location.href = 'js_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+
+
+
+//    进入
+    $('.indextable').on('click', 'td .lookat', function () {
+            var student_id=$(this).attr('id')
+window.open('index_xs.html?student_id='+student_id)
+    })
+</script>
+
+
+</body>
+</html>

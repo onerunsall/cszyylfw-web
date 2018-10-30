@@ -1,0 +1,99 @@
+@charset "utf-8";
+/* CSS Document */
+.top_wrap {background: url(images/top_wrapBg.png) repeat scroll 0 0 transparent; border-top: 1px solid #a6bc3d; height: 50px; margin-top: 5px;}
+.linel{height:23px; float:left; border-left:1px solid #a6bc3d; margin:17px 0 0 10px; }
+.liner{height:23px; border-left:1px solid #fff6b6; float:left; margin-top:17px; }
+.searchBox{background:url(images/searchBg_01.png) no-repeat; width:242px; height:28px; float:right; margin-right:10px; margin-top:10px; padding-right:7px; padding-left:13px;}
+.down .dropicon .trigger-area .trigger-value{float:left; color:#666666; line-height:27px; width:36px; height:27px; text-indent:6px;}
+.down .dropicon .trigger-area .trigger-icon{background:url(images/trigger-icon.png) no-repeat; width:6px; height:3px; float:left; margin-top:11px; cursor:pointer;}
+.searchBox .btn .btn_search{background:url(images/btn_search.png) no-repeat; width:20px; height:20px; cursor:pointer; border:none;}
+.down .dropicon .list-select-absolute{ top:27px; width:48px; position:absolute; z-index:100; color:#ccc; background-color:#fff; border-left:1px solid #ccc; border-right:1px solid #ccc; border-bottom:1px solid #ccc;} 
+.down .dropicon .list-select-absolute ul li a{color:#666666;}
+.searchBox .down{ float:left; color:#fff;  height:27px; line-height:27px; width:48px;}
+.searchBox .inputtext{ float:right; margin-right:5px; width:167px; height:27px;}
+.topchange{ border:1px solid #CCCCCC;}
+
+body{ font-size:12px; font-family:Arial, Helvetica, sans-serif ,"宋体"; color:#333333; background-color:#d0e89b;}
+.zoneBg{background:url(images/zoneBg.png) no-repeat center 0; margin:0 auto;}
+.userbox{background:url(images/user_bg.gif) no-repeat; width:140px; height:163px;}
+.info{background:url(images/info_bg.png) repeat-y;}
+.info ul li{border-top:1px solid #f8f9f6; border-bottom:1px solid #d4eaa9; border-top:1px solid #f8f8f8; padding:5px 10px; line-height:18px;}
+.info .line{background:url(images/info_line.gif) repeat-x; height:2px;  overflow:hidden;}
+.info .con{width:120px; padding:3px 10px; color:#66744e;}
+.course .level1 .level1Stylon{background-color:#f2f8f2; height:59px; width:110px; padding:0 5px;}
+.level1Styleline .icon1{background:url(images/course_icon.png) no-repeat left 0;}
+.level1Styleline .icon2{background:url(images/course_icon.png) no-repeat left -33px;}
+.level1Styleline .icon3{background:url(images/course_icon.png) no-repeat left -68px;}
+.level1Styleline .icon4{background:url(images/course_icon.png) no-repeat left -108px;}
+.level1Styleline .icon5{background:url(images/course_icon.png) no-repeat left -144px;}
+.level1Styleline .icon6{background:url(images/course_icon.png) no-repeat left -174px;}
+.level1Styleline .icon7{background:url(images/course_icon.png) no-repeat left -213px;}
+.level1Styleline .icon8{background:url(images/course_icon.png) no-repeat left -254px;}
+.level1Styleline .icon9{background:url(images/course_icon.png) no-repeat left -282px;}
+.level1Styleline .icon10{background:url(images/course_icon.png) no-repeat left -351px;}
+.level1Styleline .icon11{background:url(images/course_icon.png) no-repeat left -389px;}
+.level1Styleline .icon12{background:url(images/course_icon.png) no-repeat left -313px;}
+.level1Styleline .icon13{background:url(images/course_icon.png) no-repeat left -425px;}
+.level1Styleline .icon14{background:url(images/course_icon.png) no-repeat left -467px;}
+.level1Styleline .icon1, .level1Styleline .icon2, .level1Styleline .icon3, .level1Styleline .icon4, .level1Styleline .icon5, .level1Styleline .icon6, .level1Styleline .icon7,.level1Styleline .icon8, .level1Styleline .icon9, .level1Styleline .icon10, .level1Styleline .icon11, .level1Styleline .icon12, .level1Styleline .icon13, .level1Styleline .icon14{ display:block; height:30px; padding-left:38px; line-height:30px; font-size:14px; font-weight:bold; color:#b1c54c;}
+.course .level1 .level1Style{ background-color:#f2f8f2; height:60px; width:110px; padding:0 5px;}
+.course .level1 .level1Style {   background: url("images/course_bg.gif") no-repeat scroll 0 0 transparent;	height:80px    padding: 0 5px;    width: 110px;}
+.level1Styleline{ border-bottom:1px solid #d7e9d7; border-top:1px solid #ffffff; height:45px; padding:13px 0 0 5px;}
+.course .level1 .menuLevel2{background-color:#ffffff; padding:8px 0;}
+.course .level1 .menuLevel2 .level2on{background-color:#b1c54c;}
+.course .level1 .menuLevel2 .level2 span{background:url(images/course_leve2_icon.png) no-repeat left 0; padding-left:17px; line-height:12px; display:block; color:#585631;}
+.course .level1 .menuLevel2 .level2 span a{color:#585631;}
+.course .level1 .menuLevel2 .level2on span a{ cursor: pointer;  text-decoration: none; color:#FFF; }
+.space_info h1{color:#585631; font-size:20px; float:left; font-weight:normal; margin-right:10px;}
+.space_infocon{color:#585631; padding-left:75px;}
+.space_infotitle a{color:#999; float:left; padding-top:6px;}
+.course{ width:120px; margin:0 auto; background-color:#2b9ebf;}
+.roledown .trigger-areahover{border-right:1px solid #a6bc3d; border-left:1px solid #a6bc3d;}
+.roledown .list-select-absolute{border:1px solid #a6bc3d;}
+.roledown .list-select-absolute li:hover{background-color:#f1f3e0; cursor:pointer;}
+.roledown .list-select-absolute .li-check{background-color:#f1f3e0; cursor:pointer;}
+
+
+
+
+
+/***展示页面**/
+.levelt .showcenter{ color: #333333;   font-family: Arial,Helvetica,sans-serif,"宋体";    font-size: 12px;}
+.levelt a:hover{ text-decoration:none;}
+.level1Styleline .showicon1{background:url(images/show_stu1.png) no-repeat left 0;}
+.level1Styleline .showicon2{background:url(images/show_stu2.png) no-repeat left 0;}
+.level1Styleline .showicon3{background:url(images/show_stu3.png) no-repeat left 0;}
+.level1Styleline .showicon4{background:url(images/show_stu4.png) no-repeat left 0;}
+.level1Styleline .showicon5{background:url(images/show_stu5.png) no-repeat left 0;}
+.level1Styleline .showicon6{background:url(images/show_stu6.png) no-repeat left 0;}
+.level1Styleline .showicon7{background:url(images/show_stu7.png) no-repeat left 0;}
+.level1Styleline .showicon8{background:url(images/show_stu8.png) no-repeat left 0;}
+.level1Styleline .showicon1, .level1Styleline .showicon2, .level1Styleline .showicon3, .level1Styleline .showicon4, .level1Styleline .showicon5, .level1Styleline .showicon6, .level1Styleline .showicon7, .level1Styleline .showicon8{ display:block; height:40px; margin-left:32px; margin-top:-15px; width:42px; line-height:40px; *margin-left:0px;}
+.course .levelt .level1Style{ background-color:#f2f8f2; height:80px; width:110px; padding:0 5px;}
+.course .levelt .level1Stylon{background-color:#f2f8f2; height:80px; width:110px; padding:0 5px;}
+.course .levelt .menuLevel2{background-color:#ffffff; padding:8px 0;}
+.course .levelt .menuLevel2 .level2on{background-color:#b1c54c;}
+.course .levelt .menuLevel2 .level2 span{background:url(images/course_leve2_icon.png) no-repeat left 0; padding-left:17px; line-height:12px; display:block; color:#585631;}
+.course .levelt .level1Styleline{ border-bottom:1px solid #d7e9d7; border-top:1px solid #ffffff; height:65px; padding:13px 0 0 5px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

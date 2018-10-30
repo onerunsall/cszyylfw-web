@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>活动列表</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../xs/css/indexM.css"/>
+    <link rel="stylesheet" href="../xs/css/all.css"/>
+    <script src="../xs/js/jquery-1.8.3.min.js"></script>
+    <link rel="stylesheet" href="../allcss/xuxk.css"/>
+    <link rel="stylesheet" href="../js/css/best_hmwork.css"/>
+    <link rel="stylesheet" href="../xs/css/activity_list.css"/>
+    <!--<link rel="stylesheet" href="css/css/default.css"/>-->
+    <script src="js/xuxkBrief.js"></script>
+    <script src="js/public.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font-size: 12px;
+            font-family: Arial, Helvetica, sans-serif, 宋体;
+            color: rgb(51, 51, 51);
+            background: #d0e89b;
+        }
+        .level2  span:first-child{
+            vertical-align: top;
+        }
+        .level2  span:last-child{
+            width: 72px;
+        }
+        .menuLevel2 .level2{
+            height: auto;
+        }
+        .saveList{
+            margin: 0 auto;
+            width: 180px;
+            height: 36px;
+            border: 0;
+            line-height: 36px;
+            color: #ffffff;
+            background: #32afff;
+            font-size: 16px;
+        }
+        /*body {font: normal 100% Helvetica, Arial,sans-serif;}*/
+    </style>
+    <script>
+        var token=localStorage.getItem('token');
+
+        loginrefresh(token)
+
+    </script>
+
+
+</head>
+<body>
+<div class="mantain">
+    <!--顶部导航-->
+    <div class="zoneBg">
+        <div class="topLine">
+            <div class="topLineBelore">
+                <div class="logo lf">
+                    <a href="gly_index.html">
+                        <img src="../images/logoTop.png" alt=""/>
+                    </a>
+                </div>
+                <div class="exit rt">
+                    <span></span>
+                    <a href="javascript:;" onclick="getoutgly(token)">退出</a>
+
+                </div>
+            </div>
+        </div>
+        <div class="bg1">
+            <img src="../images/touming.png" alt=""/>
+        </div>
+        <!--正文内容-->
+        <div class="box">
+            <div class="box_in">
+                <div class="actTitle" style="height: 20px">
+                    <!--<span>添加</span>-->
+                </div>
+                <div class="actBox">
+                    <table >
+                        <thead>
+                        <tr class="tab2">
+                            <td></td>
+                            <td>周一</td>
+                            <td>周二</td>
+                            <td>周三</td>
+                            <td>周四</td>
+                            <td>周五</td>
+                            <td>周六</td>
+                            <td>周日</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="tab2">
+                            <td>09:00-11:00</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr class="tab2">
+                            <td>14:00-16:00</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr class="tab2">
+                            <td>18:00-20:00</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="clear"></div>
+                <!--书页线-->
+
+            </div>
+            <div class="boxRtBottom rt"></div>
+            <div class="clear"></div>
+            <div class="save" style="text-align: center;margin: 40px auto;width: 1100px;height: 36px;">
+                <button class="saveList">保存</button>
+            </div>
+            <div class="footer">
+                <div class="information" style="padding: 0;margin: 0">             <ul  style="padding: 0;margin: 0">                 <li><img src="../images/bottomText.png" alt="" style="width: 460px"/></li>             </ul>         </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var hdcy_id= GetQueryString("id");
+    function xsXm(userId) {
+        $.ajax({
+            url: "/cszyylfw/comm/events",
+            type: 'post',
+            async: false,
+            data: 'token=' + token + "&id=" + userId,
+            success: function (res) {
+                if (res.code == 0) {
+                    $('tbody tr .tdnext').html('');
+                    for (var i = 0; i < res.data.items.length; i++) {
+                        if (res.data.items[i].startTime == '09:00:00') {
+                            if (res.data.items[i].dayOfWeek == 1) {
+                                $('table>tbody>tr:first-child>td:nth-child(2)').html(res.data.items[i].name).attr('content', (res.data.items[i].content||'')).attr('actId', res.data.items[i].id).attr('actDay', res.data.items[i].dayOfWeek).attr('isSelected',0).addClass('tdIn')
+                            } else if (res.data.items[i].dayOfWeek == 2) {
+                                $('table>tbody>tr:first-child>td:nth-child(3)').html(res.data.items[i].name).attr('content', (res.data.items[i].content||'')).attr('actId', res.data.items[i].id).attr('actDay', res.data.items[i].dayOfWeek).attr('isSelected',0).addClass('tdIn')
+                            } else if (res.data.items[i].dayOfWeek == 3) {
+                                $('table>tbody>tr:first-child>td:nth-child(4)').html(res.data.items[i].name).attr('content', (res.data.items[i].content||'')).attr('actId', res.data.items[i].id).attr('actDay', res.data.items[i].dayOfWeek).attr('isSelected',0).addClass('tdIn')
+                            } else if (res.data.items[i].dayOfWeek == 4) {
+                                $('table>tbody>tr:first-child>td:nth-child(5)').html(res.data.items[i].name).attr('content', (res.data.items[i].content||'')).attr('actId', res.data.items[i].id).attr('actDay', res.data.items[i].dayOfWeek).attr('isSelected',0).addClass('tdIn')
+                            } else if (res.data.items[i].dayOfWeek == 5) {
+                                $('table>tbody>tr:first-child>td:nth-child(6)').html(res.data.items[i].name).attr('content', (res.data.items[i].content||'')).attr('actId', res.data.items[i].id).attr('actDay', res.data.items[i].dayOfWeek).attr('isSelected',0).addClass('tdIn')
+                            } else if (res.data.items[i].dayOfWeek == 6) {
+                                $('table>tbody>tr:first-child>td:nth-child(7)').html(res.data.items[i].name).attr('content', (res.data.items[i].content||'')).attr('actId', res.data.items[i].id).attr('actDay', res.data.items[i].dayOfWeek).attr('isSelected',0).addClass('tdIn')
+                            } else if (res.data.items[i].dayOfWeek == 7) {
+                                $('table>tbody>tr:first-child>td:nth-child(8)').html(res.data.items[i].name).attr('content', (res.data.items[i].content||'')).attr('actId', res.data.items[i].id).attr('actDay', res.data.items[i].dayOfWeek).attr('isSelected',0).addClass('tdIn')
+                            }
+                        } else if (res.data.items[i].startTime == '14:00:00') {
+                            if (res.data.items[i].dayOfWeek == 1) {
+                                $('table>tbody>tr:nth-child(2)>td:nth-child(2)').html(res.data.items[i].name).attr('content', (res.data.items[i].content||'')).attr('actId', res.data.items[i].id).attr('actDay', res.data.items[i].dayOfWeek).attr('isSelected',0).addClass('tdIn')
+                            } else if (res.data.items[i].dayOfWeek == 2) {
+                                $('table>tbody>tr:nth-child(2)>td:nth-child(3)').html(res.data.items[i].name).attr('content', (res.data.items[i].content||'')).attr('actId', res.data.items[i].id).attr('actDay', res.data.items[i].dayOfWeek).attr('isSelected',0).addClass('tdIn')
+                            } else if (res.data.items[i].dayOfWeek == 3) {
+                                $('table>tbody>tr:nth-child(2)>td:nth-child(4)').html(res.data.items[i].name).attr('content', (res.data.items[i].content||'')).attr('actId', res.data.items[i].id).attr('actDay', res.data.items[i].dayOfWeek).attr('isSelected',0).addClass('tdIn')
+                            } else if (res.data.items[i].dayOfWeek == 4) {
+                                $('table>tbody>tr:nth-child(2)>td:nth-child(5)').html(res.data.items[i].name).attr('content', (res.data.items[i].content||'')).attr('actId', res.data.items[i].id).attr('actDay', res.data.items[i].dayOfWeek).attr('isSelected',0).addClass('tdIn')
+                            } else if (res.data.items[i].dayOfWeek == 5) {
+                                $('table>tbody>tr:nth-child(2)>td:nth-child(6)').html(res.data.items[i].name).attr('content', (res.data.items[i].content||'')).attr('actId', res.data.items[i].id).attr('actDay', res.data.items[i].dayOfWeek).attr('isSelected',0).addClass('tdIn')
+                            } else if (res.data.items[i].dayOfWeek == 6) {
+                                $('table>tbody>tr:nth-child(2)>td:nth-child(7)').html(res.data.items[i].name).attr('content', (res.data.items[i].content||'')).attr('actId', res.data.items[i].id).attr('actDay', res.data.items[i].dayOfWeek).attr('isSelected',0).addClass('tdIn')
+                            } else if (res.data.items[i].dayOfWeek == 7) {
+                                $('table>tbody>tr:nth-child(2)>td:nth-child(8)').html(res.data.items[i].name).attr('content', (res.data.items[i].content||'')).attr('actId', res.data.items[i].id).attr('actDay', res.data.items[i].dayOfWeek).attr('isSelected',0).addClass('tdIn')
+                            }
+                        } else if (res.data.items[i].startTime == '18:00:00') {
+                            if (res.data.items[i].dayOfWeek == 1) {
+                                $('table>tbody>tr:nth-child(3)>td:nth-child(2)').html(res.data.items[i].name).attr('content', (res.data.items[i].content||'')).attr('actId', res.data.items[i].id).attr('actDay', res.data.items[i].dayOfWeek).attr('isSelected',0).addClass('tdIn')
+                            } else if (res.data.items[i].dayOfWeek == 2) {
+                                $('table>tbody>tr:nth-child(3)>td:nth-child(3)').html(res.data.items[i].name).attr('content', (res.data.items[i].content||'')).attr('actId', res.data.items[i].id).attr('actDay', res.data.items[i].dayOfWeek).attr('isSelected',0).addClass('tdIn')
+                            } else if (res.data.items[i].dayOfWeek == 3) {
+                                $('table>tbody>tr:nth-child(3)>td:nth-child(4)').html(res.data.items[i].name).attr('content', (res.data.items[i].content||'')).attr('actId', res.data.items[i].id).attr('actDay', res.data.items[i].dayOfWeek).attr('isSelected',0).addClass('tdIn')
+                            } else if (res.data.items[i].dayOfWeek == 4) {
+                                $('table>tbody>tr:nth-child(3)>td:nth-child(5)').html(res.data.items[i].name).attr('content', (res.data.items[i].content||'')).attr('actId', res.data.items[i].id).attr('actDay', res.data.items[i].dayOfWeek).attr('isSelected',0).addClass('tdIn')
+                            } else if (res.data.items[i].dayOfWeek == 5) {
+                                $('table>tbody>tr:nth-child(3)>td:nth-child(6)').html(res.data.items[i].name).attr('content', (res.data.items[i].content||'')).attr('actId', res.data.items[i].id).attr('actDay', res.data.items[i].dayOfWeek).attr('isSelected',0).addClass('tdIn')
+                            } else if (res.data.items[i].dayOfWeek == 6) {
+                                $('table>tbody>tr:nth-child(3)>td:nth-child(7)').html(res.data.items[i].name).attr('content', (res.data.items[i].content||'')).attr('actId', res.data.items[i].id).attr('actDay', res.data.items[i].dayOfWeek).attr('isSelected',0).addClass('tdIn')
+                            } else if (res.data.items[i].dayOfWeek == 7) {
+                                $('table>tbody>tr:nth-child(3)>td:nth-child(8)').html(res.data.items[i].name).attr('content', (res.data.items[i].content||'')).attr('actId', res.data.items[i].id).attr('actDay', res.data.items[i].dayOfWeek).attr('isSelected',0).addClass('tdIn')
+                            }
+                        }
+                    }
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！')
+                    setTimeout(function () {
+                        location.href = 'gly_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        });
+    }
+    xsXm('')
+    //    <!--鼠标悬浮看详情-->
+    $(function () {
+        $(".actBox table tbody .tdIn").hover(function () {
+            if($(this).html().length>0) {
+                var acttitle = $(this).html()
+                var actcontent = $(this).attr('content')
+                $(this).parents("body").append('<div class="contentPop"> <p>' + (acttitle || '') + '</p> <span>' + (actcontent || '') + '</span> </div>');
+                $(".actBox table tbody td").mousemove(function (e) {
+                    var wH = document.documentElement.clientHeight
+                    var wW = document.documentElement.clientWidth
+                    var imgW = $(".contentPop").width()
+                    var imgH = $(".contentPop").height()
+                    var cssArr = {"top": "", "left": "", "bottom": "", "right": ""}
+
+                    if (e.clientX + imgW > wW) {
+                        if (wW - e.clientX < imgW) {
+                            cssArr.left = (e.clientX - imgW - 10) + "px";
+                            ;
+
+                        } else {
+                            cssArr.right = 0;
+                        }
+
+                    } else {
+                        cssArr.left = (e.clientX + 10) + "px";
+                    }
+
+                    if (e.clientY + imgH > wH) {
+                        cssArr.bottom = 0;
+                    } else {
+                        cssArr.top = (e.clientY + 10) + "px";
+                    }
+                    $(".contentPop").css(cssArr).fadeIn("fast");
+                });
+            }
+        }, function () {
+            $(".contentPop").remove();
+        });
+
+    });
+    var POPid, POPacttitle, POPactcontent, POPtime, POPday,idActs;
+    //    鼠标点击修改内容
+    $(".actBox table tbody .tdIn").click(function () {
+        if($(this).html().length>0){
+            if( $(this).attr('isSelected')==1){
+                $(this).attr('isSelected',0)
+                if($(this).parent().children().eq(0).html()=='14:00-16:00'){
+                    $(this).css('background','#e5eaed').css('color','#000')
+                }else{
+                    $(this).css('background','#f8f8f8').css('color','#000')
+                }
+            }else{
+                $(this).attr('isSelected',1)
+                $(this).css('background','#e7e7e7').css('color','#32afff')
+            }
+            POPid = $(this).attr('actId');
+            POPacttitle = $(this).html();
+            POPactcontent = $(this).attr('content');
+            POPtime = $(this).parent().children().eq(0).html();
+            POPday = $(this).attr('actDay');
+            var idAct='';
+            $(".actBox table tbody .tdIn").each(function(){
+
+                if($(this).attr('isselected')==1){
+                    idAct=$(this).attr('actid')+','+idAct
+                    console.log($(this).attr('actid'),idAct)
+                }
+            });
+            idActs=idAct.slice(0,idAct.length-1)
+        }
+    });
+
+    $('.saveList').click(function(){
+        $.ajax({
+            url:'/cszyylfw/gly/xmanli/hdcy/addinfo',
+            type:'post',
+            data:"hdcy_id="+hdcy_id+"&e_id="+idActs+'&token='+token,
+            async:false,
+            success:function(res){
+                if(res.code==0) {
+                    self.close();
+                }else if(res.code==20){
+                    alert('登陆超时，请重新登录！');
+                    setTimeout(function(){
+                        location.href='gly_index.html'
+                    },1000)
+
+                } else{
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    })
+</script>
+<script>
+
+</script>
+</body>
+</html>

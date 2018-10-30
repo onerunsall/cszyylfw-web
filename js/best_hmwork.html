@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>优秀作业</title>
+    <!--<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="../xs/css/all.css"/>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <link rel="stylesheet" href="css/xuxk.css"/>
+    <link rel="stylesheet" href="css/best_hmwork.css"/>
+    <link rel="stylesheet" href="css/gobal.css"/>
+    <!--<link rel="stylesheet" href="css/css/default.css"/>-->
+    <script src="js/xuxkBrief.js"></script>
+    <script src="js/public.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font-size: 12px;
+            font-family: Arial, Helvetica, sans-serif, 宋体;
+            color: rgb(51, 51, 51);
+            background: #d0e89b;
+        }
+        .level2{
+            height: auto !important;
+        }
+        .level2>span:nth-child(1){
+            vertical-align: top;
+            margin-top: 14px;
+        }
+        .level2>span:nth-child(2){
+            width: 70px;
+            display: inline-block;
+            line-height: 20px;
+            margin-top: 8px;
+        }
+        /*body {font: normal 100% Helvetica, Arial,sans-serif;}*/
+    </style>
+    <script>
+        var token = localStorage.getItem('token');
+
+
+    </script>
+
+
+</head>
+<body>
+<div class="mantain">
+    <!--顶部导航-->
+    <div class="zoneBg">
+        <div class="topLine">
+            <div class="topLineBelore">
+                <div class="logo lf">
+                    <a href="js_index.html">
+                        <img src="images/logoTop.png" alt=""/>
+                    </a>
+                </div>
+                <div class="exit rt">
+                    <span></span>
+                    <a href="javascript:;" onclick="getoutjs(token)">退出</a>
+
+                </div>
+            </div>
+        </div>
+        <div class="bg1">
+            <img src="images/touming.png" alt=""/>
+        </div>
+        <!--正文内容-->
+        <div class="box">
+            <div class="box_in">
+                <div class="boxLf lf course">
+                    <ul>
+                        <li class="level1">
+                            <div class="level1Style">
+                                <div class="level1Styleline first">
+                                    <span class="icon6"></span>
+                                    <span class="studentRealname">课程教学</span>
+                                </div>
+                            </div>
+                            <div class="menuLevel2">
+                                <ul>
+                                    <li class="level2 btnone" lib_id="1"  xm_type="1" style="background: #b1c54c;color: #fff">
+                                        <span style="background:url(../images/icon44.png) "></span><span>
+                                    咨询接待</span></li>
+                                    <li class="level2 btntwo" lib_id="2" xm_type="2"><span></span><span>
+                                    活动参与</span></li>
+                                    <li class="level2 btnthree" lib_id="3" xm_type="3"><span></span><span>
+                                    需求评估,信息反馈</span></li>
+                                </ul>
+                            </div>
+                        </li>
+
+                    </ul>
+
+
+                </div>
+                <div class="boxRt lf">
+                    <div class="boxRtBox">
+                        <div class="boxRtBoxTop">
+                            <div class="classroom">
+                                <span></span>
+                                <span class="clazzName">优秀作业</span>
+                            </div>
+                            <div class="classroomRt"></div>
+                        </div>
+                        <div class="boxRtBoxBottom">
+                            <!--<iframe ID="Frame4" SRC="login.html" STYLE="background-color: green"> </iframe>-->
+                            <!--学习项目-->
+                            <div class="boxTitle">
+                                <span>编号</span><span>任务</span><span>操作</span>
+                            </div>
+                            <div class="boxone">
+                                <div class="boxlevel1Style">
+                                    <div class="boxlevel1Styleline first">
+                                        <span>任务一</span><span>情景设计</span><span><span
+                                            class="icons iconInsdown"></span></span>
+                                    </div>
+                                </div>
+                                <div class="boxmenuLevel2" style="display: none">
+                                    <ul>
+
+                                    </ul>
+                                </div>
+
+                            </div>
+                            <div class="boxtwo">
+                                <div class="boxlevel1Style">
+                                    <div class="boxlevel1Styleline first">
+                                        <span>任务二</span><span>能力评估</span><span><span
+                                            class="icons iconInsdown"></span></span>
+                                    </div>
+                                </div>
+                                <div class="boxmenuLevel2" style="display: none">
+                                    <ul>
+
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="boxthree">
+                                <div class="boxlevel1Style">
+                                    <div class="boxlevel1Styleline first">
+                                        <span>任务三</span><span>需求评估,信息反馈</span><span><span
+                                            class="icons iconInsdown"></span></span>
+                                    </div>
+                                </div>
+                                <div class="boxmenuLevel2" style="display: none">
+                                    <ul>
+
+
+                                    </ul>
+                                </div>
+                            </div>
+
+
+
+                            <div class="boxfour" style="display: none">
+                                <div class="boxlevel1Style">
+                                    <div class="boxlevel1Styleline first">
+                                        <span>任务一</span><span>活动参与</span><span><span
+                                            class="icons iconInsdown"></span></span>
+                                    </div>
+                                </div>
+                                <div class="boxmenuLevel2" style="display: none">
+                                    <ul>
+
+                                    </ul>
+                                </div>
+
+                            </div>
+
+
+                            <div class="boxfive" style="display: none">
+                                <div class="boxlevel1Style">
+                                    <div class="boxlevel1Styleline first">
+                                        <span>任务一</span><span>情景设计</span><span><span
+                                            class="icons iconInsdown"></span></span>
+                                    </div>
+                                </div>
+                                <div class="boxmenuLevel2" style="display: none">
+                                    <ul>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="boxsix" style="display: none">
+                                <div class="boxlevel1Style">
+                                    <div class="boxlevel1Styleline first">
+                                        <span>任务二</span><span>沟通方案</span><span><span
+                                            class="icons iconInsdown"></span></span>
+                                    </div>
+                                </div>
+                                <div class="boxmenuLevel2" style="display: none">
+                                    <ul>
+                                    </ul>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+                <!--书页线-->
+                <div class="boxRtBottom rt"></div>
+                <div class="clear"></div>
+            </div>
+
+            <div class="footer" style="margin-bottom: 80px">
+                <div class="information" style="padding: 0;margin: 0">             <ul  style="padding: 0;margin: 0">                 <li><img src="../images/bottomText.png" alt="" style="width: 460px"/></li>             </ul>         </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var student_id = GetQueryString('student_id')
+    var xm_type = 1
+
+
+    $('.boxRtBoxBottom .boxlevel1Style').click(function () {
+//        $(this).children('.menuLevel2').slideToggle();
+        $(this).siblings().slideToggle();
+        $(this).parent().siblings().children('.boxmenuLevel2').slideUp();
+        var sss = new RegExp('up');
+        var bgcolor = $(this).children().find('.icons').css('background')
+        if (!sss.test(bgcolor)) {
+            $(this).children().find('.icons').css('background', 'url(images/up.png)');
+        } else {
+            $(this).children().find('.icons').css('background', 'url(images/down.png)');
+        }
+        $(this).parent().siblings().children().find('.icons').css('background', 'url(images/down.png)')
+    })
+
+    $('.level1 .level1Style').click(function () {
+//        $(this).children('.menuLevel2').slideToggle();
+        $(this).siblings().slideToggle();
+        console.log($(this).parent().siblings())
+        $(this).parent().siblings().children('.menuLevel2').slideUp();
+        $(this).parent().siblings().find('.level2 span:nth-child(1)').css('background', 'url(images/icon4.png)')
+        $(this).parent().siblings().find('.level2').css('background', '#fff ').css('color', '#585631')
+    })
+    $('.level1 .level2').click(function () {
+
+        $(this).children('span:nth-child(1)').css('background', 'url(images/icon44.png)');
+        $(this).css('background', '#b1c54c').css('color', '#fff');
+        $(this).siblings().children('span:nth-child(1)').css('background', 'url(images/icon4.png)');
+        $(this).siblings().css('background', '#fff ').css('color', '#585631')
+    })
+
+    $('.btnone').click(function(){
+        $(".boxone").css('display','block')
+        $(".boxtwo").css('display','block')
+        $(".boxthree").css('display','block')
+        $(".boxfour").css('display','none')
+        $(".boxfive").css('display','none')
+        $(".boxsix").css('display','none')
+        xm_type = $(this).attr('xm_type');
+        reloadAll1()
+    })
+    $('.btntwo').click(function(){
+        $(".boxone").css('display','none')
+        $(".boxtwo").css('display','none')
+        $(".boxthree").css('display','none')
+        $(".boxfour").css('display','block')
+        $(".boxfive").css('display','none')
+        $(".boxsix").css('display','none')
+        xm_type = $(this).attr('xm_type');
+        reloadAll2()
+    })
+    $('.btnthree').click(function(){
+        $(".boxone").css('display','none')
+        $(".boxtwo").css('display','none')
+        $(".boxthree").css('display','none')
+        $(".boxfour").css('display','none')
+        $(".boxfive").css('display','block')
+        $(".boxsix").css('display','block')
+        xm_type = $(this).attr('xm_type');
+        reloadAll3()
+    })
+    loginrefresh(token)
+
+
+    $('a').click(function () {
+        if (!$(this).attr('href'))
+            error('学生未提交该项作业')
+    })
+
+
+    function reloadGoodHm(url,_this){
+            $.ajax({
+                    url: "/cszyylfw"+url,
+                    type: 'post',
+                    async: false,
+                    data: 'token=' + token + "&xm_type=" + xm_type+"&page_no=1&page_size=100",
+                    success: function (res) {
+                        if (res.code == 0) {
+
+                            for(var i=0;i<res.data.items.length;i++){
+                                _this.append(' <li xm_type="1" class="boxlevel2 btnone"> <span class="lf">'+res.data.items[i].clazzName+'</span> <span class="lf">'+res.data.items[i].studentNo+'</span> <span class="lf">'+res.data.items[i].realname+'</span> <span class="lf"><span  class="joinxmId" xmId="'+res.data.items[i].xmId+'" id="'+res.data.items[i].id+'">进入</span><span class="delxmId" xmId="'+res.data.items[i].xmId+'"  id="'+res.data.items[i].id+'">删除</span></span> </li>')
+                            }
+
+                        } else if (res.code == 20) {
+                            alert('登陆超时，请重新登录！');
+                            setTimeout(function () {
+                                location.href = 'js_index.html'
+                            }, 1000)
+
+                        } else {
+                            alert(res.codeMsg)
+                        }
+                    }
+                })
+    }
+   function reloadAll1(){
+       $('.boxone .boxmenuLevel2 ul').html('')
+       $('.boxtwo .boxmenuLevel2 ul').html('')
+       $('.boxthree .boxmenuLevel2 ul').html('')
+
+
+       var _this=$('.boxone .boxmenuLevel2 ul');
+       reloadGoodHm('/js/goodzuoye/xmzxqjlist',_this)
+       var _this=$('.boxtwo .boxmenuLevel2 ul');
+       reloadGoodHm('/js/goodzuoye/xmzxnllist',_this)
+       var _this=$('.boxthree .boxmenuLevel2 ul');
+       reloadGoodHm('/js/goodzuoye/xmzxxqlist',_this)
+   }
+    function reloadAll2(){
+        $('.boxfour .boxmenuLevel2 ul').html('')
+        var _this=$('.boxfour .boxmenuLevel2 ul');
+        reloadGoodHm('/js/goodzuoye/xmhdcylist',_this)
+    }
+    function reloadAll3(){
+        $('.boxfive .boxmenuLevel2 ul').html('')
+        $('.boxsix .boxmenuLevel2 ul').html('')
+        var _this=$('.boxfive .boxmenuLevel2 ul');
+        reloadGoodHm('/js/goodzuoye/xmfxgtlist',_this)
+        var _this=$('.boxsix .boxmenuLevel2 ul');
+        reloadGoodHm('/js/goodzuoye/xmfxqjlist',_this)
+    }
+    reloadAll1()
+
+
+//    删除
+    $('.boxone').on('click','li .delxmId',function(){
+        var id=$(this).attr('id')
+        layboxs("action/delete_good_hm.html?id=" + id + "&url=/js/goodzuoye/zxqjungood" + "&fun=delok"+ "&xm_type="+xm_type, "notitle");
+    })
+    $('.boxtwo').on('click','li .delxmId',function(){
+        var id=$(this).attr('id')
+        layboxs("action/delete_good_hm.html?id=" + id + "&url=/js/goodzuoye/zxnlungood" + "&fun=delok"+ "&xm_type="+xm_type, "notitle");
+    })
+    $('.boxthree').on('click','li .delxmId',function(){
+        var id=$(this).attr('id')
+        layboxs("action/delete_good_hm.html?id=" + id + "&url=/js/goodzuoye/zxxqungood" + "&fun=delok"+ "&xm_type="+xm_type, "notitle");
+    })
+    $('.boxfour').on('click','li .delxmId',function(){
+        var id=$(this).attr('id')
+        layboxs("action/delete_good_hm.html?id=" + id + "&url=/js/goodzuoye/hdcyungood" + "&fun=delok1"+ "&xm_type="+xm_type, "notitle");
+    })
+    $('.boxfive').on('click','li .delxmId',function(){
+        var id=$(this).attr('id')
+        layboxs("action/delete_good_hm.html?id=" + id + "&url=/js/goodzuoye/fxqjungood" + "&fun=delok2"+ "&xm_type="+xm_type, "notitle");
+    })
+    $('.boxsix').on('click','li .delxmId',function(){
+        var id=$(this).attr('id')
+        layboxs("action/delete_good_hm.html?id=" + id + "&url=/js/goodzuoye/fxgtungood" + "&fun=delok2"+ "&xm_type="+xm_type, "notitle");
+    })
+    function delok(){
+        popation("220", "y", "删除成功！");
+        closemask();
+        $('.popopowindow').remove()
+        reloadAll1()
+    }
+    function delok1(){
+        popation("220", "y", "删除成功！");
+        closemask();
+        $('.popopowindow').remove()
+        reloadAll2()
+    }
+    function delok2(){
+        popation("220", "y", "删除成功！");
+        closemask();
+        $('.popopowindow').remove()
+        reloadAll3()
+    }
+//    进入项目查看
+    $('.boxone').on('click','li .joinxmId',function() {
+        window.open('consult_qjsj_good.html?xm_id=' + $(this).attr('xmid')+"&id="+ $(this).attr('id'))
+    })
+    $('.boxtwo').on('click','li .joinxmId',function() {
+        window.open('consult_nlpg_good.html?xm_id=' +$(this).attr('xmid')+"&id="+ $(this).attr('id'))
+    })
+    $('.boxthree').on('click','li .joinxmId',function() {
+        window.open('consult_xqpg_good.html?xm_id=' +$(this).attr('xmid')+"&id="+ $(this).attr('id'))
+    })
+    $('.boxfour').on('click','li .joinxmId',function() {
+        window.open('activity_good.html?xm_id=' +$(this).attr('xmid')+"&id="+ $(this).attr('id'))
+    })
+    $('.boxtwo').on('click','li .joinxmId',function() {
+        window.open('manage_qjsj_good.html?xm_id=' +$(this).attr('xmid')+"&id="+ $(this).attr('id'))
+    })
+    $('.boxtwo').on('click','li .joinxmId',function() {
+        window.open('manage_gtfa_good.html?xm_id=' +$(this).attr('xmid')+"&id="+ $(this).attr('id'))
+    })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>新增食材</title>
+    <!--<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="../xs/css/gly_site_report.css"/>
+    <link rel="stylesheet" href="../xs/css/all.css"/>
+    <link rel="stylesheet" href="css/addoldman.css"/>
+    <link rel="stylesheet" href="../xs/css/xuxk.css"/>
+    <script src="../xs/js/jquery-1.8.3.min.js"></script>
+    <script src="../xs/js/xuxkBrief.js"></script>
+    <script src="../xs/js/addTmpImg.js"></script>
+    <script src="../xs/js/public.js"></script>
+    <style>
+        body {
+            font-size: 12px;
+            font-family: Arial, Helvetica, sans-serif, 宋体;
+            color: rgb(51, 51, 51);
+            background: #fff;
+        }
+.firstTwo{
+    margin-left: 30px !important;
+    width: 414px !important;
+}
+        #select {
+            width: 444px !important;
+        }
+        .secondTwo>div{
+            width: 135px;
+        }
+        .secondTwo>div>input{
+            margin-right:5px ;
+        }
+        .secondTwo>div>span{
+            margin-right:10px ;
+
+        }
+        /*body {font: normal 100% Helvetica, Arial,sans-serif;}*/
+    </style>
+    <script>
+        var token = localStorage.getItem('token');
+        loginrefresh(token)
+        var chfaId, plan, ssid = '',
+                title,
+                time,
+                place_id;
+        //    监听滚动
+        scroll()
+    </script>
+</head>
+<body>
+<div class="topTitleNjcs">
+    <div class="topTitleNjcsline">
+        <div class="logo lf">
+            <a href="gly_index.html">
+                <img src="images/toplogo.png" alt="">
+            </a>
+        </div>
+        <div class="exit rt">
+            <span></span>
+            <a href="javascript:;" onclick="getoutgly()">退出</a>
+        </div>
+    </div>
+</div>
+<div class="smallBox" style="margin-top: 90px">
+    <div class="smallBoxFirst">
+        <p class="firstOne lf">食材名称</p><input class="firstTwo name lf" type="text"/>
+    </div>
+    <div class="smallBoxFirst">
+        <p class="firstOne lf">食材种类</p>
+        <select id="select" class="firstTwo sex lf" name="sex">
+
+        </select>
+        <!--<input class="firstTwo sex lf" type="text"/>-->
+    </div>
+
+
+    <div class="top60">
+        <p class="secondOne">适合病症</p>
+
+        <div class="secondTwo shbz">
+
+        </div>
+        <!--<textarea name="diseasetext" id="diseasetext" cols="30" rows="10" maxlength="1000"></textarea>-->
+    </div>
+    <div class="clear"></div>
+    <div class="top60">
+        <p class="secondOne">禁忌病症</p>
+
+        <div class="secondTwo jjbz">
+
+        </div>
+        <!--<textarea name="interesttext" id="interesttext" cols="30" rows="10" maxlength="1000"></textarea>-->
+    </div>
+
+    <div class="clear"></div>
+    <div class="top60">
+        <p class="secondOne">营养价值</p>
+        <div>
+            <textarea name="interesttext1 " class="nutritive_value" id="interesttext1" cols="30" rows="10" maxlength="1000"></textarea>
+            <span class="rt">0/1000</span>
+        </div>
+        <script>
+            $('#interesttext1').bind('input propertychange', function () {
+                $(this).next().html($("#interesttext1").val().length + "/1000")
+            });
+        </script>
+    </div>
+    <div class="clear"></div>
+    <div class="top60">
+        <p class="secondOne">烹饪建议</p>
+        <div>
+            <textarea name="interesttext2 " class="cook_tips" id="interesttext2" cols="30" rows="10" maxlength="1000"></textarea>
+            <span class="rt">0/1000</span>
+        </div>
+    </div>
+    <script>
+        $('#interesttext2').bind('input propertychange', function () {
+            $(this).next().html($("#interesttext2").val().length + "/1000")
+        });
+    </script>
+    <div class="btnLast">
+        <button class="btnsave">保存</button>
+    </div>
+</div>
+
+
+<script>
+    $.ajax({
+        url:'/cszyylfw/gly/foodgl/foodlistqueryparams',
+        type:'post',
+        data:'token='+token,
+        async:false,
+        success:function(res){
+            if(res.code==0){
+//                    1剧院礼堂 2教室 3宴会 4体育馆 5T型台 6圆桌 7其他
+                for(var r=0;r<res.data.types.length;r++){
+                    $('.sex').append(' <option value="'+res.data.types[r].id+'">'+res.data.types[r].name+'</option>')
+                }
+                for(var i=0;i<res.data.diseases.length;i++){
+                    $('.shbz').append(' <div class="lf"><input  cid="'+res.data.diseases[i].id+'" type="checkbox" class="lf" name="disease"/><span class="lf" cid="'+res.data.diseases[i].id+'">'+res.data.diseases[i].name+'</span></div>')
+                    $('.jjbz').append(' <div class="lf"><input cid="'+res.data.diseases[i].id+'" type="checkbox" class="lf" name="disease1"/><span class="lf" cid="'+res.data.diseases[i].id+'">'+res.data.diseases[i].name+'</span></div>')
+                }
+
+            }
+        }
+    })
+
+    var cognitive = '';
+    var movability = '';
+    var disease = '';
+    var interest = '';
+    $('.btnsave').click(function () {
+        var name = $('.name').val();
+        var sex = $('#select option:selected').val();
+        var nutritive_value = $('.nutritive_value').val();
+        var cook_tips = $('.cook_tips').val();
+
+        $("input:checkbox[name='disease']").each(function () {
+            //当前radio是否为选中状态
+            if ($(this).is(':checked') == true) {
+                disease = disease + $(this).next().attr('cid') + ',';
+            }
+        });
+        $("input:checkbox[name='disease1']").each(function () {
+            //当前radio是否为选中状态
+            if ($(this).is(':checked') == true) {
+                interest = interest + $(this).next().attr('cid') + ',';
+            }
+        });
+        disease=disease.slice(0,disease.length-1)
+        interest=interest.slice(0,interest.length-1)
+
+        if (name == '' || sex == '' || cook_tips == '' || nutritive_value == '' || disease == '' || interest == '') {
+            error('请先填写完整信息')
+        } else {
+            $.ajax({
+                type:'post',
+                url: '/cszyylfw/gly/foodgl/addfood',
+                data:'token='+token+ '&name=' + name + "&type_ids=" + sex + "&cook_tips=" + cook_tips
+                + "&nutritive_value=" + nutritive_value + "&ondisease_ids=" + disease + "&offdisease_ids=" + interest ,
+                async: false,
+                success: function (res) {
+                    if(res.code==0){
+                        error('添加成功');
+                        self.close()
+                    }
+                }
+            })
+        }
+
+    })
+
+</script>
+</body>
+</html>

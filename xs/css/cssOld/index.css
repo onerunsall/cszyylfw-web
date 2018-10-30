@@ -1,0 +1,442 @@
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+button {
+  -webkit-appearance: none;
+}
+textarea {
+  -webkit-appearance: none;
+}
+@media screen and (min-width: 457px) {
+  body {
+    background-image: url("../../images/back.jpg");
+    background-position: center 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: 100%;
+    -webkit-background-size: cover;
+    /* å…¼å®¹Webkitå†…æ ¸æµè§ˆå™¨å¦‚Chromeå’ŒSafari */
+    -o-background-size: cover;
+    /* å…¼å®¹Opera */
+    zoom: 1;
+    position: relative;
+    overflow: hidden;
+  }
+  .zindex {
+    z-index: 0;
+    width: 20000px;
+    height: 11000px;
+    position: absolute;
+    top: -200px;
+    position: fixed;
+    background: rgba(255, 255, 255, 0.8);
+  }
+  .main-box {
+    border-radius: 20px 20px 20px 20px ;
+    box-shadow: 0px 1px 8px 4px rgba(0, 0, 0, 0.5);
+    height: 460px;
+    width: 830px;
+    margin: 100px auto 30px;
+  }
+  .main-box .main-left {
+    width: 500px;
+    height: 460px;
+    float: left;
+    position: relative;
+    background-image: url("../../images/back.jpg");
+    background-size: 170%;
+    background-repeat: no-repeat;
+    background-position: -182px -5px;
+    border-radius: 20px 0 0 20px;
+  }
+  .main-box .main-left .logo {
+    width: 150px;
+    height: 150px;
+    margin-top: 88px;
+    margin-left: 50%;
+    position: absolute;
+    left: -75px;
+  }
+  .main-box .main-left .tittle {
+    width: 310px;
+    height: 33px;
+    margin-left: 50%;
+    position: absolute;
+    left: -155px;
+    margin-top: 305px ;
+    text-shadow: 5px 5px 5px #666666;
+  }
+  .main-box .main-right {
+    width: 330px;
+    height: 460px;
+    float: left;
+    background: #FFFFFF;
+    border-radius: 0 20px 20px 0;
+  }
+  .main-box .main-right h1 {
+    font-size: 18px;
+    font-family: "microsoft yahei";
+    text-align: center;
+    padding: 73px 0 44px;
+    letter-spacing: 4px;
+    font-weight: 500;
+    position: relative;
+  }
+  .main-box .main-right .username {
+    display: block;
+    font-family: "microsoft yahei";
+    width: 225px;
+    height: 35px;
+    margin: 0 35px;
+    border-radius: 5px;
+    outline: none;
+    padding-left: 35px;
+    background-image: url("../../images/username.jpg");
+    background-repeat: no-repeat;
+    background-position: 14px 9px;
+    border: 1px solid #8b8b8b;
+    color: #8c8b8b;
+    position: relative;
+  }
+  .main-box .main-right .username:focus {
+    box-shadow: 2px 2px 2px #ccc;
+  }
+  .main-box .main-right .password {
+    display: block;
+    font-family: "microsoft yahei";
+    width: 225px;
+    height: 35px;
+    margin: 18px 35px;
+    border-radius: 5px;
+    outline: none;
+    padding-left: 35px;
+    background-image: url("../../images/password.jpg");
+    background-repeat: no-repeat;
+    background-position: 14px 9px;
+    border: 1px solid #8b8b8b;
+    color: #8c8b8b;
+    position: relative;
+  }
+  .main-box .main-right .password:focus {
+    box-shadow: 2px 2px 2px #ccc;
+  }
+  .main-box .main-right .vcode {
+    display: block;
+    float: left;
+    width: 100px;
+    height: 35px;
+    margin: 0 0 15px 35px;
+    border-radius: 5px;
+    outline: none;
+    padding-left: 15px;
+    border: 1px solid #8b8b8b;
+    color: #8c8b8b;
+    margin-bottom: 18px;
+    position: relative;
+  }
+  .main-box .main-right .vcode:focus {
+    box-shadow: 2px 2px 2px #ccc;
+  }
+  .main-box .main-right .v-code {
+    width: 70px;
+    height: 35px;
+    display: block;
+    float: left;
+    margin: 0 0 15px 0;
+    position: relative;
+  }
+  .main-box .main-right .check-forget {
+    width: 255px;
+    margin: 0 35px;
+    font-size: 12px;
+    font-family: "microsoft yahei";
+    color: #000000;
+    padding-left: 5px;
+    padding-bottom: 45px;
+    position: relative;
+  }
+  .main-box .main-right .check-forget input[type="checkbox"] {
+    border: 1px solid #000;
+  }
+  .main-box .main-right .check-forget a {
+    float: right;
+    text-decoration: underline;
+    color: #000000;
+  }
+  .main-box .main-right .check-forget span {
+    position: relative;
+    top: -3px;
+  }
+  .main-box .main-right .submit {
+    width: 260px;
+    height: 35px;
+    background: #5284d9;
+    border: 0;
+    border-radius: 5px ;
+    margin: 0 35px;
+    color: #ffffff;
+    font-size: 14px;
+    font-family: "microsoft yahei";
+    cursor: pointer;
+    outline: none;
+    letter-spacing: 4px;
+    position: relative;
+  }
+  .main-box .main-right .submit:active {
+    box-shadow: 2px 2px 2px #ccc;
+  }
+  .footer {
+    height: 43px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .footer ul {
+    display: inherit;
+    white-space: normal nowrap;
+  }
+  .footer li {
+    color: #595757;
+    z-index: 9999;
+  }
+  .footer .foot-wrap {
+      /*margin-left: 50%;*/
+      /*position: absolute;*/
+      /*left: -352px;*/
+      /*height: 100%;*/
+      /* margin-left: 50%; */
+      /* position: absolute; */
+      /* left: -352px; */
+      height: 100%;
+      margin: 0 auto;
+      width: 460px;
+      line-height: 35px;
+  }
+  .footer .foot-wrap .fire-fox {
+    width: 95px;
+    height: 100%;
+    float: left;
+  }
+  .footer .foot-wrap .fire-fox a {
+    display: block;
+    width: 95px;
+    height: 43px;
+    margin: 1px auto;
+    background-image: url("../../images/huohu.png");
+    background-repeat: no-repeat;
+  }
+  .footer .foot-wrap .information {
+    height: 100%;
+    float: left;
+  }
+  .footer .foot-wrap .information ul {
+    float: left;
+    margin-left: 20px;
+    margin-top: 5px;
+    font-size: 12px;
+  }
+}
+@media screen and (min-width: 457px) and (max-width: 900px) {
+  body {
+    overflow: auto;
+  }
+}
+@media screen and (min-width: 457px) and (max-width: 900px) {
+  .main-box {
+    width: 330px;
+    position: relative;
+    left: 0;
+    margin: 0 auto;
+    margin: 20px auto 100px;
+  }
+}
+@media screen and (min-width: 457px) and (max-width: 900px) {
+  .main-box .main-left {
+    display: none;
+  }
+}
+@media screen and (min-width: 457px) and (max-width: 900px) {
+  .main-box .main-right {
+    border-radius: 20px;
+  }
+}
+label {
+  display: inline;
+  cursor: pointer;
+}
+.regular-checkbox {
+  display: none;
+}
+.regular-checkbox + label {
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  padding: 6px;
+  display: inline-block;
+  position: relative;
+}
+.regular-checkbox:checked + label {
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  color: #000000;
+}
+.regular-checkbox:checked + label:after {
+  content: '\2714';
+  font-size: 18px;
+  position: absolute;
+  top: -7px;
+  left: -2px;
+  color: #000000;
+}
+@media screen and (max-width: 456px) {
+  body {
+    overflow: auto;
+  }
+  .zindex {
+    display: none;
+  }
+  .main-box {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 100px;
+  }
+  .main-box .main-left {
+    width: 100%;
+    height: 46.37%;
+    background-image: url("../../images/phone_back.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    float: left;
+  }
+  .main-box .main-left .logo {
+    display: block;
+    width: 36.57%;
+    margin: 9.26% auto;
+  }
+  .main-box .main-left .tittle {
+    display: block;
+    width: 71.11%;
+    margin: 0 auto;
+  }
+  .main-box .main-right {
+    width: 100%;
+    height: 54.63%;
+    float: left;
+    background: #ffffff;
+  }
+  .main-box .main-right h1 {
+    font-size: 18px;
+    font-family: "microsoft yahei";
+    text-align: center;
+    padding: 4% 0 9.93%;
+    letter-spacing: 4px;
+  }
+  .main-box .main-right .username {
+    display: block;
+    font-family: "microsoft yahei";
+    width: 230px;
+    height: 35px;
+    margin: 0 auto;
+    border-radius: 5px;
+    outline: none;
+    padding-left: 30px;
+    background-image: url("../../images/username.jpg");
+    background-repeat: no-repeat;
+    background-position: 14px 9px;
+    border: 1px solid #8b8b8b;
+    color: #8c8b8b;
+  }
+  .main-box .main-right .username:focus {
+    box-shadow: 2px 2px 2px #ccc;
+  }
+  .main-box .main-right .password {
+    display: block;
+    font-family: "microsoft yahei";
+    width: 230px;
+    height: 35px;
+    margin: 15px auto 0;
+    border-radius: 5px;
+    outline: none;
+    padding-left: 30px;
+    background-image: url("../../images/password.jpg");
+    background-repeat: no-repeat;
+    background-position: 14px 9px;
+    border: 1px solid #8b8b8b;
+    color: #8c8b8b;
+  }
+  .main-box .main-right .password:focus {
+    box-shadow: 2px 2px 2px #ccc;
+  }
+  .main-box .main-right .vvcode {
+    width: 260px;
+    height: 70px;
+    margin: 0 auto;
+  }
+  .main-box .main-right .vcode {
+    display: block;
+    float: left;
+    width: 85px;
+    height: 35px;
+    margin: 15px 0 15px 0;
+    border-radius: 5px;
+    outline: none;
+    padding-left: 15px;
+    border: 1px solid #8b8b8b;
+    color: #8c8b8b;
+    margin-bottom: 15px;
+  }
+  .main-box .main-right .vcode:focus {
+    box-shadow: 2px 2px 2px #ccc;
+  }
+  .main-box .main-right .v-code {
+    width: 70px;
+    height: 35px;
+    display: block;
+    float: left;
+    margin: 15px;
+  }
+    .main-box .main-right .check-forget {
+        width: 255px;
+        margin: 15px  auto  0;
+        font-size: 12px;
+        font-family: "microsoft yahei";
+        color: #000000;
+        padding-left: 5px;
+        padding-bottom: 15px;
+    }
+    .vvcode{
+        display: none;
+    }
+
+  .main-box .main-right .check-forget input[type="checkbox"] {
+    border: 1px solid #000;
+  }
+  .main-box .main-right .check-forget a {
+    float: right;
+    text-decoration: underline;
+    color: #000000;
+  }
+  .main-box .main-right .check-forget span {
+    position: relative;
+    top: -3px;
+  }
+  .main-box .main-right .submit {
+    display: block;
+    width: 260px;
+    height: 35px;
+    background: #5284d9;
+    border: 0;
+    border-radius: 5px ;
+    margin: 0 auto;
+    color: #ffffff;
+    font-size: 14px;
+    font-family: "microsoft yahei";
+    cursor: pointer;
+    outline: none;
+  }
+  .main-box .main-right .submit:active {
+    box-shadow: 2px 2px 2px #ccc;
+  }
+  .footer {
+    display: none;
+  }
+}

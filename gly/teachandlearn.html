@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>能力评估题管理</title>
+    <!--<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="../xs/css/all.css"/>
+    <script src="../js/js/jquery-1.8.3.min.js"></script>
+    <link rel="stylesheet" href="../js/css/xuxk.css"/>
+    <link rel="stylesheet" href="../js/css/best_hmwork.css"/>
+    <link rel="stylesheet" href="../js/css/gobal.css"/>
+    <link rel="stylesheet" href="../js/css/hmwkmanage.css"/>
+    <link rel="stylesheet" href="../js/css/page.css"/>
+    <script src="../js/js/xuxkBrief.js"></script>
+    <script src="../js/js/public.js"></script>
+    <link rel="stylesheet" href="../js/css/xuxkpopWindow.css"/>
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font-size: 12px;
+            font-family: Arial, Helvetica, sans-serif, 宋体;
+            color: rgb(51, 51, 51);
+            background: #d0e89b;
+        }
+        .boxlevel1Styleline >span>span{
+            display: inline-block;
+            padding: 0 10px;
+            line-height: 14px;
+            height: 14px;
+            vertical-align: middle;
+            border-right: 1px solid #37b5f9;
+            cursor: pointer;
+        }
+        .boxlevel1Styleline >span>span:nth-child(3){
+            border-right: 0;
+        }
+        .intro{
+            width: 238px;
+            padding: 15px;
+            height: 50px;
+            background: #fff;
+        }
+        .inputBoxIn{
+            height: 30px !important;
+            line-height: 30px !important;
+            margin-right: 6px !important;
+            width: 214px !important;
+            background: #fff !important;
+        }
+        .selectBoxIn{
+            width: 16px !important;
+            height: 16px !important;
+            margin-left: 10px;
+            vertical-align: top;
+            margin-top: 7px;
+        }
+        .classedit span{
+            cursor: pointer;
+        }
+        /*body {font: normal 100% Helvetica, Arial,sans-serif;}*/
+    </style>
+    <script>
+        var token = localStorage.getItem('token');
+        loginrefresh(token)
+
+    </script>
+
+
+</head>
+<body>
+<div class="mantain">
+    <!--顶部导航-->
+    <div class="zoneBg">
+        <div class="topLine">
+            <div class="topLineBelore">
+                <div class="logo lf">
+                    <a href="gly_index.html">
+                        <img src="images/logoTop.png" alt=""/>
+                    </a>
+                </div>
+                <div class="exit rt">
+                    <span></span>
+                    <a href="javascript:;" onclick="getoutgly(token)">退出</a>
+
+                </div>
+            </div>
+        </div>
+        <div class="bg1">
+            <img src="images/touming.png" alt=""/>
+        </div>
+        <!--正文内容-->
+        <div class="box">
+            <div class="box_in" style="width: 929px;">
+
+                <div class="boxRt lf" >
+                    <div class="boxRtBox">
+                        <div class="boxRtBoxTopOne">
+                            <!--选择-->
+                            <div class="selectPagess">
+                                <div  class="yourselect">
+                                    <p>你的选择</p><span sid="5"><span>生理/心理评测</span><span class="delIcon"></span></span>
+                                </div>
+                                <div class="clear"></div>
+                                <div sid="5" class="selectchange disease">
+                                    <p>作业</p>
+                                    <div>
+                                        <span aid="1" style="border:1px solid #37b5f9">生理/心理评测</span><span aid="2">认知/能力评测</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="classedit">
+                            <span class="addStudent" style="margin-left: 20px;margin-right:0px;">新增题目</span>
+                            <span class="linkStudent" style="margin-left: 20px;margin-right:0px;">导入题目</span>
+                            <form id="uoloadxslx" action="" style="display: none">
+                                <input type="file" name="file" id="file" class="file" accept=".xls,.xlsx">
+                            </form>
+                            </div>
+
+                        <div class="boxRtBoxBottom">
+                            <!--<iframe ID="Frame4" SRC="login.html" STYLE="background-color: green"> </iframe>-->
+                            <!--学习项目-->
+                            <div class="boxTitle">
+                                <span>编号</span><span>题目</span><span>答案</span><span>操作</span>
+                            </div>
+                            <div class="boxone">
+
+
+                            </div>
+
+
+                            <div class="paging">
+                                <div class="rt">
+                                    <span class="lastpage"><span></span>&nbsp;上一页</span>&nbsp;&nbsp;
+                                    <span class="nextpage">下一页&nbsp;<span></span></span>&nbsp;&nbsp;&nbsp;
+                                    到第 &nbsp; &nbsp;<input type="text" value=""/>&nbsp;&nbsp; 页&nbsp;&nbsp; <button class="makeSure">确定</button>&nbsp;&nbsp;</div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <!--书页线-->
+                <div class="boxRtBottom rt"></div>
+                <div class="clear"></div>
+            </div>
+
+            <div class="footer" style="margin-bottom: 80px">
+                <div class="information" style="padding: 0;margin: 0">             <ul  style="padding: 0;margin: 0">                 <li><img src="../images/bottomText.png" alt="" style="width: 460px"/></li>             </ul>         </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--<div class="popopowindow">-->
+    <!--<div class="popBackground"></div>-->
+    <!--<div class="popAddMoneyBox popAddMoneyBoxbf" style="left: 348px; top: 48.5px;">-->
+        <!--<div class="popAddMoneyTop">-->
+            <!--<span class="lf">新增场地</span> <span class="deleteIcon rt" onclick="delThis()"></span>-->
+        <!--</div>-->
+        <!--<div class="popAddMoneyBottom">-->
+            <!--<div style="margin: 10px auto 10px">-->
+                <!--<span>模拟类型</span>-->
+                <!--<select class="studentPwd" name="" id="typeless">-->
+                    <!--<option value="1">营养素及能量需求认知</option>-->
+                    <!--<option value="2">常见食物的营养价值</option>-->
+                    <!--<option value="3">合理营养及平衡膳食</option>-->
+                    <!--<option value="4">食品安全</option>-->
+                    <!--<option value="5">膳食营养状况</option>-->
+                    <!--<option value="6">慢性病合理膳食</option>-->
+                <!--</select>-->
+            <!--</div>-->
+            <!--<div style="margin: 0 auto 10px">-->
+                <!--<span>题目</span>-->
+                <!--<textarea class="intro textarea" name="" id="" cols="30" rows="10" maxlength="300" placeholder=""></textarea>-->
+            <!--</div>-->
+            <!--<div style="margin: 20px auto 10px">-->
+                <!--<span>选项</span>-->
+                <!--<div><span>A</span><input type="text" class="inputBoxIn"/><input value="" class="selectBoxIn" type="radio" name="selectedAns"></div>-->
+                <!--<div><span>B</span><input type="text" class="inputBoxIn"/><input value="" class="selectBoxIn" type="radio" name="selectedAns"></div>-->
+                <!--<div><span>C</span><input type="text" class="inputBoxIn"/><input value="" class="selectBoxIn" type="radio" name="selectedAns"></div>-->
+                <!--<div><span>D</span><input type="text" class="inputBoxIn"/><input value="" class="selectBoxIn" type="radio" name="selectedAns"></div>-->
+            <!--</div>-->
+            <!--<button onclick="addStudent()" class="popAddMoneyBoxBtn">保存</button>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+
+<script>
+
+
+
+    $('.addStudent').click(function(){
+        $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyBox popAddMoneyBoxbf" style="left: 348px; top: 48.5px;"> <div class="popAddMoneyTop"> <span class="lf">新增题目</span> <span class="deleteIcon rt" onclick="delThis()"></span> </div> <div class="popAddMoneyBottom"> <div style="margin: 10px auto 10px"> <span>模拟类型</span> <select class="studentPwd" name="" id="typeless"> <option value="1">生理/心理评测</option> <option value="2">认知/能力评测</option>  </select> </div> <div style="margin: 0 auto 10px"> <span>题目</span> <textarea class="intro textarea" name="" id="" cols="30" rows="10" maxlength="300" placeholder=""></textarea> </div> <div style="margin: 20px auto 10px"> <span>选项</span> <div><span>A</span><input type="text" class="inputBoxIn" name="answerHow"/><input value="" class="selectBoxIn" type="radio" ssid="1" name="selectedAns"></div> <div><span>B</span><input type="text" class="inputBoxIn"  name="answerHow"/><input value="" class="selectBoxIn" type="radio"   ssid="2"name="selectedAns"></div> <div><span>C</span><input type="text" class="inputBoxIn"  name="answerHow"/><input value="" class="selectBoxIn" type="radio"  ssid="3" name="selectedAns"></div> <div><span>D</span><input type="text" class="inputBoxIn"  name="answerHow"/><input value="" class="selectBoxIn" type="radio"  ssid="4" name="selectedAns"></div> </div> <button onclick="addQuestion()" class="popAddMoneyBoxBtn">保存</button> </div> </div> </div>')
+        var popscrollwidth = $(window).width();
+        var popscrollheight = $(window).height();
+        console.log(popscrollwidth, popscrollheight);
+        $(".popAddMoneyBox").css('left', (popscrollwidth / 2 - 335) + "px").css('top', (popscrollheight / 2 - 220) + "px");
+    })
+
+function addQuestion(){
+    console.log(123123)
+    var questionType=$(".studentPwd option:selected").val()
+    var question=$('.intro').val()
+    var anwserId
+    $("input:radio[name='selectedAns']").each(function () {
+        //当前radio是否为选中状态
+        if ($(this).is(':checked') == true) {
+            anwserId = $(this).attr('ssid')
+        }
+    });
+var anwsersLink=new Array()
+    $("input:text[name='answerHow']").each(function () {
+        //当前radio是否为选中状态
+        if ($(this).next().attr('ssid') == anwserId) {
+            var choiceFlag=$(this).prev().html()
+            var content=$(this).val()
+            var rightIf=1
+            var answer={'choiceFlag':choiceFlag,'content':content,'rightIf':rightIf}
+            anwsersLink.push(answer);
+        }else{
+            var choiceFlag=$(this).prev().html()
+            var content=$(this).val()
+            var rightIf=0
+            var answer={'choiceFlag':choiceFlag,'content':content,'rightIf':rightIf}
+            anwsersLink.push(answer);
+        }
+    });
+    if(questionType==''||question==''||anwsersLink==''||anwserId==''){
+        error('请填写完成题目和选项')
+    }else{
+        console.log(anwsersLink)
+        $.ajax({
+            url:'/cszyylfw/gly/capacitytest/addscq',
+            type:'post',
+            data:'token='+token+"&lib_id="+questionType+"&title="+question
+            +"&score=10"+"&answers="+JSON.stringify(anwsersLink)+'&sort_no='+anwserId,
+            async:false,
+            success:function(res){
+                if(res.code==0){
+                    $('.popopowindow').remove()
+                    lastpage()
+                }else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！');
+                    setTimeout(function () {
+                        location.href = 'gly_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+}
+    var answerIds;
+//    编辑
+    $('.boxone').on('click','span .editThis',function(){
+        var id=$(this).attr('id')
+        var answersLx,titleLx,typeLX;
+        $.ajax({
+                url:'/cszyylfw/gly/capacitytest/lookquestion',
+                type:'post',
+                data:'token='+token+"&question_id="+id,
+                async:false,
+                success:function(res){
+                    if(res.code==0){
+                         answersLx=res.data.answers;
+                         titleLx=res.data.title;
+                        typeLX=res.data.type;
+                        var answersLxBottom=''
+                        if(typeLX=1){
+                            var options='<option value="1" selected>生理/心理评测</option> <option value="2">认知/能力评测</option>'
+                        }else if(typeLX=2){
+                            var options='<option value="1" >生理/心理评测</option> <option value="2" selected>认知/能力评测</option>'
+                        }
+                        for(var i=0;i<answersLx.length;i++){
+                            if(answersLx[i].rightIf==1){
+                                answerIds=answersLx[i].answerId;
+                                answersLxBottom=answersLxBottom+
+                                '<div><span>'+answersLx[i].choiceFlag+'</span><input type="text" class="inputBoxIn" value="'+answersLx[i].content+'" name="answerHow"/><input value="" checked class="selectBoxIn" type="radio" id="'+answerIds+'" ssid="'+(i+1)+'" name="selectedAns"></div>'
+                            }else{
+                                answerIds=answersLx[i].answerId;
+                                answersLxBottom=answersLxBottom+
+                                '<div><span>'+answersLx[i].choiceFlag+'</span><input type="text" class="inputBoxIn" value="'+answersLx[i].content+'" name="answerHow"/><input value="" class="selectBoxIn" type="radio" id="'+answerIds+'" ssid="'+(i+1)+'" name="selectedAns"></div>'
+                            }
+                           }
+                        $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyBox popAddMoneyBoxbf" style="left: 348px; top: 48.5px;"> <div class="popAddMoneyTop"> <span class="lf">修改题目</span> <span class="deleteIcon rt" onclick="delThis()"></span> </div> <div class="popAddMoneyBottom"> <div style="margin: 10px auto 10px"> <span>模拟类型</span> <select class="studentPwd" name="" id="typeless"> '+options+' </select> </div> <div style="margin: 0 auto 10px"> <span>题目</span> <textarea class="intro textarea" name="" id="" cols="30" rows="10" maxlength="300" placeholder="">'+titleLx+'</textarea> </div> <div style="margin: 20px auto 10px"> <span>选项</span>'+answersLxBottom+' </div> <button onclick="addQuestions()" id="'+id+'" class="popAddMoneyBoxBtn">保存</button> </div> </div> </div>')
+
+                    }else if (res.code == 20) {
+                        alert('登陆超时，请重新登录！');
+                        setTimeout(function () {
+                            location.href = 'gly_index.html'
+                        }, 1000)
+
+                    } else {
+                        alert(res.codeMsg)
+                    }
+                }
+        })
+        var popscrollwidth = $(window).width();
+        var popscrollheight = $(window).height();
+        console.log(popscrollwidth, popscrollheight);
+        $(".popAddMoneyBox").css('left', (popscrollwidth / 2 - 335) + "px").css('top', (popscrollheight / 2 - 220) + "px");
+    })
+    function addQuestions(){
+        var questionId=$('.popAddMoneyBoxBtn').attr('id')
+        var questionType=$(".studentPwd option:selected").val()
+        var question=$('.intro').val()
+        var anwserId,anwserIds
+        $("input:radio[name='selectedAns']").each(function () {
+            //当前radio是否为选中状态
+            if ($(this).is(':checked') == true) {
+                anwserId = $(this).attr('ssid')
+                anwserIds=$(this).attr('answerIds')
+            }
+        });
+        var anwsersLink=new Array()
+        $("input:text[name='answerHow']").each(function () {
+            //当前radio是否为选中状态
+            if ($(this).next().attr('ssid') == anwserId) {
+                var choiceFlag=$(this).prev().html()
+                var content=$(this).val()
+                var rightIf=1
+                var answer={'id':$(this).next().attr('id'),'choiceFlag':choiceFlag,'content':content,'rightIf':rightIf}
+                anwsersLink.push(answer);
+            }else{
+                var choiceFlag=$(this).prev().html()
+                var content=$(this).val()
+                var rightIf=0
+                var answer={'id':$(this).next().attr('id'),'choiceFlag':choiceFlag,'content':content,'rightIf':rightIf}
+                anwsersLink.push(answer);
+            }
+        });
+        if(questionType==''||question==''||anwsersLink==''||anwserId==''){
+            error('请填写完成题目和选项')
+        }else{
+            console.log(anwsersLink)
+
+            $.ajax({
+                url:'/cszyylfw/gly/capacitytest/alterscq',
+                type:'post',
+                data:'token='+token+"&lib_id="+questionType+"&title="+question
+                +"&score=10"+"&answers="+JSON.stringify(anwsersLink)+'&sort_no='+anwserId+'&question_id='+questionId,
+                async:false,
+                success:function(res){
+                    if(res.code==0){
+                        $('.popopowindow').remove()
+//                        $.ajax({
+//                            url:'/cszyylfw/js/capacitytest/delanswer',
+//                            type:'post',
+//                            data:'token='+token+'&answer_id='+answerIds+'&question_id='+questionId,
+//                            async:false,
+//                            success:function(res){
+//                                if(res.code==0){
+//
+//                                }else if (res.code == 20) {
+//                                    alert('登陆超时，请重新登录！');
+//                                    setTimeout(function () {
+//                                        location.href = 'gly_index.html'
+//                                    }, 1000)
+//
+//                                } else {
+//                                    alert(res.codeMsg)
+//                                }
+//                            }
+//                        })
+                        lastpage()
+                    }else if (res.code == 20) {
+                        alert('登陆超时，请重新登录！');
+                        setTimeout(function () {
+                            location.href = 'gly_index.html'
+                        }, 1000)
+
+                    } else {
+                        alert(res.codeMsg)
+                    }
+                }
+            })
+
+
+
+        }
+    }
+//删除
+    $('.boxone').on('click','span .delThis',function(){
+        var id=$(this).attr('id')
+        layboxs("action/delete_zsy.html?id=" + id + "&url=/gly/capacitytest/delquestion" + "&fun=delok"+ "&idName=question_id", "notitle");
+    })
+    function delok(){
+        popation("220", "y", "删除成功！");
+        closemask();
+        $('.boxone').html('');
+        $('.popopowindow').remove()
+        lastpage()
+    }
+//    查看
+    $('.boxone').on('click','.boxlevel1Styleline  .lookThis',function(){
+        var id=$(this).attr('id');
+        var id=$(this).attr('id')
+        var answersLx,titleLx,typeLX;
+        $.ajax({
+            url:'/cszyylfw/gly/capacitytest/lookquestion',
+            type:'post',
+            data:'token='+token+"&question_id="+id,
+            async:false,
+            success:function(res){
+                if(res.code==0){
+                    answersLx=res.data.answers;
+                    titleLx=res.data.title;
+                    typeLX=res.data.type;
+                    var answersLxBottom=''
+                    if(typeLX=1){
+                        var options='<option value="1" selected>生理/心理评测</option> <option value="2">认知/能力评测</option>'
+                    }else if(typeLX=2){
+                        var options='<option value="1" >生理/心理评测</option> <option value="2" selected>认知/能力评测</option>'
+                    }
+                    for(var i=0;i<answersLx.length;i++){
+                        if(answersLx[i].rightIf==1){
+                            answersLxBottom=answersLxBottom+
+                            '<div><span>'+answersLx[i].choiceFlag+'</span><input type="text" class="inputBoxIn" disabled value="'+answersLx[i].content+'" name="answerHow"/><input disabled value="" checked class="selectBoxIn" type="radio" ssid="'+(i+1)+'" name="selectedAns"></div>'
+                        }else{
+                            answersLxBottom=answersLxBottom+
+                            '<div><span>'+answersLx[i].choiceFlag+'</span><input type="text" class="inputBoxIn" disabled value="'+answersLx[i].content+'" name="answerHow"/><input disabled value="" class="selectBoxIn" type="radio" ssid="'+(i+1)+'" name="selectedAns"></div>'
+                        }
+                    }
+                    $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyBox popAddMoneyBoxbf" style="left: 348px; top: 48.5px;"> <div class="popAddMoneyTop"> <span class="lf">查看题目</span> <span class="deleteIcon rt" onclick="delThis()"></span> </div> <div class="popAddMoneyBottom"> <div style="margin: 10px auto 10px"> <span>模拟类型</span> <select  class="studentPwd" name="" id="typeless"> '+options+' </select> </div> <div style="margin: 0 auto 10px"> <span>题目</span> <textarea class="intro textarea" name="" id="" cols="30" rows="10" maxlength="300" disabled disabled placeholder="">'+titleLx+'</textarea> </div> <div style="margin: 20px auto 10px"> <span>选项</span>'+answersLxBottom+' </div> </div> </div> </div>')
+
+                }else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！');
+                    setTimeout(function () {
+                        location.href = 'gly_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+        var popscrollwidth = $(window).width();
+        var popscrollheight = $(window).height();
+        console.log(popscrollwidth, popscrollheight);
+        $(".popAddMoneyBox").css('left', (popscrollwidth / 2 - 335) + "px").css('top', (popscrollheight / 2 - 220) + "px");
+    })
+    //    选择场地类型
+    $('.selectchange').on('click','div span',function(){
+//    $('.selectchange span').click(function(){
+        $('.boxone').html('');
+        var sid= $(this).parent().parent().attr('sid')
+        $('.yourselect span').each(function(){
+            //当前radio是否为选中状态
+            if($(this).attr('sid')==sid){
+                $(this).remove()
+                if($(this).attr('sid')==1){
+                    if($(this).children().html()=='80岁以上'){
+                        age_min=$(this).children().html().split('岁')[0];
+                        age_max=''
+                    }else{
+                        age_min=$(this).children().html().split('岁')[0]
+                        age_max=$(this).children().html().split('岁')[1].slice(1,3)
+                    }
+
+                }
+                if($(this).attr('sid')==2){
+                    if($(this).children().html()=='男'){
+                        sex=1
+                    }else{
+                        sex=2
+                    }
+                }
+                if($(this).attr('sid')==3){
+                    movability=$(this).children().html()
+                }
+                if($(this).attr('sid')==4){
+                    clazzId=$(this).children().attr('aid')
+                }
+                if($(this).attr('sid')==5){
+                    zuoyeType=$(this).children().attr('aid')
+                }
+                if($(this).attr('sid')==6){
+                    zuoyeStatus=$(this).children().attr('aid')
+                }
+            }else{
+                if($(this).attr('sid')==1){
+                    if($(this).children().html()=='80岁以上'){
+                        age_min=$(this).children().html().split('岁')[0];
+                        age_max=''
+                    }else{
+                        age_min=$(this).children().html().split('岁')[0]
+                        age_max=$(this).children().html().split('岁')[1].slice(1,3)
+                    }
+                }
+                if($(this).attr('sid')==2){
+                    if($(this).children().html()=='男'){
+
+                    }      sex=1
+                }else{
+                    sex=2
+                }
+                if($(this).attr('sid')==3){
+                    movability=$(this).children().html()
+                }
+                if($(this).attr('sid')==4){
+                    cognitive=$(this).children().html()
+                }
+                if($(this).attr('sid')==5){
+                    disease=$(this).children().html()
+                }
+                if($(this).attr('sid')==6){
+                    interest=$(this).children().html()
+                }
+            }
+
+        });
+        if(sid==1){
+            if($(this).html()=='80岁以上'){
+                age_min=$(this).html().split('岁')[0]
+                age_max=''
+            }else{
+                age_min=$(this).html().split('岁')[0]
+                age_max=$(this).html().split('岁')[1].slice(1,3)
+            }
+            console.log(age_min,age_max)
+        }else if(sid==2){
+            if($(this).html()=='男'){
+                sex=1
+            }else{
+                sex=2
+            }
+
+        }else if(sid==3){
+            movability=$(this).html()
+        }else if(sid==4){
+            clazzId=$(this).attr('aid')
+        }else if(sid==5){
+            zuoyeType=$(this).attr('aid')
+        }else if(sid==6){
+            zuoyeStatus=$(this).attr('aid')
+        }
+
+        $(this).css('border','1px solid #37b5f9');
+        $(this).siblings('span').css('border','1px solid #fff');
+        $('.yourselect').append('<span sid="'+sid+'"><span>'+$(this).html()+'</span><span class="delIcon"></span></span>');
+        pageNo=1;
+        lastpage()
+    })
+
+
+
+
+
+
+
+    var clazzId='',zuoyeType=1,zuoyeStatus=''
+    var pageNo=0;pageSize=15
+    function lastpage(){
+        $.ajax({
+            url:'/cszyylfw/gly/capacitytest/questions',
+            type:'post',
+            data:"page_no="+pageNo+"&page_size="+pageSize+'&token='+token+"&lib_id="+zuoyeType,
+            async:false,
+            success:function(res){
+                if(res.code==0){
+
+//                    1剧院礼堂 2教室 3宴会 4体育馆 5T型台 6圆桌 7其他
+                    if(res.data.items.length==0){
+                        if(pageNo==1){
+                            return
+                        }
+                        error('没有更多数据！');
+                        pageNo--;
+                        return
+                    }
+                    $('.boxone').html('');
+
+                    for(var i=0;i<res.data.items.length;i++){
+                        $('.boxone').append(' <div class="boxlevel1Style"> <div class="boxlevel1Styleline first" > <span>'+(i+1)+'</span><span>'+res.data.items[i].title+'</span> <span>'+res.data.items[i].rightAnswerFlag+'</span><span><span class="lookThis" id="'+res.data.items[i].questionId+'">查看</span><span class="editThis" id="'+res.data.items[i].questionId+'">编辑</span><span class="delThis" id="'+res.data.items[i].questionId+'">删除</span></span> </div> </div>')
+                    }
+                }else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！');
+                    setTimeout(function () {
+                        location.href = 'gly_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+    pageNo++;
+    lastpage();
+
+    $('.lastpage').click(function(){
+
+        if(!$('.yourselect span').attr('type')){
+            type=''
+        }else{
+            type=$('.yourselect span').attr('type')
+        }
+        pageNo--;
+        if(pageNo>0){
+            lastpage()
+        }else{
+            error('已到达第一页！');
+            pageNo++
+        }
+
+    })
+    $('.nextpage').click(function(){
+        if(!$('.yourselect span').attr('type')){
+            type=''
+        }else{
+            type=$('.yourselect span').attr('type')
+        }
+        pageNo++;
+        lastpage()
+    })
+
+
+    $('.makeSure').click(function(){
+
+
+        if(!$('.paging input').val()){
+            pageNo=1;
+        }else{
+            pageNo=$('.paging input').val()
+        }
+        lastpage()
+    })
+
+
+    $('.linkStudent').click(function(){
+        $('.file').click()
+
+    })
+
+    $('.file').change(function(){
+        var fd = new FormData(document.getElementById('uoloadxslx'));
+        console.log(fd)
+        $.ajax({
+            url:'/cszyylfw/gly/capacitytest/importquestion?token='+token+"&lib_id="+zuoyeType,
+            type:'POST',
+            data: fd,
+            async: false,
+            cache: false,
+            contentType: false,
+            processData: false,
+
+            success:function(res){
+                if(res.code==0){
+                    error('表格里重复数据有  '+res.data.repet.length+'  条，已存在数据  '+res.data.existed.length+'  条，成功上传数据  '+res.data.successCount+'  条')
+                    setTimeout(function(){
+                        lastpage()
+                    },1000)
+                }else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！');
+                    setTimeout(function () {
+                        location.href = 'gly_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    })
+</script>
+</body>
+</html>

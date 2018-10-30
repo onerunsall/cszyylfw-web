@@ -1,0 +1,305 @@
+.popBackground{
+    position: fixed;
+    background-color: rgba(0,0,0,0.2);
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%
+}
+.popAddMoneyBox{
+    border-radius: 12px;
+    position: fixed;
+    width: 670px;
+    height: 440px;
+    z-index: 1110;
+    background: #fff;
+}
+.popAddMoneyBoxbf{
+    border-radius: 12px;
+    position: fixed;
+    width: 670px;
+    height: 540px;
+    z-index: 1110;
+    background: #fff;
+}
+.popAddMoneyTop{
+    height: 40px;
+    line-height: 40px;
+    background: #32afff;
+    border-top-left-radius: 12px ;
+    border-top-right-radius: 12px;
+    color: #ffffff;
+    font-size: 14px;
+}
+.popAddMoneyTop span:first-child{
+    margin-left: 30px;
+}
+.deleteIcon{
+    margin-top: 13px;
+    margin-right: 30px;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background: url(../../images/delete.png);
+    background-size: 100% 100%;
+    position: static;
+    vertical-align: middle;
+}
+.popAddMoneyBottom{
+    margin: 54px auto auto;
+    width: 384px;
+}
+
+.popAddMoneyBottom>div{
+    margin-bottom: 10px;
+}
+.popAddMoneyBottom input{
+    padding: 0 15px;
+    height: 34px;
+    border: 1px solid #dedede;
+    width: 270px;
+}
+.popAddMoneyBottom select{
+    padding: 0 15px;
+    height: 34px;
+    border: 1px solid #dedede;
+    width: 300px;
+}
+.popAddMoneyBottom .textarea{
+    padding: 10px 15px;
+    height: 100px;
+    border: 1px solid #dedede !important;
+    width: 268px;
+}
+.popAddMoneyBottom>div>.intro{
+    padding: 10px 15px;
+    width: 268px;
+    border: 0;
+}
+.popAddMoneyBottom>div>div{
+    display: inline-block;
+    padding: 0 15px;
+    height: 34px;
+    width: 270px;
+}
+.popAddMoneyBottom span{
+    width: 60px;
+    display: inline-block;
+    text-align: right;
+    margin-right: 20px;
+    line-height: 36px;
+}
+.popAddMoneyBoxBtn{
+    border: 0;
+    width: 180px;
+    height: 36px;
+    line-height: 36px;
+    background: #32afff;
+    color: #ffffff;
+    font-size: 16px;
+    margin: 20px 101px auto;
+}
+
+/*风险*/
+.popAddMoneyBoxfx{
+    border-radius: 12px;
+    position: fixed;
+    width: 670px;
+    height: 590px;
+    z-index: 1110;
+    background: #fff;
+}
+.popAddMoneyBoxboxfx,.popAddMoneyBoxboxzjbg{
+    width: 100%;
+}
+
+.popAddMoneyBoxboxfx>div{
+    height: 195px;
+    margin-top: 30px;
+}
+.popAddMoneyBoxboxfx>div>span{
+    display: inline-block;
+}
+.popAddMoneyBoxboxfx>div>span:first-child{
+    width: 60px;
+    margin-left: 30px;
+    color: #666666;
+    font-size: 14px;
+    margin-right: 20px;
+    margin-top: 10px;
+}
+.popAddMoneyBoxboxfx>div textarea{
+    padding: 15px 20px;
+    line-height: 20px;
+    width: 465px;
+    height: 170px;
+    border: 1px solid #dedede;
+    margin-right: 90px;
+    /*overflow-y: scroll;*/
+}
+.popAddMoneyBoxboxfx>div>span:last-child{
+    margin-right: 102px;
+    margin-top: 10px;
+    color: #CCCCCC;
+}
+.popAddMoneyBoxboxfxBtn,.popAddMoneyBoxboxfxBtnalter,.popAddpggc,.popAddpgjg,.popAddpggcs{
+    border: 0;
+    width: 180px;
+    height: 36px;
+    line-height: 36px;
+    background: #32afff;
+    color: #ffffff;
+    font-size: 16px;
+    margin: 15px 245px auto  ;
+}
+.popAddMoneyBoxboxfxdiv1{
+    width: 562px;
+    height: auto;
+}
+.popAddMoneyBoxboxfxdiv{
+    width: 570px;
+    margin: 0 auto;
+}
+.popAddMoneyBoxboxfxdiv>div{
+    width: 100%;
+    display: inline-block;
+    height: auto;
+    font-size: 14px;
+    color: #000000;
+    line-height: 20px;
+}
+.popAddMoneyBoxboxfxdiv>div:first-child{
+    margin: 60px auto 50px;
+}
+.popAddMoneyBoxboxfxdiv>div:last-child{
+    margin: 0 auto;
+}
+.popAddMoneyBoxboxfxdiv>div div{
+    display: inline-block;
+    width: 490px;
+    border: 0;
+}
+.popAddMoneyBoxboxfxdiv>div span{
+    display: inline-block;
+    width: 80px;
+    text-align: left;
+    border: 0;
+}
+
+/*总结报告*/
+.popAddMoneyBoxfxzjbg{
+    border-radius: 12px;
+    position: fixed;
+    width: 850px;
+    height: 590px;
+    z-index: 1110;
+    background: #fff;
+}
+.popAddMoneyBoxboxzjbg>div{
+    height: 150px;
+}
+.popAddMoneyBoxboxzjbg>div>span,.popAddMoneyBoxboxzjbgs>div>span{
+    display: inline-block;
+}
+.popAddMoneyBoxboxzjbg>div>span:first-child{
+    text-align: right;
+    width: 148px;
+    margin-left: 30px;
+    color: #666666;
+    font-size: 14px;
+    margin-right: 20px;
+    margin-top: 10px;
+}
+.popAddMoneyBoxboxzjbg>div>span:last-child,.popAddMoneyBoxboxzjbgs>div>span:last-child{
+    margin-right: 170px;
+    margin-top: 10px;
+    color: #CCCCCC;
+}
+.popAddMoneyBoxboxzjbg>div>textarea{
+    border: 1px solid #CCCCCC;
+    height: 108px;
+    width:479px ;
+    padding: 8px 13px;
+    line-height: 20px;
+}
+.popAddMoneyBoxboxzjbg>div:first-child{
+    margin: 35px auto 0px;
+}
+.popAddMoneyBoxboxfxBtnzjbg{
+    border: 0;
+    width: 180px;
+    height: 36px;
+    line-height: 36px;
+    background: #32afff;
+    color: #ffffff;
+    font-size: 16px;
+    margin: 0 335px auto;
+}
+/*带输入框*/
+.popAddMoneyBoxboxzjbgs>div{
+    height: auto !important;
+    line-height: 36px;
+}
+.popAddMoneyBoxboxzjbgs>div>span:first-child{
+    text-align: right;
+    width: 148px;
+    margin-left: 30px;
+    color: #666666;
+    font-size: 14px;
+    margin-right: 20px;
+}
+
+.popAddMoneyBoxboxzjbgs input{
+    padding: 0 15px;
+    margin-bottom:20px ;
+    width: 479px;
+    border: 1px solid #CCCCCC;
+    height: 34px;
+    line-height: 36px;
+}
+.popAddMoneyBoxboxzjbgs>div:first-child{
+    margin: 60px auto 0px;
+}
+.popAddMoneyBoxboxzjbgs textarea{
+    border: 1px solid #CCCCCC;
+    height: 127px;
+    width: 479px;
+    padding: 8px 13px;
+    line-height: 20px;
+}
+.popAddMoneyBoxboxfxBtnzjbgs{
+    border: 0;
+    width: 180px;
+    height: 36px;
+    line-height: 36px;
+    background: #32afff;
+    color: #ffffff;
+    font-size: 16px;
+    margin: 30px 335px auto;
+}
+
+/*展示*/
+.popAddMoneyBoxboxzjbg>div>div{
+    height: 170px;
+    width: 479px;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 18px;
+}
+.popAddMoneyBoxboxzjbgs>div>span{
+    text-align: right;
+    width: 148px;
+    margin-left: 30px;
+    color: #666666;
+    font-size: 14px;
+    margin-right: 20px;
+    line-height: 20px;
+}
+.popAddMoneyBoxboxzjbgs>div>div{
+    margin-bottom: 40px;
+    width: 479px;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 20px;
+}

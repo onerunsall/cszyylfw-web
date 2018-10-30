@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>模板编辑</title>
+    <!--<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="../xs/css/all.css"/>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <link rel="stylesheet" href="../xs/css/xuxk.css"/>
+    <link rel="stylesheet" href="../js/css/best_hmwork.css"/>
+    <script src="../xs/js/addTmpImg.js"></script>
+    <link rel="stylesheet" href="../xs/css/gly_site_report.css"/>
+    <link rel="stylesheet" href="../js/css/gobal.css"/>
+    <script src="js/xuxkBrief.js"></script>
+    <script src="js/public.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font-size: 12px;
+            font-family: Arial, Helvetica, sans-serif, 宋体;
+            color: rgb(51, 51, 51);
+            background: #d0e89b;
+        }
+        .level2{
+            height: auto !important;
+        }
+        .level2>span:nth-child(1){
+            vertical-align: top;
+            margin-top: 14px;
+        }
+        .level2>span:nth-child(2){
+            width: 70px;
+            display: inline-block;
+            line-height: 20px;
+            margin-top: 8px;
+        }
+        .boxmenuLevel2>ul>li {
+            height: auto;
+            /*border-bottom: 1px solid #e5e5e5;*/
+        }
+        .wendang{
+            width: 822px !important;
+            background: #fff;
+        }
+        .boxmenuLevel2 ul>li:nth-child(odd)>div{
+            background: #fff !important;
+        }
+        .boxmenuLevel2 ul>li:nth-child(even)>div{
+            background: #f7f9ff !important;
+        }
+        .exit,.exit a{
+            font-size: 12px !important;
+            color: #fff !important;
+        }
+        /*body {font: normal 100% Helvetica, Arial,sans-serif;}*/
+    </style>
+    <script>
+        var token = localStorage.getItem('token');
+
+loginrefresh(token)
+    </script>
+
+
+</head>
+<body>
+<div class="mantain">
+    <!--顶部导航-->
+    <div class="zoneBg">
+        <div class="topLine">
+            <div class="topLineBelore">
+                <div class="logo lf">
+                    <a href="gly_index.html">
+                        <img src="images/logoTop.png" alt=""/>
+                    </a>
+                </div>
+                <div class="exit rt">
+                    <span></span>
+                    <a href="javascript:;" onclick="getoutgly(token)">退出</a>
+
+                </div>
+            </div>
+        </div>
+        <div class="bg1">
+            <img src="images/touming.png" alt=""/>
+        </div>
+        <!--正文内容-->
+        <div class="box">
+            <div class="box_in" style="    width: 929px;">
+                <div class="boxRt lf">
+                    <div class="boxRtBox">
+
+                        <div class="boxRtBoxBottom">
+                            <!--<iframe ID="Frame4" SRC="login.html" STYLE="background-color: green"> </iframe>-->
+                            <!--学习项目-->
+
+                            <div class="boxone">
+                                <div class="boxmenuLevel2">
+                                    <ul>
+                                        <li xm_type="1" class="boxlevel2 btnone">
+                                            <div class="wendang" urlid="6" url="excel/oldman.xls">
+                                                <span class="editDocument"></span>
+                                                <a href="excel/oldman.xls" class="editDoc">老年人信息数据库excel模板下载</a>
+                                                <!--<span class="editDoc">老年人信息数据库excel模板下载</span>-->
+                                                <!--<span class="rt del"></span>-->
+                                            </div>
+                                        </li>
+                                        <li xm_type="1" class="boxlevel2 btnone">
+                                            <div class="wendang" urlid="6" url="excel/student.xls">
+                                                <span class="editDocument"></span>
+                                                <a href="excel/student.xls" class="editDoc">学生信息excel模板下载</a>
+                                                <!--<span class="editDoc">学生信息excel模板下载</span>-->
+                                                <!--<span class="rt del"></span>-->
+                                            </div>
+                                        </li>
+                                        <li xm_type="1" class="boxlevel2 btnone">
+                                            <div class="wendang" urlid="6" url="excel/teacher.xls">
+                                                <span class="editDocument"></span>
+                                                <a href="excel/teacher.xls" class="editDoc">教师信息excel模板下载</a>
+                                                <!--<span class="editDoc">教师信息excel模板下载</span>-->
+                                                <!--<span class="rt del"></span>-->
+                                            </div>
+                                        </li>
+                                        <!--<li xm_type="1" class="boxlevel2 btnone">-->
+                                            <!--<div class="wendang" urlid="6" url="excel/question.xls">-->
+                                                <!--<span class="editDocument"></span>-->
+                                                <!--<span class="editDoc">题目excel模板下载</span>-->
+                                                <!--&lt;!&ndash;<span class="rt del"></span>&ndash;&gt;-->
+                                            <!--</div>-->
+                                        <!--</li>-->
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+                <!--书页线-->
+                <div class="boxRtBottom rt"></div>
+                <div class="clear"></div>
+            </div>
+
+            <div class="footer" style="padding-bottom: 80px">
+                <div class="information" style="padding: 0;margin: 0">             <ul  style="padding: 0;margin: 0">                 <li><img src="../images/bottomText.png" alt="" style="width: 460px"/></li>             </ul>         </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+//    $('.boxmenuLevel2').on('click','.btnone .wendang',function(){
+//        window.open($(this).attr('url'))
+//    })
+</script>
+</body>
+</html>

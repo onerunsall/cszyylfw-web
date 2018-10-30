@@ -1,0 +1,144 @@
+.actTitle{
+    height: 80px;
+    width: 100%;
+    background: #f8f8f8;
+}
+.actTitle span{
+    font-size: 14px;
+    display: inline-block;
+    width: 96px;
+    height: 36px;
+    background: #37b5f9;
+    color: #ffffff;
+    border-radius: 6px;
+    border: 0;
+    margin-right: 30px;
+    margin-left: 40px;
+    margin-top: 22px;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 36px;
+}
+.box_in{
+    padding-bottom: 20px;
+    background: #f8f8f8;
+}
+.actBox{
+    width: 1060px;
+    margin: 0 20px;
+    height: auto;
+}
+.boxRtBottom{
+    margin: 0 auto;
+    float: inherit;
+    width: 1100px !important;
+}
+.actBox table{
+    border-collapse: collapse;
+    width: 100%;
+}
+.actBox table thead td{
+    font-size: 16px;
+    background: #e5eaed;
+}
+.actBox table  td{
+    text-align: center;
+    border: 1px solid #eff2f7;
+    height: 50px;
+}
+.actBox table tbody tr td{
+    font-size: 14px;
+}
+.actBox table tbody tr td:hover{
+    cursor: pointer;
+}
+.actBox table tbody tr td:first-child{
+    font-size: 16px;
+}
+
+.actBox table tbody tr:nth-child(even) td{
+    background:#e5eaed ;
+}
+
+
+.contentPop{
+    width: 500px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    padding: 20px;
+}
+.contentPop p{
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 30px;
+}
+.contentPop span{
+    display: inline-block;
+    width: 460px;
+    font-size: 14px;
+    margin-top: 15px;
+    line-height: 25px;
+    max-height: 250px;
+    overflow-y: scroll;
+}
+
+.popAddMoneyBottom button{
+    display: inline-block;
+    width: 90px;
+    border: 0;
+    height: 40px;
+    border-radius: 6px;
+    background: #32afff;
+    color: #ffffff;
+    font-size: 16px;
+}
+.popAddMoneyBottom button:first-child{
+    margin-left: 20px;
+    margin-right: 80px;
+}
+.popAddMoneyBottom input,.popAddMoneyBottom select,.popAddMoneyBottom textarea{
+    font-size: 14px !important;
+}
+.popAddMoneyBottom select{
+    width: 270px !important;
+}
+.popAddMoneyBottom textarea{
+    height: 90px;
+    width: 270px;
+    border: 1px solid #dedede;
+    resize:none;
+    padding:15px;
+}
+.popAddMoneyBottom span{
+    vertical-align: top !important;
+    font-size: 14px !important;
+}
+.popAddMoneyBottom textarea::-webkit-input-placeholder {
+    color: #cccccc !important;
+    font-size: 14px  !important;
+}
+.popAddMoneyBottom textarea:-moz-placeholder {
+    color: #cccccc !important;
+    font-size: 14px  !important;
+}
+.popAddMoneyBottom textarea::-moz-placeholder {
+    color: #cccccc !important;
+    font-size: 14px  !important;
+}
+.popAddMoneyBottom textarea:-ms-input-placeholder {
+    color: #cccccc !important;
+    font-size: 14px  !important;
+}
+.popAddMoneyBottom .popAddMoneyBoxBtn{
+    border: 0;
+    width: 180px;
+    height: 36px;
+    line-height: 36px;
+    background: #32afff;
+    color: #ffffff;
+    font-size: 16px;
+    margin: 20px 101px auto;
+}

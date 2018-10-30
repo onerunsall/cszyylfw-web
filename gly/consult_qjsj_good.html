@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>情景设计</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../xs/css/gly_site_report.css"/>
+    <link rel="stylesheet" href="../xs/css/all.css"/>
+    <script src="../xs/js/jquery-1.7.1.min.js"></script>
+    <script src="../xs/js/jquery-1.8.3.min.js" type="text/javascript"></script>
+    <script src="../xs/js/xuxkBrief.js"></script>
+    <script src="../xs/js/addTmpImg.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font-size: 12px;
+            font-family: Arial, Helvetica, sans-serif, 宋体;
+            color: rgb(51, 51, 51);
+            background: #fff;
+        }
+    </style>
+    <script>
+        var token=localStorage.getItem('token');
+        var qjId,intro,intro1,intro2;
+        scroll()
+    </script>
+</head>
+<body>
+<div class="topTitleNjcs">
+    <div class="topTitleNjcsline">
+        <div class="logo lf">
+            <a href="gly_index.html">
+                <img src="../images/toplogo.png" alt="">
+            </a>
+        </div>
+        <div class="exit rt">
+            <span></span>
+            <a href="javascript:;" onclick="getoutgly()">退出</a>
+        </div>
+    </div>
+</div>
+<div class="siteReportTop">
+    <div class="minWidth">
+        <div class="lf siteReportTopLf">
+            <img src="../images/zx_qjsj.png" alt=""/><br/>
+            <span>主页/咨询接待/情景设计</span>
+        </div>
+        <div class="rt siteReportTopRt">
+            <span>案例状态：未提交</span><span style="display: none"></span>
+            <!--<button class="edit lf"><span></span>编辑</button>-->
+            <!--<button class="editover lf"><span></span>完成</button>-->
+            <!--<button class="supply rt" disabled onclick="supply()"><span></span>提交案例</button>-->
+        </div>
+    </div>
+</div>
+<!--简介-->
+<div class="brief">
+    <p>简介</p>
+    <span class="noEdit no1">还未编辑内容</span>
+    <textarea class="edit2" name="" id="briefInformation" cols="" rows="10" maxlength="1000" placeholder="不要超过1000字"></textarea>
+    <span class="edit2 wordlength">0/1000</span>
+    <script>
+        $('#briefInformation').bind('input propertychange',function(){
+            $(this).next().html($("#briefInformation").val().length+"/1000")
+        });
+    </script>
+    <div class="briefInformationAll"></div>
+</div>
+<div class="brief">
+    <p>小组成员</p>
+    <span class="noEdit no4">还未编辑内容</span>
+    <textarea class="edit2" name="" id="briefInformation1" cols="" rows="10" maxlength="1000" placeholder="不要超过1000字"></textarea>
+    <span class="edit2 wordlength">0/1000</span>
+    <script>
+        $('#briefInformation1').bind('input propertychange1',function(){
+            $(this).next().html($("#briefInformation1").val().length+"/1000")
+        });
+    </script>
+    <div class="briefInformationAll1"></div>
+</div>
+<div class="brief">
+    <p>本人任务</p>
+    <span class="noEdit no5">还未编辑内容</span>
+    <textarea class="edit2" name="" id="briefInformation2" cols="" rows="10" maxlength="1000" placeholder="不要超过1000字"></textarea>
+    <span class="edit2 wordlength">0/1000</span>
+    <script>
+        $('#briefInformation2').bind('input propertychange',function(){
+            $(this).next().html($("#briefInformation2").val().length+"/1000")
+        });
+    </script>
+    <div class="briefInformationAll2"></div>
+</div>
+<div class="brief" style="margin-bottom: 90px">
+    <p>视频</p>
+    <span class="noEdit no3">还未提交视频</span>
+    <form action="" id="up2">
+        <input  type="file" class="editDocInput"  onchange="fileChange(this);"  accept="video/*"  id="editDocInput"  name="editDocInput" style="display: none" />
+    </form>
+    <div class="shipinBox">
+
+    </div>
+    <!--<div class="shipin"><span class="editVideo"></span><span class="editDoc">视频一</span> <span class="rt del"></span> </div>-->
+    <div class="editVid edit2" onclick="editVid()"><span class="editVideo"></span>添加视频</div>
+    <div class="lineBottom" style="width: 1100px;height:37px;border-bottom: 1px solid #CCCCCC;margin-bottom: 30px"></div>
+</div>
+<div class="btncnm" style="width: 1100px;margin: 0 auto;display: none;">     <div style="width: 258px;margin-left:421px;">         <button class="edit lf" style="border: 1px solid #02569c;margin-bottom: 30px;display:none;"><span></span>编辑</button>         <button class="editover lf" style="border: 1px solid #02569c;margin-bottom: 30px"><span></span>完成</button>         <button class="supply rt" disabled  onclick="supply()"  style="border: 1px solid #02569c;margin-bottom: 30px"><span></span>提交案例</button>     </div> </div>
+<div id="filename"></div>
+<script>
+    var isIE = /msie/i.test(navigator.userAgent) && !window.opera;
+    function fileChange(target) {
+        var fileSize = 0;
+        if (isIE && !target.files) {
+            var filePath = target.value;
+            var fileSystem = new ActiveXObject("Scripting.FileSystemObject");
+            var file = fileSystem.GetFile (filePath);
+            fileSize = file.Size;
+        } else {
+            fileSize = target.files[0].size;
+        }
+        var size = fileSize / 1024;
+        if(size>10000){
+            alert("附件不能大于10M");
+            target.value="";
+            return
+        }else{
+            var up2 = uploadImgBatchUrl('up2', '/oss/file/upload?path=cszyylfw/');
+            var file = $(".editDocInput").val();
+            var fileName = getFileName(file);
+            function getFileName(o){
+                var pos=o.lastIndexOf("\\");
+                return o.substring(pos+1);
+            }
+            var urlId =  uploadfiles('/xs/xm/zx/qj/addfile',qjId,up2,fileName,2,token)
+            $('.shipinBox').prepend('<div class="shipin"  urlId="'+urlId+'" url="'+up2+'"><span class="editVideo"></span><span class="editDoc">'+fileName+'</span> <span class="rt del"></span> </div>')
+        }
+    }
+
+    function fileChangeDoc(target) {
+        var fileSize = 0;
+        if (isIE && !target.files) {
+            var filePath = target.value;
+            var fileSystem = new ActiveXObject("Scripting.FileSystemObject");
+            var file = fileSystem.GetFile (filePath);
+            fileSize = file.Size;
+        } else {
+            fileSize = target.files[0].size;
+        }
+        var size = fileSize / 1024;
+        if(size>10000){
+            alert("附件不能大于10M");
+            target.value="";
+            return
+        }else {
+            var up1 = uploadImgBatchUrl('up1', '/oss/file/upload?path=cszyylfw/');
+
+            var file = $("#choosefile").val();
+            var fileName = getFileName(file);
+
+            function getFileName(o) {
+                var pos = o.lastIndexOf("\\");
+                return o.substring(pos + 1);
+            }
+
+            var urlId = uploadfiles('/xs/xm/zx/qj/addfile', qjId, up1, fileName, 1, token);
+            $('.wendangBox').prepend('<div class="wendang" urlId="' + urlId + '" url="' + up1 + '"><span class="editDocument"></span><span class="editDoc">' + fileName + '</span> <span class="rt del"></span> </div>')
+        }
+    }
+
+    function changeDoc(){
+        if(len>10){
+            $('.editDoc').css('display','none')
+            $('.btnDoc').css('display','block')
+        }
+    }
+
+    //        $("#choosefile").change(function(){
+    ////            var up1 = $.uploadImgUrl('up1', '/oss/file/upload?path=cszyylfw/');
+    //            var up1 = uploadImgBatchUrl('up1', '/oss/file/upload?path=cszyylfw/');
+    //
+    //            var file = $("#choosefile").val();
+    //            var fileName = getFileName(file);
+    //            function getFileName(o){
+    //                var pos=o.lastIndexOf("\\");
+    //                return o.substring(pos+1);
+    //            }
+    //          var urlId = uploadfiles('/xs/xm/zx/qj/addfile',qjId,up1,fileName,1,token);
+    //            $('.wendangBox').prepend('<div class="wendang" urlId="'+urlId+'" url="'+up1+'"><span class="editDocument"></span><span class="editDoc">'+fileName+'</span> <span class="rt del"></span> </div>')
+    //        })
+    function editDoc(){
+        $("#choosefile").click();
+        var file = $("#choosefile").val();
+        var fileName = getFileName(file);
+        function getFileName(o){
+            var pos=o.lastIndexOf("\\");
+            return o.substring(pos+1);
+        }
+        $('#filename').html(fileName)
+    }
+
+    $('.brief').on('click','.wendangBox .editDoc',function(){
+        location.href=$(this).parent().attr('url')
+    })
+    $('.brief').on('click','.shipinBox .editDoc',function(){
+        window.open('../Html5VideoPlayer/index.html?vediourl='+$(this).parent().attr('url'))
+    })
+
+    //        $(".editDocInput").change(function(){
+    //            var up2 = uploadImgBatchUrl('up2', '/oss/file/upload?path=cszyylfw/');
+    //            var file = $(".editDocInput").val();
+    //            var fileName = getFileName(file);
+    //            function getFileName(o){
+    //                var pos=o.lastIndexOf("\\");
+    //                return o.substring(pos+1);
+    //            }
+    //            var urlId =  uploadfiles('/xs/xm/zx/qj/addfile',qjId,up2,fileName,2,token)
+    //            $('.shipinBox').prepend('<div class="shipin"  urlId="'+urlId+'" url="'+up2+'"><span class="editVideo"></span><span class="editDoc">'+fileName+'</span> <span class="rt del"></span> </div>')
+    //        })
+    function editVid(){
+        $(".editDocInput").click();
+        var file = $(".editDocInput").val();
+        var fileName = getFileName(file);
+        function getFileName(o){
+            var pos=o.lastIndexOf("\\");
+            return o.substring(pos+1);
+        }
+        $('#filename').html(fileName)
+    }
+
+
+
+
+
+    //        编辑
+    $('.edit').click(function(){
+        $('.supply').css('background','#ccc').css('color','#025aa1').attr('disabled',true)
+        $('.noEdit').css('display','none');
+        $('.edit2').css('display','block');
+        $('.edit').css('display','none');
+        $('.editover').css('display','block');
+        $('.del').css('display','block');
+        $('.briefInformationAll').css('display','none');
+        $('.briefInformationAll1').css('display','none');
+        $('.briefInformationAll2').css('display','none');
+        var notes=$('.briefInformationAll').html().replace(/<br\>/g,'\n').replace(" ",' ')
+        var notes1=$('.briefInformationAll1').html().replace(/<br\>/g,'\n').replace(" ",' ')
+        var notes2=$('.briefInformationAll2').html().replace(/<br\>/g,'\n').replace(" ",' ')
+        $('#briefInformation').val(notes)
+        $('#briefInformation1').val(notes1)
+        $('#briefInformation2').val(notes2)
+    });
+    $('.editover').click(function(){
+        $('.noEdit').css('display','none');
+        $('.edit2').css('display','none');
+        $('.lineBottom').css('display','block');
+        var notes=$('#briefInformation').val();
+        $('.briefInformationAll').html(notes.replace(/\r/ig," ").replace(/\n/ig, "<br>")).css('display','block');
+        intro=notes.replace(/\r/ig," ").replace(/\n/ig, "<br>")
+        var notes1=$('#briefInformation1').val();
+        $('.briefInformationAll1').html(notes.replace(/\r/ig," ").replace(/\n/ig, "<br>")).css('display','block');
+        intro1=notes1.replace(/\r/ig," ").replace(/\n/ig, "<br>")
+        var notes2=$('#briefInformation2').val();
+        $('.briefInformationAll2').html(notes.replace(/\r/ig," ").replace(/\n/ig, "<br>")).css('display','block');
+        intro2=notes2.replace(/\r/ig," ").replace(/\n/ig, "<br>")
+
+        $('.edit').css('display','block');
+        $('.editover').css('display','none');
+        $('.del').css('display','none')
+        $('.supply').attr('disabled',false).css('background','#fff').css('color','#02569c')
+        if($('#briefInformation').val()==''){
+            $('.no1').css('display','block');
+            $('.briefInformationAll').css('display','none')
+        }
+        if($('#briefInformation1').val()==''){
+            $('.no4').css('display','block');
+            $('.briefInformationAll1').css('display','none')
+        }
+        if($('#briefInformation2').val()==''){
+            $('.no5').css('display','block');
+            $('.briefInformationAll2').css('display','none')
+        }
+        if($('.shipinBox').children().length==0){
+            $('.no3').css('display','inline-block');
+            $('.no3').parent().find('.lineBottom').css('display','none')
+        }
+    })
+
+    //        删除
+    $('.shipinBox').on('click','.shipin .del',function(){
+        var _this=$(this)
+
+        $.ajax({
+            url:"/cszyylfw/xs/xm/zx/qj/delfile",
+            type:'post',
+            data:'token='+token+"&id="+_this.parent().attr('urlId'),
+            success:function(res){
+                if(res.code==0){
+                    _this.parent().remove();
+                }else if(res.code==20){
+                    alert('登陆超时，请重新登录！')
+                    setTimeout(function(){
+                        location.href='gly_index.html'
+                    },1000)
+
+                } else{
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    });
+    $('.wendangBox').on('click','.wendang .del',function(){
+        var _this=$(this)
+        $.ajax({
+            url:"/cszyylfw/xs/xm/zx/qj/delfile",
+            type:'post',
+            data:'token='+token+"&id="+_this.parent().attr('urlId'),
+            success:function(res){
+                if(res.code==0){
+                    _this.parent().remove();
+                }else if(res.code==20){
+                    alert('登陆超时，请重新登录！')
+                    setTimeout(function(){
+                        location.href='gly_index.html'
+                    },1000)
+
+                } else{
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    })
+</script>
+<!--数据操作-->
+<script>
+    loginrefresh(token);
+    var xm_id= GetQueryString("xm_id");
+    $.ajax({
+        url:"/cszyylfw/js/xszuoye/zx/qj/ent",
+        type:'post',
+        data:'token='+token+"&xm_id="+xm_id,
+        success:function(res){
+            if(res.code==0){
+                qjId=res.data.qjId;
+                if (res.data.status == 2) {
+                    $('.siteReportTopRt>span:first-child').html('案例状态：已评分');
+                    $('.siteReportTopRt>span:nth-child(2)').css('display', 'inline-block').html(res.data.score||'')
+                } else if (res.data.status == 1) {
+                    $('.siteReportTopRt>span:first-child').html('案例状态：已提交');
+                    $('.siteReportTopRt>span:nth-child(2)').css('display', 'none');
+                } else if (res.data.status == 0) {
+                    $('.siteReportTopRt>span:first-child').html('案例状态：未提交');
+                    $('.siteReportTopRt>span:nth-child(2)').css('display', 'none')
+                }
+                if (res.data.intro!=''&&res.data.intro!='null'&&res.data.intro!='undefined'
+                        &&res.data.intro!=null&&res.data.intro!=undefined) {
+                    $(".no1").css('display', 'none');
+                    $('.briefInformationAll').html(res.data.intro).css('display', 'block')
+                }
+                if (res.data.members!=''&&res.data.members!='null'&&res.data.members!='undefined'
+                        &&res.data.members!=null&&res.data.members!=undefined) {
+                    $(".no4").css('display', 'none');
+                    $('.briefInformationAll1').html(res.data.members).css('display', 'block')
+                }
+                if (res.data.selfTask!=''&&res.data.selfTask!='null'&&res.data.selfTask!='undefined'
+                        &&res.data.selfTask!=null&&res.data.selfTask!=undefined) {
+                    $(".no5").css('display', 'none');
+                    $('.briefInformationAll2').html(res.data.selfTask).css('display', 'block')
+                }
+
+                if(res.data.videos.length>0) {
+                    $(".no3").css('display', 'none');
+                    for (var r = 0; r < res.data.videos.length; r++) {
+                        $('.shipinBox').prepend('<div class="shipin"  urlId="' + res.data.videos[r].id + '" url="' + res.data.videos[r].url + '">' +
+                        '<span class="editVideo"></span><span class="editDoc">' + res.data.videos[r].name + '</span> <span style="display: none" class="rt del"></span> </div>')
+                    }
+                }
+
+
+            }else if(res.code==20){
+                alert('登陆超时，请重新登录！')
+                setTimeout(function(){
+                    location.href='gly_index.html'
+                },1000)
+
+            } else{
+                alert(res.codeMsg)
+            }
+        }
+    })
+
+    function supply(){
+        $.ajax({
+            url:"/cszyylfw/xs/xm/zx/qj/submit",
+            type:'post',
+            data:'token='+token+'&id='+qjId+'&in='+intro+'&mb='+intro1+'&st='+intro2,
+            success:function(res){
+                if(res.code==0){
+                    window.location.reload()
+                }else if(res.code==20){
+                    alert('登陆超时，请重新登录！')
+                    setTimeout(function(){
+                        location.href='gly_index.html'
+                    },1000)
+
+                } else{
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+
+</script>
+</body>
+</html>

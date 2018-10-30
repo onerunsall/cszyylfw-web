@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>老人服务技巧实训平台软件</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/xs_site_index.css"/>
+    <link rel="stylesheet" href="css/all.css"/>
+    <script src="js/jquery-1.7.1.min.js"></script>
+    <script src="js/xuxkBrief.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font-size: 12px;
+            font-family: Arial, Helvetica, sans-serif, 宋体;
+            color: rgb(51, 51, 51);
+            background: #fff;
+        }
+        .box>div div{
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        scroll()
+    </script>
+</head>
+<body>
+<div class="topTitleNjcs">
+    <div class="topTitleNjcsline">
+        <div class="logo lf">
+            <a href="xs_index.html">
+                <img src="../images/xmgl.png" alt="">
+            </a>
+        </div>
+        <div class="exit rt editdown">
+            <a href="login.html">学生登陆</a>
+            <a href="../js/login.html">教师登陆</a>
+            <a href="../gly/login.html">管理员登陆</a>
+        </div>
+        <div class="exit rt editup" style="display: none">
+            <span style="color: #fff"></span>
+            <a href="javascript:;" onclick="getout(token)">退出</a>
+
+        </div>
+    </div>
+    <div class="clear"></div>
+
+    <div>
+        <img style="    display: block;min-width: 1100px;width: 100%;" src="../images/touming240.png" alt=""/>
+    </div>
+    <div class="box" style="width: 816px;">
+        <div class="boxtop"  style="width: 816px">
+            <div class="r3 go go1 lf"><img  src="../images/xmglIndex/xs2.png" alt=""/></div>
+            <div class="r3 go go2 lf"><img  src="../images/xmglIndex/xs3.png" alt=""/></div>
+            <div class="r3 go3 go lf" style="margin-right: 0"><img src="../images/xmglIndex/xs4.png" alt=""/></div>
+        </div>
+        <span style="text-align: center;display: inline-block;width: 100%;font-size: 14px;margin-top: 0;color: #ccc">版本号：1.2.1</span>
+    </div>
+</div>
+
+<script>
+    var token=localStorage.getItem('token');
+    $.ajax({
+        url:"/cszyylfw/useraction/loginrefresh",
+        type:'post',
+        data:'token='+token,
+        success:function(res){
+            if(res.code==0) {
+                if (res.data.type == 1) {
+                $('.editdown').css('display', 'none');
+                $('.editup').css('display', '');
+                $('.editup span:first-child').html(res.data.realname + ' 你好！')
+                }else {
+                    localStorage.removeItem('token')
+                    location.reload()
+                }
+            }else if(res.code==20){
+                $('.editdown').css('display','')
+                $('.editup').css('display','none')
+                //location.href='login.html'
+            }else{
+                $('.editdown').css('display','')
+                $('.editup').css('display','none')
+//                alert(res.codeMsg)
+            }
+        }
+    })
+    $('.go1').click(function(){
+        if(!token){
+            alert('请先登录！')
+        }else{
+            location.href='index.html?xm_type=1'
+        }
+    })
+    $('.go2').click(function(){
+        if(!token){
+            alert('请先登录！')
+        }else{
+            location.href='hdcyIndex.html?xm_type=2'
+        }
+    })
+    $('.go3').click(function(){
+        if(!token){
+            alert('请先登录！')
+        }else{
+            location.href='fxIndex.html?xm_type=3'
+        }
+    })
+
+//    var width=$(window).width()
+//    console.log(width)
+//    var height=parseInt(width)/1920*240+'px'
+//    console.log(height)
+//    $('.box').css('margin-top',height)
+</script>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>添加老年人</title>
+    <!--<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="../xs/css/gly_site_report.css"/>
+    <link rel="stylesheet" href="../xs/css/all.css"/>
+    <link rel="stylesheet" href="css/addoldman.css"/>
+    <link rel="stylesheet" href="../xs/css/xuxk.css"/>
+    <script src="../xs/js/jquery-1.8.3.min.js"></script>
+    <script src="../xs/js/xuxkBrief.js"></script>
+    <script src="../xs/js/addTmpImg.js"></script>
+    <script src="../xs/js/public.js"></script>
+    <style>
+        body {
+            font-size: 12px;
+            font-family: Arial, Helvetica, sans-serif, 宋体;
+            color: rgb(51, 51, 51);
+            background: #fff;
+        }
+
+        /*body {font: normal 100% Helvetica, Arial,sans-serif;}*/
+    </style>
+    <script>
+        var token = localStorage.getItem('token');
+        loginrefresh(token)
+        var chfaId, plan, ssid = '',
+                title,
+                time,
+                place_id;
+        //    监听滚动
+        scroll()
+    </script>
+</head>
+<body>
+<div class="topTitleNjcs">
+    <div class="topTitleNjcsline">
+        <div class="logo lf">
+            <a href="gly_index.html">
+                <img src="images/toplogo.png" alt="">
+            </a>
+        </div>
+        <div class="exit rt">
+            <span></span>
+            <a href="javascript:;" onclick="getoutgly()">退出</a>
+        </div>
+    </div>
+</div>
+<div class="smallBox" style="margin-top: 90px">
+    <div class="smallBoxFirst">
+        <p class="firstOne lf">姓名</p><input class="firstTwo name lf" type="text"/>
+    </div>
+    <div class="smallBoxFirst">
+        <p class="firstOne lf">年龄</p><input class="firstTwo age lf" type="number"/>
+    </div>
+    <div class="smallBoxFirst">
+        <p class="firstOne lf">性别</p>
+        <select id="select" class="firstTwo sex lf" name="sex">
+            <option value="1">男</option>
+            <option value="2" selected>女</option>
+        </select>
+        <!--<input class="firstTwo sex lf" type="text"/>-->
+    </div>
+    <div class="top60">
+        <p class="secondOne">活动能力</p>
+
+        <div class="secondTwo">
+            <div class="lf"><input type="radio" class="lf" name="movability"/><span class="lf">独立行走</span></div>
+            <div class="lf"><input type="radio" class="lf" name="movability"/><span class="lf">助行</span></div>
+            <div class="lf"><input type="radio" class="lf" name="movability"/><span class="lf">卧床</span></div>
+        </div>
+        <textarea name="movabilitytext" id="movabilitytext" cols="30" rows="10" maxlength="1000"></textarea>
+    </div>
+    <div class="top60">
+        <p class="secondOne">认知能力</p>
+
+        <div class="secondTwo">
+            <div class="lf"><input type="radio" class="lf" name="cognitive"/><span class="lf">正常</span></div>
+            <div class="lf"><input type="radio" class="lf" name="cognitive"/><span class="lf">轻度脑萎缩</span></div>
+            <div class="lf"><input type="radio" class="lf" name="cognitive"/><span class="lf">中重度脑萎缩</span></div>
+        </div>
+        <textarea name="cognitivetext" id="cognitivetext" cols="30" rows="10" maxlength="1000"></textarea>
+    </div>
+
+    <div class="top60">
+        <p class="secondOne">慢性病</p>
+
+        <div class="secondTwo">
+            <div class="lf"><input type="checkbox" class="lf" name="disease"/><span class="lf">高血压</span></div>
+            <div class="lf"><input type="checkbox" class="lf" name="disease"/><span class="lf">心脏病</span></div>
+            <div class="lf"><input type="checkbox" class="lf" name="disease"/><span class="lf">糖尿病</span></div>
+            <div class="lf"><input type="checkbox" class="lf" name="disease"/><span class="lf">其他</span></div>
+        </div>
+        <textarea name="diseasetext" id="diseasetext" cols="30" rows="10" maxlength="1000"></textarea>
+    </div>
+
+    <div class="top60">
+        <p class="secondOne">兴趣爱好</p>
+
+        <div class="secondTwo">
+            <div class="lf"><input type="checkbox" class="lf" name="interest"/><span class="lf">学习类</span></div>
+            <div class="lf"><input type="checkbox" class="lf" name="interest"/><span class="lf">竞赛类</span></div>
+            <div class="lf"><input type="checkbox" class="lf" name="interest"/><span class="lf">观赏类</span></div>
+            <div class="lf"><input type="checkbox" class="lf" name="interest"/><span class="lf">展示类</span></div>
+            <div class="lf"><input type="checkbox" class="lf" name="interest"/><span class="lf">茶话会类</span></div>
+            <div class="lf"><input type="checkbox" class="lf" name="interest"/><span class="lf">外出类</span></div>
+        </div>
+        <textarea name="interesttext" id="interesttext" cols="30" rows="10" maxlength="1000"></textarea>
+    </div>
+
+    <div class="btnLast">
+        <button class="btnsave">保存</button>
+    </div>
+</div>
+
+
+<script>
+    var cognitive = '';
+    var movability = '';
+    var disease = '';
+    var interest = '';
+    $('.btnsave').click(function () {
+        var name = $('.name').val();
+        var sex = $('#select option:selected').val();
+        var age = $('.age').val();
+        console.log(name,sex,age)
+        $("input:radio[name='movability']").each(function () {
+            //当前radio是否为选中状态
+            if ($(this).is(':checked') == true) {
+                movability = $(this).next().html()
+            }
+        });
+        $("input:radio[name='cognitive']").each(function () {
+            //当前radio是否为选中状态
+            if ($(this).is(':checked') == true) {
+                cognitive = $(this).next().html()
+            }
+        });
+        $("input:checkbox[name='disease']").each(function () {
+            //当前radio是否为选中状态
+            if ($(this).is(':checked') == true) {
+                disease = disease + $(this).next().html() + ',';
+            }
+        });
+        $("input:checkbox[name='interest']").each(function () {
+            //当前radio是否为选中状态
+            if ($(this).is(':checked') == true) {
+                interest = interest + $(this).next().html() + ',';
+            }
+        });
+        disease=disease.slice(0,disease.length-1)
+        interest=interest.slice(0,interest.length-1)
+        if (!$('#movabilitytext').val()) {
+        } else {
+            var text1 = $('#movabilitytext').val();
+            movability = movability + '-' + text1
+        }
+        if (!$('#cognitivetext').val()) {
+        } else {
+            var text2 = $('#cognitivetext').val();
+            cognitive = cognitive + '-' + text2
+        }
+        if (!$('#diseasetext').val()) {
+        } else {
+            var text3 = $('#diseasetext').val();
+            disease = disease + '-' + text3
+        }
+        if (!$('#interesttext').val()) {
+        } else {
+            var text4 = $('#interesttext').val();
+            interest = interest + '-' + text4
+        }
+
+
+        console.log(movability,cognitive,disease,interest);
+        if (name == '' || age == '' || sex == '' || movability == '' || cognitive == '') {
+            error('请先填写完整信息')
+        } else {
+            debugger
+            $.ajax({
+                type: 'POST',
+                url: '/cszyylfw/gly/oldmangl/addoldman',
+                data:{'token':token,'name':name,'sex':sex,'age':age,'movability':movability,'cognitive':cognitive,'disease':disease,'interest':interest},
+//                data:'token='+token+ '&name=' + name + "&sex=" + sex + "&age=" + age + "&movability=" + movability + "&cognitive="
+//                + cognitive + "&disease=" + disease + "&interest=" + interest,
+                async: false,
+                success: function (res) {
+                    if(res.code==0){
+                        error('添加成功');
+                        self.close()
+                    }
+                },
+                error: function(res) {
+                   console.log(res)
+                },
+                complete: function(res) {
+                    console.log(res)
+//                    this; // 调用本次AJAX请求时传递的options参数
+                }
+
+            })
+        }
+
+    })
+
+</script>
+</body>
+</html>

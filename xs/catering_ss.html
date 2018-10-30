@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>配餐实施</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/gly_site_report.css"/>
+    <link rel="stylesheet" href="css/all.css"/>
+    <link rel="stylesheet" href="css/xuxkpopWindow.css"/>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/xuxkBrief.js"></script>
+    <script src="js/addTmpImg.js"></script>
+    <link rel="stylesheet" href="css/xuxk.css"/>
+    <link rel="stylesheet" href="css/gobal.css"/>
+    <script src="js/catering_ss.js"></script>
+    <link rel="stylesheet" href="css/gobal.css"/>
+    <link rel="stylesheet" href="../laydata/laydate.css"/>
+    <script src="../laydata/laydate.js"></script>
+
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font-size: 12px;
+            font-family: Arial, Helvetica, sans-serif, 宋体;
+            color: rgb(51, 51, 51);
+            background: #fff;
+        }
+        .jbzsspan{
+            display: inline-block;
+            margin-left: 30px;
+            font-size: 16px;
+            line-height: 36px;
+        }
+        .jbzsinput{
+            border: 1px solid #e5e5e5;
+            width: 220px;
+            height: 34px;
+            vertical-align: top;
+            margin-left: 30px;
+            padding: 0 15px;
+        }
+        .planedit12{
+            padding-bottom: 30px;
+            padding-left: 30px;
+            font-size: 16px;
+            display: inline-block;
+            color: #0093ff;
+            height: 80px;
+            line-height: 50px;
+            border-bottom: 1px solid #CCCCCC;
+        }
+        .briefnameAll{
+            font-size: 16px;
+        }
+        .briefsXq{
+            height: 50px;
+            line-height: 50px;
+            width: 1100px;
+            border-bottom: 1px solid #e5e5e5;
+            margin-bottom: 40px;
+            font-size: 16px;
+        }
+
+        .popAddMoneyBoxBtn1{
+            margin: 50px 0 0 20px ;width: 150px;float: left;
+        }
+        .popAddMoneyBoxBtn2{
+            margin: 50px 20px 0 0 ;width: 150px;float: right;
+        }
+        .popspan1{
+            width: 30px !important;
+        }
+        .popdanwei{
+            width: 270px !important;
+        }
+        .popAddMoneyBottom>div{
+            font-size: 14px;
+        }
+    </style>
+    <script>
+        var token = localStorage.getItem('token');
+        loginrefresh(token)
+        var chfaId, intro, name, leader_if,
+                start_time = '',
+                end_time = '',
+                background,
+                target;
+        //    监听滚动
+        scroll()
+
+    </script>
+</head>
+<body>
+<div class="topTitleNjcs">
+    <div class="topTitleNjcsline">
+        <div class="logo lf">
+            <a href="xs_index.html">
+                <img src="../images/toplogo.png" alt="">
+            </a>
+        </div>
+        <div class="exit rt">
+            <span></span>
+            <a href="javascript:;" onclick="getout()">退出</a>
+        </div>
+    </div>
+</div>
+<div class="siteReportTop">
+    <div class="minWidth">
+        <div class="lf siteReportTopLf">
+            <img src="../images/xmchfa.png" alt=""/><br/>
+            <span>主页/学习项目/项目策划方案</span>
+        </div>
+        <div class="rt siteReportTopRt">
+            <span></span><span style="display: none"></span>
+            <button class="edit lf"><span></span>编辑</button>
+            <button class="editover lf"><span></span>完成</button>
+            <button class="supply rt" disabled onclick="supply()"><span></span>提交作业</button>
+        </div>
+    </div>
+</div>
+<!--名称-->
+<div class="brief">
+    <p>标题</p>
+    <span class="noEdit  noEdit1 no1">还未编辑内容</span>
+    <span class="nameover" style="display: none"></span>
+    <input type="text" class="name edit2" id="briefname" maxlength="30" placeholder="请填写名称(不超过30字)"/>
+
+    <div class="edit2" style="border-bottom: 1px solid #ccc;height: 20px"></div>
+    <div class="briefnameAll" style="display: none"></div>
+</div>
+<!--实施时间-->
+<div class="brief">
+    <p>时间</p>
+    <!--<span class="noEdit  noEdit1 no2" onclick="saveCode()">还未编辑内容</span>-->
+    <span class="noEdit  noEdit1 no2 startTime lf" style="width: 1100px !important;    line-height: 33px;">时间：<span class=" one startTimeNext">——</span><input type="text"
+                                                                                                id="ContentPlaceHolder1_txtOne"
+                                                                                                class="startTimeBox"
+                                                                                                onclick="laydate({ istime: false, format: &#39;YYYY-MM-DD&#39; })"/></span>
+
+    <div class="briefTimeAll"></div>
+</div>
+<div class="clear"></div>
+
+
+<!--名称-->
+<div class="brief">
+    <p>全日能量供给量</p>
+    <span class="noEdit  no4" style="margin-bottom: 0;color: #666"></span>
+</div>
+<!--名称-->
+<div class="brief">
+    <p>营养素每日需求量</p>
+    <span class="noEdit  no5" style="margin-bottom: 0;color: #666"></span>
+</div>
+
+
+<!--实施总结-->
+<div class="briefNext peopleFg">
+    <p>早餐</p>
+    <div class="briefsXq briefnameAll1">100g</div>
+    <table class="fiveLine">
+        <thead>
+        <tr>
+            <td class="tab1" colspan="3">营养素需求量</td>
+        </tr>
+        <tr class="tab2">
+            <td>名称</td>
+            <td>重量(g)</td>
+            <td>操作</td>
+        </tr>
+        </thead>
+        <tbody class="leadone">
+
+        <tr>
+            <td colspan="3 ">
+                <p class="tab3">未添加食材</p>
+            </td>
+            <td colspan="3" style="display: none">
+                <p class="tab4 addleadMan1">+&nbsp;添加食材</p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <p>午餐</p>
+    <div class="briefsXq briefnameAll2">100g</div>
+    <table class="fiveLine">
+        <thead>
+        <tr>
+            <td class="tab1" colspan="3">营养素需求量</td>
+        </tr>
+        <tr class="tab2">
+            <td>名称</td>
+            <td>重量(g)</td>
+            <td>操作</td>
+        </tr>
+        </thead>
+        <tbody class="leadtwo">
+
+        <tr>
+            <td colspan="3">
+                <p class="tab3">未添加食材</p>
+            </td>
+            <td colspan="3" style="display: none">
+                <p class="tab4 addleadMan2">+&nbsp;添加食材</p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <p>晚餐</p>
+    <div class="briefsXq briefnameAll3">100g</div>
+    <table class="fiveLine">
+        <thead>
+        <tr>
+            <td class="tab1" colspan="3">营养素需求量</td>
+        </tr>
+        <tr class="tab2">
+            <td>名称</td>
+            <td>重量(g)</td>
+            <td>操作</td>
+        </tr>
+        </thead>
+        <tbody class="leadthree">
+
+        <tr>
+            <td colspan="3">
+                <p class="tab3">未添加食材</p>
+            </td>
+            <td colspan="3" style="display: none">
+                <p class="tab4 addleadMan3">+&nbsp;添加食材</p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--<div class="popopowindow">-->
+    <!--<div class="popBackground"></div>-->
+    <!--<div class="popAddMoneyBox" >-->
+        <!--<div class="popAddMoneyTop"><span class="lf">添加食物</span> <span class="deleteIcon rt" onclick="delThis()"></span>-->
+        <!--</div>-->
+        <!--<div class="popAddMoneyBottom" style="margin-top: 80px">-->
+            <!--<div><span>食材种类</span>-->
+                <!--<select name="" id="" class="popname" style="width: 270px;background: #fff" >-->
+                    <!--<option value="1">粮谷类</option>-->
+                    <!--<option value="2">豆类及其制品、坚果类</option>-->
+                    <!--<option value="3">蔬菜、水果</option>-->
+                    <!--<option value="4">畜、禽兽及水产品</option>-->
+                    <!--<option value="5">蛋、奶及其制品</option>-->
+                    <!--<option value="6">其他食品</option>-->
+                <!--</select>-->
+            <!--</div>-->
+            <!--<div><span>食材名称</span> <input class="popdanwei" type="text" style="background: #fff;" ></div>-->
+            <!--<div><span>原料重量</span> <input class="popfengong" type="text" style="width: 230px;background: #fff;" ><span class="popspan">g</span></div>-->
+            <!--<button class="popAddMoneyBoxBtn popAddMoneyBoxBtn1" onclick="lookThis()">查看</button>-->
+            <!--<button class="popAddMoneyBoxBtn popAddMoneyBoxBtn2" onclick="saveThisNow()">保存</button>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<div class="btncnm" style="width: 1100px;margin: 0 auto;display: none;">     <div style="width: 258px;margin-left:421px;">         <button class="edit lf" style="border: 1px solid #02569c;margin-bottom: 30px;display:none;"><span></span>编辑</button>         <button class="editover lf" style="border: 1px solid #02569c;margin-bottom: 30px"><span></span>完成</button>         <button class="supply rt" disabled  onclick="supply()"  style="border: 1px solid #02569c;margin-bottom: 30px"><span></span>提交案例</button>     </div> </div>
+<script src="js/public.js"></script>
+<script>
+
+    var pcSsId;
+
+
+
+    $('.addleadMan1').click(function(){
+        $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyBox" > <div class="popAddMoneyTop"><span class="lf">添加食物</span> <span class="deleteIcon rt" onclick="delThis()"></span> </div> <div class="popAddMoneyBottom" style="margin-top: 80px"> <div><span>食材种类</span> <select name="" id="" class="popname" onchange="change()" style="width: 270px;background: #fff" > <option value="1">粮谷类</option> <option value="2">豆类及其制品、坚果类</option> <option value="3">蔬菜、水果</option> <option value="4">畜、禽兽及水产品</option> <option value="5">蛋、奶及其制品</option> <option value="6">其他食品</option> </select> </div> <div><span>食材名称</span> <select name="" id="" class="popdanwei" ></select></div> <div><span>原料重量</span> <input class="popfengong" type="number" style="width: 230px;background: #fff;" ><span  class="popspan1">g</span></div> <button class="popAddMoneyBoxBtn popAddMoneyBoxBtn1" onclick="lookThis()">查看</button> <button class="popAddMoneyBoxBtn popAddMoneyBoxBtn2" onclick="saveThisNow()" scid="1">保存</button> </div> </div> </div>')
+        var _This;
+        var popscrollwidth = $(window).width();
+        var popscrollheight = $(window).height();
+        console.log(popscrollwidth, popscrollheight);
+        $(".popAddMoneyBox").css('left', (popscrollwidth / 2 - 335) + "px").css('top', (popscrollheight / 2 - 225) + "px").css('position','fixed');
+        reloadFoodid(1)
+    })
+    $('.addleadMan2').click(function(){
+        $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyBox" > <div class="popAddMoneyTop"><span class="lf">添加食物</span> <span class="deleteIcon rt" onclick="delThis()"></span> </div> <div class="popAddMoneyBottom" style="margin-top: 80px"> <div><span>食材种类</span> <select name="" id="" class="popname" onchange="change()" style="width: 270px;background: #fff" > <option value="1">粮谷类</option> <option value="2">豆类及其制品、坚果类</option> <option value="3">蔬菜、水果</option> <option value="4">畜、禽兽及水产品</option> <option value="5">蛋、奶及其制品</option> <option value="6">其他食品</option> </select> </div> <div><span>食材名称</span> <select name="" id="" class="popdanwei" ></select></div> <div><span>原料重量</span> <input class="popfengong" type="number" style="width: 230px;background: #fff;" ><span  class="popspan1">g</span></div> <button class="popAddMoneyBoxBtn popAddMoneyBoxBtn1" onclick="lookThis()">查看</button> <button class="popAddMoneyBoxBtn popAddMoneyBoxBtn2" onclick="saveThisNow()" scid="2">保存</button> </div> </div> </div>')
+        var _This;
+        var popscrollwidth = $(window).width();
+        var popscrollheight = $(window).height();
+        console.log(popscrollwidth, popscrollheight);
+        $(".popAddMoneyBox").css('left', (popscrollwidth / 2 - 335) + "px").css('top', (popscrollheight / 2 - 225) + "px").css('position','fixed');
+        reloadFoodid(1)
+    })
+    $('.addleadMan3').click(function(){
+        $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyBox" > <div class="popAddMoneyTop"><span class="lf">添加食物</span> <span class="deleteIcon rt" onclick="delThis()"></span> </div> <div class="popAddMoneyBottom" style="margin-top: 80px"> <div><span>食材种类</span> <select name="" id="" class="popname" onchange="change()" style="width: 270px;background: #fff" > <option value="1">粮谷类</option> <option value="2">豆类及其制品、坚果类</option> <option value="3">蔬菜、水果</option> <option value="4">畜、禽兽及水产品</option> <option value="5">蛋、奶及其制品</option> <option value="6">其他食品</option> </select> </div> <div><span>食材名称</span> <select name="" id="" class="popdanwei" ></select></div> <div><span>原料重量</span> <input class="popfengong" type="number" style="width: 230px;background: #fff;" ><span  class="popspan1">g</span></div> <button class="popAddMoneyBoxBtn popAddMoneyBoxBtn1" onclick="lookThis()">查看</button> <button class="popAddMoneyBoxBtn popAddMoneyBoxBtn2" onclick="saveThisNow()" scid="3">保存</button> </div> </div> </div>')
+        var _This;
+        var popscrollwidth = $(window).width();
+        var popscrollheight = $(window).height();
+        console.log(popscrollwidth, popscrollheight);
+        $(".popAddMoneyBox").css('left', (popscrollwidth / 2 - 335) + "px").css('top', (popscrollheight / 2 - 225) + "px").css('position','fixed');
+        reloadFoodid(1)
+    })
+    function reloadFoodid(typeId){
+        $.ajax({
+            url: "/cszyylfw/comm/foodlist",
+            type: 'post',
+            data: 'token=' + token + "&type_id=" + typeId,
+            success: function (res) {
+                if (res.code == 0) {
+                    $('.popdanwei').html('')
+                    for(var i=0;i<res.data.items.length;i++){
+                        $('.popdanwei').append('<option value="'+res.data.items[i].id+'">'+res.data.items[i].name+'</option> ')
+                    }
+
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！')
+                    setTimeout(function () {
+                        location.href = 'xs_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+
+    function change(){
+        var typeId=$('.popname option:selected').val();
+        reloadFoodid(typeId)
+    }
+
+    function saveThisNow(){
+        var type=$('.popAddMoneyBoxBtn2').attr('scid');
+        var food_id=$('.popdanwei option:selected').val();
+        var food_name=$('.popdanwei option:selected').text();
+        var food_weight=$('.popfengong').val();
+        if(type==''||food_id==''||food_name==''||food_weight==''){
+            error('请将信息填写完整')
+        }else{
+            $.ajax({
+                url: "/cszyylfw/xs/xm/pc/ss/addfood",
+                type: 'post',
+                data: 'token=' + token + "&type=" + type+"&pc_ss_id="+pcSsId+"&food_id="+food_id+"&food_name="+food_name
+                +"&food_weight="+food_weight,
+                success: function (res) {
+                    if (res.code == 0) {
+                        $('.popopowindow').remove()
+                        $.ajax({
+                            url: "/cszyylfw/xs/xm/pc/ss/ent",
+                            type: 'post',
+                            data: 'token=' + token + "&pc_ss_id=" + pcSsId + "&pc_id=" + pcId,
+                            success: function (res) {
+                                if (res.code == 0) {
+                                    if(type==1){
+                                        $(".leadone .tab8").remove()
+                                        for(var i=0;i<res.data.zaocanFoods.length;i++){
+                                                $('.leadone').prepend('<tr class="tab8"> <td foodId="'+res.data.zaocanFoods[i].foodId+'">'+res.data.zaocanFoods[i].foodName+'</td> <td>'+res.data.zaocanFoods[i].foodWeight+'</td> <td><span class="lookFood" id="'+res.data.zaocanFoods[i].pcSsFoodId+'">查看</span> <span class="editFood" id="'+res.data.zaocanFoods[i].pcSsFoodId+'">编辑</span> <span class="delFood" id="'+res.data.zaocanFoods[i].pcSsFoodId+'">删除</span> </td> </tr>')
+                                        }
+                                    }else  if(type==2){
+                                        $(".leadtwo .tab8").remove()
+                                        for(var i=0;i<res.data.wucanFoods.length;i++){
+                                            $('.leadtwo').prepend('<tr class="tab8"> <td foodId="'+res.data.zaocanFoods[i].foodId+'">'+res.data.wucanFoods[i].foodName+'</td> <td>'+res.data.wucanFoods[i].foodWeight+'</td> <td><span class="lookFood" id="'+res.data.wucanFoods[i].pcSsFoodId+'">查看</span> <span class="editFood" id="'+res.data.wucanFoods[i].pcSsFoodId+'">编辑</span> <span class="delFood" id="'+res.data.wucanFoods[i].pcSsFoodId+'">删除</span> </td> </tr>')
+                                        }
+                                    }else  if(type==3){
+                                        $(".leadthree .tab8").remove()
+                                        for(var i=0;i<res.data.wancanFoods.length;i++){
+                                            $('.leadthree').prepend('<tr class="tab8"> <td foodId="'+res.data.zaocanFoods[i].foodId+'">'+res.data.wancanFoods[i].foodName+'</td> <td>'+res.data.wancanFoods[i].foodWeight+'</td> <td><span class="lookFood" id="'+res.data.wancanFoods[i].pcSsFoodId+'">查看</span> <span class="editFood" id="'+res.data.wancanFoods[i].pcSsFoodId+'">编辑</span> <span class="delFood" id="'+res.data.wancanFoods[i].pcSsFoodId+'">删除</span> </td> </tr>')
+                                        }
+                                    }
+                                }
+                            }
+                        })
+                    } else if (res.code == 20) {
+                        alert('登陆超时，请重新登录！')
+                        setTimeout(function () {
+                            location.href = 'xs_index.html'
+                        }, 1000)
+
+                    } else {
+                        alert(res.codeMsg)
+                    }
+                }
+            })
+        }
+    }
+
+    function lookThis(){
+
+        if(!$('.popdanwei option:selected').val()){
+            error('请选择食材')
+        }else{
+            var scid=$('.popdanwei option:selected').val()
+            window.open('lookssInfo.html?id='+scid)
+        }
+    }
+    function lookThisElse(){
+
+        if(!$('.popdanwei').attr('foodId')){
+            error('请选择食材')
+        }else{
+            var scid=$('.popdanwei').attr('foodId')
+            window.open('lookssInfo.html?id='+scid)
+        }
+    }
+</script>
+<script>
+   var  oldmanId=localStorage.getItem('oldmanId')
+    $.ajax({
+        url: "/cszyylfw/comm/oldmaninfo",
+        type: 'post',
+        data: 'token=' + token + "&id=" + oldmanId,
+        success: function (res) {
+            if (res.code == 0) {
+                if (res.data.dailyPower != '' && res.data.dailyPower != 'null' && res.data.dailyPower != 'undefined'
+                        && res.data.dailyPower != null && res.data.dailyPower != undefined) {
+                    $(".no4").html(res.data.dailyPower +"(每日参考值：)")
+                }
+                if (res.data.dailyPower != '' && res.data.dailyPower != 'null' && res.data.dailyPower != 'undefined'
+                        && res.data.dailyPower != null && res.data.dailyPower != undefined) {
+                    $(".no5").html("脂肪:"+res.data.dailyPower +"(每日参考值：)&nbsp;&nbsp;/"+" &nbsp;&nbsp;碳水化合物:"+res.data.dailyCarbohydrate +"(每日参考值：)&nbsp;&nbsp;/"+"&nbsp;&nbsp;   蛋白质:"+res.data.dailyProtein +"(每日参考值：)")
+                $('.briefnameAll1').html("脂肪:"+(res.data.dailyPower*0.3).toFixed(2) +"(每日参考值：)&nbsp;&nbsp;/"+" &nbsp;&nbsp;碳水化合物:"+(res.data.dailyCarbohydrate*0.3).toFixed(2) +"(每日参考值：)&nbsp;&nbsp;/"+"&nbsp;&nbsp;   蛋白质:"+(res.data.dailyProtein*0.3).toFixed(2) +"(每日参考值：)")
+                    $('.briefnameAll2').html("脂肪:"+(res.data.dailyPower*0.3).toFixed(2) +"(每日参考值：)&nbsp;&nbsp;/"+" &nbsp;&nbsp;碳水化合物:"+(res.data.dailyCarbohydrate*0.3).toFixed(2) +"(每日参考值：)&nbsp;&nbsp;/"+"&nbsp;&nbsp;   蛋白质:"+(res.data.dailyProtein*0.3).toFixed(2) +"(每日参考值：)")
+                    $('.briefnameAll3').html("脂肪:"+(res.data.dailyPower*0.3).toFixed(2) +"(每日参考值：)&nbsp;&nbsp;/"+" &nbsp;&nbsp;碳水化合物:"+(res.data.dailyCarbohydrate*0.3).toFixed(2) +"(每日参考值：)&nbsp;&nbsp;/"+"&nbsp;&nbsp;   蛋白质:"+(res.data.dailyProtein*0.3).toFixed(2) +"(每日参考值：)")
+
+                }
+
+
+            } else if (res.code == 20) {
+                alert('登陆超时，请重新登录！')
+                setTimeout(function () {
+                    location.href = 'xs_index.html'
+                }, 1000)
+
+            } else {
+                alert(res.codeMsg)
+            }
+        }
+    })
+
+
+    var _This;
+    var popscrollwidth = $(window).width();
+    var popscrollheight = $(window).height();
+    console.log(popscrollwidth, popscrollheight);
+    $(".popAddMoneyBox").css('left', (popscrollwidth / 2 - 335) + "px").css('top', (popscrollheight / 2 - 225) + "px").css('position','fixed');
+    var pc_ss_id = GetQueryString('id');
+    var pcId = GetQueryString('pcId');
+//        var xm_id = localStorage.getItem('xm_id');
+    function reloadEnt() {
+        $.ajax({
+            url: "/cszyylfw/xs/xm/pc/ss/ent",
+            type: 'post',
+            data: 'token=' + token + "&pc_ss_id=" + pc_ss_id+"&pc_id="+pcId,
+            success: function (res) {
+                if (res.code == 0) {
+                     pcSsId=res.data.pcSsId;
+                    if (res.data.title != '' && res.data.title != 'null' && res.data.title != 'undefined'
+                            && res.data.title != null && res.data.title != undefined) {
+                        $(".no1").css('display', 'none');
+                        $('.nameover').html(res.data.title).css('display', 'block')
+                    }
+                    if (res.data.date != '' && res.data.date != 'null' && res.data.date != 'undefined'
+                            && res.data.date != null && res.data.date != undefined) {
+                        $('.startTimeNext').html(res.data.date).css('color','#666')
+                    }
+                    if (res.data.endTime != '' && res.data.endTime != 'null' && res.data.endTime != 'undefined'
+                            && res.data.endTime != null && res.data.endTime != undefined) {
+                        $('.endTimeNext').html(res.data.endTime)
+                    }
+                    if (res.data.zaocanFoods != '' && res.data.zaocanFoods != 'null' && res.data.zaocanFoods != 'undefined'
+                            && res.data.zaocanFoods != null && res.data.zaocanFoods != undefined) {
+                        for(var i=0;i<res.data.zaocanFoods.length;i++){
+                            $('.leadone').prepend('<tr class="tab8"> <td foodId="'+res.data.zaocanFoods[i].foodId+'">'+res.data.zaocanFoods[i].foodName+'</td> <td>'+res.data.zaocanFoods[i].foodWeight+'</td> <td><span class="lookFood" id="'+res.data.zaocanFoods[i].pcSsFoodId+'">查看</span> <span class="editFood" style="display: none" id="'+res.data.zaocanFoods[i].pcSsFoodId+'">编辑</span> <span class="delFood" style="display: none" id="'+res.data.zaocanFoods[i].pcSsFoodId+'">删除</span> </td> </tr>')}
+                        $('.leadone .tab3').css('display', 'none')
+                    }
+                    if (res.data.wucanFoods != '' && res.data.wucanFoods != 'null' && res.data.wucanFoods != 'undefined'
+                            && res.data.wucanFoods != null && res.data.wucanFoods != undefined) {
+                        for(var i=0;i<res.data.wucanFoods.length;i++){
+                            $('.leadtwo').prepend('<tr class="tab8"> <td foodId="'+res.data.zaocanFoods[i].foodId+'">'+res.data.wucanFoods[i].foodName+'</td> <td>'+res.data.wucanFoods[i].foodWeight+'</td> <td><span class="lookFood" id="'+res.data.wucanFoods[i].pcSsFoodId+'">查看</span> <span class="editFood"   style="display: none" id="'+res.data.wucanFoods[i].pcSsFoodId+'">编辑</span> <span class="delFood"  style="display: none" id="'+res.data.wucanFoods[i].pcSsFoodId+'">删除</span> </td> </tr>')
+                        }
+                        $('.leadtwo .tab3').css('display', 'none')
+                    }
+                    if (res.data.wancanFoods != '' && res.data.wancanFoods != 'null' && res.data.wancanFoods != 'undefined'
+                            && res.data.wancanFoods != null && res.data.wancanFoods != undefined) {
+                        for(var i=0;i<res.data.wancanFoods.length;i++){
+                            $('.leadthree').prepend('<tr class="tab8"> <td foodId="'+res.data.zaocanFoods[i].foodId+'">'+res.data.wancanFoods[i].foodName+'</td> <td>'+res.data.wancanFoods[i].foodWeight+'</td> <td><span class="lookFood" id="'+res.data.wancanFoods[i].pcSsFoodId+'">查看</span> <span class="editFood"  style="display: none" id="'+res.data.wancanFoods[i].pcSsFoodId+'">编辑</span> <span class="delFood"  style="display: none" id="'+res.data.wancanFoods[i].pcSsFoodId+'">删除</span> </td> </tr>')
+                        }
+                        $('.leadthree .tab3').css('display', 'none')
+                    }
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！')
+                    setTimeout(function () {
+                        location.href = 'xs_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+    reloadEnt()
+    function supply() {
+
+        name = $('.name').val();
+        if (!$('#ContentPlaceHolder1_txtOne').val()) {
+            alert('实施时间不能为空')
+            return
+        }
+        start_time = $('#ContentPlaceHolder1_txtOne').val()
+//        start_time = new Date($('#ContentPlaceHolder1_txtOne').val().replace('.', '-')).getTime();
+//        end_time = new Date($('#ContentPlaceHolder1_txtTwo').val().replace('.', '-')).getTime();
+
+
+        $.ajax({
+            url: "/cszyylfw/xs/xm/pc/alterss",
+            type: 'post',
+            data: 'token=' + token + '&pc_ss_id=' + pcSsId +"&title=" + name +
+            "&date=" + start_time,
+            success: function (res) {
+                if (res.code == 0) {
+                    self.close()
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！');
+                    setTimeout(function () {
+                        location.href = 'xs_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+
+    $('.fiveLine').on('click', 'td .delFood', function () {
+        var this_id = $(this).attr('id')
+        _This = $(this)
+        layboxs("action/delete_zsy.html?id=" + this_id+"&url=/xs/xm/pc/ss/delfood"+"&fun=delok&idName=pc_ss_food_id", "notitle");
+
+    });
+    function delok() {
+        popation("220", "y", "删除成功！");
+        closemask();
+        _This.parent().parent().remove()
+//        freshpage(window.location.href);
+    }
+
+//查看食材
+   $('.fiveLine').on('click', 'td .lookFood', function () {
+       var name=$(this).parent().parent().children().eq(0).html()
+       var weight=$(this).parent().parent().children().eq(1).html()
+       var foodId=$(this).parent().parent().children().eq(0).attr('foodId')
+       var pcSsFoodId= $(this).attr('id')
+       $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyBox" > <div class="popAddMoneyTop"><span class="lf">添加食物</span> <span class="deleteIcon rt" onclick="delThis()"></span> </div> <div class="popAddMoneyBottom" style="margin-top: 80px"> <div><span>食材种类</span> <div class="popname" onchange="change()" style="width: 300px;background: #fff;border:0;"  >  </div> </div> <div><span>食材名称</span> <div  style="border:0;" class="popdanwei"    foodId="'+foodId+'">'+name+'</div></div> <div><span>原料重量</span> <div class="popfengong"  style="width: 230px;background: #fff;border:0;" >'+weight+'(g)</div></div> <button class="popAddMoneyBoxBtn popAddMoneyBoxBtn1" onclick="lookThisElse()">查看</button> </div> </div> </div>')
+       var _This;
+       var popscrollwidth = $(window).width();
+       var popscrollheight = $(window).height();
+       console.log(popscrollwidth, popscrollheight);
+       $(".popAddMoneyBox").css('left', (popscrollwidth / 2 - 335) + "px").css('top', (popscrollheight / 2 - 225) + "px").css('position','fixed');
+   });
+
+
+
+
+
+
+//    编辑食物
+   $('.leadone').on('click', 'td .editFood', function () {
+       var name=$(this).parent().parent().children().eq(0).html()
+       var weight=$(this).parent().parent().children().eq(1).html()
+       var foodId=$(this).parent().parent().children().eq(0).attr('foodId')
+       var pcSsFoodId= $(this).attr('id')
+       $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyBox" > <div class="popAddMoneyTop"><span class="lf">添加食物</span> <span class="deleteIcon rt" onclick="delThis()"></span> </div> <div class="popAddMoneyBottom" style="margin-top: 80px"> <div><span>食材种类</span> <select name="" id="" class="popname" onchange="change()" style="width: 270px;background: #fff" > <option value="1">粮谷类</option> <option value="2">豆类及其制品、坚果类</option> <option value="3">蔬菜、水果</option> <option value="4">畜、禽兽及水产品</option> <option value="5">蛋、奶及其制品</option> <option value="6">其他食品</option> </select> </div> <div><span>食材名称</span> <select name="" id="" class="popdanwei" ><option value="'+foodId+'" selected>'+name+'</option></select></div> <div><span>原料重量</span> <input class="popfengong" value="'+weight+'" type="number" style="width: 230px;background: #fff;" ><span  class="popspan1">g</span></div> <button class="popAddMoneyBoxBtn popAddMoneyBoxBtn1" onclick="lookThis()">查看</button> <button class="popAddMoneyBoxBtn popAddMoneyBoxBtn2" onclick="editThisNow()" scid="1" pcSsFoodId="'+pcSsFoodId+'">保存</button> </div> </div> </div>')
+       var _This;
+       var popscrollwidth = $(window).width();
+       var popscrollheight = $(window).height();
+       console.log(popscrollwidth, popscrollheight);
+       $(".popAddMoneyBox").css('left', (popscrollwidth / 2 - 335) + "px").css('top', (popscrollheight / 2 - 225) + "px").css('position','fixed');
+   });
+   $('.leadtwo').on('click', 'td .editFood', function () {
+       var name=$(this).parent().parent().children().eq(0).html()
+       var weight=$(this).parent().parent().children().eq(1).html()
+       var foodId=$(this).parent().parent().children().eq(0).attr('foodId')
+       var pcSsFoodId= $(this).attr('id')
+       $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyBox" > <div class="popAddMoneyTop"><span class="lf">添加食物</span> <span class="deleteIcon rt" onclick="delThis()"></span> </div> <div class="popAddMoneyBottom" style="margin-top: 80px"> <div><span>食材种类</span> <select name="" id="" class="popname" onchange="change()" style="width: 270px;background: #fff" > <option value="1">粮谷类</option> <option value="2">豆类及其制品、坚果类</option> <option value="3">蔬菜、水果</option> <option value="4">畜、禽兽及水产品</option> <option value="5">蛋、奶及其制品</option> <option value="6">其他食品</option> </select> </div> <div><span>食材名称</span> <select name="" id="" class="popdanwei" ><option value="'+foodId+'" selected>'+name+'</option></select></div> <div><span>原料重量</span> <input class="popfengong" value="'+weight+'" type="number" style="width: 230px;background: #fff;" ><span  class="popspan1">g</span></div> <button class="popAddMoneyBoxBtn popAddMoneyBoxBtn1" onclick="lookThis()">查看</button> <button class="popAddMoneyBoxBtn popAddMoneyBoxBtn2" onclick="editThisNow()" scid="2" pcSsFoodId="'+pcSsFoodId+'">保存</button> </div> </div> </div>')
+       var _This;
+       var popscrollwidth = $(window).width();
+       var popscrollheight = $(window).height();
+       console.log(popscrollwidth, popscrollheight);
+       $(".popAddMoneyBox").css('left', (popscrollwidth / 2 - 335) + "px").css('top', (popscrollheight / 2 - 225) + "px").css('position','fixed');
+   });
+   $('.leadthree').on('click', 'td .editFood', function () {
+       var name=$(this).parent().parent().children().eq(0).html()
+       var weight=$(this).parent().parent().children().eq(1).html()
+       var foodId=$(this).parent().parent().children().eq(0).attr('foodId')
+       var pcSsFoodId= $(this).attr('id')
+       $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyBox" > <div class="popAddMoneyTop"><span class="lf">添加食物</span> <span class="deleteIcon rt" onclick="delThis()"></span> </div> <div class="popAddMoneyBottom" style="margin-top: 80px"> <div><span>食材种类</span> <select name="" id="" class="popname" onchange="change()" style="width: 270px;background: #fff" > <option value="1">粮谷类</option> <option value="2">豆类及其制品、坚果类</option> <option value="3">蔬菜、水果</option> <option value="4">畜、禽兽及水产品</option> <option value="5">蛋、奶及其制品</option> <option value="6">其他食品</option> </select> </div> <div><span>食材名称</span> <select name="" id="" class="popdanwei" ><option value="'+foodId+'" selected>'+name+'</option></select></div> <div><span>原料重量</span> <input class="popfengong" value="'+weight+'" type="number" style="width: 230px;background: #fff;" ><span  class="popspan1">g</span></div> <button class="popAddMoneyBoxBtn popAddMoneyBoxBtn1" onclick="lookThis()">查看</button> <button class="popAddMoneyBoxBtn popAddMoneyBoxBtn2" onclick="editThisNow()" scid="3" pcSsFoodId="'+pcSsFoodId+'">保存</button> </div> </div> </div>')
+       var _This;
+       var popscrollwidth = $(window).width();
+       var popscrollheight = $(window).height();
+       console.log(popscrollwidth, popscrollheight);
+       $(".popAddMoneyBox").css('left', (popscrollwidth / 2 - 335) + "px").css('top', (popscrollheight / 2 - 225) + "px").css('position','fixed');
+   });
+
+function editThisNow(){
+        var foodId=$('.popdanwei option:selected').val();
+        var  name=$('.popdanwei option:selected').text();
+        var food_weight=$('.popfengong').val()
+        var pc_ss_food_id=$('.popAddMoneyBoxBtn2').attr('pcSsFoodId')
+        var type=$('.popAddMoneyBoxBtn2').attr('scid')
+    if(foodId==''||name==''||food_weight==''||pc_ss_food_id==''){
+        error('请将信息填写完整')
+    }else{
+        $.ajax({
+            url: "/cszyylfw/xs/xm/pc/ss/alterfood",
+            type: 'post',
+            data: 'token=' + token + "&food_id=" + foodId+"&food_name="+name+"&food_weight="+food_weight+"&pc_ss_food_id="+pc_ss_food_id,
+            success: function (res) {
+                if (res.code == 0) {
+                    $('.popopowindow').remove()
+                    $.ajax({
+                        url: "/cszyylfw/xs/xm/pc/ss/ent",
+                        type: 'post',
+                        data: 'token=' + token + "&pc_ss_id=" + pcSsId + "&pc_id=" + pcId,
+                        success: function (res) {
+                            if (res.code == 0) {
+                                if(type==1){
+                                    $(".leadone .tab8").remove()
+                                    for(var i=0;i<res.data.zaocanFoods.length;i++){
+                                        $('.leadone').prepend('<tr class="tab8"> <td foodId="'+res.data.zaocanFoods[i].foodId+'">'+res.data.zaocanFoods[i].foodName+'</td> <td>'+res.data.zaocanFoods[i].foodWeight+'</td> <td><span class="lookFood" id="'+res.data.zaocanFoods[i].pcSsFoodId+'">查看</span> <span class="editFood" id="'+res.data.zaocanFoods[i].pcSsFoodId+'">编辑</span> <span class="delFood" id="'+res.data.zaocanFoods[i].pcSsFoodId+'">删除</span> </td> </tr>')
+                                    }
+                                }else  if(type==2){
+                                    $(".leadtwo .tab8").remove()
+                                    for(var i=0;i<res.data.wucanFoods.length;i++){
+                                        $('.leadtwo').prepend('<tr class="tab8"> <td foodId="'+res.data.zaocanFoods[i].foodId+'">'+res.data.wucanFoods[i].foodName+'</td> <td>'+res.data.wucanFoods[i].foodWeight+'</td> <td><span class="lookFood" id="'+res.data.wucanFoods[i].pcSsFoodId+'">查看</span> <span class="editFood" id="'+res.data.wucanFoods[i].pcSsFoodId+'">编辑</span> <span class="delFood" id="'+res.data.wucanFoods[i].pcSsFoodId+'">删除</span> </td> </tr>')
+                                    }
+                                }else  if(type==3){
+                                    $(".leadthree .tab8").remove()
+                                    for(var i=0;i<res.data.wancanFoods.length;i++){
+                                        $('.leadthree').prepend('<tr class="tab8"> <td foodId="'+res.data.zaocanFoods[i].foodId+'">'+res.data.wancanFoods[i].foodName+'</td> <td>'+res.data.wancanFoods[i].foodWeight+'</td> <td><span class="lookFood" id="'+res.data.wancanFoods[i].pcSsFoodId+'">查看</span> <span class="editFood" id="'+res.data.wancanFoods[i].pcSsFoodId+'">编辑</span> <span class="delFood" id="'+res.data.wancanFoods[i].pcSsFoodId+'">删除</span> </td> </tr>')
+                                    }
+                                }
+                            }
+                        }
+                    })
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！')
+                    setTimeout(function () {
+                        location.href = 'xs_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+}
+
+
+
+
+</script>
+
+<script>
+    $('.popAddMoneyBoxfx').on('input ','.popAddMoneyBoxboxfx .fxbox1',function(){
+        console.log($(".fxbox1").val().length)
+        $(this).next().html($(".fxbox1").val().length+"/250");
+    });
+    $('.popAddMoneyBoxfx').on('input ','.popAddMoneyBoxboxfx .fxbox2',function(){
+        $(this).next().html($(".fxbox2").val().length+"/250")
+    });
+
+</script>
+<script src="js/catering_ss.js"></script>
+<script src="js/xuxkBrief.js"></script>
+<script src="js/public.js"></script>
+</body>
+</html>

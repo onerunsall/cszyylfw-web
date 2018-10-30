@@ -1,0 +1,77 @@
+/****-------------翻页-----------***/
+.dv_PagesBg
+{  
+  text-indent:10px;
+  overflow:hidden;
+  display:inline;
+}
+.dv_Pages
+{
+  clear:both; 
+  margin-right:5px;
+  overflow:hidden; 
+  display:inline;
+}
+.dv_Pagesbox
+{
+   float:right;
+   color:#999999;
+   line-height:22px;
+   margin-right:4px;
+   margin-bottom:10px;
+   display:inline;
+   overflow:hidden;   
+}
+.dv_box .dv_Pagesbox
+{ margin-bottom:0px;
+}
+.dv_Pagesbox a,.dv_Pagesbox a:link,.dv_Pagesbox a:visited,.dv_Pagesbox a:active
+{ 
+  clear:both;
+  padding:0px 8px 0px 8px ;  
+  display:inline-block;
+  border:1px solid #cccccc;
+  text-align:center;
+  margin-top:2px;
+  color:#0063dc;
+  margin-right:4px;
+  background:white;
+  text-indent:0;
+
+}
+.dv_Pagesbox a:hover
+{ color:#E04E0D;
+  border:1px solid #ff5500;
+  text-decoration:none;
+  text-indent:0;
+}
+
+.dv_Pagesbox a.selected,.dv_Pagesbox a.selected:active,.dv_Pagesbox a.selected:visited
+{
+  color:#ff5500;
+  background:#ffeee5;
+  border:1px solid #ff5500;
+  font-weight:bold;
+  text-indent:0;
+}
+.input_page
+{
+  width:30px;
+  height:18px;
+  line-height:18px;
+  text-align:center;
+  border:1px solid #999999;
+}
+.dv_Buttons .input_selectAll
+{
+  margin-top:8px;
+}
+.dv_Pagesbox input.ok
+{
+  background:url(../images/webparts/pageset/enter.png) no-repeat;
+  width:38px;
+  height:19px;
+  display:inline-block;
+  border:0px;
+  cursor:pointer;
+}

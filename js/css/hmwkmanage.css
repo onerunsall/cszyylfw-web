@@ -1,0 +1,83 @@
+.leadtwo td{
+    text-align: center !important;
+}
+
+.selectPagess{
+    margin-top: 50px;
+    padding: 0 35px;
+}
+
+.selectPagess>div>p {
+    font-weight: 600;
+    display: inline-block;
+    width: 60px;
+    text-align: right;
+    color: #333;
+    font-size: 14px;
+    margin-right: 50px;
+    margin-bottom: 25px;
+    float: left;
+}
+.selectPagess>div:first-child>p{
+    margin-bottom: 40px;
+}
+.selectPagess>div>div{
+    width: 699px;
+    display: inline-block;
+}
+.selectPagess>div>div>span {
+    margin-bottom: 25px;
+
+    display: inline-block;
+    padding: 0 20px;
+    margin-right: 10px;
+    color: #666666;
+    font-size: 14px;
+    border-radius: 6px;
+
+    border: 1px solid #fff;
+    height: 24px;
+    line-height: 24px;
+    cursor: pointer;
+}
+
+.yourselect>span {
+    cursor: pointer;
+    display: inline-block;
+    height: 24px;
+    border-radius: 6px;
+    border: 1px solid #37b5f9;
+    color: #37b5f9 !important;
+    line-height: 24px !important;
+    padding: 0 7px 0 10px !important;
+    margin-right: 50px !important;
+}
+.delIcon {
+    margin-left: 15px;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: url(../images/delete9.png);
+    background-size: 100% 100%;
+    position: static;
+    /* vertical-align: middle; */
+}
+.boxTitle span{
+    width: 204px !important;
+
+
+}
+.boxone>div>div>span{
+    width: 204px !important;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    cursor: pointer;
+}
+.boxone>div>div>span:last-child{
+    color: #37b5f9 !important;
+}
+.boxRtBoxBottom{
+    background: #f8f8f8;
+}

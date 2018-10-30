@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>配餐</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/gly_site_report.css"/>
+    <link rel="stylesheet" href="css/all.css"/>
+    <link rel="stylesheet" href="css/xuxkpopWindow.css"/>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/xuxkBrief.js"></script>
+    <script src="js/addTmpImg.js"></script>
+    <link rel="stylesheet" href="css/xuxk.css"/>
+    <script src="js/catering.js"></script>
+    <link rel="stylesheet" href="css/gobal.css"/>
+    <link rel="stylesheet" href="../laydata/laydate.css"/>
+    <script src="../laydata/laydate.js"></script>
+
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font-size: 12px;
+            font-family: Arial, Helvetica, sans-serif, 宋体;
+            color: rgb(51, 51, 51);
+            background: #fff;
+        }
+        .jbzsspan{
+            display: inline-block;
+            margin-left: 30px;
+            font-size: 16px;
+            line-height: 36px;
+        }
+        .jbzsinput{
+            border: 1px solid #e5e5e5;
+            width: 220px;
+            height: 34px;
+            vertical-align: top;
+            margin-left: 30px;
+            padding: 0 15px;
+        }
+        .planedit12{
+            padding-bottom: 30px;
+            padding-left: 30px;
+            font-size: 16px;
+            display: inline-block;
+            color: #0093ff;
+            height: 80px;
+            line-height: 50px;
+            border-bottom: 1px solid #CCCCCC;
+        }
+        .briefnameAll{
+            font-size: 16px;
+        }
+    </style>
+    <script>
+        var token = localStorage.getItem('token');
+        loginrefresh(token)
+        var chfaId, intro, name, leader_if,
+                start_time = '',
+                end_time = '',
+                background,
+                target;
+        //    监听滚动
+        scroll()
+
+    </script>
+</head>
+<body>
+<div class="topTitleNjcs">
+    <div class="topTitleNjcsline">
+        <div class="logo lf">
+            <a href="xs_index.html">
+                <img src="../images/toplogo.png" alt="">
+            </a>
+        </div>
+        <div class="exit rt">
+            <span></span>
+            <a href="javascript:;" onclick="getout()">退出</a>
+        </div>
+    </div>
+</div>
+<div class="siteReportTop">
+    <div class="minWidth">
+        <div class="lf siteReportTopLf">
+            <img src="../images/xmchfa.png" alt=""/><br/>
+            <span>主页/学习项目/项目策划方案</span>
+        </div>
+        <div class="rt siteReportTopRt">
+            <span>作业状态：未提交</span><span style="display: none"></span>
+            <!--<button class="edit lf"><span></span>编辑</button>-->
+            <!--<button class="editover lf"><span></span>完成</button>-->
+            <!--<button class="supply rt" disabled onclick="supply()"><span></span>提交作业</button>-->
+        </div>
+    </div>
+</div>
+<!--名称-->
+<div class="brief">
+    <p>名称</p>
+    <span class="noEdit no1">还未编辑内容</span>
+    <span class="nameover" style="display: none"></span>
+    <input type="text" class="name edit2" id="briefname" maxlength="30" placeholder="请填写名称(不超过30字)"/>
+
+    <div class="edit2" style="border-bottom: 1px solid #ccc;height: 20px"></div>
+    <div class="briefnameAll" style="display: none"></div>
+</div>
+<!--实施时间-->
+<div class="brief">
+    <p>实施时间</p>
+    <!--<span class="noEdit no2" onclick="saveCode()">还未编辑内容</span>-->
+    <span class="noEdit no2 startTime lf">起始时间：<span class=" one startTimeNext">——</span><input type="text"
+                                                                                                id="ContentPlaceHolder1_txtOne"
+                                                                                                class="startTimeBox"
+                                                                                                onclick="laydate({ istime: false, format: &#39;YYYY-MM-DD&#39; })"/></span>
+    <span class="noEdit no2 endTime lf">结束时间：<span class=" one endTimeNext">——</span><input type="text"
+                                                                                            id="ContentPlaceHolder1_txtTwo"
+                                                                                            class="endTimeBox"
+                                                                                            onclick="laydate({ istime: false, format: &#39;YYYY-MM-DD&#39; })"/> </span>
+
+    <div class="briefTimeAll"></div>
+</div>
+<div class="clear"></div>
+<script>
+    var publish_time_start = $('#ContentPlaceHolder1_txtOne').val();
+    var publish_time_end = $('#ContentPlaceHolder1_txtTwo').val();
+    console.log(publish_time_start)
+    publish_time_start = new Date(publish_time_start.replace('.', '-')).getTime();
+    publish_time_end = new Date(publish_time_end.replace('.', '-')).getTime();
+    console.log(publish_time_start)
+    if (!$('#ContentPlaceHolder1_txtOne').val() && $('#ContentPlaceHolder1_txtTwo').val()) {
+        error('请选择开始和截止时间')
+    } else if ($('#ContentPlaceHolder1_txtOne').val() && !$('#ContentPlaceHolder1_txtTwo').val()) {
+        error('请选择开始和截止时间')
+    } else {
+        if (!$('#ContentPlaceHolder1_txtOne').val() && !$('#ContentPlaceHolder1_txtTwo').val()) {
+            publish_time_start = '';
+            publish_time_end = '';
+        }
+    }
+</script>
+
+
+
+
+<!--项目实施计划-->
+<div class="brief">
+    <p>项目实施计划</p>
+    <!--<span class="noEdit no6">还未编辑内容</span>-->
+    <div style="margin-bottom:30px;" class="jbzsDiv">
+        <span class="jbzsspan">疾病指数</span><span class="jbzsSpan1" style="margin-left: 20px;font-size: 16px"></span><input style="font-size:16px;display: none;background: #fff"disabled onkeyup="value=test(value)?value:''"  type="number" class="jbzsinput"/>
+    </div>
+    <div class="wendangBox">
+
+    </div>
+    <!--<a target="_top" href="https://bbs.csdn.net/topics/50170807" >-->
+    <div class="planedit12 editAct12 edit21" ><span class="editWenPic editActivity"></span>未添加配餐</div>
+    <div class="planedit editAct edit2" style="display: none"><span class="editWenPic editActivity"></span>添加配餐实施</div>
+    <!--</a>-->
+    <script>
+        function test(num) {
+
+//            if($('.jbzsinput').val()<60||$('.jbzsinput').val()>100){
+//                error('请输入1-100的数字')
+//                return false;
+//            }else{
+//                return true;
+//            }
+            var reg = /^((?!0)\d{1,2}|100)$/;
+            if (!num.match(reg)) {
+                error('请输入1-100的数字')
+                return false;
+            } else {
+                return true;
+            }
+        }
+        var timer; //监听器
+        var winopen;  //B页面的打开事件
+        //判断子窗口是否关闭，关闭刷新页面
+        function IfWindowClosed() {
+            //判断B页面打开事件
+            if (winopen.closed == true)
+            {
+                $.ajax({
+                    url: "/cszyylfw/js/xm/pc/ent",
+                    type: 'post',
+                    data: 'token=' + token + "&xm_id=" + xm_id,
+                    success: function (res) {
+                        if (res.code == 0) {
+                            pcId = res.data.pcId;
+                            if (res.data.shishiList!=''&&res.data.shishiList!='null'&&res.data.shishiList!='undefined'
+                                    &&res.data.shishiList!=null&&res.data.shishiList!=undefined) {
+                                $('.jbzsSpan1').html('')
+                                $('.wendangBox').html('')
+                                for(var i=0;i<res.data.shishiList.length;i++){
+                                    $('.planedit12').css('display','none')
+                                    $('.planedit').css('display','')
+                                    $('.wendangBox').prepend('<div class="wendang" id="'+res.data.shishiList[i].id+'"><span class="editDocument"></span><span class="editDoc">'+(res.data.shishiList[i].title||'该实施为空项目')+'</span> <span class="rt eye"  style="display: none"></span><span class="rt del"></span> </div>')
+                                }
+
+                            }else{
+                                $('.editAct12').css('display','none')
+                            }
+
+                        } else if (res.code == 20) {
+                            alert('登陆超时，请重新登录！')
+                            setTimeout(function () {
+                                location.href = 'xs_index.html'
+                            }, 1000)
+
+                        } else {
+                            alert(res.codeMsg)
+                        }
+                    }
+                })
+                window.clearInterval(timer);
+            }else{
+            }
+        }
+        $('.editAct').click(function(){
+            winopen =  window.open("catering_ss.html?id="+"&pcId="+pcId,"top=0,left=0,menubar=yes,scrollbars=no,toolbar=yes,status=yes,fullscreen=yes ")
+            timer = window.setInterval("IfWindowClosed()", 500);
+        })
+
+    </script>
+    <!--<textarea class="edit2" name="" id="briefPlan" cols="" rows="10" maxlength="1000" placeholder="不要超过1000字"></textarea>-->
+    <!--<span class="edit2 wordlength">0/1000</span>-->
+    <!--<script>-->
+    <!--$('#briefPlan').bind('input propertychange',function(){-->
+    <!--$(this).next().html($("#briefPlan").val().length+"/1000")-->
+    <!--});-->
+    <!--</script>-->
+    <div class="briefPlanAll" style="display: none"></div>
+</div>
+<div class="btncnm" style="width: 1100px;margin: 0 auto;display: none;">     <div style="width: 258px;margin-left:421px;">         <button class="edit lf" style="border: 1px solid #02569c;margin-bottom: 30px;display:none;"><span></span>编辑</button>         <button class="editover lf" style="border: 1px solid #02569c;margin-bottom: 30px"><span></span>完成</button>         <button class="supply rt" disabled  onclick="supply()"  style="border: 1px solid #02569c;margin-bottom: 30px"><span></span>提交案例</button>     </div> </div>
+<script src="js/public.js"></script>
+<script>
+
+    var _This;
+    var popscrollwidth = $(window).width();
+    var popscrollheight = $(window).height();
+    console.log(popscrollwidth, popscrollheight);
+    $(".popAddMoneyBoxfx").css('left', (popscrollwidth / 2 - 335) + "px").css('top', (popscrollheight / 2 - 295) + "px");
+    //    var xm_id = GetQueryString('xm_id');
+    var xm_id = GetQueryString('xm_id');
+    console.log(xm_id)
+    $.ajax({
+        url: "/cszyylfw/js/xm/pc/ent",
+        type: 'post',
+        data: 'token=' + token + "&xm_id=" + xm_id,
+        success: function (res) {
+            if (res.code == 0) {
+                pcId = res.data.pcId;
+
+                if (res.data.status == 2) {
+                    $('.siteReportTopRt>span:first-child').html('作业状态：已评分');
+                    $('.siteReportTopRt>span:nth-child(2)').css('display', 'inline-block').html((res.data.score||''));
+                } else if (res.data.status == 1) {
+                    $('.siteReportTopRt>span:first-child').html('作业状态：已提交');
+                    $('.siteReportTopRt>span:nth-child(2)').css('display', 'none');
+                } else if (res.data.status == 0) {
+                    $('.siteReportTopRt>span:first-child').html('作业状态：未提交');
+                    $('.siteReportTopRt>span:nth-child(2)').css('display', 'none')
+                }
+                if (res.data.name!=''&&res.data.name!='null'&&res.data.name!='undefined'
+                        &&res.data.name!=null&&res.data.name!=undefined) {
+                    $(".no1").css('display', 'none');
+                    $('.briefnameAll').html(res.data.name).css('display', 'block')
+                }
+                if (res.data.startTime!=''&&res.data.startTime!='null'&&res.data.startTime!='undefined'
+                        &&res.data.startTime!=null&&res.data.startTime!=undefined) {
+                    $('.startTimeNext').html(res.data.startTime)
+                }
+                if (res.data.endTime!=''&&res.data.endTime!='null'&&res.data.endTime!='undefined'
+                        &&res.data.endTime!=null&&res.data.endTime!=undefined) {
+                    $('.endTimeNext').html(res.data.endTime)
+                }
+                if (res.data.shishiList!=''&&res.data.shishiList!='null'&&res.data.shishiList!='undefined'
+                        &&res.data.shishiList!=null&&res.data.shishiList!=undefined) {
+                    $('.jbzsSpan1').html('')
+                    $('.planedit12').css('display','none')
+                    for(var i=0;i<res.data.shishiList.length;i++){
+                        $('.wendangBox').prepend('<div class="wendang" id="'+res.data.shishiList[i].id+'"><span class="editDocument"></span><span class="editDoc">'+(res.data.shishiList[i].title||'该实施为空项目')+'</span> <span class="rt eye"></span><span class="rt del" style="display: none"></span> </div>')
+                    }
+
+                }else{
+                    $('.editAct12').css('display','none')
+                }
+
+            } else if (res.code == 20) {
+                alert('登陆超时，请重新登录！')
+                setTimeout(function () {
+                    location.href = 'xs_index.html'
+                }, 1000)
+
+            } else {
+                alert(res.codeMsg)
+            }
+        }
+    })
+
+    function supply() {
+        name = $(".briefnameAll").html();
+
+        name = $('.name').val();
+        if (!$('#ContentPlaceHolder1_txtOne').val() || !$('#ContentPlaceHolder1_txtTwo').val()) {
+            alert('实施时间不能为空')
+            return
+        }
+        start_time = $('#ContentPlaceHolder1_txtOne').val()
+        end_time = $('#ContentPlaceHolder1_txtTwo').val()
+//        start_time = new Date($('#ContentPlaceHolder1_txtOne').val().replace('.', '-')).getTime();
+//        end_time = new Date($('#ContentPlaceHolder1_txtTwo').val().replace('.', '-')).getTime();
+
+
+        $.ajax({
+            url: "/cszyylfw/js/xm/pc/submit",
+            type: 'post',
+            data: 'token=' + token + '&pc_id=' + pcId +"&name=" + name +
+            "&start_time=" + start_time + "&end_time=" + end_time,
+            success: function (res) {
+                if (res.code == 0) {
+                    window.location.reload()
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！');
+                    setTimeout(function () {
+                        location.href = 'xs_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+
+    $('.wendangBox').on('click', '.wendang .del', function () {
+        var this_id = $(this).parent().attr('id')
+        layboxs("action/delete_zsy.html?id=" + this_id+"&url=/js/xm/pc/delss"+"&fun=delok&idName=pc_ss_id", "notitle");
+
+    });
+    function delok() {
+        popation("220", "y", "删除成功！");
+        closemask();
+        $.ajax({
+            url: "/cszyylfw/js/xm/pc/ent",
+            type: 'post',
+            data: 'token=' + token + "&xm_id=" + xm_id,
+            success: function (res) {
+                if (res.code == 0) {
+                    pcId = res.data.pcId;
+                    if (res.data.shishiList!=''&&res.data.shishiList!='null'&&res.data.shishiList!='undefined'
+                            &&res.data.shishiList!=null&&res.data.shishiList!=undefined) {
+                        $('.jbzsSpan1').html('')
+                        $('.wendangBox').html('')
+                        for(var i=0;i<res.data.shishiList.length;i++){
+                            $('.planedit12').css('display','none')
+                            $('.planedit').css('display','')
+                            $('.wendangBox').prepend('<div class="wendang" id="'+res.data.shishiList[i].id+'"><span class="editDocument"></span><span class="editDoc">'+(res.data.shishiList[i].title||'该实施为空项目')+'</span> <span class="rt eye"  style="display: none"></span><span class="rt del"></span> </div>')
+                        }
+
+                    }else{
+                        $('.editAct12').css('display','none')
+                    }
+
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！')
+                    setTimeout(function () {
+                        location.href = 'xs_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+
+    //    查看
+    var timer1; //监听器
+    var winopen1;  //B页面的打开事件
+    //判断子窗口是否关闭，关闭刷新页面
+    function IfWindowClosed1() {
+        //判断B页面打开事件
+        if (winopen1.closed == true)
+        {
+            $.ajax({
+                url: "/cszyylfw/js/xm/pc/ent",
+                type: 'post',
+                data: 'token=' + token + "&xm_id=" + xm_id,
+                success: function (res) {
+                    if (res.code == 0) {
+                        pcId = res.data.pcId;
+                        if (res.data.shishiList!=''&&res.data.shishiList!='null'&&res.data.shishiList!='undefined'
+                                &&res.data.shishiList!=null&&res.data.shishiList!=undefined) {
+                            $('.jbzsSpan1').html('')
+                            $('.wendangBox').html('')
+                            for(var i=0;i<res.data.shishiList.length;i++){
+                                $('.planedit12').css('display','none')
+                                $('.planedit').css('display','none')
+                                $('.wendangBox').prepend('<div class="wendang" id="'+res.data.shishiList[i].id+'"><span class="editDocument"></span><span class="editDoc">'+(res.data.shishiList[i].title||'该实施为空项目')+'</span> <span class="rt eye" ></span><span class="rt del"  style="display: none"></span> </div>')
+                            }
+
+                        }else{
+                            $('.editAct12').css('display','none')
+                        }
+
+                    } else if (res.code == 20) {
+                        alert('登陆超时，请重新登录！')
+                        setTimeout(function () {
+                            location.href = 'xs_index.html'
+                        }, 1000)
+
+                    } else {
+                        alert(res.codeMsg)
+                    }
+                }
+            })
+            window.clearInterval(timer1);
+        }else{
+        }
+    }
+
+
+    $('.wendangBox').on('click', '.wendang .eye', function () {
+        var this_id = $(this).parent().attr('id')
+        winopen1 =  window.open("catering_ss_look.html?id="+this_id+"&pcId="+pcId,"top=0,left=0,menubar=yes,scrollbars=no,toolbar=yes,status=yes,fullscreen=yes ")
+        timer1 = window.setInterval("IfWindowClosed1()", 500);
+    });
+</script>
+
+<script>
+    $('.popAddMoneyBoxfx').on('input ','.popAddMoneyBoxboxfx .fxbox1',function(){
+        console.log($(".fxbox1").val().length)
+        $(this).next().html($(".fxbox1").val().length+"/250");
+    });
+    $('.popAddMoneyBoxfx').on('input ','.popAddMoneyBoxboxfx .fxbox2',function(){
+        $(this).next().html($(".fxbox2").val().length+"/250")
+    });
+
+</script>
+<script src="js/catering.js"></script>
+<script src="js/xuxkBrief.js"></script>
+</body>
+</html>

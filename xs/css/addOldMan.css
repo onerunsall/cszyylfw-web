@@ -1,0 +1,166 @@
+.topTitleNjcs{
+    border-bottom: 1px solid #CCCCCC;
+}
+.delIcon{
+    margin-left: 15px;
+    display: inline-block;
+    width:10px ;
+    height: 10px;
+    background: url(../../images/delete9.png);
+    background-size: 100% 100%;
+    position: static;
+    /*vertical-align: middle;*/
+}
+.selectPagess{
+    float: none;
+    text-align: inherit;
+    width: 1100px;
+    margin: 0 auto;
+}
+.selectPagess p:first-child{
+    line-height: 26px;
+    margin-right: 40px;
+}
+.selectPagess>div:first-child p{
+    margin-bottom: 40px;
+}
+.selectPagess p{
+    font-weight: 600;
+    display: inline-block;
+    width: 60px;
+    text-align: left;
+    color: #333;
+    font-size: 14px;
+    margin-right: 50px;
+    margin-bottom: 30px;
+}
+.yourselect{
+    margin-top: 70px;
+}
+.yourselect>span{
+
+    display: inline-block;
+    height: 24px;
+    border-radius: 6px;
+    border: 1px solid #37b5f9;
+    color: #37b5f9 !important;
+    line-height: 24px  !important;
+    padding: 0 7px 0 10px !important;
+    margin-right: 50px  !important;
+}
+.selectPagess>div>span{
+    display: inline-block;
+    padding: 0 20px;
+    margin-right: 10px;
+    color: #666666;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+.selectPagess>div>span:nth-child(2) {
+    padding: 0 20px 0 10px;
+}
+.pageBox{
+    width: 1100px;
+    margin: 0 auto;
+}
+table{
+    width: 1100px;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+table thead td{
+    text-align: center;
+    background: #cacaca;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    color: #ffffff;
+    width: 120px;
+}
+table thead td:first-child,table thead td:last-child{
+    width: 70px;
+}
+.pageBox tbody{
+    background: #f7f7f7;
+    text-align: center;
+}
+.pageBox tbody tr:first-child td{
+    padding-top: 40px;
+}
+tr{
+    width: 100%;
+}
+.pageBox tbody tr td {
+    width: 200px !important;
+    border: 0;
+    height: 34px;
+    line-height: 34px;
+    padding-bottom: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+}
+.look{
+    color: #0096ff;
+}
+.pageBox tbody tr td:first-child{
+    text-align: left;
+}
+.pageBox tbody td input{
+    border-radius: 3px;
+    width: 19px;
+    height: 19px;
+    position: static;
+    vertical-align: middle;
+    margin: 0 42px 0 42px;
+}
+.paging{
+    width: 1100px;
+    margin: 0 auto;
+    height: 20px;
+    padding: 40px 0 20px 0 ;
+    background: #f7f7f7;
+    color: #000;
+}
+.paging span{
+    cursor: pointer;
+    display: inline-block;
+}
+.lastpage,.nextpage{
+    width: 60px;
+    background: #ffffff;
+    color: #0096ff;
+    font-size: 10px;
+    text-align: center;
+    line-height: 20px;
+}
+.paging input{
+    width: 26px;
+    height: 16px;
+    color: #0096ff;
+}
+.paging    button{
+    width: 38px;
+    height: 20px;background: #ffffff;
+    line-height: 20px;
+    border:1px solid #0096ff;
+    border-radius: 4px;
+    padding: 0 !important;
+    margin-right: 70px;
+}
+
+.lastpage span{
+    width: 0;
+    height: 0;
+    border-top: 4px solid transparent;
+    border-right: 4px solid red;
+    border-bottom: 4px solid transparent;
+}
+.nextpage span{
+    width: 0;
+    height: 0;
+    border-top: 4px solid transparent;
+    border-left: 4px solid red;
+    border-bottom: 4px solid transparent;
+}

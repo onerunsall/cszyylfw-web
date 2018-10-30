@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>添加场地</title>
+    <!--<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="../xs/css/gly_site_report.css"/>
+    <link rel="stylesheet" href="../xs/css/all.css"/>
+    <link rel="stylesheet" href="../xs/css/xuxkpopWindow.css"/>
+    <script src="../xs/js/jquery-1.8.3.min.js"></script>
+    <script src="../xs/js/xuxkBrief.js"></script>
+    <script src="../xs/js/addTmpImg.js"></script>
+    <link rel="stylesheet" href="../xs/css/xuxk.css"/>
+    <link rel="stylesheet" href="../xs/css/addPlace.css"/>
+    <link rel="stylesheet" href="../xs/css/gobal.css"/>
+    <link rel="stylesheet" href="../xs/css/xuxk.css"/>
+    <link rel="stylesheet" href="css/addplace.css"/>
+    <script src="../xs/js/public.js"></script>
+    <style>
+        body {
+            font-size: 12px;
+            font-family: Arial, Helvetica, sans-serif, 宋体;
+            color: rgb(51, 51, 51);
+            background: #fff;
+        }
+
+        /*body {font: normal 100% Helvetica, Arial,sans-serif;}*/
+    </style>
+    <script>
+        var token = localStorage.getItem('token');
+        loginrefresh(token)
+        var chfaId, plan, ssid = '',
+                title,
+                time,
+                place_id;
+        //    监听滚动
+        scroll()
+    </script>
+</head>
+<body>
+<div class="topTitleNjcs">
+    <div class="topTitleNjcsline">
+        <div class="logo lf">
+            <a href="gly_index.html">
+                <img src="images/toplogo.png" alt="">
+            </a>
+        </div>
+        <div class="exit rt">
+            <span></span>
+            <a href="javascript:;" onclick="getoutgly()">退出</a>
+        </div>
+    </div>
+</div>
+<!--选择-->
+<div class="selectPagess">
+    <div class="yourselect">
+        <p>你的选择</p>
+    </div>
+    <div class="placetype">
+        <p>场地类型</p><span type="1">剧院礼堂式</span><span type="2">教室式</span><span type="3">宴会式</span>
+        <span type="4">体育馆式</span><span type="5">T型台式</span><span type="6">圆桌式</span><span type="7">其他</span>
+    </div>
+</div>
+<div class="addplacebtn">
+    <button class="addplace">新建场地</button>
+</div>
+<!--选择列表-->
+<div class="pageBox">
+    <table>
+        <thead>
+        <tr class="">
+            <td>编号</td>
+            <td>名称</td>
+            <td>地址</td>
+            <td>场地类型</td>
+            <td>操作</td>
+        </tr>
+        </thead>
+        <tbody class="leadtwo">
+
+        </tbody>
+
+    </table>
+    <div class="paging">
+        <div class="rt">
+            <span class="lastpage"><span></span>&nbsp;上一页</span>&nbsp;&nbsp;
+            <span class="nextpage">下一页&nbsp;<span></span></span>&nbsp;&nbsp;&nbsp;
+            到第 &nbsp; &nbsp;<input type="text" value=""/>&nbsp;&nbsp; 页&nbsp;&nbsp;
+            <button class="makeSure">确定</button>
+            &nbsp;&nbsp;</div>
+
+    </div>
+</div>
+<!--<div class="popopowindow">-->
+    <!--<div class="popBackground"></div>-->
+    <!--<div class="popAddMoneyBox popAddMoneyBoxbf">-->
+        <!--<div class="popAddMoneyTop"><span class="lf">查看场地</span> <span class="deleteIcon rt" onclick="delThis()"></span>-->
+        <!--</div>-->
+        <!--<div class="popAddMoneyBottom ">-->
+            <!--<div style="margin: 100px auto 10px"><span>名称</span><div class="studentNum"></div></div>-->
+            <!--<div style="margin: 0 auto 10px"><span>地址</span><div class="studentName"></div></div>-->
+            <!--<div style="margin: 0 auto 10px"><span>类型</span><div  class="studentPwd"></div>-->
+
+            <!--</div>-->
+            <!--<div style="margin: 0 auto 10px"><span class="lf">介绍</span>-->
+                <!--<div class="intro lf">-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+
+<script>
+    var popscrollwidth = $(window).width();
+    var popscrollheight = $(window).height();
+    console.log(popscrollwidth, popscrollheight);
+    $(".popAddMoneyBox").css('left', (popscrollwidth / 2 - 335) + "px").css('top', (popscrollheight / 2 - 270) + "px");
+
+
+    var type, pageNo = 0, pageSize = 15;
+    if (!$('.yourselect span').attr('type')) {
+        type = ''
+    } else {
+        type = $('.yourselect span').attr('type')
+    }
+
+    function lastpage(type) {
+        $.ajax({
+            url: '/cszyylfw/gly/placegl/placelist',
+            type: 'post',
+            data: "type=" + type + "&page_no=" + pageNo + "&page_size=" + pageSize + '&token=' + token,
+            async: false,
+            success: function (res) {
+                if (res.code == 0) {
+//                    1剧院礼堂 2教室 3宴会 4体育馆 5T型台 6圆桌 7其他
+                    if (res.data.items.length == 0) {
+                        if(pageNo==1){return}
+                        error('没有更多数据！');
+                        pageNo--;
+                        return
+                    }
+                    $('tbody').html('');
+                    var typeName;
+                    for (var i = 0; i < res.data.items.length; i++) {
+                        var type = res.data.items[i].type;
+                        if (type == 1) {
+                            typeName = '剧院礼堂'
+                        } else if (type == 2) {
+                            typeName = '教室'
+                        } else if (type == 3) {
+                            typeName = '宴会'
+                        } else if (type == 4) {
+                            typeName = '体育馆'
+                        } else if (type == 5) {
+                            typeName = 'T型台'
+                        } else if (type == 6) {
+                            typeName = '圆桌'
+                        } else if (type == 7) {
+                            typeName = '其他'
+                        }
+                        $('tbody').append('  <tr class=""   intro="'+ res.data.items[i].intro+'">' +
+                        '<td>' + (i + 1) + '</td>' +
+                        '<td>' + res.data.items[i].name + '</td>' +
+                        '<td>' + res.data.items[i].location + '</td>' +
+                        '<td type="'+res.data.items[i].type+'">' + typeName + '</td>' +
+                        '<td><span class="lookplace" id="'+res.data.items[i].id+'">查看</span><span class="editplace" id="'+res.data.items[i].id+'">编辑</span><span class="deleteplace" id="'+res.data.items[i].id+'">删除</span></td>' +
+                        '</tr>')
+                    }
+                }
+            }
+        })
+    }
+    pageNo++;
+    lastpage(type);
+    $('.lastpage').click(function () {
+
+        if (!$('.yourselect span').attr('type')) {
+            type = ''
+        } else {
+            type = $('.yourselect span').attr('type')
+        }
+        pageNo--;
+        if (pageNo > 0) {
+            lastpage(type)
+        } else {
+            error('已到达第一页！');
+            pageNo++
+        }
+
+    })
+    $('.nextpage').click(function () {
+        if (!$('.yourselect span').attr('type')) {
+            type = ''
+        } else {
+            type = $('.yourselect span').attr('type')
+        }
+        pageNo++;
+        lastpage(type)
+    })
+
+    //    选择场地类型
+    $('.placetype span').click(function () {
+        $('tbody').html('');
+        $('.yourselect span').remove();
+        $(this).css('border', '1px solid #37b5f9');
+        $(this).siblings('span').css('border', '1px solid #fff');
+        $('.yourselect').append('<span type="' + $(this).attr('type') + '">' + $(this).html() + '<span class="delIcon"></span></span>');
+        type = $(this).attr('type');
+        pageNo = 1;
+        lastpage(type)
+
+    })
+    //删除
+    $('.selectPagess').on('click', '.yourselect .delIcon', function () {
+        $('.placetype span').css('border', '1px solid #fff');
+        $(this).parent().remove();
+        type = '';
+        pageNo = 1;
+        lastpage(type)
+    })
+
+    $('.makeSure').click(function () {
+        $('tbody').html('');
+        if (!$('.yourselect span').attr('type')) {
+            type = '';
+        } else {
+            type = $('.yourselect span').attr('type')
+        }
+        if (!$('.paging input').val()) {
+            pageNo = 1;
+        } else {
+            pageNo = $('.paging input').val()
+        }
+        lastpage(type)
+    })
+
+    //    保存
+
+    $('.saveList').click(function () {
+        $("input:radio[name='myrad']").each(function () {
+            //当前radio是否为选中状态
+            if ($(this).is(':checked') == true) {
+                localStorage.setItem('placeName', $(this).val());
+                localStorage.setItem('placeIntro', $(this).attr('intro'));
+                localStorage.setItem('placeId', $(this).attr('id'));
+                self.close();
+            }
+        });
+    })
+
+
+    //    新增场地
+    $('.addplace').click(function () {
+        $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyBox popAddMoneyBoxbf"> <div class="popAddMoneyTop"> <span class="lf">新增场地</span> <span class="deleteIcon rt" onclick="delThis()"></span> </div> <div class="popAddMoneyBottom"> <div style="margin: 100px auto 10px"> <span>名称</span><input value="" class="studentNum" type="text" maxlength="30"/> </div> <div style="margin: 0 auto 10px"> <span>地址</span><input value="" class="studentName" type="text" maxlength="30"/> </div> <div style="margin: 0 auto 10px"> <span>类型</span><select class="studentPwd" name="" id="typeless"> <option value="1" >剧院礼堂式</option> <option value="2" >教室式</option> <option value="3" >宴会式</option> <option value="4" >体育馆式</option> <option value="5" >T型台式</option> <option value="6" >圆桌式</option> <option value="7" >其他</option> </select> </div><div style="margin: 0 auto 10px"><span>介绍</span> <textarea class="intro textarea" name="" id="" cols="30" rows="10" maxlength="300" placeholder="最多输入300字"></textarea> </div> <button onclick="addStudent()"  class="popAddMoneyBoxBtn">保存</button> </div> </div> </div>')
+        var popscrollwidth = $(window).width();
+        var popscrollheight = $(window).height();
+        console.log(popscrollwidth, popscrollheight);
+        $(".popAddMoneyBox").css('left', (popscrollwidth / 2 - 335) + "px").css('top', (popscrollheight / 2 - 270) + "px");
+    });
+    function addStudent() {
+        var location = $('.studentName').val();
+        var name = $('.studentNum').val();
+        var intro = $('.intro').val();
+        var types = $('.studentPwd option:selected').val();
+        $.ajax({
+            url: "/cszyylfw/gly/placegl/addplace",
+            type: 'post',
+            async: false,
+            data: 'token=' + token + "&name=" + name + "&location=" + location + "&type=" + types + "&intro="+intro,
+            success: function (res) {
+                if (res.code == 0) {
+                    $('.popopowindow').remove()
+                    pageNo=1
+                    lastpage(type)
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！');
+                    setTimeout(function () {
+                        location.href = 'gly_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+
+
+
+
+    //    删除
+    $("tbody").on('click','td .deleteplace',function(){
+        var id=$(this).attr('id')
+        layboxs("action/trade_check_del.html?id=" + id + "&url=/gly/placegl/delplace" + "&fun=delok", "notitle");
+
+    })
+    function delok() {
+        popation("220", "y", "删除成功！");
+        closemask();
+        $('.popopowindow').remove();
+        $('.leadtwo').html('');
+        lastpage(type);
+    }
+
+
+    //    编辑
+    $("tbody").on('click','td .editplace',function(){
+        var id=$(this).attr('id')
+        var intro=$(this).parent().parent().attr('intro');
+        var name=$(this).parent().parent().children().eq(1).html();
+        var location=$(this).parent().parent().children().eq(2).html();
+        var types=$(this).parent().parent().children().eq(3).attr('type')
+        if(types==1){
+            var select='<select class="studentPwd" name=""  id="typeless"> <option value="1" selected >剧院礼堂式</option> <option value="2" >教室式</option> <option value="3" >宴会式</option> <option value="4" >体育馆式</option> <option value="5" >T型台式</option> <option value="6" >圆桌式</option> <option value="7" >其他</option> </select> '
+        }else if(types==2){
+            var select='<select class="studentPwd" name=""  id="typeless"> <option value="1"  >剧院礼堂式</option> <option value="2" selected>教室式</option> <option value="3" >宴会式</option> <option value="4" >体育馆式</option> <option value="5" >T型台式</option> <option value="6" >圆桌式</option> <option value="7" >其他</option> </select> '
+        }else if(types==3){
+            var select='<select class="studentPwd" name=""  id="typeless"> <option value="1"  >剧院礼堂式</option> <option value="2" >教室式</option> <option value="3" selected >宴会式</option> <option value="4" >体育馆式</option> <option value="5" >T型台式</option> <option value="6" >圆桌式</option> <option value="7" >其他</option> </select> '
+        }else if(types==4){
+            var select='<select class="studentPwd" name=""  id="typeless"> <option value="1"  >剧院礼堂式</option> <option value="2" >教室式</option> <option value="3" >宴会式</option> <option value="4" selected>体育馆式</option> <option value="5" >T型台式</option> <option value="6" >圆桌式</option> <option value="7" >其他</option> </select> '
+        }else if(types==5){
+            var select='<select class="studentPwd" name=""  id="typeless"> <option value="1"  >剧院礼堂式</option> <option value="2" >教室式</option> <option value="3" >宴会式</option> <option value="4" >体育馆式</option> <option value="5" selected>T型台式</option> <option value="6" >圆桌式</option> <option value="7" >其他</option> </select> '
+        }else if(types==6){
+            var select='<select class="studentPwd" name=""  id="typeless"> <option value="1"  >剧院礼堂式</option> <option value="2" >教室式</option> <option value="3" >宴会式</option> <option value="4" >体育馆式</option> <option value="5" >T型台式</option> <option value="6" selected>圆桌式</option> <option value="7" >其他</option> </select> '
+        }else if(types==7){
+            var select='<select class="studentPwd" name=""  id="typeless"> <option value="1"  >剧院礼堂式</option> <option value="2" >教室式</option> <option value="3" >宴会式</option> <option value="4" >体育馆式</option> <option value="5" >T型台式</option> <option value="6" >圆桌式</option> <option value="7" selected >其他</option> </select> '
+        }
+        $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyBox popAddMoneyBoxbf"> <div class="popAddMoneyTop"> <span class="lf">新增场地</span> <span class="deleteIcon rt" onclick="delThis()"></span> </div> <div class="popAddMoneyBottom"> <div style="margin: 100px auto 10px"> <span>名称</span><input value="'+name+'" class="studentNum" type="text" maxlength="30"/> </div> <div style="margin: 0 auto 10px"> <span>地址</span><input value="'+location+'" class="studentName" type="text" maxlength="30"/> </div> <div style="margin: 0 auto 10px"> <span>类型</span>'+select+'</div><div style="margin: 0 auto 10px"><span>介绍</span> <textarea class="intro textarea" name="" id="" cols="30" rows="10" maxlength="300" placeholder="最多输入300字">'+intro+'</textarea> </div> <button onclick="addStudents()" id="'+id+'"  class="popAddMoneyBoxBtn">保存</button> </div> </div> </div>')
+        var popscrollwidth = $(window).width();
+        var popscrollheight = $(window).height();
+        console.log(popscrollwidth, popscrollheight);
+        $(".popAddMoneyBox").css('left', (popscrollwidth / 2 - 335) + "px").css('top', (popscrollheight / 2 - 270) + "px");
+
+
+    })
+    function addStudents() {
+        var id=$('.popAddMoneyBoxBtn').attr('id');
+        var location = $('.studentName').val();
+        var name = $('.studentNum').val();
+        var intro = $('.intro').val();
+        var types = $('.studentPwd option:selected').val();
+        $.ajax({
+            url: "/cszyylfw/gly/placegl/alterplace",
+            type: 'post',
+            async: false,
+            data: 'token=' + token + "&name=" + name + "&location=" + location + "&type=" + types + "&intro="+intro+"&id="+id,
+            success: function (res) {
+                if (res.code == 0) {
+                    $('.popopowindow').remove();
+                    lastpage(type)
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！');
+                    setTimeout(function () {
+                        location.href = 'gly_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+
+    //    查看
+    $("tbody").on('click','td .lookplace',function(){
+        var id=$(this).attr('id')
+        var intro=$(this).parent().parent().attr('intro');
+        var name=$(this).parent().parent().children().eq(1).html();
+        var location=$(this).parent().parent().children().eq(2).html();
+        var types=$(this).parent().parent().children().eq(3).html()
+        $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyBox popAddMoneyBoxbf"> <div class="popAddMoneyTop"><span class="lf">查看场地</span> <span class="deleteIcon rt" onclick="delThis()"></span> </div> <div class="popAddMoneyBottom "> <div style="margin: 50px auto 10px"><span>名称</span><div class="studentNum">'+name+'</div></div> <div style="margin: 0 auto 10px"><span>地址</span><div class="studentName">'+location+'</div></div> <div style="margin: 0 auto 10px"><span>类型</span><div  class="studentPwd">'+types+'</div> </div> <div style="margin: 0 auto 10px"><span class="lf">介绍</span> <div class="intro lf">'+intro+'</div> </div> </div> </div> </div>')
+        var popscrollwidth = $(window).width();
+        var popscrollheight = $(window).height();
+        console.log(popscrollwidth, popscrollheight);
+        $(".popAddMoneyBox").css('left', (popscrollwidth / 2 - 335) + "px").css('top', (popscrollheight / 2 - 270) + "px");
+
+    })
+
+
+</script>
+</body>
+</html>

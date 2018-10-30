@@ -1,0 +1,728 @@
+/*=======validate=======*/
+
+.onShow
+{
+	background:url(../images/onShow.gif) no-repeat; 
+	padding-left:25px; 
+	font-size: 12px;
+	line-height:22px; 
+	vertical-align:middle;
+	text-align:left;
+}
+.onFocus
+{
+	background:#FFFFFF url(../images/onFocus.gif) no-repeat; 
+	padding-left:25px; 
+	font-size: 12px;
+	color:blue;
+	line-height:22px; 
+	vertical-align:middle;
+	text-align:left;
+}
+.onError
+{
+	background:#FFFFFF url(../images/onError.gif) no-repeat;
+	padding-left:25px;
+	font-size: 12px;
+	color:red;
+	line-height:22px; 
+	vertical-align:middle;
+	text-align:left;
+}
+
+.error
+{ 
+  line-height:20px;
+  display:inline-block;
+  background:#ffe6e6;
+  border:1px solid #ff3a3a;
+  padding-right:10px;
+  position:relative;
+  margin-left:4px;
+
+  
+}
+.error span.s_arrow
+{
+  background:url(../images/error-arrow.gif)  no-repeat;
+  width:6px;
+  height:11px;
+  position:absolute;
+  top:5px;
+  left:-6px;
+
+}
+.error span.s_1
+{
+  display:block;/*inline-block;*/
+  background:url(../images/onError.gif) center left no-repeat;
+  min-height:22px;
+  padding-left:20px;
+  
+}
+
+.sucess
+{
+  line-height:20px;
+  display:inline-block;
+  background:#def1e0;
+  border:1px solid #007d0d;
+  padding-right:10px;
+  position:relative;
+  margin-left:4px;
+
+
+
+  
+}
+.sucess span.s_arrow
+{
+  background:url(../images/success-arrow.gif)  no-repeat;
+  width:6px;
+  height:11px;
+  position:absolute;
+  top:5px;
+  left:-6px;
+  
+}
+
+.sucess span.s_1
+{
+  display:inline-block;
+  background:url(../images/onSuccess.gif) center left no-repeat;
+  height:22px;
+  padding-left:20px;
+  
+}
+
+.focus
+{
+  line-height:20px;
+  display:inline-block;
+  background:#dee5f2;
+  border:1px solid #0d6bd5;
+  padding-right:10px;
+  position:relative;
+  margin-left:4px;
+
+
+  
+}
+
+.focus span.s_arrow
+{
+  background:url(../images/alert-arrow.gif)  no-repeat;
+  width:6px;
+  height:11px;
+  position:absolute;
+  top:5px;
+  left:-6px;
+  
+}
+
+
+.focus span.s_1
+{
+  display:inline-block;
+  background:url(../images/onFocus.gif) center left no-repeat;
+  height:22px;
+  padding-left:20px;
+  
+}
+
+
+.onCorrect
+{
+	background:#FFFFFF url(../images/onCorrect.gif) no-repeat;
+	padding-left:25px;
+	font-size: 12px;
+	line-height:22px; 
+	vertical-align:middle;
+	text-align:left;
+}
+.onLoad
+{
+	background:#FFFFFF url(../images/onLoad.gif) no-repeat 3px 3px;
+	padding-left:25px;
+	font-size: 12px;
+	line-height:22px; 
+	vertical-align:middle;
+	text-align:left;
+} 
+
+
+/*====DIV下拉列表======*/
+.divlist_mainDv
+{
+	width:100px;
+	height:20px;
+	border:1px solid #A7A6AA;
+	display:inline-block;
+}
+.divlist_mainDv .mainResDv
+{
+	float:left;
+	width:76px;
+	height:20px;
+	line-height: 20px;
+	border: 0px solid #A7A6AA;
+	text-indent: 5px;
+}
+.divlist_mainDv .arrowup
+{
+	float:right;
+	background: url("../images/arrowup.gif") no-repeat scroll right top;
+	width: 16px;
+	height: 18px;
+}
+
+.divlist_mainDv .arrowdown
+{
+	float:right;
+	background: url("../images/arrowdown.gif") no-repeat scroll right top;
+	width: 16px;
+	height: 18px;
+}
+.divlist_listDv
+{
+	width:100px;
+}
+.divlist_listDv .listData
+{
+	border: 1px solid #DDD;
+	position: absolute;
+	line-height: 20px; 
+	width: 100px;
+	background-color: white;
+	z-index: 90;
+	height: 90px;
+	text-indent: 5px;
+	display: inline-block ;
+}
+.divlist_listDv .listData li
+{
+	 text-overflow:ellipsis; 
+	 white-space:nowrap;  
+	 overflow:hidden;
+	 width:100px;
+}
+/*====DIV下拉列表======*/
+
+
+/*-------------------------------------
+zTree Icons Skin
+-------------------------------------*/
+
+.tree li button.sim1.ico_open{ background:url(../images/sim/1_open.png);}
+.tree li button.sim1.ico_close{ background:url(../images/sim/1_close.png);}
+.tree li button.sim2.ico_open{ background:url(../images/sim/2.png);}
+.tree li button.sim2.ico_close{ background:url(../images/sim/2.png);}
+.tree li button.sim2.ico_docu{ background:url(../images/sim/2.png);}
+.tree li button.sim3.ico_docu{ background:url(../images/sim/3.png);}
+.tree li button.sim4.ico_docu{ background:url(../images/sim/4.png);}
+.tree li button.sim5.ico_docu{ background:url(../images/sim/5.png);}
+.tree li button.sim6.ico_docu{ background:url(../images/sim/6.png);}
+.tree li button.sim7.ico_docu{ background:url(../images/sim/7.png);}
+.tree li button.sim8.ico_docu{ background:url(../images/sim/8.png);}
+.tree li button.sim9.ico_docu{ background:url(../images/sim/9.png);}
+.tree li button.sim10.ico_docu{ background:url(../images/sim/10.png);}
+
+.tree li button.flag1.ico_open{ background:url(../images/flag/1_open.png);}
+.tree li button.flag1.ico_close{ background:url(../images/flag/1_close.png);}
+.tree li button.flag2.ico_open{ background:url(../images/flag/2.png);}
+.tree li button.flag2.ico_close{ background:url(../images/flag/2.png);}
+.tree li button.flag2.ico_docu{ background:url(../images/flag/2.png);}
+.tree li button.flag3.ico_docu{ background:url(../images/flag/3.png);}
+.tree li button.flag4.ico_docu{ background:url(../images/flag/4.png);}
+.tree li button.flag5.ico_docu{ background:url(../images/flag/5.png);}
+.tree li button.flag6.ico_docu{ background:url(../images/flag/6.png);}
+.tree li button.flag7.ico_docu{ background:url(../images/flag/7.png);}
+.tree li button.flag8.ico_docu{ background:url(../images/flag/8.png);}
+.tree li button.flag9.ico_docu{ background:url(../images/flag/9.png);}
+.tree li button.flag10.ico_docu{ background:url(../images/flag/10.png);}
+
+/*-------------------------------------
+zTree Style
+-------------------------------------*/
+
+.tree{
+	margin:0; 
+	padding: 5px;
+	color:#333;
+	font-size:14px;
+	font-family: Verdana, Arial, Helvetica, AppleGothic, sans-serif;
+	overflow:hidden;
+	overflow-x:auto;
+	margin-bottom:10px;
+	}
+
+.tree li{
+	padding:0; margin:0; 
+	list-style:none;
+	line-height:20px; 
+	text-align:left; 
+	white-space:nowrap;	
+	}
+
+.tree li ul{ margin:0; padding:0 0 0 20px;}
+.tree li ul.line{ background:url(../images/line_conn.gif) 0 0 repeat-y;}
+
+.tree li a {
+	padding:0; margin:0 10px 0 0; 
+	cursor:pointer; 
+	color:#333; 
+	text-decoration:none;
+	}
+.tree li a:hover {text-decoration:none;color:#e44a0f;}
+.tree li a.curSelectedNode {
+	background-color:#FFE6B0; 
+	padding-right:4px;
+	color:black;
+	border:1px #FFB951 solid; 
+	opacity:0.8; filter:alpha(opacity=80);
+	}
+.tree li a.curSelectedNode_Edit {
+	line-height: 18px;
+	background-color:#FFE6B0; 
+	color:black;
+	border:1px #FFB951 solid; 
+	opacity:0.8; filter:alpha(opacity=80);
+	}
+.tree li a.tmpTargetNode {
+	background-color:#316AC5; 
+	color:white;
+	border:1px #316AC5 solid; 
+	opacity:0.8; filter:alpha(opacity=80);
+	}
+.tree li a input.rename {height:13px; width:80px; padding:0; margin:0; font-size:12px;}	
+.dv_addnodes
+{overflow:hidden;
+ margin-bottom:10px;
+}
+
+.tree .dv_operatpannel
+{
+  background:#f9f9f9;
+  height:25px;
+  overflow:hidden;  
+  border-bottom:1px solid #ddd;
+}
+.tree .dv_operatpannel ul
+{ margin-top:6px;
+}
+.tree .dv_operatpannel li
+{ float:left; 
+  margin-left:12px;
+}
+.tree .dv_operatpannel li .s1
+{ background:url(../images/img_siti_bj.png) -20px -16px no-repeat;
+  display:inline-block;
+  width:16px;
+  height:17px;
+}
+.tree .dv_operatpannel li .s2
+{ background:url(../images/img_siti_bj.png) -45px -16px no-repeat;
+  display:inline-block;
+  width:16px;
+  height:17px;
+}
+.tree .dv_operatpannel li .s3
+{ background:url(../images/img_siti_bj.png) -70px -16px no-repeat;
+  display:inline-block;
+  width:16px;
+  height:17px;
+}
+.tree .dv_operatpannel li .s4
+{ background:url(../images/img_siti_bj.png) -94px -14px no-repeat;
+  display:inline-block;
+  width:16px;
+  height:17px;
+}
+
+.tree .list
+{ overflow:hidden;
+  clear:both;
+}
+.tree div button {
+	width:1px; height:1px; 
+	padding:0; margin:0; 
+	vertical-align:middle;
+	border:0 none; 
+	background-color: transparent; 
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	cursor: pointer;
+}
+.tree li button {
+	width:18px; height:22px; 
+	padding:0; margin:0; 	
+	vertical-align:middle;
+	border:0 none; 
+	background-color: transparent; 
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	cursor: pointer;
+	}
+.tree li button.ico {
+	padding:0; margin:0 2px 0 0; 
+	}
+.tree div button.add {background:url("../images/addNode.png") no-repeat scroll 0 0 transparent;}
+.tree div button.addSub {background:url("../images/addSubNode.png") no-repeat scroll 0 0 transparent;}
+.tree div button.edit {background:url("../images/edit.png") no-repeat scroll 0 0 transparent;}	
+.tree div button.remove {background:url("../images/remove.png") no-repeat scroll 0 0 transparent;}	
+.tree div button.up {background:url("../images/up.png") no-repeat scroll 0 0 transparent;}	
+.tree div button.down {background:url("../images/down.png") no-repeat scroll 0 0 transparent;}	
+.tree div button.left {background:url("../images/left.png") no-repeat scroll 0 0 transparent;}	
+.tree div button.right {background:url("../images/right.png") no-repeat scroll 0 0 transparent;}	
+.tree div button.refresh {background:url("../images/refresh.png") no-repeat scroll 0 0 transparent;}	
+
+
+.tree li button.edit {background:url("../images/edit.png") no-repeat scroll 0 0 transparent;}	
+.tree li button.remove {background:url("../images/remove.png") no-repeat scroll 0 0 transparent;}	
+
+.tree li button.chk {
+	width:13px; height:13px; 
+	padding:0; margin:0 3px 0 0; 
+	vertical-align:middle;
+	border:0 none;
+	cursor: auto;
+	}
+.tree li button.chk.checkbox_false_full { background:url("../images/checkbox.png") no-repeat scroll 0 0 transparent;}	
+.tree li button.chk.checkbox_false_full_focus { background:url("../images/checkbox.png") no-repeat scroll 0 -12px transparent;}	
+.tree li button.chk.checkbox_false_part { background:url("../images/checkbox.png") no-repeat scroll 0 -72px transparent;}	
+.tree li button.chk.checkbox_false_part_focus { background:url("../images/checkbox.png") no-repeat scroll 0 -84px transparent;}	
+.tree li button.chk.checkbox_true_full { background:url("../images/checkbox.png") no-repeat scroll 0 -24px transparent;}	
+.tree li button.chk.checkbox_true_full_focus { background:url("../images/checkbox.png") no-repeat scroll 0 -36px transparent;}	
+.tree li button.chk.checkbox_true_part { background:url("../images/checkbox.png") no-repeat scroll 0 -48px transparent;}	
+.tree li button.chk.checkbox_true_part_focus { background:url("../images/checkbox.png") no-repeat scroll 0 -60px transparent;}	
+
+.tree li button.chk.radio_false_full { background:url("../images/radio.png") no-repeat scroll 0 0 transparent;}	
+.tree li button.chk.radio_false_full_focus { background:url("../images/radio.png") no-repeat scroll 0 -12px transparent;}	
+.tree li button.chk.radio_false_part { background:url("../images/radio.png") no-repeat scroll 0 -72px transparent;}	
+.tree li button.chk.radio_false_part_focus { background:url("../images/radio.png") no-repeat scroll 0 -84px transparent;}	
+.tree li button.chk.radio_true_full { background:url("../images/radio.png") no-repeat scroll 0 -24px transparent;}	
+.tree li button.chk.radio_true_full_focus { background:url("../images/radio.png") no-repeat scroll 0 -36px transparent;}	
+.tree li button.chk.radio_true_part { background:url("../images/radio.png") no-repeat scroll 0 -48px transparent;}	
+.tree li button.chk.radio_true_part_focus { background:url("../images/radio.png") no-repeat scroll 0 -60px transparent;}	
+
+.tree li button.switch_root_open{ background:url(../images/minus_root.gif);}
+.tree li button.switch_root_close{ background:url(../images/plus_root.gif);}
+.tree li button.switch_roots_open{ background:url(../images/minus_top.gif);}
+.tree li button.switch_roots_close{ background:url(../images/plus_top.gif);}
+.tree li button.switch_center_open{ background:url(../images/minus_center.gif);}
+.tree li button.switch_center_close{ background:url(../images/plus_center.gif);}
+.tree li button.switch_bottom_open{ background:url(../images/minus_bottom.gif);}
+.tree li button.switch_bottom_close{ background:url(../images/plus_bottom.gif);}
+.tree li button.switch_noLine_open{ background:url(../images/minus_noLine.gif);}
+.tree li button.switch_noLine_close{ background:url(../images/plus_noLine.gif);}
+
+.tree li button.switch_root_docu{ background:none;}
+.tree li button.switch_roots_docu{ background:url(../images/line_top.gif);}
+.tree li button.switch_center_docu{ background:url(../images/line_center.gif);}
+.tree li button.switch_bottom_docu{ background:url(../images/line_bottom.gif);}
+.tree li button.switch_noLine_docu{ background:none;}
+
+.tree li button.ico_loading{ background:url(../images/loading.gif) no-repeat scroll 1px 1px transparent;}
+.tree li button.ico_open{ background:url(../images/folder_Open.gif) no-repeat;}
+.tree li button.ico_close{ background:url(../images/folder_Close.gif) no-repeat;}
+.tree li button.ico_docu{ background:url(../images/page.gif) 0px 2px no-repeat;}
+.tree li button.ico_docu-stop{ background:url(../images/page-unable.gif);}
+
+.tree INPUT.checkbox {
+	padding:0; margin:0 2px 0 0; 
+	width:18px; height:18px; 
+	vertical-align:middle; 
+	}
+
+.tmpTargetTree {
+	background-color:#FFE6B0; 
+	border:0px #FFB951 solid; 
+	opacity:0.8; filter:alpha(opacity=80);
+	}
+
+button.tmpzTreeMove_arrow {
+	width:16px; height:16px; 
+	padding:0; margin:2px 0 0 1px; 
+	border:0 none; 
+	position:absolute; 
+	background:url(../images/moveArrow.png) no-repeat scroll 0 0 transparent;
+	}
+	
+.zTreeDragUL {
+	margin:0; padding:0; 
+	position:absolute; 
+	background-color:#cfcfcf; 
+	border:1px #00B83F dotted; 
+	opacity:0.8; filter:alpha(opacity=80);
+	}
+
+.zTreeMask {
+	 z-index:10000; 
+	 background-color:#cfcfcf; 
+	 opacity:0.0; filter:alpha(opacity=0); 
+	 position:absolute;
+}
+
+div.zTreeDemoBackground {
+	height:470px;
+	padding:45px 0 0 60px;
+	text-align:left;
+	width:280px;
+	background: url(../images/zTreeDemo_background.png) no-repeat;
+}
+
+ul#treeDemo {
+	width:210px;
+	height:330px;
+	overflow-y:scroll;
+	overflow-x:auto;
+}
+ul#treeDemo2 {
+	width:210px;
+	height:330px;
+	overflow-y:scroll;
+	overflow-x:auto;
+}
+
+
+div#rMenu {
+	background-color:#555555;
+	text-align: left;
+	padding:2px;
+}
+
+div#rMenu ul {
+	margin:1px 0;
+	padding:0 5px;
+	cursor: pointer;
+	list-style: none outside none;
+	background-color:#DFDFDF;
+}
+div#rMenu ul li {
+	margin:0;
+	padding:2px 0;
+}
+
+
+button.ico {
+	width:26px; height:26px; 
+	padding:0; margin:-5px 10px 0 0 ; 
+	vertical-align:middle;
+	border:0 none; 
+	background-color: transparent; 
+	background-repeat: no-repeat;
+	background-position: 0 0;
+}
+li.menu button.ico {
+	cursor: pointer;
+}
+.operate button.ico {
+	cursor: pointer;
+}
+td.operate button.ico {
+	margin:0;
+	padding:0;
+}
+.dv_order table tr td.cleartdborder
+{ border-left:none;
+  border-right:none;
+}
+
+li button.ico.star { background:url("../images/star.png") no-repeat scroll -26px 0 transparent;}
+li.focus button.ico.star { background:url("../images/star.png") no-repeat scroll 0 0 transparent;}
+button.ico.books { background:url("../images/books.png") no-repeat scroll 0 0 transparent;}
+button.ico.safari { background:url("../images/safari.png") no-repeat scroll 0 0 transparent;}
+button.ico.moveNode { background:url("../images/moveNode.png") no-repeat scroll 0 0 transparent;}
+button.ico.moveNodeR { background:url("../images/moveNodeR.png") no-repeat scroll 0 0 transparent;}
+button.ico.refresh { background:url("../images/refresh.png") no-repeat scroll 0 0 transparent;}
+button.ico.addNode { background:url("../images/addNode.png") no-repeat scroll 0 0 transparent;}
+button.ico.expandNode { background:url("../images/expandNode.png") no-repeat scroll 0 0 transparent;}
+button.ico.collapseNode { background:url("../images/collapseNode.png") no-repeat scroll 0 0 transparent;}
+button.ico.removeNode { background:url("../images/removeNode.png") no-repeat scroll 0 0 transparent;}
+button.ico.checkNode { background:url("../images/checkNode.png") no-repeat scroll 0 0 transparent;}
+button.ico.unCheckNode { background:url("../images/unCheckNode.png") no-repeat scroll 0 0 transparent;}
+button.ico.skin { background:url("../images/skin.png") no-repeat scroll 0 0 transparent;}
+button.ico.left { background:url("../images/left.png") no-repeat scroll 0 0 transparent;}
+button.ico.right { background:url("../images/right.png") no-repeat scroll 0 0 transparent;}
+button.ico.down { background:url("../images/down.png") no-repeat scroll 0 0 transparent;}
+button.ico.up { background:url("../images/up.png") no-repeat scroll 0 0 transparent;}
+button.ico.searchNode { background:url("../images/searchNode.png") no-repeat scroll 0 0 transparent;}
+
+.tree li button.diyBtn_unlock { background:url("../images/unlock.gif") no-repeat scroll 0px 0px transparent;width:29px;overflow:hidden;height:13px;}
+.tree li button.diyBtn_lock { background:url("../images/lock.gif") no-repeat scroll 1px 0px transparent;width:29px;height:13px;}
+.tree li button.diyBtn_moveup { background:url("../images/moveup.gif") no-repeat scroll 0px 0px transparent;margin-top:1px;height:13px;}
+.tree li button.diyBtn_movedown { background:url("../images/movedown.gif") no-repeat scroll 0px 0px transparent;margin-top:1px;height:13px;}
+.tree li button.diyBtn_edit {background:url("../images/edit.gif") no-repeat scroll 0 0px transparent;margin-top:1px;height:13px;}	
+.tree li button.diyBtn_remove {background:url("../images/remove.gif") no-repeat scroll 0 0px transparent;margin-top:1px;height:13px;}	
+
+.emptyButton {
+	width:0px; height:0px; 
+	padding:0; margin:0; 
+	border:0 none;
+}
+.treeButton {
+	width:13px; height:13px; 
+	padding:0; margin:-2px 3px 0 0; 
+	vertical-align:middle;
+	border:0 none;
+	cursor: auto;
+}
+
+.selectLi {
+	background:#667991;
+	color:white;
+}
+.selectLi_tmp {
+	background: #DFDFDF;
+	color:black;
+}
+
+
+.headTitle {
+	margin:0 0 10px 0;
+	padding:0;
+	font-weight:bold;
+	font-size:28px;
+}
+.headTitle span {
+	font-weight:normal;
+	font-size:14px;
+}
+.treeButton.checkbox_false_full { background:url("../images/checkbox.png") no-repeat scroll 0 0 transparent;}	
+.treeButton.checkbox_false_full_focus { background:url("../images/checkbox.png") no-repeat scroll 0 -12px transparent;}	
+.treeButton.checkbox_false_part { background:url("../images/checkbox.png") no-repeat scroll 0 -72px transparent;}	
+.treeButton.checkbox_false_part_focus { background:url("../images/checkbox.png") no-repeat scroll 0 -84px transparent;}	
+.treeButton.checkbox_true_full { background:url("../images/checkbox.png") no-repeat scroll 0 -24px transparent;}	
+.treeButton.checkbox_true_full_focus { background:url("../images/checkbox.png") no-repeat scroll 0 -36px transparent;}	
+.treeButton.checkbox_true_part { background:url("../images/checkbox.png") no-repeat scroll 0 -48px transparent;}	
+.treeButton.checkbox_true_part_focus { background:url("../images/checkbox.png") no-repeat scroll 0 -60px transparent;}
+.treeButton.radio_false_full { background:url("../images/radio.png") no-repeat scroll 0 0 transparent;}	
+.treeButton.radio_false_full_focus { background:url("../images/radio.png") no-repeat scroll 0 -12px transparent;}	
+.treeButton.radio_false_part { background:url("../images/radio.png") no-repeat scroll 0 -72px transparent;}	
+.treeButton.radio_false_part_focus { background:url("../images/radio.png") no-repeat scroll 0 -84px transparent;}	
+.treeButton.radio_true_full { background:url("../images/radio.png") no-repeat scroll 0 -24px transparent;}	
+.treeButton.radio_true_full_focus { background:url("../images/radio.png") no-repeat scroll 0 -36px transparent;}	
+.treeButton.radio_true_part { background:url("../images/radio.png") no-repeat scroll 0 -48px transparent;}	
+.treeButton.radio_true_part_focus { background:url("../images/radio.png") no-repeat scroll 0 -60px transparent;}
+
+.treebtn1
+{
+	src:"../images/addNode.png";
+}
+
+#ui-datepicker-div{ font-size: 80%;z-index:20000; }			
+
+/* css for timepicker */
+.ui-timepicker-div .ui-widget-header{ margin-bottom: 8px; }
+.ui-timepicker-div dl{ text-align: left; }
+.ui-timepicker-div dl dt{ height: 25px; }
+.ui-timepicker-div dl dd{ margin: -25px 10px 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }
+
+
+
+/*add by qiu jia long 用于弹出框*/
+
+#popupbg
+{
+	filter: alpha(opacity=50);
+	background: #666666;
+	opacity: 0.5;
+	position: absolute;
+	z-index: 10;
+	left: 0px;
+	top: 0px;
+	float: left;
+}
+
+#popubg_dialog {background-color:White; border:2px solid #ddd;}
+div.popborder { padding: 3px; background-color: #000000; filter:alpha(opacity=50); -moz-opacity:0.5; opacity: 0.5; }
+/*用于弹出浮层的样式*/
+#popubg_dialog .dv_windowTitle
+{
+  height:35px;
+  background-color:#E8F1FB;
+  line-height:35px;
+  text-indent:20px;
+  position:relative;
+  overflow:hidden;
+  cursor:move;
+  font-weight: bold; 
+  position: relative;     
+
+}
+
+#popubg_dialog  .dv_closewindow
+{ 
+	position:absolute;
+	background:url(../images/img_close_study.gif) no-repeat;
+	width:16px;
+	height:16px;
+	display:inline-block;
+	right:8px;   
+	top:8px;    
+	overflow:hidden;
+}
+#popubg_dialog  .dv_startPlayWave
+{ background:url(../images/img-btn-play.gif) no-repeat;
+  width:120px;
+  height:25px;
+  line-height:25px;
+  display:inline-block;
+  cursor:pointer;
+  border:0px;
+  color:White;
+  text-indent:30px;
+  overflow:hidden;
+  margin-right:10px;
+  float:left;
+}
+#popubg_dialog  .Ico_playwave
+{
+  background:url(../images/img-ico-wave.png) 0 6px no-repeat;
+  width:18px;
+  height:26px;
+  display:inline-block;  
+  margin-right:4px;
+  position:relative;
+  float:left;
+ }
+#popubg_dialog  .dv_closewave
+{    
+	background:url(../images/img_close_study.gif) 8px 6px  no-repeat;
+	width:16px;
+	height:26px;
+	display:inline-block;      
+	border-left:1px solid #ddd;
+	padding-left:10px;
+	float:left;
+	position:relative;
+}
+
+
+/* =========用户选择控件=============  */
+.fun-user{width:320px;overflow:hidden}
+.fun-user .fu-l{width:150px;float:left;display:inline;overflow:hidden}
+.fun-user .fu-l{height:202px;}
+.fun-user .fu-l-txt{height:25px;}
+.fun-user .fu-l .fu-l-m{width:140px;border:1px solid #ddd;height:170px;margin:5px 0 0 0; overflow-y:scroll}
+.fu-l-m-ul li{padding:0px 0 0px 22px;background:url(/content/images/fu-ico.gif) 3px -36px no-repeat;cursor:pointer;height:24px;line-height:24px;width:100px;float:left;overflow:hidden}
+.fu-l-m-ul li span{display:block}
+.fu-l-m-ul li span.selected{background:url(/content/images/fu-ico.gif) 80px -15px no-repeat}
+.fun-user .fu-r{width:140px;float:left;display:inline;height:200px;border:1px solid #ddd;margin-left:15px;overflow:hidden}
+.fun-user .fu-r .fu-r-m{width:140px;height:200px; overflow-y:scroll}
+.fu-r-m-ul li{height:25px;overflow:hidden}
+.fu-r-m-ul li.selected{background:#ddd}
+.fu-r-m-ul li span{display:block;padding:5px 0 5px 22px;background:url(/content/images/fu-ico.gif) 3px -36px no-repeat}
+.fu-r-m-ul li .fu-r-m-ul-li-del-ico,.fu-r-m-ul li.selected .fu-r-m-ul-li-del-ico{background:url(/content/images/fu-ico.gif) 2px 3px no-repeat;width:5px;height:5px;float:right;cursor:pointer;display:none}
+.fu-r-m-ul li.selected .show{width:5px;height:5px;float:right;cursor:pointer;display:inline-block}
+.clear{clear:both}
+.fun-user-btn{width:100%;margin-top:10px;float:left;padding-left:40px}
+.review{background:url(/content/images/cou2012552ico.gif) no-repeat left -270px;width:68px;height:26px;line-height:20px;text-align:center;border:0;cursor:pointer;padding:0}
+
+
+
+/* =========用户选择控件=============  */
+
+
+

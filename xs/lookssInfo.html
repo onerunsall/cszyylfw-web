@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>查看食材</title>
+    <!--<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="../xs/css/gly_site_report.css"/>
+    <link rel="stylesheet" href="../xs/css/all.css"/>
+    <link rel="stylesheet" href="../gly/css/addoldman.css"/>
+    <link rel="stylesheet" href="../xs/css/xuxk.css"/>
+    <script src="../xs/js/jquery-1.8.3.min.js"></script>
+    <script src="../xs/js/xuxkBrief.js"></script>
+    <script src="../xs/js/addTmpImg.js"></script>
+    <script src="../xs/js/public.js"></script>
+    <style>
+        body {
+            font-size: 12px;
+            font-family: Arial, Helvetica, sans-serif, 宋体;
+            color: rgb(51, 51, 51);
+            background: #fff;
+        }
+        .secondTwo>div>span{
+            width: 135px;
+            line-height: 30px;
+            margin-right: 0 !important;
+        }
+        .age span{
+            display: inline-block;
+            margin-right: 30px;
+        }
+        /*body {font: normal 100% Helvetica, Arial,sans-serif;}*/
+    </style>
+    <script>
+        var token = localStorage.getItem('token');
+        loginrefresh(token)
+        var chfaId, plan, ssid = '',
+                title,
+                time,
+                place_id;
+        //    监听滚动
+        scroll()
+    </script>
+</head>
+<body>
+<div class="topTitleNjcs">
+    <div class="topTitleNjcsline">
+        <div class="logo lf">
+            <a href="xs_index.html">
+                <img src="../images/toplogo.png" alt="">
+            </a>
+        </div>
+        <div class="exit rt">
+            <span></span>
+            <a href="javascript:;" onclick="getout()">退出</a>
+        </div>
+    </div>
+</div>
+<div class="smallBox" style="margin-top: 90px">
+    <div class="smallBoxFirst">
+        <p class="firstOne lf fontweight">食材名称</p><div  style=" width: 424px;height: auto !important;   margin-left: 20px;" class="firstThree name lf" ></div>
+    </div>
+    <div class="smallBoxFirst">
+        <p class="firstOne lf fontweight">食材种类</p><div  style=" width: 424px;height: auto !important;   margin-left: 20px;"  class="firstThree age lf" ></div>
+    </div>
+<div class="clear"></div>
+    <div class="top60 ">
+        <p class="secondOne fontweight">适应病症</p>
+
+        <div class="secondTwo mxb ondiseases">
+            <div class="lf"></div>
+        </div>
+        <div class="diseasetext"></div>
+        <!--<textarea name="diseasetext" id="diseasetext" cols="30" rows="10" maxlength="1000"></textarea>-->
+    </div>
+    <div class="top60 ">
+        <p class="secondOne fontweight">禁忌病症</p>
+
+        <div class="secondTwo mxb offdiseases">
+            <div class="lf"></div>
+        </div>
+        <div class="diseasetext"></div>
+        <!--<textarea name="diseasetext" id="diseasetext" cols="30" rows="10" maxlength="1000"></textarea>-->
+    </div>
+    <div class="top60 ">
+        <p class="secondOne fontweight">营养价值</p>
+
+        <div class="cognitivetext diseaseInfo nutritive_value" style="margin-top: 40px"></div>
+        <!--<textarea name="cognitivetext" id="cognitivetext" cols="30" rows="10" maxlength="1000"></textarea>-->
+    </div>
+
+    <div class="top60 ">
+        <p class="secondOne fontweight">烹饪建议</p>
+
+
+        <div class="diseasetext cook_tips" style="margin-top: 40px"></div>
+        <!--<textarea name="diseasetext" id="diseasetext" cols="30" rows="10" maxlength="1000"></textarea>-->
+    </div>
+
+
+
+
+</div>
+
+
+<script>
+    var cognitive = '';
+    var movability = '';
+    var disease = '';
+    var interest = '';
+
+    var id=GetQueryString('id')
+
+    $.ajax({
+        url: '/cszyylfw/gly/foodgl/foodinfo',
+        data:'token='+token+ '&id=' + id,
+        async: false,
+        success: function (res) {
+            if(res.code==0){
+                $('.name').html(res.data.name);
+                $('.cook_tips').html(res.data.cookTips)
+                $('.nutritive_value').html(res.data.nutritiveValue)
+                var typesName=res.data.types.name
+                for(var i=0;i<res.data.types.length;i++){
+                    $('.age').append('<span typeId="'+res.data.types[i].typeId+'">'+res.data.types[i].name+'</span>')
+                }
+                $('.typesName').html()
+                var offdiseases=res.data.offdiseases
+                var ondiseases=res.data.ondiseases
+                for(var  i=0;i<offdiseases.length;i++){
+                    $('.offdiseases div').append('<span class="lf lookSpan">'+offdiseases[i].name+'</span>')
+                }
+                for(var  i=0;i<ondiseases.length;i++){
+                    $('.ondiseases div').append('<span class="lf lookSpan">'+ondiseases[i].name+'</span>')
+                }
+
+            }
+        }
+    })
+
+
+    $('.btnsave').click(function () {
+        var name = $('.name').val();
+        var sex = $('#select option:selected').val();
+        var age = $('.age').val();
+        $("input:radio[name='movability']").each(function () {
+            //当前radio是否为选中状态
+            if ($(this).is(':checked') == true) {
+                movability = $(this).next().html()
+            }
+        });
+        $("input:radio[name='cognitive']").each(function () {
+            //当前radio是否为选中状态
+            if ($(this).is(':checked') == true) {
+                cognitive = $(this).next().html()
+            }
+        });
+        $("input:checkbox[name='disease']").each(function () {
+            //当前radio是否为选中状态
+            if ($(this).is(':checked') == true) {
+                disease = disease + $(this).next().html() + ',';
+            }
+        });
+        $("input:checkbox[name='interest']").each(function () {
+            //当前radio是否为选中状态
+            if ($(this).is(':checked') == true) {
+                interest = interest + $(this).next().html() + ',';
+            }
+        });
+        disease=disease.slice(0,disease.length-1)
+        interest=interest.slice(0,interest.length-1)
+        if (!$('#movabilitytext').val()) {
+        } else {
+            var text1 = $('#movabilitytext').val();
+            movability = movability + '!' + text1
+        }
+        if (!$('#cognitivetext').val()) {
+        } else {
+            var text2 = $('#cognitivetext').val();
+            cognitive = cognitive + '!' + text2
+        }
+        if (!$('#diseasetext').val()) {
+        } else {
+            var text3 = $('#diseasetext').val();
+            disease = disease + '!' + text3
+        }
+        if (!$('#interesttext').val()) {
+        } else {
+            var text4 = $('#interesttext').val();
+            interest = interest + '!' + text4
+        }
+        if (name == '' || age == '' || sex == '' || movability == '' || cognitive == '') {
+            error('请先填写完整信息')
+        } else {
+            $.ajax({
+                url: '/cszyylfw/gly/oldmangl/addoldman',
+                data:'token='+token+ '&name=' + name + "&sex=" + sex + "&age=" + age + "&movability=" + movability + "&cognitive=" + cognitive + "&disease=" + disease + "&interest=" + interest,
+                async: false,
+                success: function (res) {
+                    if(res.code==0){
+                        error('添加成功');
+                        self.close()
+                    }
+                }
+            })
+        }
+
+    })
+
+</script>
+</body>
+</html>

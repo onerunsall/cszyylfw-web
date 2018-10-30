@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>膳食调查报告</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/gly_site_report.css"/>
+    <link rel="stylesheet" href="css/all.css"/>
+    <link rel="stylesheet" href="css/xuxkpopWindow.css"/>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/xuxkBrief.js"></script>
+    <script src="js/addTmpImg.js"></script>
+    <link rel="stylesheet" href="css/xuxk.css"/>
+    <script src="js/ssevalution.js"></script>
+    <link rel="stylesheet" href="css/gobal.css"/>
+    <link rel="stylesheet" href="css/xs_site_summary.css"/>
+    <link rel="stylesheet" href="../laydata/laydate.css"/>
+    <script src="../laydata/laydate.js"></script>
+    <link rel="stylesheet" href="css/ssevalution.css"/>
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font-size: 12px;
+            font-family: Arial, Helvetica, sans-serif, 宋体;
+            color: rgb(51, 51, 51);
+            background: #fff;
+        }
+        .popspan{
+            width: 20px !important;
+            margin-left:20px !important;
+            display: inline-block !important;
+            margin-right:0 !important;
+            text-align: left !important;
+        }
+        .popAddMoneyBottom{
+            line-height: 34px;
+        }
+        .popAddMoneyBottom>div>span:first-child{
+            vertical-align: top;
+        }
+    </style>
+    <script>
+        var token = localStorage.getItem('token');
+        loginrefresh(token)
+        var zjbgId, intro, name, leader_if,
+                start_time = '',
+                end_time = '',
+                background,
+                xm_name, xm_period, xm_leader, kehu_fankui, wenti_jiejue, jingyan, jiaoxun, jianyi, yijian, yiliuwenti_chuli,
+                target;
+        //    监听滚动
+        scroll()
+
+    </script>
+</head>
+<body>
+<div class="topTitleNjcs">
+    <div class="topTitleNjcsline">
+        <div class="logo lf">
+            <a href="xs_index.html">
+                <img src="../images/toplogo.png" alt="">
+            </a>
+        </div>
+        <div class="exit rt">
+            <span></span>
+            <a href="javascript:;" onclick="getout()">退出</a>
+        </div>
+    </div>
+</div>
+<div class="siteReportTop">
+    <div class="minWidth">
+        <div class="lf siteReportTopLf">
+            <img src="../images/zjbg.png" alt=""/><br/>
+            <span>主页/肥胖症/膳食调查评估</span>
+        </div>
+        <div class="rt siteReportTopRt">
+            <span>作业状态：未提交</span><span style="display: none"></span>
+            <!--<button class="edit lf"><span></span>编辑</button>-->
+            <!--<button class="editover lf"><span></span>完成</button>-->
+            <!--<button class="supply rt" disabled onclick="supply()"><span></span>提交作业</button>-->
+        </div>
+    </div>
+</div>
+<!--基本信息-->
+<div class="brief summaryreport">
+    <p>一日膳食</p>
+    <span class="noEdit no1">还未编辑内容</span>
+
+    <div class="addoldAll" style="display: none">
+        <span>老年人</span><input type="text" class="oldman" disabled/>
+        <span class="newOldman">选择老年人</span>
+        <span class="lookOldman">查看老年人信息</span>
+        <span class="lookJb">查看疾病信息</span>
+    </div>
+    <div class="briefnameAll"></div>
+
+
+
+</div>
+
+
+<!--实施总结-->
+<div class="briefNext peopleFg">
+    <table class="fiveLine" style="margin-top: 100px">
+        <thead>
+        <tr>
+            <td class="tab1" colspan="5">一日膳食</td>
+        </tr>
+        <tr class="tab2">
+            <td>饮食时间</td>
+            <td>食物名称</td>
+            <td>原料名称</td>
+            <td>原料重量(g)</td>
+            <td>操作</td>
+        </tr>
+        </thead>
+        <tbody class="leadthree">
+
+        <tr>
+            <td colspan="5 ">
+                <p class="tab3">未添加膳食</p>
+            </td>
+            <td colspan="5" style="display: none">
+                <p class="tab4 addleadMan3">+&nbsp;添加膳食</p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <p>营养素摄入量评价</p>
+    <table class="fiveLine">
+        <thead>
+        <tr>
+            <td class="tab1" colspan="5">营养素摄入量评价</td>
+        </tr>
+        <tr class="tab2">
+            <td>营养素</td>
+            <td>摄入量(g)</td>
+            <td>推荐摄入量(g)</td>
+            <td>最高可耐受摄入量(g)</td>
+            <td>操作</td>
+        </tr>
+        </thead>
+        <tbody class="leadone">
+
+        <tr>
+            <td colspan="5">
+                <p class="tab3">未添加营养摄入量</p>
+            </td>
+            <td colspan="5" style="display: none">
+                <p class="tab4 addleadMan1">+&nbsp;添加营养摄入量</p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="brief">
+    <p style="display: inline-block">文档</p>
+
+    <div class="mubanBox" style="padding-bottom: 20px;border-bottom: 1px solid #e5e5e5">
+    </div>
+    <form action="" id="up1">
+        <input type="file" id="choosefile" onchange="fileChangeDoc(this);" accept=".doc,.pdf,.docx,.pptx,.rtf"
+               name="choosefile" style="display: none"/>
+    </form>
+
+    <div class="wendangBox" style="margin-top: 40px">
+    </div>
+    <!--<div class="wendang"><span class="editDocument"></span><span class="editDoc">社会保障学</span> <span class="rt del"></span> </div>-->
+    <div class="editDoc edit2" onclick="editDoc()"><span class="editDocument"></span>添加文档</div>
+    <div class="lineBottom" style="width: 1100px;height:37px;border-bottom: 1px solid #CCCCCC"></div>
+</div>
+<div class="btncnm" style="width: 1100px;margin: 0 auto;display: none;">     <div style="width: 258px;margin-left:421px;">         <button class="edit lf" style="border: 1px solid #02569c;margin-bottom: 30px;display:none;"><span></span>编辑</button>         <button class="editover lf" style="border: 1px solid #02569c;margin-bottom: 30px"><span></span>完成</button>         <button class="supply rt" disabled  onclick="supply()"  style="border: 1px solid #02569c;margin-bottom: 30px"><span></span>提交案例</button>     </div> </div>
+<!--TODO end-->
+<!--<div class="popopowindow">-->
+<!--<div class="popBackground"></div>-->
+<!--<div class="popAddMoneyBox" >-->
+<!--<div class="popAddMoneyTop"><span class="lf">添加营养素摄入量评价</span> <span class="deleteIcon rt" onclick="delThis()"></span>-->
+<!--</div>-->
+<!--<div class="popAddMoneyBottom" style="margin-top: 80px">-->
+<!--<div><span>营养素</span><input class="popname" type="text"></div>-->
+<!--<div><span>摄入量</span> <input class="popdanwei" type="text"style="width: 230px;"><span class="popspan">g</span></div>-->
+<!--<div><span>推荐摄入量</span> <input class="popzhiwu" type="text"style="width: 230px;"><span class="popspan">g</span></div>-->
+<!--<div><span>最高摄入量</span> <input class="popfengong" type="text" style="width: 230px;"><span  class="popspan">g</span></div>-->
+<!--<button class="popAddMoneyBoxBtn" onclick="saveThis()" leader_if="1" chfa_id="53">保存</button>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+
+<script src="js/public.js"></script>
+
+<script>
+
+    var timer; //监听器
+    var winopen;  //B页面的打开事件
+    //判断子窗口是否关闭，关闭刷新页面
+    function IfWindowClosed() {
+        //判断B页面打开事件
+        if (winopen.closed == true)
+        {
+            var peoplesname= localStorage.getItem('peoplesname');
+            var  peoplesidold= localStorage.getItem('peoplesidold');
+            $('.oldman').val(peoplesname).attr('id',peoplesidold);
+            $('.briefnameAll').html(peoplesname).attr('oldmanid',peoplesidold);
+            window.clearInterval(timer);
+        }else{
+        }
+    }
+    $('.newOldman').click(function(){
+        winopen =  window.open("xs_site_addOldMan.html","top=0,left=0,menubar=yes,scrollbars=no,toolbar=yes,status=yes,fullscreen=yes ")
+        timer = window.setInterval("IfWindowClosed()", 500);
+    })
+
+</script>
+<script>
+    var sspgId;
+    var popscrollwidth = $(window).width();
+    var popscrollheight = $(window).height();
+    console.log(popscrollwidth, popscrollheight);
+    $(".popAddMoneyBox").css('left', (popscrollwidth / 2 - 335) + "px").css('top', (popscrollheight / 2 - 225) + "px").css('position','fixed');
+
+    var isIE = /msie/i.test(navigator.userAgent) && !window.opera;
+    function editDoc() {
+        $("#choosefile").click();
+        var file = $("#choosefile").val();
+        var fileName = getFileName(file);
+
+        function getFileName(o) {
+            var pos = o.lastIndexOf("\\");
+            return o.substring(pos + 1);
+        }
+
+        $('#filename').html(fileName)
+    }
+    function fileChangeDoc(target) {
+        var fileSize = 0;
+        if (isIE && !target.files) {
+            var filePath = target.value;
+            var fileSystem = new ActiveXObject("Scripting.FileSystemObject");
+            var file = fileSystem.GetFile(filePath);
+            fileSize = file.Size;
+        } else {
+            fileSize = target.files[0].size;
+        }
+        var size = fileSize / 1024;
+        if (size > 10000) {
+            alert("附件不能大于10M");
+            target.value = "";
+            return
+        } else {
+            var up1 = uploadImgBatchUrl('up1', '/oss/file/upload?path=cszyylfw/');
+
+            var file = $("#choosefile").val();
+            var fileName = getFileName(file);
+
+            function getFileName(o) {
+                var pos = o.lastIndexOf("\\");
+                return o.substring(pos + 1);
+            }
+
+            var urlId = uploadfiles('/xs/xm/sspg/addfile', sspgId, up1, fileName, 1, token);
+            $('.wendangBox').prepend('<div class="wendang" urlId="' + urlId + '" url="' + up1 + '"><span class="editDocument"></span><span class="editDoc">' + fileName + '</span> <span class="rt del"></span> </div>')
+        }
+    }
+    //    下载
+    $('.brief').on('click','.wendangBox .download',function(){
+        location.href=$(this).parent().attr('url')
+    })
+
+    $('.brief').on('click','.mubanBox .download',function(){
+        location.href=$(this).parent().attr('url')
+    })
+    //删除
+    $('.brief').on('click','.wendangBox .del',function(){
+//        location.href=$(this).parent().attr('url')
+        var id=$(this).parent().attr('urlid')
+        layboxs("action/trade_check_del.html?id=" + id + "&url=/cszyylfw/xs/xm/sspg/delfile" + "&fun=delok4", "notitle");
+
+    })
+    function delok4(){
+        popation("220", "y", "删除成功！");
+        closemask();
+        $.ajax({
+            url: "/cszyylfw/xs/xm/sspg/ent",
+            type: 'post',
+            data: 'token=' + token + "&xm_id=" + xm_id,
+            success: function (res) {
+                if (res.code == 0) {
+                    sspgId = res.data.sspgId;
+                    $('.wendangBox').html('')
+                    if (res.data.docs != '' && res.data.docs != 'null' && res.data.docs != 'undefined'
+                            && res.data.docs != null && res.data.docs != undefined) {
+                        for (var i = 0; i < res.data.docs.length; i++) {
+                            $('.wendangBox').prepend('<div class="wendang" urlId="' + res.data.docs[i].id + '" url="' + res.data.docs[i].url + '"><span class="editDocument">'+
+                            '</span><span class="editDoc">' + res.data.docs[i].name + '</span><span class="rt download downloads" style="display: none"></span>  <span class="rt del"></span> </div>')
+//
+                        }
+                    }
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！')
+                    setTimeout(function () {
+                        location.href = 'xs_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+    function changeDoc() {
+        if (len > 10) {
+            $('.editDoc').css('display', 'none')
+            $('.btnDoc').css('display', 'block')
+        }
+    }
+
+
+    //    查看老年人
+    $('.lookOldman').click(function(){
+        window.open('lookOldMan.html?id='+$('.briefnameAll').attr('oldmanid'))
+    })
+
+    //    查看疾病
+    $('.lookJb').click(function(){
+        window.open('jbmanage.html?id='+$('.briefnameAll').attr('oldmanid'))
+    })
+</script>
+<script>
+    var _This;
+    var popscrollwidth = $(window).width();
+    var popscrollheight = $(window).height();
+    console.log(popscrollwidth, popscrollheight);
+    $(".popAddMoneyBoxfxzjbg").css('left', (popscrollwidth / 2 - 425) + "px").css('top', (popscrollheight / 2 - 295) + "px");
+
+    var xm_id = GetQueryString('xm_id');
+    console.log(xm_id)
+    $.ajax({
+        url: "/cszyylfw/xs/xm/sspg/ent",
+        type: 'post',
+        data: 'token=' + token + "&xm_id=" + xm_id,
+        success: function (res) {
+            if (res.code == 0) {
+                sspgId = res.data.sspgId;
+
+
+                if (res.data.status == 2) {
+                    $('.siteReportTopRt>span:first-child').html('作业状态：已评分');
+                    $('.siteReportTopRt>span:nth-child(2)').css('display', 'inline-block').html(res.data.score);
+                } else if (res.data.status == 1) {
+                    $('.siteReportTopRt>span:first-child').html('作业状态：已提交');
+                    $('.siteReportTopRt>span:nth-child(2)').css('display', 'none');
+                } else if (res.data.status == 0) {
+                    $('.siteReportTopRt>span:first-child').html('作业状态：未提交');
+                    $('.siteReportTopRt>span:nth-child(2)').css('display', 'none')
+                }
+
+
+                if (res.data.oldmanName != '' && res.data.oldmanName != 'null' && res.data.oldmanName != 'undefined'
+                        && res.data.oldmanName != null && res.data.oldmanName != undefined) {
+                    $(".briefnameAll").html(res.data.oldmanName).attr('oldmanId',res.data.oldmanId)
+                    $('.no1').css('display','none')
+                }
+
+                if (res.data.yingyangsus != '' && res.data.yingyangsus != 'null' && res.data.yingyangsus != 'undefined'
+                        && res.data.yingyangsus != null && res.data.yingyangsus != undefined) {
+                    $('.leadone .tab3').css('display', 'none')
+                    for (var i = 0; i < res.data.yingyangsus.length; i++) {
+                        $('.leadone').prepend(' <tr class="tab8"> <td> ' + res.data.yingyangsus[i].nutrient + ' </td> <td>' + res.data.yingyangsus[i].quantity + '</td> <td>' + res.data.yingyangsus[i].recommendQuantity + '</td> <td>' +res.data.yingyangsus[i].maxTolerateQuantity+ '</td> <td><span id="' + res.data.yingyangsus[i].id + '" class="look">查看</span><span id="' + res.data.yingyangsus[i].id + '" class="editor" style="display: none">编辑</span><span id="' + res.data.yingyangsus[i].id + '" class="delete" style="display: none">删除</span></td> </tr>')
+                    }
+                }
+
+                if (res.data.shanshis != '' && res.data.shanshis != 'null' && res.data.shanshis != 'undefined'
+                        && res.data.shanshis != null && res.data.shanshis != undefined) {
+                    $('.leadthree .tab3').css('display', 'none')
+                    for (var i = 0; i < res.data.shanshis.length; i++) {
+                        $('.leadthree').prepend(' <tr class="tab8"> <td> ' + res.data.shanshis[i].eatTime + ' </td> <td>' + res.data.shanshis[i].food + '</td> <td>' + res.data.shanshis[i].stuff + '</td> <td>' +res.data.shanshis[i].stuffWeight+ '</td> <td><span id="' + res.data.shanshis[i].id + '" class="look">查看</span><span id="' + res.data.shanshis[i].id + '" class="editor" style="display: none">编辑</span><span id="' + res.data.shanshis[i].id + '" class="delete" style="display: none">删除</span></td> </tr>')
+                    }
+                }
+
+
+                if (res.data.docs != '' && res.data.docs != 'null' && res.data.docs != 'undefined'
+                        && res.data.docs != null && res.data.docs != undefined) {
+                    for (var i = 0; i < res.data.docs.length; i++) {
+                        $('.wendangBox').prepend('<div class="wendang" urlId="' + res.data.docs[i].id + '" url="' + res.data.docs[i].url + '"><span class="editDocument">'+
+                        '</span><span class="editDoc">' + res.data.docs[i].name + '</span><span class="rt download downloads"></span>  <span class="rt del" style="display: none"></span> </div>')
+//
+                    }
+                }
+
+                if (res.data.docTmpls != '' && res.data.docTmpls != 'null' && res.data.docTmpls != 'undefined'
+                        && res.data.docTmpls != null && res.data.docTmpls != undefined) {
+                    for (var i = 0; i < res.data.docTmpls.length; i++) {
+                        $('.mubanBox').prepend('<div class="wendang" urlId="' + res.data.docTmpls[i].id + '" url="' + res.data.docTmpls[i].url + '"><span class="editDocument">'+
+                        '</span><span class="editDoc">' + res.data.docTmpls[i].name + '</span> <span class="rt download"></span> </div>')
+//
+                    }
+                }
+
+            } else if (res.code == 20) {
+                alert('登陆超时，请重新登录！')
+                setTimeout(function () {
+                    location.href = 'xs_index.html'
+                }, 1000)
+
+            } else {
+                alert(res.codeMsg)
+            }
+        }
+    })
+
+    function supply() {
+
+//        var name = $('.briefnameAll').html()
+        var oldmanid=$('.briefnameAll').attr('oldmanid')
+
+        if(oldmanid!=''&&oldmanid!=null&&oldmanid!=undefined&&oldmanid!='null'&&oldmanid!='undefined'){
+            $.ajax({
+                url: "/cszyylfw/xs/xm/sspg/submit",
+                type: 'post',
+                data: 'token=' + token + '&sspg_id=' + sspgId + '&oldman_id=' + oldmanid,
+                success: function (res) {
+                    if (res.code == 0) {
+                        window.location.reload()
+                    } else if (res.code == 20) {
+                        alert('登陆超时，请重新登录！');
+                        setTimeout(function () {
+                            location.href = 'xs_index.html'
+                        }, 1000)
+
+                    } else {
+                        alert(res.codeMsg)
+                    }
+                }
+            })
+        }else{
+            error('请选择老年人！')
+        }
+
+    }
+</script>
+<!--添加完成情况-->
+<script>
+    //
+    <!--添加完成情况-->
+    $('.editAna').click(function () {
+        $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyBoxfx"> <div class="popAddMoneyTop"> <span class="lf">添加项目完成状况</span> <span class="deleteIcon rt" onclick="delThis()"></span> </div> <div class="popAddMoneyBoxboxfx"> <div> <span>项目目标</span> <textarea maxlength="250"  class="fxbox1"  name="" id="popAddMoneyBoxboxfx1" cols="30" rows="10"></textarea> <span class="rt">0/250</span> </div> <div> <span>完成情况</span> <textarea maxlength="250"  class="fxbox2"  name="" id="popAddMoneyBoxboxfx2" cols="30" rows="10"></textarea> <span class="rt">0/250</span> </div> <button onclick="savefengxian()" class="popAddMoneyBoxboxfxBtn">保存</button> </div> </div> </div>')
+        var popscrollwidth = $(window).width();
+        var popscrollheight = $(window).height();
+        console.log(popscrollwidth, popscrollheight);
+        $(".popAddMoneyBoxfx").css('left', (popscrollwidth / 2 - 335) + "px").css('top', (popscrollheight / 2 - 295) + "px");
+
+    })
+    //    编辑完成情况
+    $('.fengxianBox').on('click', '.Analysisline .editor', function () {
+        var this_id = $(this).attr('id')
+        _This = $(this)
+        console.log($(this).parent().prev().children().eq(1).html())
+        var fengxians = $(this).parent().prev().children().eq(0).html().slice(6, $(this).parent().prev().children().eq(0).html().length)
+        var yuans = $(this).parent().prev().children().eq(1).html().slice(6, $(this).parent().prev().children().eq(1).html().length)
+        $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyBoxfx"> <div class="popAddMoneyTop"> <span class="lf">添加项目完成状况</span> <span class="deleteIcon rt" onclick="delThis()"></span> </div> <div class="popAddMoneyBoxboxfx"> <div> <span>项目目标</span> <textarea maxlength="250" class="fxbox1" name=""  id="popAddMoneyBoxboxfx1" cols="30" rows="10">' + fengxians + '</textarea> <span class="rt">0/250</span> </div> <div> <span>完成情况</span> <textarea maxlength="250"class="fxbox2"  name="" id="popAddMoneyBoxboxfx2" cols="30" rows="10">' + yuans + '</textarea> <span class="rt">0/250</span> </div> <button id="' + this_id + '" onclick="savefengxians()" class="popAddMoneyBoxboxfxBtnalter">保存</button> </div> </div> </div>')
+        var popscrollwidth = $(window).width();
+        var popscrollheight = $(window).height();
+        console.log(popscrollwidth, popscrollheight);
+        $(".popAddMoneyBoxfx").css('left', (popscrollwidth / 2 - 335) + "px").css('top', (popscrollheight / 2 - 295) + "px");
+    })
+    function savefengxian() {
+        var popAddMoneyBoxboxfx1 = $('#popAddMoneyBoxboxfx1').val();
+        var popAddMoneyBoxboxfx2 = $('#popAddMoneyBoxboxfx2').val();
+        $.ajax({
+            url: "/cszyylfw/xs/xm/zjbg/addwanchengqingkuang",
+            type: 'post',
+            data: 'token=' + token + '&sspg_id=' + sspgId + '&target=' + popAddMoneyBoxboxfx1 + "&result=" + popAddMoneyBoxboxfx2,
+            success: function (res) {
+                if (res.code == 0) {
+                    $('.popopowindow').remove()
+                    $.ajax({
+                        url: "/cszyylfw/xs/xm/zjbg/ent",
+                        type: 'post',
+                        data: 'token=' + token + "&xm_id=" + xm_id,
+                        success: function (res) {
+                            if (res.code == 0) {
+                                sspgId = res.data.sspgId;
+
+                                $('.fengxianBox').html('');
+                                if (res.data.wanchengqingkuangList) {
+                                    $('.no7').css('display', 'none');
+                                    for (var i = 0; i < res.data.wanchengqingkuangList.length; i++) {
+                                        $('.fengxianBox').append('<div id="' + res.data.wanchengqingkuangList[i].id + '" class="textbox Analysisline"> <div class="textboxone Analysis"> <p>项目目标' + (i + 1) + '：' + res.data.wanchengqingkuangList[i].target + '</p> <p>完成情况' + (i + 1) + '：' + res.data.wanchengqingkuangList[i].result + '</p> </div> <div> <span class="planspan1 delete deletefx" id="' + res.data.wanchengqingkuangList[i].id + '" style="display:inline-block" >删除</span><span  id="' + res.data.wanchengqingkuangList[i].id + '" class="planspan2 editor" style="display:inline-block">编辑</span><span id="' + res.data.wanchengqingkuangList[i].id + '" class="planspan3 look">查看</span> </div> </div>')
+                                    }
+                                }
+                            } else if (res.code == 20) {
+                                alert('登陆超时，请重新登录！');
+                                setTimeout(function () {
+                                    location.href = 'xs_index.html'
+                                }, 1000)
+                            } else {
+                                alert(res.codeMsg)
+                            }
+                        }
+                    })
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！');
+                    setTimeout(function () {
+                        location.href = 'xs_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+
+    function savefengxians() {
+        var id = $('.popAddMoneyBoxboxfxBtnalter').attr('id');
+        var popAddMoneyBoxboxfx1 = $('#popAddMoneyBoxboxfx1').val();
+        var popAddMoneyBoxboxfx2 = $('#popAddMoneyBoxboxfx2').val();
+        $.ajax({
+            url: "/cszyylfw/xs/xm/zjbg/alterwanchengqingkuang",
+            type: 'post',
+            data: 'token=' + token + '&id=' + id + '&target=' + popAddMoneyBoxboxfx1 + "&result=" + popAddMoneyBoxboxfx2,
+            success: function (res) {
+                if (res.code == 0) {
+                    $('.popopowindow').remove()
+                    $.ajax({
+                        url: "/cszyylfw/xs/xm/zjbg/ent",
+                        type: 'post',
+                        data: 'token=' + token + "&xm_id=" + xm_id,
+                        success: function (res) {
+                            if (res.code == 0) {
+                                sspgId = res.data.sspgId;
+
+                                $('.fengxianBox').html('')
+                                if (res.data.wanchengqingkuangList) {
+                                    $('.no7').css('display', 'none')
+                                    for (var i = 0; i < res.data.wanchengqingkuangList.length; i++) {
+                                        $('.fengxianBox').append('<div id="' + res.data.wanchengqingkuangList[i].id + '" class="textbox Analysisline"> <div class="textboxone Analysis"> <p>项目目标' + (i + 1) + '：' + res.data.wanchengqingkuangList[i].target + '</p> <p>完成情况' + (i + 1) + '：' + res.data.wanchengqingkuangList[i].result + '</p> </div> <div> <span class="planspan1 delete deletefx" id="' + res.data.wanchengqingkuangList[i].id + '" style="display:inline-block" >删除</span><span  id="' + res.data.wanchengqingkuangList[i].id + '" class="planspan2 editor" style="display:inline-block">编辑</span><span id="' + res.data.wanchengqingkuangList[i].id + '" class="planspan3 look">查看</span> </div> </div>')
+                                    }
+                                }
+                            } else if (res.code == 20) {
+                                alert('登陆超时，请重新登录！')
+                                setTimeout(function () {
+                                    location.href = 'xs_index.html'
+                                }, 1000)
+
+                            } else {
+                                alert(res.codeMsg)
+                            }
+                        }
+                    })
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！');
+                    setTimeout(function () {
+                        location.href = 'xs_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+
+
+    $('.fengxianBox').on('click', '.Analysisline .look', function () {
+        console.log($(this).parent().prev().children().eq(0).html().slice(0, 6))
+        var fengxian1 = $(this).parent().prev().children().eq(0).html().slice(0, 6)
+        var fengxian2 = $(this).parent().prev().children().eq(0).html().slice(7, $(this).parent().prev().children().eq(0).html().length)
+        var fengxian3 = $(this).parent().prev().children().eq(1).html().slice(0, 6)
+        var fengxian4 = $(this).parent().prev().children().eq(1).html().slice(7, $(this).parent().prev().children().eq(1).html().length)
+        $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyBoxfx"> <div class="popAddMoneyTop"> <span class="lf">添加项目完成状况</span> <span class="deleteIcon rt" onclick="delThis()"></span> </div> <div class="popAddMoneyBoxboxfxdiv"> <div> <span class="lf">' + fengxian1 + '</span> <div class="lf"  id="popAddMoneyBoxboxfxdiv1">' + fengxian2 + '</div> </div> <div> <span class="lf" >' + fengxian3 + '</span> <div  class="lf"  id="popAddMoneyBoxboxfxdiv2">' + fengxian4 + '</div> </div> </div> </div> </div>')
+        var popscrollwidth = $(window).width();
+        var popscrollheight = $(window).height();
+        console.log(popscrollwidth, popscrollheight);
+        $(".popAddMoneyBoxfx").css('left', (popscrollwidth / 2 - 335) + "px").css('top', (popscrollheight / 2 - 295) + "px");
+    })
+</script>
+<!--添加工作量说明-->
+<script>
+    $('.addleadMan1').click(function () {
+        $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyBox" > <div class="popAddMoneyTop"><span class="lf">添加营养素摄入量评价</span> <span class="deleteIcon rt" onclick="delThis()"></span> </div> <div class="popAddMoneyBottom" style="margin-top: 80px"> <div><span>营养素</span><input class="popname" type="text"></div> <div><span>摄入量</span> <input class="popdanwei" type="number"style="width: 230px;"><span class="popspan">g</span></div> <div><span>推荐摄入量</span> <input class="popzhiwu" type="number"style="width: 230px;"><span class="popspan">g</span></div> <div><span>最高摄入量</span> <input class="popfengong" type="number" style="width: 230px;"><span  class="popspan">g</span></div> <button class="popAddMoneyBoxBtn" onclick="savegzl()" leader_if="1" chfa_id="53">保存</button> </div> </div> </div>')
+        var popscrollwidth = $(window).width();
+        var popscrollheight = $(window).height();
+        console.log(popscrollwidth, popscrollheight);
+        $(".popAddMoneyBox").css('left', (popscrollwidth / 2 - 335) + "px").css('top', (popscrollheight / 2 - 225) + "px").css('position','fixed');
+    })
+    function savegzl() {
+        var popAddMoneyBoxboxfx1 = $('.popname').val();
+        var popAddMoneyBoxboxfx2 = $('.popdanwei').val();
+        var popAddMoneyBoxboxfx3 = $('.popzhiwu').val();
+        var popAddMoneyBoxboxfx4 = $('.popfengong').val();
+        $.ajax({
+            url: "/cszyylfw/xs/xm/sspg/addyys",
+            type: 'post',
+            data: 'token=' + token + '&sspg_id=' + sspgId + '&nutrient=' + popAddMoneyBoxboxfx1
+            + "&quantity=" + popAddMoneyBoxboxfx2 + "&recommend_quantity=" + popAddMoneyBoxboxfx3
+            + "&max_tolerate_quantity=" + popAddMoneyBoxboxfx4,
+            success: function (res) {
+                if (res.code == 0) {
+                    $('.popopowindow').remove()
+                    $.ajax({
+                        url: "/cszyylfw/xs/xm/sspg/ent",
+                        type: 'post',
+                        data: 'token=' + token + "&xm_id=" + xm_id,
+                        success: function (res) {
+                            if (res.code == 0) {
+                                sspgId = res.data.sspgId;
+
+                                $('.leadone .tab8').remove()
+                                if (res.data.yingyangsus != '' && res.data.yingyangsus != 'null' && res.data.yingyangsus != 'undefined'
+                                        && res.data.yingyangsus != null && res.data.yingyangsus != undefined) {
+                                    $('.leadone .tab3').css('display', 'none')
+                                    for (var i = 0; i < res.data.yingyangsus.length; i++) {
+                                        $('.leadone').prepend(' <tr class="tab8"> <td> ' + res.data.yingyangsus[i].nutrient + ' </td> <td>' + res.data.yingyangsus[i].quantity + '</td> <td>' + res.data.yingyangsus[i].recommendQuantity + '</td> <td>' +res.data.yingyangsus[i].maxTolerateQuantity+ '</td> <td><span id="' + res.data.yingyangsus[i].id + '" class="look">查看</span><span id="' + res.data.yingyangsus[i].id + '" class="editor" >编辑</span><span id="' + res.data.yingyangsus[i].id + '" class="delete" >删除</span></td> </tr>')
+                                    }
+                                }
+
+                            } else if (res.code == 20) {
+                                alert('登陆超时，请重新登录！')
+                                setTimeout(function () {
+                                    location.href = 'xs_index.html'
+                                }, 1000)
+
+                            } else {
+                                alert(res.codeMsg)
+                            }
+                        }
+                    })
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！');
+                    setTimeout(function () {
+                        location.href = 'xs_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+    $('.leadone').on('click', 'td .look', function () {
+        var this_id = $(this).attr('id')
+        _This = $(this)
+        var jiahua = $(this).parent().parent().children().eq(0).html();
+        var shiji = $(this).parent().parent().children().eq(1).html();
+        var bianhua = $(this).parent().parent().children().eq(2).html();
+        var suiyi = $(this).parent().parent().children().eq(3).html();
+        $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyBox" > <div class="popAddMoneyTop"><span class="lf">查看营养素摄入量评价</span> <span class="deleteIcon rt" onclick="delThis()"></span> </div> <div class="popAddMoneyBottom" style="margin-top: 80px"> <div><span>营养素</span><div class="popname">'+jiahua+'</div></div> <div><span>摄入量</span> <div class="popdanwei">'+shiji+' (g)</div></div> <div><span>推荐摄入量</span><div class="popzhiwu">'+bianhua+' (g)</div></div> <div><span>最高摄入量</span> <div class="popfengong">'+suiyi+' (g)</div></div> </div> </div> </div>')
+        var popscrollwidth = $(window).width();
+        var popscrollheight = $(window).height();
+        console.log(popscrollwidth, popscrollheight);
+        $(".popAddMoneyBox").css('left', (popscrollwidth / 2 - 335) + "px").css('top', (popscrollheight / 2 - 225) + "px").css('position','fixed');
+
+    });
+    //    编辑完成情况
+    $('.leadone').on('click', 'td .editor', function () {
+        var this_id = $(this).attr('id')
+        _This = $(this)
+        var jiahua = $(this).parent().parent().children().eq(0).html();
+        var shiji = $(this).parent().parent().children().eq(1).html();
+        var bianhua = $(this).parent().parent().children().eq(2).html();
+        var suiyi = $(this).parent().parent().children().eq(3).html();
+        $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyBox" > <div class="popAddMoneyTop"><span class="lf">添加营养素摄入量评价</span> <span class="deleteIcon rt" onclick="delThis()"></span> </div> <div class="popAddMoneyBottom" style="margin-top: 80px"> <div><span>营养素</span><input class="popname" type="text" value="'+jiahua+'"></div> <div><span>摄入量</span> <input class="popdanwei" type="number"  value="'+shiji+'" style="width: 230px;"><span class="popspan">g</span></div> <div><span>推荐摄入量</span> <input  value="'+bianhua+'" class="popzhiwu" type="number"style="width: 230px;"><span class="popspan">g</span></div> <div><span>最高摄入量</span> <input  value="'+suiyi+'" class="popfengong" type="number" style="width: 230px;"><span  class="popspan">g</span></div> <button class="popAddMoneyBoxBtn" id="'+this_id+'" onclick="savegzls()" leader_if="1" chfa_id="53">保存</button> </div> </div> </div>')
+        var popscrollwidth = $(window).width();
+        var popscrollheight = $(window).height();
+        console.log(popscrollwidth, popscrollheight);
+        $(".popAddMoneyBox").css('left', (popscrollwidth / 2 - 335) + "px").css('top', (popscrollheight / 2 - 225) + "px").css('position','fixed');
+    })
+    function savegzls() {
+        var id_zjbg = $('.popAddMoneyBoxBtn').attr('id')
+        var popAddMoneyBoxboxfx1 = $('.popname').val();
+        var popAddMoneyBoxboxfx2 = $('.popdanwei').val();
+        var popAddMoneyBoxboxfx3 = $('.popzhiwu').val();
+        var popAddMoneyBoxboxfx4 = $('.popfengong').val();
+        $.ajax({
+            url: "/cszyylfw/xs/xm/sspg/alteryys",
+            type: 'post',
+            data: 'token=' + token + '&id=' + id_zjbg + '&nutrient=' + popAddMoneyBoxboxfx1
+            + "&quantity=" + popAddMoneyBoxboxfx2 + "&recommend_quantity=" + popAddMoneyBoxboxfx3
+            + "&max_tolerate_quantity=" + popAddMoneyBoxboxfx4,
+            success: function (res) {
+                if (res.code == 0) {
+                    $('.popopowindow').remove()
+                    $.ajax({
+                        url: "/cszyylfw/xs/xm/sspg/ent",
+                        type: 'post',
+                        data: 'token=' + token + "&xm_id=" + xm_id,
+                        success: function (res) {
+                            if (res.code == 0) {
+                                sspgId = res.data.sspgId;
+
+                                $('.leadone .tab8').remove()
+                                if (res.data.yingyangsus != '' && res.data.yingyangsus != 'null' && res.data.yingyangsus != 'undefined'
+                                        && res.data.yingyangsus != null && res.data.yingyangsus != undefined) {
+                                    $('.leadone .tab3').css('display', 'none')
+                                    for (var i = 0; i < res.data.yingyangsus.length; i++) {
+                                        $('.leadone').prepend(' <tr class="tab8"> <td>' + res.data.yingyangsus[i].nutrient + ' </td> <td>' + res.data.yingyangsus[i].quantity + '</td> <td>' + res.data.yingyangsus[i].recommendQuantity + '</td> <td>' +res.data.yingyangsus[i].maxTolerateQuantity+ '</td> <td><span id="' + res.data.yingyangsus[i].id + '" class="look">查看</span><span id="' + res.data.yingyangsus[i].id + '" class="editor" >编辑</span><span id="' + res.data.yingyangsus[i].id + '" class="delete" >删除</span></td> </tr>')
+                                    }
+                                }
+
+                            } else if (res.code == 20) {
+                                alert('登陆超时，请重新登录！')
+                                setTimeout(function () {
+                                    location.href = 'xs_index.html'
+                                }, 1000)
+
+                            } else {
+                                alert(res.codeMsg)
+                            }
+                        }
+                    })
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！');
+                    setTimeout(function () {
+                        location.href = 'xs_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+    $('.leadone').on('click', 'td .delete', function () {
+        var this_id = $(this).attr('id')
+        _This = $(this)
+        layboxs("action/trade_check_del.html?id=" + this_id + "&url=/cszyylfw/xs/xm/sspg/delyys" + "&fun=delok", "notitle");
+
+    });
+    function delok() {
+        popation("220", "y", "删除成功！");
+        closemask();
+        $.ajax({
+            url: "/cszyylfw/xs/xm/sspg/ent",
+            type: 'post',
+            data: 'token=' + token + "&xm_id=" + xm_id,
+            success: function (res) {
+                if (res.code == 0) {
+                    sspgId = res.data.sspgId;
+
+                    $('.leadone .tab8').remove()
+                    if (res.data.yingyangsus != '' && res.data.yingyangsus != 'null' && res.data.yingyangsus != 'undefined'
+                            && res.data.yingyangsus != null && res.data.yingyangsus != undefined) {
+                        $('.leadone .tab3').css('display', 'none')
+                        for (var i = 0; i < res.data.yingyangsus.length; i++) {
+                            $('.leadone').prepend(' <tr class="tab8"> <td> ' + res.data.yingyangsus[i].nutrient + ' </td> <td>' + res.data.yingyangsus[i].quantity + '</td> <td>' + res.data.yingyangsus[i].recommendQuantity + '</td> <td>' +res.data.yingyangsus[i].maxTolerateQuantity+ '</td> <td><span id="' + res.data.yingyangsus[i].id + '" class="look">查看</span><span id="' + res.data.yingyangsus[i].id + '" class="editor" >编辑</span><span id="' + res.data.yingyangsus[i].id + '" class="delete" >删除</span></td> </tr>')
+                        }
+                    }
+                } else if (res.code == 20) {
+                    id = '+res.data.+'
+                    alert('登陆超时，请重新登录！')
+                    setTimeout(function () {
+                        location.href = 'xs_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+
+</script>
+<script>
+    $('.addleadMan3').click(function () {
+        $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyBox" > <div class="popAddMoneyTop"><span class="lf">添加一日膳食</span> <span class="deleteIcon rt" onclick="delThis()"></span> </div> <div class="popAddMoneyBottom" style="margin-top: 80px"> <div><span>饮食时间</span> <select name="" id="" class="popname" style="width: 270px;"> <option value="早餐">早餐</option> <option value="午餐">午餐</option> <option value="晚餐">晚餐</option> </select> </div> <div><span>食物名称</span> <input class="popdanwei" type="text"></div> <div><span>原料名称</span> <input class="popzhiwu" type="text"></div> <div><span>原料重量</span> <input class="popfengong" type="number" style="width: 230px;"><span class="popspan">g</span></div> <button class="popAddMoneyBoxBtn" onclick="savegzl3()" leader_if="1" chfa_id="53">保存</button> </div> </div> </div>')
+
+        var popscrollwidth = $(window).width();
+        var popscrollheight = $(window).height();
+        console.log(popscrollwidth, popscrollheight);
+        $(".popAddMoneyBox").css('left', (popscrollwidth / 2 - 335) + "px").css('top', (popscrollheight / 2 - 225) + "px").css('position','fixed');
+    })
+    function savegzl3() {
+        var popAddMoneyBoxboxfx1 = $('.popname option:selected').val();
+        var popAddMoneyBoxboxfx2 = $('.popdanwei').val();
+        var popAddMoneyBoxboxfx3 = $('.popzhiwu').val();
+        var popAddMoneyBoxboxfx4 = $('.popfengong').val();
+        $.ajax({
+            url: "/cszyylfw/xs/xm/sspg/addss",
+            type: 'post',
+            data: 'token=' + token + '&sspg_id=' + sspgId + '&eat_time=' + popAddMoneyBoxboxfx1 +
+            "&food=" + popAddMoneyBoxboxfx2 + "&stuff=" + popAddMoneyBoxboxfx3+ "&stuff_weight=" + popAddMoneyBoxboxfx4,
+            success: function (res) {
+                if (res.code == 0) {
+                    $('.popopowindow').remove()
+                    $.ajax({
+                        url: "/cszyylfw/xs/xm/sspg/ent",
+                        type: 'post',
+                        data: 'token=' + token + "&xm_id=" + xm_id,
+                        success: function (res) {
+                            if (res.code == 0) {
+                                sspgId = res.data.sspgId;
+
+                                $('.leadthree .tab8').remove()
+                                if (res.data.shanshis != '' && res.data.shanshis != 'null' && res.data.shanshis != 'undefined'
+                                        && res.data.shanshis != null && res.data.shanshis != undefined) {
+                                    $('.leadthree .tab3').css('display', 'none')
+                                    for (var i = 0; i < res.data.shanshis.length; i++) {
+                                        $('.leadthree').prepend(' <tr class="tab8"> <td> ' + res.data.shanshis[i].eatTime + ' </td> <td>' + res.data.shanshis[i].food + '</td> <td>' + res.data.shanshis[i].stuff + '</td> <td>' +res.data.shanshis[i].stuffWeight+ '</td> <td><span id="' + res.data.shanshis[i].id + '" class="look">查看</span><span id="' + res.data.shanshis[i].id + '" class="editor">编辑</span><span id="' + res.data.shanshis[i].id + '" class="delete" >删除</span></td> </tr>')
+                                    }
+                                }
+                            } else if (res.code == 20) {
+                                alert('登陆超时，请重新登录！')
+                                setTimeout(function () {
+                                    location.href = 'xs_index.html'
+                                }, 1000)
+
+                            } else {
+                                alert(res.codeMsg)
+                            }
+                        }
+                    })
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！');
+                    setTimeout(function () {
+                        location.href = 'xs_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+    $('.leadthree').on('click', 'td .look', function () {
+        var this_id = $(this).attr('id')
+        _This = $(this)
+        var jiahua = $(this).parent().parent().children().eq(0).html();
+        var shiji = $(this).parent().parent().children().eq(1).html();
+        var bianhua = $(this).parent().parent().children().eq(2).html();
+        var suiyi = $(this).parent().parent().children().eq(3).html();
+        $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyBox" > <div class="popAddMoneyTop"><span class="lf">查看一日膳食</span> <span class="deleteIcon rt" onclick="delThis()"></span> </div> <div class="popAddMoneyBottom" style="margin-top: 80px"> <div><span>饮食时间</span> <div class="popname">'+jiahua+'</div> </div> <div><span>食物名称</span> <div class="popdanwei">'+shiji+'</div></div> <div><span>原料名称</span> <div class="popzhiwu">'+bianhua+'</div></div> <div><span>原料重量</span> <div class="popfengong">'+suiyi+' (g)</div></div>  </div> </div> </div>')
+        var popscrollwidth = $(window).width();
+        var popscrollheight = $(window).height();
+        console.log(popscrollwidth, popscrollheight);
+        $(".popAddMoneyBox").css('left', (popscrollwidth / 2 - 335) + "px").css('top', (popscrollheight / 2 - 225) + "px").css('position','fixed');
+
+    });
+    //    编辑完成情况
+    $('.leadthree').on('click', 'td .editor', function () {
+        var this_id = $(this).attr('id')
+        _This = $(this)
+        var jiahua = $(this).parent().parent().children().eq(0).html();
+        var shiji = $(this).parent().parent().children().eq(1).html();
+        var bianhua = $(this).parent().parent().children().eq(2).html();
+        var suiyi = $(this).parent().parent().children().eq(3).html();
+        if(jiahua=='早餐'){
+            var selector='<select name="" id="" class="popname" style="width: 270px;"> <option value="早餐" selected>早餐</option> <option value="午餐">午餐</option> <option value="晚餐">晚餐</option> </select>'
+        }else if(jiahua=='午餐'){
+            var selector='<select name="" id="" class="popname" style="width: 270px;"> <option value="早餐">早餐</option> <option value="午餐" selected>午餐</option> <option value="晚餐">晚餐</option> </select>'
+        }else{
+            var selector='<select name="" id="" class="popname" style="width: 270px;"> <option value="早餐">早餐</option> <option value="午餐">午餐</option> <option value="晚餐" selected>晚餐</option> </select>'
+        }
+
+        $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyBox" > <div class="popAddMoneyTop"><span class="lf">添加一日膳食</span> <span class="deleteIcon rt" onclick="delThis()"></span> </div> <div class="popAddMoneyBottom" style="margin-top: 80px"> <div><span>饮食时间</span> '+selector+' </div> <div><span>食物名称</span> <input class="popdanwei" value="'+shiji+'" type="text"></div> <div><span>原料名称</span> <input class="popzhiwu" type="text" value="'+bianhua+'"></div> <div><span>原料重量</span> <input class="popfengong" type="number" style="width: 230px;" value="'+suiyi+'"><span class="popspan">g</span></div> <button class="popAddMoneyBoxBtn" onclick="savegzls3()" id="'+this_id+'" leader_if="1" chfa_id="53">保存</button> </div> </div> </div>')
+
+        var popscrollwidth = $(window).width();
+        var popscrollheight = $(window).height();
+        console.log(popscrollwidth, popscrollheight);
+        $(".popAddMoneyBox").css('left', (popscrollwidth / 2 - 335) + "px").css('top', (popscrollheight / 2 - 225) + "px").css('position','fixed');
+    })
+    function savegzls3() {
+        var id_zjbg = $('.popAddMoneyBoxBtn').attr('id')
+        var popAddMoneyBoxboxfx1 = $('.popname option:selected').val();
+        var popAddMoneyBoxboxfx2 = $('.popdanwei').val();
+        var popAddMoneyBoxboxfx3 = $('.popzhiwu').val();
+        var popAddMoneyBoxboxfx4 = $('.popfengong').val();
+        $.ajax({
+            url: "/cszyylfw/xs/xm/sspg/addss",
+            type: 'post',
+            data: 'token=' + token +  '&id=' + id_zjbg + '&eat_time=' + popAddMoneyBoxboxfx1 +
+            "&food=" + popAddMoneyBoxboxfx2 + "&stuff=" + popAddMoneyBoxboxfx3+ "&stuff_weight=" + popAddMoneyBoxboxfx4,
+            success: function (res) {
+                if (res.code == 0) {
+                    $('.popopowindow').remove()
+                    $.ajax({
+                        url: "/cszyylfw/xs/xm/sspg/ent",
+                        type: 'post',
+                        data: 'token=' + token + "&xm_id=" + xm_id,
+                        success: function (res) {
+                            if (res.code == 0) {
+                                sspgId = res.data.sspgId;
+
+                                $('.leadthree .tab8').remove()
+                                if (res.data.shanshis != '' && res.data.shanshis != 'null' && res.data.shanshis != 'undefined'
+                                        && res.data.shanshis != null && res.data.shanshis != undefined) {
+                                    $('.leadthree .tab3').css('display', 'none')
+                                    for (var i = 0; i < res.data.shanshis.length; i++) {
+                                        $('.leadthree').prepend(' <tr class="tab8"> <td> ' + res.data.shanshis[i].eatTime + '</td> <td>' + res.data.shanshis[i].food + '</td> <td>' + res.data.shanshis[i].stuff + '</td> <td>' +res.data.shanshis[i].stuffWeight+ '</td> <td><span id="' + res.data.shanshis[i].id + '" class="look">查看</span><span id="' + res.data.shanshis[i].id + '" class="editor">编辑</span><span id="' + res.data.shanshis[i].id + '" class="delete" >删除</span></td> </tr>')
+                                    }
+                                }
+                            } else if (res.code == 20) {
+                                alert('登陆超时，请重新登录！')
+                                setTimeout(function () {
+                                    location.href = 'xs_index.html'
+                                }, 1000)
+
+                            } else {
+                                alert(res.codeMsg)
+                            }
+                        }
+                    })
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！');
+                    setTimeout(function () {
+                        location.href = 'xs_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+    $('.leadthree').on('click', 'td .delete', function () {
+        var this_id = $(this).attr('id')
+        _This = $(this)
+        layboxs("action/trade_check_del.html?id=" + this_id + "&url=/cszyylfw/xs/xm/sspg/delss" + "&fun=delok5", "notitle");
+
+    });
+    function delok5() {
+        popation("220", "y", "删除成功！");
+        closemask();
+        $.ajax({
+            url: "/cszyylfw/xs/xm/sspg/ent",
+            type: 'post',
+            data: 'token=' + token + "&xm_id=" + xm_id,
+            success: function (res) {
+                if (res.code == 0) {
+                    sspgId = res.data.sspgId;
+
+                    $('.leadthree .tab8').remove()
+                    if (res.data.shanshis != '' && res.data.shanshis != 'null' && res.data.shanshis != 'undefined'
+                            && res.data.shanshis != null && res.data.shanshis != undefined) {
+                        $('.leadthree .tab3').css('display', 'none')
+                        for (var i = 0; i < res.data.shanshis.length; i++) {
+                            $('.leadthree').prepend(' <tr class="tab8"> <td> ' + res.data.shanshis[i].eatTime + ' </td> <td>' + res.data.shanshis[i].food + '</td> <td>' + res.data.shanshis[i].stuff + '</td> <td>' +res.data.shanshis[i].stuffWeight+ '</td> <td><span id="' + res.data.shanshis[i].id + '" class="look">查看</span><span id="' + res.data.shanshis[i].id + '" class="editor">编辑</span><span id="' + res.data.shanshis[i].id + '" class="delete" >删除</span></td> </tr>')
+                        }
+                    }
+                } else if (res.code == 20) {
+                    id = '+res.data.+'
+                    alert('登陆超时，请重新登录！')
+                    setTimeout(function () {
+                        location.href = 'xs_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+
+</script>
+<script>
+    $('.addleadMan4').click(function () {
+        $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyBoxfxzjbg"> <div class="popAddMoneyTop"><span class="lf">添加项目成果总结</span> <span class="deleteIcon rt"onclick="delThis()"></span></div> <div class="popAddMoneyBoxboxzjbg"> <div><span>项目成果</span> <textarea maxlength="250" class="fxbox1" name="" id="popAddMoneyBoxboxfx1" cols="30"rows="10"></textarea> <span class="rt">0/250</span></div> <div><span>成果类型</span> <textarea maxlength="250" class="fxbox2" name="" id="popAddMoneyBoxboxfx2" cols="30"rows="10"></textarea> <span class="rt">0/250</span></div> <div><span>增值说明</span> <textarea maxlength="250" class="fxbox3" name="" id="popAddMoneyBoxboxfx3" cols="30"rows="10"></textarea> <span class="rt">0/250</span></div> <button onclick="savegzl4()" class="popAddMoneyBoxboxfxBtnzjbg">保存</button> </div> </div> </div>')
+        var popscrollwidth = $(window).width();
+        var popscrollheight = $(window).height();
+        console.log(popscrollwidth, popscrollheight);
+        $(".popAddMoneyBoxfxzjbg").css('left', (popscrollwidth / 2 - 425) + "px").css('top', (popscrollheight / 2 - 295) + "px");
+    })
+    function savegzl4() {
+        var popAddMoneyBoxboxfx1 = $('#popAddMoneyBoxboxfx1').val();
+        var popAddMoneyBoxboxfx2 = $('#popAddMoneyBoxboxfx2').val();
+        var popAddMoneyBoxboxfx3 = $('#popAddMoneyBoxboxfx3').val();
+        $.ajax({
+            url: "/cszyylfw/xs/xm/zjbg/addchengguo",
+            type: 'post',
+            data: 'token=' + token + '&sspg_id=' + sspgId + '&chengguo=' + popAddMoneyBoxboxfx1 + "&type=" + popAddMoneyBoxboxfx2 + "&zengzhi=" + popAddMoneyBoxboxfx3,
+            success: function (res) {
+                if (res.code == 0) {
+                    $('.popopowindow').remove()
+                    $.ajax({
+                        url: "/cszyylfw/xs/xm/sspg/ent",
+                        type: 'post',
+                        data: 'token=' + token + "&xm_id=" + xm_id,
+                        success: function (res) {
+                            if (res.code == 0) {
+                                sspgId = res.data.sspgId;
+
+                                $('.leadfour .tab8').remove()
+                                if (res.data.chengguoList) {
+                                    for (var i = 0; i < res.data.chengguoList.length; i++) {
+                                        $('.leadfour').prepend(' <tr class="tab8"> <td>' + (res.data.chengguoList.length - i) + '</td> <td>' + res.data.chengguoList[i].chengguo + '</td> <td>' + res.data.chengguoList[i].type + '</td> <td>' + res.data.chengguoList[i].zengzhi + '</td> <td><span class="look" id="' + res.data.chengguoList[i].id + '">查看</span><span class="editor" id="' + res.data.chengguoList[i].id + '">编辑</span><span class="delete" id="' + res.data.chengguoList[i].id + '">删除</span></td> </tr>')
+                                    }
+                                }
+                            } else if (res.code == 20) {
+                                alert('登陆超时，请重新登录！')
+                                setTimeout(function () {
+                                    location.href = 'xs_index.html'
+                                }, 1000)
+
+                            } else {
+                                alert(res.codeMsg)
+                            }
+                        }
+                    })
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！');
+                    setTimeout(function () {
+                        location.href = 'xs_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+    $('.leadfour').on('click', 'td .look', function () {
+        var this_id = $(this).attr('id')
+        _This = $(this)
+        var jiahua = $(this).parent().parent().children().eq(1).html();
+        var shiji = $(this).parent().parent().children().eq(2).html();
+        var bianhua = $(this).parent().parent().children().eq(3).html();
+        $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyBoxfxzjbg"> <div class="popAddMoneyTop"><span class="lf">查看项目成果总结</span> <span class="deleteIcon rt"onclick="delThis()"></span></div> <div class="popAddMoneyBoxboxzjbg"> <div> <span class="lf" style="margin-top: 0">项目成果</span> <div class="lf"  id="popAddMoneyBoxboxfxdiv1">' + jiahua + '</div> </div> <div> <span class="lf"  style="margin-top: 0">成果类型</span> <div  class="lf"  id="popAddMoneyBoxboxfxdiv2">' + shiji + '</div> </div> <div> <span class="lf"  style="margin-top: 0">增值说明</span> <div  class="lf"  id="popAddMoneyBoxboxfxdiv3">' + bianhua + '</div> </div> </div> </div> </div>')
+        var popscrollwidth = $(window).width();
+        var popscrollheight = $(window).height();
+        console.log(popscrollwidth, popscrollheight);
+        $(".popAddMoneyBoxfxzjbg").css('left', (popscrollwidth / 2 - 425) + "px").css('top', (popscrollheight / 2 - 295) + "px");
+
+    });
+    //    编辑完成情况
+    $('.leadfour').on('click', 'td .editor', function () {
+        var this_id = $(this).attr('id')
+        _This = $(this)
+        var jiahua = $(this).parent().parent().children().eq(1).html();
+        var shiji = $(this).parent().parent().children().eq(2).html();
+        var bianhua = $(this).parent().parent().children().eq(3).html();
+
+
+        $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyBoxfxzjbg"> <div class="popAddMoneyTop"><span class="lf">添加工作量说明</span> <span class="deleteIcon rt"onclick="delThis()"></span></div> <div class="popAddMoneyBoxboxzjbg"> <div><span>计划的活动项目</span> <textarea maxlength="250" class="fxbox1" name="" id="popAddMoneyBoxboxfx1" cols="30"rows="10">' + jiahua + '</textarea> <span class="rt">0/250</span></div> <div><span>实际开展的活动项目</span> <textarea maxlength="250" class="fxbox2" name="" id="popAddMoneyBoxboxfx2" cols="30"rows="10">' + shiji + '</textarea> <span class="rt">0/250</span></div> <div><span>变化说明</span> <textarea maxlength="250" class="fxbox3" name="" id="popAddMoneyBoxboxfx3" cols="30"rows="10">' + bianhua + '</textarea> <span class="rt">0/250</span></div> <button onclick="savegzls4()"  id="' + this_id + '" class="popAddMoneyBoxboxfxBtnzjbg">保存</button> </div> </div> </div>')
+        var popscrollwidth = $(window).width();
+        var popscrollheight = $(window).height();
+        console.log(popscrollwidth, popscrollheight);
+        $(".popAddMoneyBoxfxzjbg").css('left', (popscrollwidth / 2 - 335) + "px").css('top', (popscrollheight / 2 - 295) + "px");
+    })
+    function savegzls4() {
+        var id_zjbg = $('.popAddMoneyBoxboxfxBtnzjbg').attr('id')
+        var popAddMoneyBoxboxfx1 = $('#popAddMoneyBoxboxfx1').val();
+        var popAddMoneyBoxboxfx2 = $('#popAddMoneyBoxboxfx2').val();
+        var popAddMoneyBoxboxfx3 = $('#popAddMoneyBoxboxfx3').val();
+        $.ajax({
+            url: "/cszyylfw/xs/xm/zjbg/alterchengguo",
+            type: 'post',
+            data: 'token=' + token + '&id=' + id_zjbg + '&chengguo=' + popAddMoneyBoxboxfx1 + "&type=" + popAddMoneyBoxboxfx2 + "&zengzhi=" + popAddMoneyBoxboxfx3,
+            success: function (res) {
+                if (res.code == 0) {
+                    $('.popopowindow').remove()
+                    $.ajax({
+                        url: "/cszyylfw/xs/xm/sspg/ent",
+                        type: 'post',
+                        data: 'token=' + token + "&xm_id=" + xm_id,
+                        success: function (res) {
+                            if (res.code == 0) {
+                                sspgId = res.data.sspgId;
+
+                                $('.leadfour .tab8').remove()
+                                if (res.data.chengguoList) {
+                                    for (var i = 0; i < res.data.chengguoList.length; i++) {
+                                        $('.leadfour').prepend(' <tr class="tab8"> <td>' + (res.data.chengguoList.length - i) + '</td> <td>' + res.data.chengguoList[i].chengguo + '</td> <td>' + res.data.chengguoList[i].type + '</td> <td>' + res.data.chengguoList[i].zengzhi + '</td> <td><span class="look" id="' + res.data.chengguoList[i].id + '">查看</span><span class="editor" id="' + res.data.chengguoList[i].id + '">编辑</span><span class="delete" id="' + res.data.chengguoList[i].id + '">删除</span></td> </tr>')
+                                    }
+                                }
+                            } else if (res.code == 20) {
+                                id = '+res.data.+'
+                                alert('登陆超时，请重新登录！')
+                                setTimeout(function () {
+                                    location.href = 'xs_index.html'
+                                }, 1000)
+
+                            } else {
+                                alert(res.codeMsg)
+                            }
+                        }
+                    })
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！');
+                    setTimeout(function () {
+                        location.href = 'xs_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+
+
+</script>
+
+<script>
+    $('.addleadMan2').click(function () {
+        $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyBoxfxzjbg"> <div class="popAddMoneyTop"><span class="lf">添加项目完成状况</span> <span class="deleteIcon rt"onclick="delThis()"></span></div> <div class="popAddMoneyBoxboxzjbgs"> <div><span>活动名称</span><input class="inputbox1" type="text" maxlength="30"/></div> <div><span>计划完成时间</span><input class="inputbox2" onclick="laydate({ istime: false, format: &#39;YYYY-MM-DD&#39; })" type="text" maxlength="30"/></div> <div><span>实际完成时间</span><input onclick="laydate({ istime: false, format: &#39;YYYY-MM-DD&#39; })" class="inputbox3" type="text" maxlength="30"/></div> <div><span>变化说明</span> <textarea maxlength="250" class="fxbox3 inputbox4" name="" id="popAddMoneyBoxboxfx3"  cols="30"rows="10"></textarea> <span class="rt">0/250</span></div> <button onclick="savegzl2()" class="popAddMoneyBoxboxfxBtnzjbgs">保存</button> </div> </div> </div>')
+        var popscrollwidth = $(window).width();
+        var popscrollheight = $(window).height();
+        console.log(popscrollwidth, popscrollheight);
+        $(".popAddMoneyBoxfxzjbg").css('left', (popscrollwidth / 2 - 425) + "px").css('top', (popscrollheight / 2 - 295) + "px");
+    })
+    function savegzl2() {
+        var popAddMoneyBoxboxfx1 = $('.inputbox1').val();
+        var popAddMoneyBoxboxfx2 = new Date($('.inputbox2').val().replace('.', '-')).getTime();
+        var popAddMoneyBoxboxfx3 = new Date($('.inputbox3').val().replace('.', '-')).getTime();
+        var popAddMoneyBoxboxfx4 = $('.inputbox4').val();
+        $.ajax({
+            url: "/cszyylfw/xs/xm/zjbg/addjindu",
+            type: 'post',
+            data: 'token=' + token + '&sspg_id=' + sspgId + '&name=' + popAddMoneyBoxboxfx1 + "&jiahua_endtime=" + popAddMoneyBoxboxfx2 + "&shiji_endtime=" + popAddMoneyBoxboxfx3 + "&bianhua=" + popAddMoneyBoxboxfx4,
+            success: function (res) {
+                if (res.code == 0) {
+                    $('.popopowindow').remove()
+                    $.ajax({
+                        url: "/cszyylfw/xs/xm/sspg/ent",
+                        type: 'post',
+                        data: 'token=' + token + "&xm_id=" + xm_id,
+                        success: function (res) {
+                            if (res.code == 0) {
+                                sspgId = res.data.sspgId;
+
+                                $('.leadtwo .tab8').remove()
+                                if (res.data.chengguoList) {
+                                    for (var i = 0; i < res.data.jinduList.length; i++) {
+                                        $('.leadtwo').prepend(' <tr class="tab8"> <td>' + (res.data.jinduList.length - i) + '</td> <td>' + res.data.jinduList[i].name + '</td> <td>' + formatDates(res.data.jinduList[i].jiahuaEndtime) + '</td> <td>' + formatDates(res.data.jinduList[i].shijiEndtime) + '</td> <td>' + res.data.jinduList[i].bianhua + '</td><td><span class="look" id="' + res.data.jinduList[i].id + '">查看</span><span class="editor"  id="' + res.data.jinduList[i].id + '">编辑</span><span class="delete" id="' + res.data.jinduList[i].id + '">删除</span></td> </tr>')
+                                    }
+                                }
+                            } else if (res.code == 20) {
+                                alert('登陆超时，请重新登录！')
+                                setTimeout(function () {
+                                    location.href = 'xs_index.html'
+                                }, 1000)
+
+                            } else {
+                                alert(res.codeMsg)
+                            }
+                        }
+                    })
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！');
+                    setTimeout(function () {
+                        location.href = 'xs_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+    $('.leadtwo').on('click', 'td .look', function () {
+        var this_id = $(this).attr('id')
+        _This = $(this)
+        var name = $(this).parent().parent().children().eq(1).html();
+        var jiahua_endtime = $(this).parent().parent().children().eq(2).html();
+        var shiji_endtime = $(this).parent().parent().children().eq(3).html();
+        var bianhua = $(this).parent().parent().children().eq(4).html();
+        $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyBoxfxzjbg"> <div class="popAddMoneyTop"><span class="lf">添加项目完成状况</span> <span class="deleteIcon rt"onclick="delThis()"></span></div> <div class="popAddMoneyBoxboxzjbgs"> <div><span>活动名称</span><div>' + name + '</div></div> <div><span>计划完成时间</span><div>' + jiahua_endtime + '</div></div> <div><span>实际完成时间</span><div>' + shiji_endtime + '</div></div> <div><span class="lf">变化说明</span><div class="lf">' + bianhua + '</div></div> </div> </div> </div>')
+        var popscrollwidth = $(window).width();
+        var popscrollheight = $(window).height();
+        console.log(popscrollwidth, popscrollheight);
+        $(".popAddMoneyBoxfxzjbg").css('left', (popscrollwidth / 2 - 425) + "px").css('top', (popscrollheight / 2 - 295) + "px");
+
+    });
+    //    编辑完成情况
+    $('.leadtwo').on('click', 'td .editor', function () {
+        var this_id = $(this).attr('id')
+        _This = $(this)
+        var name = $(this).parent().parent().children().eq(1).html();
+        var jiahua_endtime = $(this).parent().parent().children().eq(2).html();
+        var shiji_endtime = $(this).parent().parent().children().eq(3).html();
+        var bianhua = $(this).parent().parent().children().eq(4).html();
+        $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyBoxfxzjbg"> <div class="popAddMoneyTop"><span class="lf">添加项目完成状况</span> <span class="deleteIcon rt"onclick="delThis()"></span></div> <div class="popAddMoneyBoxboxzjbgs"> <div><span>活动名称</span><input value="' + name + '" class="inputbox1" type="text" maxlength="30"/></div> <div><span>计划完成时间</span><input class="inputbox2"  value="' + jiahua_endtime + '"  onclick="laydate({ istime: false, format: &#39;YYYY-MM-DD&#39; })" type="text" maxlength="30"/></div> <div><span>实际完成时间</span><input  value="' + shiji_endtime + '"  onclick="laydate({ istime: false, format: &#39;YYYY-MM-DD&#39; })" class="inputbox3" type="text" maxlength="30"/></div> <div><span>变化说明</span> <textarea maxlength="250" class="fxbox3 inputbox4" name="" id="popAddMoneyBoxboxfx3"  cols="30"rows="10">' + bianhua + '</textarea> <span class="rt">0/250</span></div> <button onclick="savegzls2()" id="' + this_id + '" class="popAddMoneyBoxboxfxBtnzjbgs">保存</button> </div> </div> </div>')
+        var popscrollwidth = $(window).width();
+        var popscrollheight = $(window).height();
+        console.log(popscrollwidth, popscrollheight);
+        $(".popAddMoneyBoxfxzjbg").css('left', (popscrollwidth / 2 - 335) + "px").css('top', (popscrollheight / 2 - 295) + "px");
+    })
+    function savegzls2() {
+        var id_zjbg = $('.popAddMoneyBoxboxfxBtnzjbgs').attr('id')
+        var popAddMoneyBoxboxfx1 = $('.inputbox1').val();
+        var popAddMoneyBoxboxfx2 = new Date($('.inputbox2').val().replace('.', '-')).getTime();
+        var popAddMoneyBoxboxfx3 = new Date($('.inputbox3').val().replace('.', '-')).getTime();
+        var popAddMoneyBoxboxfx4 = $('.inputbox4').val();
+        $.ajax({
+            url: "/cszyylfw/xs/xm/zjbg/alterjindu",
+            type: 'post',
+            data: 'token=' + token + '&id=' + id_zjbg + '&name=' + popAddMoneyBoxboxfx1 + "&jiahua_endtime=" + popAddMoneyBoxboxfx2 + "&shiji_endtime=" + popAddMoneyBoxboxfx3 + "&bianhua=" + popAddMoneyBoxboxfx4,
+            success: function (res) {
+                if (res.code == 0) {
+                    $('.popopowindow').remove()
+                    $.ajax({
+                        url: "/cszyylfw/xs/xm/sspg/ent",
+                        type: 'post',
+                        data: 'token=' + token + "&xm_id=" + xm_id,
+                        success: function (res) {
+                            if (res.code == 0) {
+                                sspgId = res.data.sspgId;
+
+                                $('.leadtwo .tab8').remove()
+                                if (res.data.chengguoList) {
+                                    for (var i = 0; i < res.data.jinduList.length; i++) {
+                                        $('.leadtwo').prepend(' <tr class="tab8"> <td>' + (res.data.jinduList.length - i) + '</td> <td>' + res.data.jinduList[i].name + '</td> <td>' + formatDates(res.data.jinduList[i].jiahuaEndtime) + '</td> <td>' + formatDates(res.data.jinduList[i].shijiEndtime) + '</td> <td>' + res.data.jinduList[i].bianhua + '</td><td><span class="look" id="' + res.data.jinduList[i].id + '">查看</span><span class="editor"  id="' + res.data.jinduList[i].id + '">编辑</span><span class="delete" id="' + res.data.jinduList[i].id + '">删除</span></td> </tr>')
+                                    }
+                                }
+                            } else if (res.code == 20) {
+                                id = '+res.data.+'
+                                alert('登陆超时，请重新登录！')
+                                setTimeout(function () {
+                                    location.href = 'xs_index.html'
+                                }, 1000)
+
+                            } else {
+                                alert(res.codeMsg)
+                            }
+                        }
+                    })
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！');
+                    setTimeout(function () {
+                        location.href = 'xs_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+
+</script>
+<script src="js/ssevalution.js"></script>
+<script src="js/xuxkBrief.js"></script>
+</body>
+</html>

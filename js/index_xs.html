@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>学生作业</title>
+    <!--<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="../xs/css/indexM.css"/>
+    <link rel="stylesheet" href="../xs/css/all.css"/>
+    <script src="js/jquery-1.7.1.min.js"></script>
+    <link rel="stylesheet" href="css/xuxk.css"/>
+    <!--<link rel="stylesheet" href="css/default.css"/>-->
+    <!--<link rel="stylesheet" href="css/css/default.css"/>-->
+    <script src="js/xuxkBrief.js"></script>
+    <script  src="js/public.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font-size: 12px;
+            font-family: Arial, Helvetica, sans-serif, 宋体;
+            color: rgb(51, 51, 51);
+            background: #d0e89b;
+        }
+
+        /*body {font: normal 100% Helvetica, Arial,sans-serif;}*/
+    </style>
+    <script>
+        var token = localStorage.getItem('token');
+
+        loginrefresh(token)
+    </script>
+
+
+</head>
+<body>
+<div class="mantain">
+    <!--顶部导航-->
+    <div class="zoneBg">
+        <div class="topLine">
+            <div class="topLineBelore">
+                <div class="logo lf">
+                    <a href="js_index.html">
+                        <img src="images/logoTop.png" alt=""/>
+                    </a>
+                </div>
+                <div class="exit rt editdown">
+                    <span></span>
+                    <a href="javascript:;" onclick="getoutjs(token)">退出</a>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="bg1">
+            <img src="images/touming.png" alt=""/>
+        </div>
+        <!--正文内容-->
+        <div class="box">
+            <div class="box_in">
+                <div class="boxLf lf course">
+                    <ul>
+                        <li class="level1">
+                            <div class="level1Style">
+                                <div class="level1Styleline first">
+                                    <span class="icon3"></span>
+                                    <span class="studentRealname">课程教学</span>
+                                </div>
+                            </div>
+                            <div class="menuLevel2">
+                                <ul>
+                                    <li class="level2 btnone" lib_id="1" xm_type="1" style="background: #b1c54c;color: #fff">
+                                        <span style="background:url(../images/icon44.png) "></span><span>
+                                    咨询接待</span></li>
+                                    <li class="level2 btntwo" lib_id="2" xm_type="2"><span></span><span>
+                                    活动参与</span></li>
+                                    <li class="level2 btnthree" lib_id="3" xm_type="3"><span></span><span>
+                                    风险管理</span></li>
+
+                                </ul>
+                            </div>
+                        </li>
+
+                    </ul>
+
+
+                </div>
+                <div class="boxRt lf">
+                    <div class="boxRtBox">
+                        <div class="boxRtBoxTop">
+                            <div class="classroom">
+                                <span></span>
+                                <span class="clazzName">三年二班</span>
+                            </div>
+                            <div class="classroomRt"></div>
+                        </div>
+                        <div class="boxRtBoxBottom">
+                            <!--<iframe ID="Frame4" SRC="login.html" STYLE="background-color: green"> </iframe>-->
+                            <!--学习项目-->
+                            <table class="table table1" cellpadding="0" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th>编号</th>
+                                    <th>任务</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>任务一</td>
+                                    <td>情景设计</td>
+                                    <td class="colortd"><span class="iconIn"></span>&nbsp;<a target="_Blank">进入</a></td>
+                                </tr>
+                                <tr>
+                                    <td>任务二</td>
+                                    <td>能力评估</td>
+                                    <td class="colortd"><span class="iconIn"></span>&nbsp;<a target="_Blank">进入</a></td>
+                                </tr>
+                                <tr>
+                                    <td>任务三</td>
+                                    <td>需求评估,信息反馈</td>
+                                    <td class="colortd"><span class="iconIn"></span>&nbsp;<a target="_Blank">进入</a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <table class="table table2" cellpadding="0" cellspacing="0" style="display: none">
+                                <thead>
+                                <tr>
+                                    <th>编号</th>
+                                    <th>任务</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>任务一</td>
+                                    <td>活动参与</td>
+                                    <td class="colortd"><span class="iconIn"></span>&nbsp;<a target="_Blank">进入</a></td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                            <table class="table table3" cellpadding="0" cellspacing="0" style="display: none">
+                                <thead>
+                                <tr>
+                                    <th>编号</th>
+                                    <th>任务</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>任务一</td>
+                                    <td>情景设计</td>
+                                    <td class="colortd"><span class="iconIn"></span>&nbsp;<a target="_Blank">进入</a></td>
+                                </tr>
+                                <tr>
+                                    <td>任务二</td>
+                                    <td>沟通方案</td>
+                                    <td class="colortd"><span class="iconIn"></span>&nbsp;<a target="_Blank">进入</a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+                <!--书页线-->
+                <div class="boxRtBottom rt"></div>
+            </div>
+<div class="clear"></div>
+            <div class="footer">
+                <div class="information" style="padding: 0;margin: 0">             <ul  style="padding: 0;margin: 0">                 <li><img src="../images/bottomText.png" alt="" style="width: 460px"/></li>             </ul>         </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var student_id = GetQueryString('student_id')
+var xm_type=1
+
+    $('.level1 .level1Style').click(function () {
+//        $(this).children('.menuLevel2').slideToggle();
+        $(this).siblings().slideToggle();
+        console.log($(this).parent().siblings())
+        $(this).parent().siblings().children('.menuLevel2').slideUp();
+        $(this).parent().siblings().find('.level2 span:nth-child(1)').css('background', 'url(images/icon4.png)')
+        $(this).parent().siblings().find('.level2').css('background', '#fff ').css('color', '#585631')
+    })
+    $(".btnone").click(function(){
+        $('.table1').css('display','')
+        $('.table2').css('display','none')
+        $('.table3').css('display','none')
+    })
+    $(".btntwo").click(function(){
+        $('.table1').css('display','none')
+        $('.table2').css('display','')
+        $('.table3').css('display','none')
+    })
+    $(".btnthree").click(function(){
+        $('.table1').css('display','none')
+        $('.table2').css('display','none')
+        $('.table3').css('display','')
+    })
+    $('.level1 .level2').click(function () {
+        xm_type=$(this).attr('xm_type')
+        reloadThis(xm_type)
+        $(this).children('span:nth-child(1)').css('background', 'url(images/icon44.png)');
+        $(this).css('background', '#b1c54c').css('color', '#fff');
+        $(this).siblings().children('span:nth-child(1)').css('background', 'url(images/icon4.png)');
+        $(this).siblings().css('background', '#fff ').css('color', '#585631')
+    })
+
+    loginrefresh(token)
+//    /js/xszuoye/ent
+//    student_id
+//    xm_type
+    function  reloadThis(xm_type){
+        $.ajax({
+            url: "/cszyylfw/js/xszuoye/ent",
+            type: 'post',
+            async: false,
+            data: 'token=' + token + "&student_id=" + student_id + "&xm_type="+xm_type,
+            success: function (res) {
+                if (res.code == 0) {
+                    var xm_id=res.data.xmId
+                    console.log(xm_id)
+                    $('.clazzName').html(res.data.clazzName)
+                    $('.studentRealname').html(res.data.studentRealname)
+                    if(xm_id==''||xm_id==null||xm_id==undefined||xm_id=='null'||xm_id=='undefined'){
+
+                    }else{
+                        if(xm_type==1){
+                            $('.table1 tbody>tr:first-child>td a').attr('href',"consult_qjsj_look.html?xm_id="+xm_id);
+                            $('.table1 tbody>tr:nth-child(2)>td a').attr('href',"consult_nlpg_look.html?xm_id="+xm_id);
+                            $('.table1 tbody>tr:nth-child(3)>td a').attr('href',"consult_xqpg_look.html?xm_id="+xm_id)
+                        }else if(xm_type==2){
+                            $('.table2 tbody>tr:first-child>td a').attr('href',"activity_look.html?xm_id="+xm_id)
+                        }else{
+                            $('.table3 tbody>tr:first-child>td a').attr('href',"manage_qjsj_look.html?xm_id="+xm_id);
+                            $('.table3 tbody>tr:nth-child(2)>td a').attr('href',"manage_gtfa_look.html?xm_id="+xm_id)
+                        }
+                    }
+
+
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！');
+                    setTimeout(function () {
+                        location.href = 'js_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+    reloadThis(1);
+    $('a').click(function(){
+        if(!$(this).attr('href'))
+        error('学生未提交该项作业')
+    })
+
+</script>
+</body>
+</html>

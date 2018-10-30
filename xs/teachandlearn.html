@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>习题练习</title>
+    <!--<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="css/indexM.css"/>
+    <link rel="stylesheet" href="css/all.css"/>
+    <link rel="stylesheet" href="css/xuxkpopWindow.css"/>
+    <link rel="stylesheet" href="css/page.css"/>
+    <link rel="stylesheet" href="css/teachandlearn.css"/>
+    <link rel="stylesheet" href="css/gobal.css"/>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/public.js"></script>
+    <link rel="stylesheet" href="css/xuxk.css"/>
+    <!--<link rel="stylesheet" href="css/default.css"/>-->
+    <!--<link rel="stylesheet" href="css/css/default.css"/>-->
+    <script src="js/xuxkBrief.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <!--<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+    <style>
+        body {
+            font-size: 12px;
+            font-family: Arial, Helvetica, sans-serif, 宋体;
+            color: rgb(51, 51, 51);
+            background: #d0e89b;
+        }
+
+        /*body {font: normal 100% Helvetica, Arial,sans-serif;}*/
+    </style>
+    <script>
+        var token = localStorage.getItem('token');
+        var classId;
+    </script>
+
+
+</head>
+<body>
+<div class="mantain">
+    <!--顶部导航-->
+    <div class="zoneBg">
+        <div class="topLine">
+            <div class="topLineBelore">
+                <div class="logo lf">
+                    <a href="xs_index.html">
+                        <img src="../images/logoTop.png" alt=""/>
+                    </a>
+                </div>
+                <div class="exit rt">
+                    <span></span>
+                    <a href="javascript:;" onclick="getout(token)">退出</a>
+
+                </div>
+            </div>
+        </div>
+        <div class="bg1">
+            <img src="../images/touming.png" alt=""/>
+        </div>
+        <!--正文内容-->
+        <div class="box">
+            <div class="box_in">
+                <div class="boxLf lf course">
+                    <ul>
+                        <li class="level1">
+                            <div class="level1Style">
+                                <div class="level1Styleline first">
+                                    <span class="iconrun"></span>
+                                    <span class="studentRealname">我的训练</span>
+                                </div>
+                            </div>
+                            <div class="menuLevel2">
+                                <ul>
+                                    <li class="level2 btnone" lib_id="1" style="background: #b1c54c;color: #fff">
+                                        <span style="background:url(../images/icon44.png) "></span><span>
+                                    营养素及能量需求认知</span></li>
+                                    <li class="level2" lib_id="2"><span></span><span>
+                                    常见食物的营养价值</span></li>
+                                    <li class="level2" lib_id="3"><span></span><span>
+                                    合理营养及平衡膳食</span></li>
+                                    <li class="level2" lib_id="4"><span></span><span>
+                                    安全食品</span></li>
+                                    <li class="level2" lib_id="5"><span></span><span>
+                                    膳食营养状况</span></li>
+                                    <li class="level2" lib_id="6"><span></span><span>
+                                    慢性病合理膳食</span></li>
+
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+
+
+                </div>
+                <div class="boxRt lf">
+                    <div class="boxRtBox">
+
+                        <div class="classedit">
+                            <span class="donow">开始做题</span>
+                        </div>
+
+                        <div class="boxRtBoxBottom" style="margin-top: 0">
+                            <!--<iframe ID="Frame4" SRC="login.html" STYLE="background-color: green"> </iframe>-->
+                            <!--学习项目-->
+                            <table class="table indextable tableTask" cellpadding="0" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th>时间</th>
+                                    <th>试卷状态</th>
+                                    <th>得分</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                                <div class="clear"></div>
+
+                            </table>
+                            <!--<span class="point" style="display: inline-block">0分</span>-->
+                            <!--<div class="paging">-->
+                            <!--<div class="rt">-->
+                            <!--<span class="lastpage"><span></span>&nbsp;上一页</span>&nbsp;&nbsp;-->
+                            <!--<span class="nextpage">下一页&nbsp;<span></span></span>&nbsp;&nbsp;&nbsp;-->
+                            <!-- 到第 &nbsp; &nbsp;<input type="text" value=""/>&nbsp;&nbsp;-->
+                            <!--页&nbsp;&nbsp;-->
+                            <!--<button class="makeSure">确定</button>-->
+                            <!--&nbsp;&nbsp;</div>-->
+
+                            <!--</div>-->
+                        </div>
+                        <div class="paging" style="padding-top: 10px;">
+                            <div class="rt">
+                                <span class="lastpage"><span></span>&nbsp;上一页</span>&nbsp;&nbsp;
+                                <span class="nextpage">下一页&nbsp;<span></span></span>&nbsp;&nbsp;&nbsp;
+                                到第 &nbsp; &nbsp;<input type="text" value=""/>&nbsp;&nbsp; 页&nbsp;&nbsp; <button class="makeSure">确定</button>&nbsp;&nbsp;</div>
+
+                        </div>
+                        <div class="boxRtBottomNext" style="display: none">
+
+                            <span class="submittimu">提交</span>
+                        </div>
+
+
+                    </div>
+                </div>
+                <!--书页线-->
+                <div class="boxRtBottom rt"></div>
+            </div>
+
+            <div class="clear"></div>
+            <div class="footer" style="background: #d0e89b">
+                <div class="information" style="padding: 0;margin: 0">             <ul  style="padding: 0;margin: 0">                 <li><img src="../images/bottomText.png" alt="" style="width: 460px"/></li>             </ul>         </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<div class="popopowindow">-->
+<!--<div class="popBackground"></div>-->
+<!--<div class="popAddMoneyBox">-->
+<!--<div class="popAddMoneyTop">-->
+<!--<span class="lf">新增班级</span> <span class="deleteIcon rt" onclick="delThis()"></span>-->
+<!--</div>-->
+<!--<div class="popAddMoneyBottom">-->
+<!--<div style="margin: 150px auto 130px">-->
+<!--<span>班级名称</span><input value="" class="inputbox1" type="text" maxlength="30"/>-->
+<!--</div>-->
+<!--<button onclick="savegzls2()" id="'+this_id+'" class="popAddMoneyBoxBtn">保存</button>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="popopowindow">-->
+<!--<div class="popBackground"></div>-->
+<!--<div class="popAddMoneyBox">-->
+<!--<div class="popAddMoneyTop">-->
+<!--<span class="lf">新增班级</span> <span class="deleteIcon rt" onclick="delThis()"></span>-->
+<!--</div>-->
+<!--<div class="popAddMoneyBottom">-->
+<!--<div style="margin: 100px auto 10px">-->
+<!--<span>学号</span><input value="" class="inputbox1" type="text" maxlength="30"/>-->
+<!--</div>-->
+<!--<div style="margin: 0 auto 10px">-->
+<!--<span>姓名</span><input value="" class="inputbox1" type="text" maxlength="30"/>-->
+<!--</div>-->
+<!--<div style="margin: 0 auto 86px">-->
+<!--<span>密码</span><input value="" class="inputbox1" type="text" maxlength="30"/>-->
+<!--</div>-->
+<!--<button onclick="savegzls2()" id="'+this_id+'" class="popAddMoneyBoxBtn">保存</button>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<div class="popopowindow">-->
+<!--<div class="popBackground"></div>-->
+<!--<div class="popAddMoneyMinBox">-->
+<!--<div class="popAddMoneyTop">-->
+<!--<span class="lf">请输入密码</span> <span class="deleteIcon rt" onclick="delThis()"></span>-->
+<!--</div>-->
+<!--<div class="popAddMoneyMinBottom">-->
+<!--<div style="margin: 100px auto 10px">-->
+<!--<span>确认归档后，该班级信息将不再此位置展示，是否归档！</span>-->
+<!--</div>-->
+<!--<div class="minBtn">-->
+<!--<button class="refusemin rt">取消</button>-->
+<!--<button class="makeSuremin rt">确认</button>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<script>
+    function  testPaperNow(testPaperId){
+        $.ajax({
+            url: "/cszyylfw/xs/capacitytest/testingquestions",
+            type: 'post',
+            async: false,
+            data: 'token=' + token + '&page_no=1&page_size=100&paper_id=' + testPaperId,
+            success: function (res) {
+                if (res.code == 0) {
+                    $('.submittimu').css('display','block')
+                    $('.boxRtBottomNext>div').remove()
+                    $('.boxRtBottomNext').css('display','block')
+                    var text = ''
+                    for (var i = 0; i < res.data.items.length; i++) {
+                        var _thisItem = res.data.items[i]
+                        var classId = i + 1
+                        var answer = ''
+                        for (var r = 0; r < _thisItem.answers.length; r++) {
+                            answer = answer + '<div><input type="radio" id="' + _thisItem.answers[r].answerId + '" name="' + classId + '"/><span>' + _thisItem.answers[r].choiceFlag + _thisItem.answers[r].content + '</span></div>'
+                        }
+                        console.log(answer)
+                        text += '<div questionId="'+_thisItem.questionId+'">' +
+                        '<div class="boxRtBottomNexttitle">' + _thisItem.title + '</div>' +
+                        '<div class="boxRtBottomNextvalue">' +
+                        answer +
+                        '</div>' +
+                        '</div>'
+                    }
+                    $('.boxRtBottomNext').prepend(text).attr('paperId',testPaperId)
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！');
+                    setTimeout(function () {
+                        location.href = 'xs_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+
+
+    function testPaperEnd(testPaperId){
+        $.ajax({
+            url: "/cszyylfw/xs/capacitytest/paperresult",
+            type: 'post',
+            async: false,
+            data: 'token=' + token + '&page_no=1&page_size=100&paper_id=' + testPaperId,
+            success: function (res) {
+                if (res.code == 0) {
+                    $('.boxRtBottomNext>div').remove()
+                    $('.boxRtBottomNext').css('display','block')
+                    var text = ''
+                    for (var i = 0; i < res.data.items.length; i++) {
+                        var _thisItem = res.data.items[i]
+                        var classId = i + 1
+                        var answer = ''
+                        for (var r = 0; r < _thisItem.answers.length; r++) {
+                            var checks='';
+                            if(_thisItem.answers[r].choiceIf==1){
+                                checks='checked'
+                            }else{
+                                checks=''
+                            }
+                            answer = answer + '<div><input type="radio" disabled  '+checks+'  id="' + _thisItem.answers[r].answerId + '" name="' + classId + '"/><span>' + _thisItem.answers[r].choiceFlag + _thisItem.answers[r].content + '</span></div>'
+                        }
+                        console.log(answer)
+                        text += '<div questionId="'+_thisItem.questionId+'">' +
+                        '<div class="boxRtBottomNexttitle">' + _thisItem.title + '</div>' +
+                        '<div class="boxRtBottomNextvalue">' +
+                        answer +
+                        '</div>' +
+                        '</div>'
+                    }
+                    $('.submittimu').css('display','none')
+                    $('.boxRtBottomNext').prepend(text).attr('paperId',testPaperId)
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！');
+                    setTimeout(function () {
+                        location.href = 'xs_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+    var lib_id=1
+    $('.donow').click(function () {
+        $.ajax({
+            url: "/cszyylfw/xs/capacitytest/starttest",
+            type: 'post',
+            async: false,
+            data: 'token=' + token + "&lib_id=" + lib_id,
+            success: function (res) {
+                if (res.code == 0) {
+                    var testPaperId = res.data.testPaperId
+                    if (testPaperId) {
+                        testPaperNow(testPaperId)
+                    }
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！');
+                    setTimeout(function () {
+                        location.href = 'xs_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    })
+
+//    答题
+    $('.boxRtBottomNext').on('click','.boxRtBottomNextvalue input',function(){
+        var answerrId=$(this).attr('id');
+        var questionid=$(this).parent().parent().parent().attr('questionid');
+        var paperId=$('.boxRtBottomNext').attr('paperid');
+        $(this).parent().parent().parent().attr('finished','1');
+        $.ajax({
+            url: "/cszyylfw/xs/capacitytest/answer",
+            type: 'post',
+            async: false,
+            data: 'token=' + token + '&answer_id='+answerrId+'&question_id='+questionid+'&paper_id=' + paperId,
+            success: function (res) {
+                if (res.code == 0) {
+
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！');
+                    setTimeout(function () {
+                        location.href = 'xs_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    })
+
+
+$('.submittimu').click(function(){
+    var addNamelen=$('.boxRtBottomNext>div').length;
+    var len=0
+    $('.boxRtBottomNext>div').each(function(){
+        if($(this).attr('finished')){
+            len++
+        }else{
+            return
+        }
+    })
+    var paperId=$('.boxRtBottomNext').attr('paperid');
+    console.log(len+"===="+addNamelen)
+    if(len==addNamelen){
+        $.ajax({
+            url: "/cszyylfw/xs/capacitytest/papersubmit",
+            type: 'post',
+            async: false,
+            data: 'token=' + token + '&paper_id=' + paperId,
+            success: function (res) {
+                if (res.code == 0) {
+                    error('试卷已提交！');
+                    setTimeout(function(){
+                        $('.boxRtBottomNext>div').remove();
+                        $('.boxRtBottomNext').css('display','none');
+                        pageNo=1
+                        reloadPaper('',lib_id)
+                    },1000)
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！');
+                    setTimeout(function () {
+                        location.href = 'xs_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }else{
+        error('尚有未作答的题目！请完成所有答题！')
+    }
+})
+    var pageNo=0
+function reloadPaper(paperId,lib_id){
+    $.ajax({
+        url: "/cszyylfw/xs/capacitytest/papers",
+        type: 'post',
+        async: false,
+        data: 'token=' + token + '&paper_id=' + paperId+'&lib_id='+lib_id+"&page_no="+pageNo+"&page_size="+5,
+        success: function (res) {
+            if (res.code == 0) {
+                if(res.data.items.length==0){
+                    if(pageNo==1){return}
+                    error('没有更多数据！');
+                    pageNo--;
+                    return
+                }
+                $('tbody').html('');
+
+                var statusEd,clickbtn;
+                for(var i=0;i<res.data.items.length;i++){
+                    if(res.data.items[i].status==0){
+                        statusEd='未提交'
+                        clickbtn='<span addid="1" class="newpaper" paperIds="'+res.data.items[i].paperId+'">重新答题</span>'
+                    }else if(res.data.items[i].status==1){
+                        statusEd='已提交，未评分'
+                        clickbtn='<span addid="1" class="lookend" paperIds="'+res.data.items[i].paperId+'">查看结果</span>'
+                    }else if(res.data.items[i].status==2){
+                        statusEd='已提交，已评分'
+                        clickbtn='<span addid="1" class="lookend" paperIds="'+res.data.items[i].paperId+'">查看结果</span>'
+                    }
+                    $('tbody').append('<tr paperId="'+res.data.items[i].paperId+'"> <td>'+_formatDates(res.data.items[i].addTime/1000)+'</td><td>'+statusEd+'</td> <td>'+(res.data.items[i].score||'')+'</td> <td class="colortd">'+clickbtn+'<span paperIds="'+res.data.items[i].paperId+'">删除</span></td> </tr>')
+                }
+
+            } else if (res.code == 20) {
+                alert('登陆超时，请重新登录！');
+                setTimeout(function () {
+                    location.href = 'xs_index.html'
+                }, 1000)
+
+            } else {
+                alert(res.codeMsg)
+            }
+        }
+    })
+}
+    pageNo++;
+    reloadPaper('',lib_id)
+
+
+
+    $('.lastpage').click(function(){
+
+        if(!$('.yourselect span').attr('type')){
+            type=''
+        }else{
+            type=$('.yourselect span').attr('type')
+        }
+        pageNo--;
+        if(pageNo>0){
+            reloadPaper('',lib_id)
+        }else{
+            error('已到达第一页！');
+            pageNo++
+        }
+
+    })
+    $('.nextpage').click(function(){
+        if(!$('.yourselect span').attr('type')){
+            type=''
+        }else{
+            type=$('.yourselect span').attr('type')
+        }
+        pageNo++;
+        reloadPaper('',lib_id)
+    })
+    $('.makeSure').click(function(){
+
+
+        if(!$('.paging input').val()){
+            pageNo=1;
+        }else{
+            pageNo=$('.paging input').val()
+        }
+        reloadPaper('',lib_id)
+    })
+
+
+
+
+//    删除
+    $('tbody').on('click','.colortd span:nth-child(2)',function(){
+        var id=$(this).attr('paperIds');
+        layboxs("action/delete_paper.html?id=" + id + "&url=/cszyylfw/xs/capacitytest/paperdel" + "&fun=delok", "notitle");
+    })
+    function delok(){
+        popation("220", "y", "删除成功！");
+        closemask();
+        $('tbody').html('');
+        $('.popopowindow').remove()
+        reloadPaper('',lib_id)
+    }
+
+//    查看題目
+    $('tbody').on('click','.colortd .lookend',function(){
+        var paperid=$(this).attr('paperids')
+        testPaperEnd(paperid)
+    })
+//    重新答題
+    $('tbody').on('click','.colortd .newpaper',function(){
+        var paperid=$(this).attr('paperids')
+        testPaperNow(paperid)
+    })
+</script>
+<script type="text/javascript">
+    var lib_id = 1
+    //    var xm_type = GetQueryString('xm_type');
+    var student_id = GetQueryString('student_id');
+    var popscrollwidth = $(window).width();
+    var popscrollheight = $(window).height();
+    console.log(popscrollwidth, popscrollheight);
+    $(".popAddMoneyMinBox").css('left', (popscrollwidth / 2 - 180) + "px").css('top', (popscrollheight / 2 - 96.5) + "px");
+
+    $('.boxLf').on('click', '.level1 .level1Style', function () {
+//    $('.level1 .level1Style').click(function () {
+//        $(this).children('.menuLevel2').slideToggle();
+        $(this).siblings().slideToggle();
+        console.log($(this).parent().siblings());
+        $(this).parent().siblings().children('.menuLevel2').slideUp();
+        $(this).parent().siblings().find('.level2 span:nth-child(1)').css('background', 'url(../images/icon4.png)');
+        $(this).parent().siblings().find('.level2').css('background', '#fff ').css('color', '#585631')
+    });
+    $('.level1').on('click', '.menuLevel2 .level2', function () {
+//    $('.level1 .level2').click(function () {
+        $('tbody').html('')
+        lib_id = $(this).attr('lib_id')
+        $(this).children('span:nth-child(1)').css('background', 'url(../images/icon44.png)');
+        $(this).css('background', '#b1c54c').css('color', '#fff');
+        $(this).siblings().children('span:nth-child(1)').css('background', 'url(../images/icon4.png)');
+        $(this).siblings().css('background', '#fff ').css('color', '#585631');
+        pageNo=1
+        reloadPaper('',lib_id)
+
+    })
+    $('.btnone').click(function () {
+        console.log(1)
+        $('.boxRtBoxBottom table:nth-child(1)').css('display', '');
+//        $('.boxRtBoxBottom table:nth-child(1)').siblings().css('display', 'none')
+    })
+    $('.btntwo').click(function () {
+        console.log(2)
+        $('.boxRtBoxBottom table:nth-child(2)').css('display', '');
+        $('.boxRtBoxBottom table:nth-child(2)').siblings().css('display', 'none')
+    })
+    $('.btnthree').click(function () {
+        console.log(3)
+        $('.boxRtBoxBottom table:nth-child(3)').css('display', '');
+        $('.boxRtBoxBottom table:nth-child(3)').siblings().css('display', 'none')
+    })
+    $('.btnfour').click(function () {
+        $('.boxRtBoxBottom table:nth-child(4)').css('display', '');
+        $('.boxRtBoxBottom table:nth-child(4)').siblings().css('display', 'none')
+    })
+    loginrefresh(token);
+    var xm_id;
+    function reloadThis() {
+        $.ajax({
+            url: "/cszyylfw/js/xszuoye/ent",
+            type: 'post',
+            async: false,
+            data: 'token=' + token + "&student_id=" + student_id + "&xm_type=" + xm_type,
+            success: function (res) {
+                if (res.code == 0) {
+                    $('.clazzName').html(res.data.clazzName)
+                    $('.studentRealname').html(res.data.studentRealname)
+                    if (res.data.xmId == '' || res.data.xmId == undefined || res.data.xmId == null || res.data.xmId == 'null' || res.data.xmId == 'undefined') {
+                        xm_id = ''
+                    } else {
+                        xm_id = res.data.xmId
+                        console.log(xm_id)
+                    }
+                    if (!res.data.bj) {
+                        $('tbody>tr:first-child>td:nth-child(3)').html('未提交：未评分')
+                    } else {
+                        $('tbody>tr:first-child>td span').attr('id', res.data.bj.id)
+                        if (res.data.bj.status == 0) {
+                            $('tbody>tr:first-child>td:nth-child(3)').html('未提交：未评分')
+                        } else if (res.data.bj.status == 1) {
+                            $('tbody>tr:first-child>td:nth-child(3)').html('已提交：未评分')
+                        } else if (res.data.bj.status == 2) {
+                            $('tbody>tr:first-child>td:nth-child(3)').html('已提交：已评分')
+                        }
+                    }
+                    if (!res.data.dybg) {
+                        $('tbody>tr:nth-child(2)>td:nth-child(3)').html('未提交：未评分')
+                    } else {
+                        $('tbody>tr::nth-child(2)>td span').attr('id', res.data.dybg.id)
+                        if (res.data.dybg.status == 0) {
+                            $('tbody>tr:nth-child(2)>td:nth-child(3)').html('未提交：未评分')
+                        } else if (res.data.dybg.status == 1) {
+                            $('tbody>tr:nth-child(2)>td:nth-child(3)').html('已提交：未评分')
+                        } else if (res.data.dybg.status == 2) {
+                            $('tbody>tr:nth-child(2)>td:nth-child(3)').html('已提交：已评分')
+                        }
+                    }
+                    if (!res.data.chfa) {
+                        $('tbody>tr:nth-child(3)>td:nth-child(3)').html('未提交：未评分')
+                    } else {
+                        $('tbody>tr:nth-child(3)>td span').attr('id', res.data.chfa.id)
+                        if (res.data.chfa.status == 0) {
+                            $('tbody>tr:nth-child(3)>td:nth-child(3)').html('未提交：未评分')
+                        } else if (res.data.chfa.status == 1) {
+                            $('tbody>tr:nth-child(3)>td:nth-child(3)').html('已提交：未评分')
+                        } else if (res.data.chfa.status == 2) {
+                            $('tbody>tr:nth-child(3)>td:nth-child(3)').html('已提交：已评分')
+                        }
+                    }
+                    if (!res.data.hdgg) {
+                        $('tbody>tr:nth-child(4)>td:nth-child(3)').html('未提交：未评分')
+                    } else {
+                        $('tbody>tr:nth-child(4)>td span').attr('id', res.data.hdgg.id)
+                        if (res.data.hdgg.status == 0) {
+                            $('tbody>tr:nth-child(4)>td:nth-child(3)').html('未提交：未评分')
+                        } else if (res.data.hdgg.status == 1) {
+                            $('tbody>tr:nth-child(4)>td:nth-child(3)').html('已提交：未评分')
+                        } else if (res.data.hdgg.status == 2) {
+                            $('tbody>tr:nth-child(4)>td:nth-child(3)').html('已提交：已评分')
+                        }
+                    }
+                    if (!res.data.yqh) {
+                        $('tbody>tr:nth-child(5)>td:nth-child(3)').html('未提交：未评分')
+                    } else {
+                        $('tbody>tr:nth-child(5)>td span').attr('id', res.data.yqh.id)
+                        if (res.data.yqh.status == 0) {
+                            $('tbody>tr:nth-child(5)>td:nth-child(3)').html('未提交：未评分')
+                        } else if (res.data.yqh.status == 1) {
+                            $('tbody>tr:nth-child(5)>td:nth-child(3)').html('已提交：未评分')
+                        } else if (res.data.yqh.status == 2) {
+                            $('tbody>tr:nth-child(5)>td:nth-child(3)').html('已提交：已评分')
+                        }
+                    }
+                    if (!res.data.zjbg) {
+                        $('tbody>tr:nth-child(6)>td:nth-child(3)').html('未提交：未评分')
+                    } else {
+                        $('tbody>tr:nth-child(6)>td span').attr('id', res.data.zjbg.id)
+                        if (res.data.zjbg.status == 0) {
+                            $('tbody>tr:nth-child(6)>td:nth-child(3)').html('未提交：未评分')
+                        } else if (res.data.zjbg.status == 1) {
+                            $('tbody>tr:nth-child(6)>td:nth-child(3)').html('已提交：未评分')
+                        } else if (res.data.zjbg.status == 2) {
+                            $('tbody>tr:nth-child(6)>td:nth-child(3)').html('已提交：已评分')
+                        }
+                    }
+                    $('.point').html(res.data.zongfen + '分')
+
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！');
+                    setTimeout(function () {
+                        location.href = 'xs_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+    //    reloadThis()
+
+
+</script>
+<!--顶部按钮操作-->
+<script>
+    //    新增班级
+    $('.addClass').click(function () {
+        $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyBox"> <div class="popAddMoneyTop"> <span class="lf">新增班级</span> <span class="deleteIcon rt" onclick="delThis()"></span> </div> <div class="popAddMoneyBottom"> <div style="margin: 150px auto 130px"> <span>班级名称</span><input value="" class="inputbox1" type="text" maxlength="30"/> </div> <button onclick="addClass()"  class="popAddMoneyBoxBtn">保存</button> </div> </div> </div>')
+        var popscrollwidth = $(window).width();
+        var popscrollheight = $(window).height();
+        console.log(popscrollwidth, popscrollheight);
+        $(".popAddMoneyBox").css('left', (popscrollwidth / 2 - 335) + "px").css('top', (popscrollheight / 2 - 220) + "px");
+    })
+    function addClass() {
+        var name = $('.inputbox1').val()
+
+        $.ajax({
+            url: "/cszyylfw/js/xsgl/addclazz",
+            type: 'post',
+            async: false,
+            data: 'token=' + token + "&name=" + name,
+            success: function (res) {
+                if (res.code == 0) {
+                    $('.popopowindow').remove()
+                    $.ajax({
+                        url: "/cszyylfw/js/xsgl/clazzlist",
+                        type: 'post',
+                        async: false,
+                        data: 'token=' + token + "&xm_type=" + xm_type + '&page_no=1&page_size=100',
+                        success: function (res) {
+                            if (res.code == 0) {
+                                $('.menuLevel2 ul').html('');
+                                for (var i = 0; i < res.data.items.length; i++) {
+                                    if (i == 0) {
+                                        $('.menuLevel2 ul').append('<li class="level2 btnone" style="background: #b1c54c;color: #fff" id="' + res.data.items[i].id + '"><span  style="background:url(../images/icon44.png)"></span><span>' + res.data.items[i].name + '</span></li>')
+                                    } else {
+                                        $('.menuLevel2 ul').append('<li class="level2" id="' + res.data.items[i].id + '"><span></span><span>' + res.data.items[i].name + '</span></li>')
+                                    }
+                                }
+                            } else if (res.code == 20) {
+                                alert('登陆超时，请重新登录！')
+                                setTimeout(function () {
+                                    location.href = 'xs_index.html'
+                                }, 1000)
+
+                            } else {
+                                alert(res.codeMsg)
+                            }
+                        }
+                    })
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！')
+                    setTimeout(function () {
+                        location.href = 'xs_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+    //    新增学生
+    $('.addStudent').click(function () {
+        $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyBox"> <div class="popAddMoneyTop"> <span class="lf">新增学生</span> <span class="deleteIcon rt" onclick="delThis()"></span> </div> <div class="popAddMoneyBottom"> <div style="margin: 100px auto 10px"> <span>学号</span><input value="" class="studentNum" type="text" maxlength="30"/> </div> <div style="margin: 0 auto 10px"> <span>姓名</span><input value="" class="studentName" type="text" maxlength="30"/> </div> <div style="margin: 0 auto 86px"> <span>密码</span><input value="" class="studentPwd" type="text" maxlength="30"/> </div> <button onclick="addStudent()"  class="popAddMoneyBoxBtn">保存</button> </div> </div> </div>')
+        var popscrollwidth = $(window).width();
+        var popscrollheight = $(window).height();
+        console.log(popscrollwidth, popscrollheight);
+        $(".popAddMoneyBox").css('left', (popscrollwidth / 2 - 335) + "px").css('top', (popscrollheight / 2 - 220) + "px");
+    });
+    function addStudent() {
+        var realname = $('.studentName').val();
+        var student_no = $('.studentNum').val();
+        var pwd = $('.studentPwd').val();
+        var clazz_id = classId;
+        $.ajax({
+            url: "/cszyylfw/js/xsgl/addstudent",
+            type: 'post',
+            async: false,
+            data: 'token=' + token + "&realname=" + realname + "&student_no=" + student_no + "&pwd=" + pwd + "&clazz_id=" + clazz_id,
+            success: function (res) {
+                if (res.code == 0) {
+                    $('.popopowindow').remove()
+                    $.ajax({
+                        url: "/cszyylfw/js/xsgl/studentlist",
+                        type: 'post',
+                        async: false,
+                        data: 'token=' + token + "&clazz_id=" + clazz_id + '&page_no=1&page_size=5',
+                        success: function (res) {
+                            if (res.code == 0) {
+                                $('.indextable tbody').html('');
+                                for (var i = 0; i < res.data.items.length; i++) {
+                                    $('tbody').append('<tr> <td>' + res.data.items[i].studentNo + '</td> <td>' + res.data.items[i].realname + '</td> <td>' + res.data.items[i].pwd + '</td> <td><span id="' + res.data.items[i].id + '">查看</span></td> <td class="colortd"><span id="' + res.data.items[i].id + '">编辑</span><span id="' + res.data.items[i].id + '">删除</span></td> </tr>')
+                                }
+                            } else if (res.code == 20) {
+                                alert('登陆超时，请重新登录！');
+                                setTimeout(function () {
+                                    location.href = 'xs_index.html'
+                                }, 1000)
+
+                            } else {
+                                alert(res.codeMsg)
+                            }
+                        }
+                    })
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！');
+                    setTimeout(function () {
+                        location.href = 'xs_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+    //    删除班级
+    $('.boxRtBox').on('click', '.classedit .deleteClass', function () {
+        $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyMinBox"> <div class="popAddMoneyTop"> <span class="lf">请输入密码</span> <span class="deleteIcon rt" onclick="delThis()"></span> </div> <div class="popAddMoneyMinBottom"> <div style="margin: 100px auto 10px"> <input value="" class="inputbox1min" type="text" maxlength="30"/> </div> <div class="minBtn"> <button class="refusemin rt" onclick="delThis()">取消</button> <button class="makeSuremin rt" onclick="makeSuremin()">确认</button> </div> </div> </div> </div> ')
+        var popscrollwidth = $(window).width();
+        var popscrollheight = $(window).height();
+        console.log(popscrollwidth, popscrollheight);
+        $(".popAddMoneyMinBox").css('left', (popscrollwidth / 2 - 180) + "px").css('top', (popscrollheight / 2 - 96.5) + "px");
+    });
+    function makeSuremin() {
+        _This = $(this);
+        var pwd = $('.inputbox1min').val()
+        layboxs("action/delete_class.html?id=" + classId + "&url=/js/xsgl/delclazz" + "&fun=delok3&pwd=" + pwd, "notitle");
+    }
+    function delok3() {
+        popation("220", "y", "删除成功！");
+        closemask();
+        $('.popopowindow').remove()
+        $.ajax({
+            url: "/cszyylfw/js/xsgl/clazzlist",
+            type: 'post',
+            async: false,
+            data: 'token=' + token + "&xm_type=" + xm_type + '&page_no=1&page_size=100',
+            success: function (res) {
+                if (res.code == 0) {
+                    $('.menuLevel2 ul').html('');
+                    classId = res.data.items[0].id;
+                    for (var i = 0; i < res.data.items.length; i++) {
+                        if (i == 0) {
+                            $('.menuLevel2 ul').append('<li class="level2 btnone" style="background: #b1c54c;color: #fff" id="' + res.data.items[i].id + '"><span  style="background:url(../images/icon44.png)"></span><span>' + res.data.items[i].name + '</span></li>')
+                        } else {
+                            $('.menuLevel2 ul').append('<li class="level2" id="' + res.data.items[i].id + '"><span></span><span>' + res.data.items[i].name + '</span></li>')
+                        }
+                    }
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！')
+                    setTimeout(function () {
+                        location.href = 'xs_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+        $.ajax({
+            url: "/cszyylfw/js/xsgl/studentlist",
+            type: 'post',
+            async: false,
+            data: 'token=' + token + "&clazz_id=" + classId + '&page_no=1&page_size=5',
+            success: function (res) {
+                if (res.code == 0) {
+                    $.ajax({
+                        url: "/cszyylfw/js/xsgl/studentlist",
+                        type: 'post',
+                        async: false,
+                        data: 'token=' + token + "&clazz_id=" + classId + '&page_no=1&page_size=5',
+                        success: function (res) {
+                            if (res.code == 0) {
+                                $('.indextable tbody').html('');
+                                for (var i = 0; i < res.data.items.length; i++) {
+                                    $('tbody').append('<tr> <td>' + res.data.items[i].studentNo + '</td> <td>' + res.data.items[i].realname + '</td> <td>' + res.data.items[i].pwd + '</td> <td><span id="' + res.data.items[i].id + '">查看</span></td> <td class="colortd"><span id="' + res.data.items[i].id + '">编辑</span><span id="' + res.data.items[i].id + '">删除</span></td> </tr>')
+                                }
+                            } else if (res.code == 20) {
+                                alert('登陆超时，请重新登录！')
+                                setTimeout(function () {
+                                    location.href = 'xs_index.html'
+                                }, 1000)
+
+                            } else {
+                                alert(res.codeMsg)
+                            }
+                        }
+                    })
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！')
+                    setTimeout(function () {
+                        location.href = 'xs_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+
+
+    //    归档
+    $('.saveClass').click(function () {
+        $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyMinBox"> <div class="popAddMoneyTop"> <span class="lf">请输入密码</span> <span class="deleteIcon rt" onclick="delThis()"></span> </div> <div class="popAddMoneyMinBottom"> <div style="margin: 100px auto 10px"> <span>确认归档后，该班级信息将不再此位置展示，是否归档！</span> </div> <div class="minBtn"> <button class="refusemin rt"  onclick="delThis()">取消</button> <button class="makeSuremin rt"  onclick="makeSuresave()">确认</button> </div> </div> </div> </div>')
+        var popscrollwidth = $(window).width();
+        var popscrollheight = $(window).height();
+        console.log(popscrollwidth, popscrollheight);
+        $(".popAddMoneyMinBox").css('left', (popscrollwidth / 2 - 180) + "px").css('top', (popscrollheight / 2 - 96.5) + "px");
+    })
+    function makeSuresave() {
+        layboxs("action/saveClass.html?id=" + classId + "&url=/js/xsgl/archiveclazz" + "&fun=delok2", "notitle");
+    }
+    function delok2() {
+        popation("220", "y", "归档成功！");
+        closemask();
+        $('.popopowindow').remove()
+        $.ajax({
+            url: "/cszyylfw/js/xsgl/clazzlist",
+            type: 'post',
+            async: false,
+            data: 'token=' + token + "&xm_type=" + 1 + '&page_no=1&page_size=100',
+            success: function (res) {
+                if (res.code == 0) {
+                    $('.menuLevel2 ul').html('');
+                    classId = res.data.items[0].id;
+                    for (var i = 0; i < res.data.items.length; i++) {
+                        if (i == 0) {
+                            $('.menuLevel2 ul').append('<li class="level2 btnone" style="background: #b1c54c;color: #fff" id="' + res.data.items[i].id + '"><span  style="background:url(../images/icon44.png)"></span><span>' + res.data.items[i].name + '</span></li>')
+                        } else {
+                            $('.menuLevel2 ul').append('<li class="level2" id="' + res.data.items[i].id + '"><span></span><span>' + res.data.items[i].name + '</span></li>')
+                        }
+                    }
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！')
+                    setTimeout(function () {
+                        location.href = 'xs_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+        $.ajax({
+            url: "/cszyylfw/js/xsgl/studentlist",
+            type: 'post',
+            async: false,
+            data: 'token=' + token + "&clazz_id=" + classId + '&page_no=1&page_size=5',
+            success: function (res) {
+                if (res.code == 0) {
+                    $.ajax({
+                        url: "/cszyylfw/js/xsgl/studentlist",
+                        type: 'post',
+                        async: false,
+                        data: 'token=' + token + "&clazz_id=" + classId + '&page_no=1&page_size=5',
+                        success: function (res) {
+                            if (res.code == 0) {
+                                $('.indextable tbody').html('');
+                                for (var i = 0; i < res.data.items.length; i++) {
+                                    $('tbody').append('<tr> <td>' + res.data.items[i].studentNo + '</td> <td>' + res.data.items[i].realname + '</td> <td>' + res.data.items[i].pwd + '</td> <td><span id="' + res.data.items[i].id + '">查看</span></td> <td class="colortd"><span id="' + res.data.items[i].id + '">编辑</span><span id="' + res.data.items[i].id + '">删除</span></td> </tr>')
+                                }
+                            } else if (res.code == 20) {
+                                alert('登陆超时，请重新登录！')
+                                setTimeout(function () {
+                                    location.href = 'xs_index.html'
+                                }, 1000)
+
+                            } else {
+                                alert(res.codeMsg)
+                            }
+                        }
+                    })
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！')
+                    setTimeout(function () {
+                        location.href = 'xs_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+
+    //    进入
+//    $('.tableTask').on('click', '.colortd span:nth-child(1)', function () {
+//        if (xm_id == '') {
+//            error('学生尚未提交任何项目！')
+//        } else {
+//            if ($(this).attr('addId') == 1) {
+//                window.open('xs_site_report.html?xm_id=' + xm_id)
+//            } else if ($(this).attr('addId') == 2) {
+//                window.open('xs_site_investigation.html?xm_id=' + xm_id)
+//            } else if ($(this).attr('addId') == 3) {
+//                window.open('xs_project_plan.html?xm_id=' + xm_id)
+//            } else if ($(this).attr('addId') == 4) {
+//                window.open('xs_activities_notice.html?xm_id=' + xm_id)
+//            } else if ($(this).attr('addId') == 5) {
+//                window.open('xs_site_invitation.html?xm_id=' + xm_id)
+//            } else if ($(this).attr('addId') == 6) {
+//                window.open('xs_site_summary.html?xm_id=' + xm_id)
+//            }
+//        }
+//
+//    })
+//    //    评分
+//    $('tbody>tr:nth-child(1)').on('click', '.colortd span:nth-child(2)', function () {
+//        if (!$(this).attr('id')) {
+//            error('学生尚未提交作业！')
+//        } else {
+//            $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyMinBox"> <div class="popAddMoneyTop"> <span class="lf">请输入分数</span> <span class="deleteIcon rt" onclick="delThis()"></span> </div> <div class="popAddMoneyMinBottom"> <div style="margin: 100px auto 10px"> <input value="" onkeyup="changeThis()"  class="inputbox1min" type="number" maxlength="3"/> </div> <div class="minBtn"> <button class="refusemin rt" onclick="delThis()">取消</button> <button class="makeSuremin rt" onclick="makeSurePoint1()">确认</button> </div> </div> </div> </div> ')
+//            var popscrollwidth = $(window).width();
+//            var popscrollheight = $(window).height();
+//            console.log(popscrollwidth, popscrollheight);
+//            $(".popAddMoneyMinBox").css('left', (popscrollwidth / 2 - 180) + "px").css('top', (popscrollheight / 2 - 96.5) + "px");
+//        }
+//    })
+//    $('tbody>tr:nth-child(2)').on('click', '.colortd span:nth-child(2)', function () {
+//        if (!$(this).attr('id')) {
+//            console.log(1231)
+//            error('学生尚未提交作业！')
+//        } else {
+//            $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyMinBox"> <div class="popAddMoneyTop"> <span class="lf">请输入分数</span> <span class="deleteIcon rt" onclick="delThis()"></span> </div> <div class="popAddMoneyMinBottom"> <div style="margin: 100px auto 10px"> <input value="" onkeyup="changeThis()"  class="inputbox1min" type="number" maxlength="3"/> </div> <div class="minBtn"> <button class="refusemin rt" onclick="delThis()">取消</button> <button class="makeSuremin rt" onclick="makeSurePoint2()">确认</button> </div> </div> </div> </div> ')
+//            var popscrollwidth = $(window).width();
+//            var popscrollheight = $(window).height();
+//            console.log(popscrollwidth, popscrollheight);
+//            $(".popAddMoneyMinBox").css('left', (popscrollwidth / 2 - 180) + "px").css('top', (popscrollheight / 2 - 96.5) + "px");
+//        }
+//    })
+//    $('tbody>tr:nth-child(3)').on('click', '.colortd span:nth-child(2)', function () {
+//        if (!$(this).attr('id')) {
+//            console.log(1231)
+//            error('学生尚未提交作业！')
+//        } else {
+//            $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyMinBox"> <div class="popAddMoneyTop"> <span class="lf">请输入分数</span> <span class="deleteIcon rt" onclick="delThis()"></span> </div> <div class="popAddMoneyMinBottom"> <div style="margin: 100px auto 10px"> <input value="" onkeyup="changeThis()"  class="inputbox1min" type="number" maxlength="3"/> </div> <div class="minBtn"> <button class="refusemin rt" onclick="delThis()">取消</button> <button class="makeSuremin rt" onclick="makeSurePoint3()">确认</button> </div> </div> </div> </div> ')
+//            var popscrollwidth = $(window).width();
+//            var popscrollheight = $(window).height();
+//            console.log(popscrollwidth, popscrollheight);
+//            $(".popAddMoneyMinBox").css('left', (popscrollwidth / 2 - 180) + "px").css('top', (popscrollheight / 2 - 96.5) + "px");
+//        }
+//    })
+//    $('tbody>tr:nth-child(4)').on('click', '.colortd span:nth-child(2)', function () {
+//        if (!$(this).attr('id')) {
+//            console.log(1231)
+//            error('学生尚未提交作业！')
+//        } else {
+//            $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyMinBox"> <div class="popAddMoneyTop"> <span class="lf">请输入分数</span> <span class="deleteIcon rt" onclick="delThis()"></span> </div> <div class="popAddMoneyMinBottom"> <div style="margin: 100px auto 10px"> <input value="" onkeyup="changeThis()"  class="inputbox1min" type="number" maxlength="3"/> </div> <div class="minBtn"> <button class="refusemin rt" onclick="delThis()">取消</button> <button class="makeSuremin rt" onclick="makeSurePoint4()">确认</button> </div> </div> </div> </div> ')
+//            var popscrollwidth = $(window).width();
+//            var popscrollheight = $(window).height();
+//            console.log(popscrollwidth, popscrollheight);
+//            $(".popAddMoneyMinBox").css('left', (popscrollwidth / 2 - 180) + "px").css('top', (popscrollheight / 2 - 96.5) + "px");
+//        }
+//    })
+//    $('tbody>tr:nth-child(5)').on('click', '.colortd span:nth-child(2)', function () {
+//        if (!$(this).attr('id')) {
+//            console.log(1231)
+//            error('学生尚未提交作业！')
+//        } else {
+//            $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyMinBox"> <div class="popAddMoneyTop"> <span class="lf">请输入分数</span> <span class="deleteIcon rt" onclick="delThis()"></span> </div> <div class="popAddMoneyMinBottom"> <div style="margin: 100px auto 10px"> <input value="" onkeyup="changeThis()"  class="inputbox1min" type="number" maxlength="3"/> </div> <div class="minBtn"> <button class="refusemin rt" onclick="delThis()">取消</button> <button class="makeSuremin rt" onclick="makeSurePoint5()">确认</button> </div> </div> </div> </div> ')
+//            var popscrollwidth = $(window).width();
+//            var popscrollheight = $(window).height();
+//            console.log(popscrollwidth, popscrollheight);
+//            $(".popAddMoneyMinBox").css('left', (popscrollwidth / 2 - 180) + "px").css('top', (popscrollheight / 2 - 96.5) + "px");
+//        }
+//    })
+//    $('tbody>tr:nth-child(6)').on('click', '.colortd span:nth-child(2)', function () {
+//        if (!$(this).attr('id')) {
+//            console.log(1231)
+//            error('学生尚未提交作业！')
+//        } else {
+//            $('body').append('<div class="popopowindow"> <div class="popBackground"></div> <div class="popAddMoneyMinBox"> <div class="popAddMoneyTop"> <span class="lf">请输入分数</span> <span class="deleteIcon rt" onclick="delThis()"></span> </div> <div class="popAddMoneyMinBottom"> <div style="margin: 100px auto 10px"> <input value="" onkeyup="changeThis()"  class="inputbox1min" type="number" maxlength="3"/> </div> <div class="minBtn"> <button class="refusemin rt" onclick="delThis()">取消</button> <button class="makeSuremin rt" onclick="makeSurePoint6()">确认</button> </div> </div> </div> </div> ')
+//            var popscrollwidth = $(window).width();
+//            var popscrollheight = $(window).height();
+//            console.log(popscrollwidth, popscrollheight);
+//            $(".popAddMoneyMinBox").css('left', (popscrollwidth / 2 - 180) + "px").css('top', (popscrollheight / 2 - 96.5) + "px");
+//        }
+//    })
+
+    function changeThis() {
+        var reg = new RegExp("^(\\d|[1-9]\\d|100)$");
+        var testNum = $('.inputbox1min').val();
+        if (!reg.test(testNum)) {
+            $('.inputbox1min').val(100)
+        }
+    }
+    function makeSurePoint1() {
+        var score = $('.inputbox1min').val();
+        var id = $('tbody>tr:first-child span:nth-child(2)').attr('id')
+        $.ajax({
+            url: "/cszyylfw/js/xszuoye/bjscore",
+            type: 'post',
+            async: false,
+            data: 'token=' + token + "&id=" + id + '&score=' + score,
+            success: function (res) {
+                if (res.code == 0) {
+                    $('.popopowindow').remove()
+                    reloadThis()
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！');
+                    setTimeout(function () {
+                        location.href = 'xs_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+    function makeSurePoint2() {
+        var score = $('.inputbox1min').val();
+        var id = $('tbody>tr:nth-child(2) span:nth-child(2)').attr('id')
+        $.ajax({
+            url: "/cszyylfw/js/xszuoye/cddybgscore",
+            type: 'post',
+            async: false,
+            data: 'token=' + token + "&id=" + id + '&score=' + score,
+            success: function (res) {
+                if (res.code == 0) {
+                    $('.popopowindow').remove()
+                    reloadThis()
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！');
+                    setTimeout(function () {
+                        location.href = 'xs_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+    function makeSurePoint3() {
+        var score = $('.inputbox1min').val();
+        var id = $('tbody>tr:nth-child(3) span:nth-child(2)').attr('id')
+        $.ajax({
+            url: "/cszyylfw/js/xszuoye/chfascore",
+            type: 'post',
+            async: false,
+            data: 'token=' + token + "&id=" + id + '&score=' + score,
+            success: function (res) {
+                if (res.code == 0) {
+                    $('.popopowindow').remove()
+                    reloadThis()
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！');
+                    setTimeout(function () {
+                        location.href = 'xs_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+    function makeSurePoint4() {
+        var score = $('.inputbox1min').val();
+        var id = $('tbody>tr:nth-child(4) span:nth-child(2)').attr('id')
+        $.ajax({
+            url: "/cszyylfw/js/xszuoye/hdggscore",
+            type: 'post',
+            async: false,
+            data: 'token=' + token + "&id=" + id + '&score=' + score,
+            success: function (res) {
+                if (res.code == 0) {
+                    $('.popopowindow').remove()
+                    reloadThis()
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！');
+                    setTimeout(function () {
+                        location.href = 'xs_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+    function makeSurePoint5() {
+        var score = $('.inputbox1min').val();
+        var id = $('tbody>tr:nth-child(5) span:nth-child(2)').attr('id')
+        $.ajax({
+            url: "/cszyylfw/js/xszuoye/yqhscore",
+            type: 'post',
+            async: false,
+            data: 'token=' + token + "&id=" + id + '&score=' + score,
+            success: function (res) {
+                if (res.code == 0) {
+                    $('.popopowindow').remove()
+                    reloadThis()
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！');
+                    setTimeout(function () {
+                        location.href = 'xs_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+    function makeSurePoint6() {
+        var score = $('.inputbox1min').val();
+        var id = $('tbody>tr:nth-child(6) span:nth-child(2)').attr('id')
+        $.ajax({
+            url: "/cszyylfw/js/xszuoye/zjbgscore",
+            type: 'post',
+            async: false,
+            data: 'token=' + token + "&id=" + id + '&score=' + score,
+            success: function (res) {
+                if (res.code == 0) {
+                    $('.popopowindow').remove()
+                    reloadThis()
+                } else if (res.code == 20) {
+                    alert('登陆超时，请重新登录！');
+                    setTimeout(function () {
+                        location.href = 'xs_index.html'
+                    }, 1000)
+
+                } else {
+                    alert(res.codeMsg)
+                }
+            }
+        })
+    }
+    $('.popAddMoneyMinBox').on('change', '.popAddMoneyMinBottom .inputbox1min', function () {
+        console.log(123123)
+//    $('.inputbox1min').change(function(){
+        var reg = new RegExp("^(\\d|[1-9]\\d|100)$");
+        var testNum = $('.inputbox1min').val();
+        if (!reg.test(testNum)) {
+            alert("请输入0-100的整数！");
+        }
+    })
+    //    评分
+//    function delok() {
+//        popation("220", "y", "归入优秀作业成功！");
+//        closemask();
+//        $('.popopowindow').remove()
+//    }
+//    $('tbody>tr:nth-child(1)').on('click', '.colortd span:nth-child(3)', function () {
+//        if (!$(this).attr('id')) {
+//            error('学生尚未提交作业！')
+//        } else {
+//            var id = $(this).attr('id')
+//            layboxs("action/homework_select.html?id=" + id + "&url=/js/xszuoye/bjgood" + "&fun=delok", "notitle");
+//        }
+//    })
+
+    $('tbody>tr:nth-child(2)').on('click', '.colortd span:nth-child(3)', function () {
+        if (!$(this).attr('id')) {
+            console.log(1231)
+            error('学生尚未提交作业！')
+        } else {
+            var id = $(this).attr('id')
+            layboxs("action/homework_select.html?id=" + id + "&url=/js/xszuoye/cddybggood" + "&fun=delok", "notitle");
+        }
+    })
+    $('tbody>tr:nth-child(3)').on('click', '.colortd span:nth-child(3)', function () {
+        if (!$(this).attr('id')) {
+            console.log(1231)
+            error('学生尚未提交作业！')
+        } else {
+            var id = $(this).attr('id')
+            layboxs("action/homework_select.html?id=" + id + "&url=/js/xszuoye/chfagood" + "&fun=delok", "notitle");
+        }
+    })
+    $('tbody>tr:nth-child(4)').on('click', '.colortd span:nth-child(3)', function () {
+        if (!$(this).attr('id')) {
+            console.log(1231)
+            error('学生尚未提交作业！')
+        } else {
+            var id = $(this).attr('id')
+            layboxs("action/homework_select.html?id=" + id + "&url=/js/xszuoye/hdgggood" + "&fun=delok", "notitle");
+        }
+    })
+    $('tbody>tr:nth-child(5)').on('click', '.colortd span:nth-child(3)', function () {
+        if (!$(this).attr('id')) {
+            console.log(1231)
+            error('学生尚未提交作业！')
+        } else {
+            var id = $(this).attr('id')
+            layboxs("action/homework_select.html?id=" + id + "&url=/js/xszuoye/yqhgood" + "&fun=delok", "notitle");
+        }
+    })
+    $('tbody>tr:nth-child(6)').on('click', '.colortd span:nth-child(3)', function () {
+        if (!$(this).attr('id')) {
+            console.log(1231)
+            error('学生尚未提交作业！')
+        } else {
+            var id = $(this).attr('id')
+            layboxs("action/homework_select.html?id=" + id + "&url=/js/xszuoye/zjbggood" + "&fun=delok", "notitle");
+        }
+    })
+
+</script>
+</body>
+</html>
